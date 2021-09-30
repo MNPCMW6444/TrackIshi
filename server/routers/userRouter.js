@@ -5,44 +5,36 @@ const jwt = require("jsonwebtoken");
 
 // register
 
-router.post("/", async (req, res) => {
+router.post("/createpassword", async (req, res) => {
   try {
-    const { email, password, passwordVerify } = req.body;
+    const { MA, password, passwordVerify } = req.body;
 
     // validation
 
-    if (!email || !password || !passwordVerify)
+    if (!MA || !password || !passwordVerify)
       return res
         .status(400)
-        .json({ errorMessage: "Please enter all required fields." });
+        .json({ errorMessage: "נא להזין הכל" });
 
-    if (password.length < 6)
+    if (password.length < 1)
       return res.status(400).json({
-        errorMessage: "Please enter a password of at least 6 characters.",
+        errorMessage: "השתמש בלפחות תו אחד לסיסמה",
       });
 
     if (password !== passwordVerify)
       return res.status(400).json({
-        errorMessage: "Please enter the same password twice.",
+        errorMessage: "סיסמאות לא תואמות",
       });
-
-    const existingUser = await User.findOne({ email });
-    if (existingUser)
-      return res.status(400).json({
-        errorMessage: "An account with this email already exists.",
-      });
-
+    
     // hash the password
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
 
-    // save a new user account to the db
+    // save (an almost new) user account to the db
 
-    const newUser = new User({
-      email,
-      passwordHash,
-    });
+    const newUser = await User.findOne({ MA });
+    newUser.passwordHash=passwordHash;
 
     const savedUser = await newUser.save();
 
@@ -52,7 +44,7 @@ router.post("/", async (req, res) => {
       {
         user: savedUser._id,
       },
-      process.env.JWT_SECRET
+      "lkdfnkdfnvkldfnkldnfklgnfdklgndfkkdfklrngklrngklnklgnrklngv"
     );
 
     // send the token in a HTTP-only cookie
@@ -70,29 +62,33 @@ router.post("/", async (req, res) => {
   }
 });
 
+
 // log in
 
 router.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { MA, password } = req.body;
 
     // validate
 
-    if (!email || !password)
+    if (!MA || !password)
       return res
         .status(400)
-        .json({ errorMessage: "Please enter all required fields." });
+        .json({ errorMessage: "נא להזין מספר אישי וסיסמה" });
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ MA });
     if (!existingUser)
-      return res.status(401).json({ errorMessage: "Wrong email or password." });
+      return res.status(401).json({ errorMessage: "אינך רשום במערכת" });
+
+    if (!existingUser.passwordHash)
+      return res.status(401).json({ errorMessage: "סיסמה שגויה" });
 
     const passwordCorrect = await bcrypt.compare(
       password,
       existingUser.passwordHash
     );
     if (!passwordCorrect)
-      return res.status(401).json({ errorMessage: "Wrong email or password." });
+      return res.status(401).json({ errorMessage: "סיסמה שגויה" });
 
     // sign the token
 
@@ -100,7 +96,7 @@ router.post("/login", async (req, res) => {
       {
         user: existingUser._id,
       },
-      process.env.JWT_SECRET
+      "lkdfnkdfnvkldfnkldnfklgnfdklgndfkkdfklrngklrngklnklgnrklngv"
     );
 
     // send the token in a HTTP-only cookie
