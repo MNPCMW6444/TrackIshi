@@ -8,7 +8,7 @@ dotenv.config();
 // set up server
 
 const app = express();
-const PORT = 10004;
+const PORT = process.env.PORT || 10004;
 app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
 
 app.use(express.json());
@@ -17,7 +17,7 @@ app.use(cookieParser());
 // connect to mongoDB
 
 mongoose.connect(
-    "mongodb://localhost:27017/acphrm",
+  process.env.MONGOURI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
