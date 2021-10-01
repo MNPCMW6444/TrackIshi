@@ -5,16 +5,12 @@ const cookieParser = require("cookie-parser");
 
 dotenv.config();
 
-// set up server
-
 const app = express();
 const PORT = process.env.PORT || 10004;
 app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
 
 app.use(express.json());
 app.use(cookieParser());
-
-// connect to mongoDB
 
 mongoose.connect(
   process.env.MONGOURI,
@@ -28,13 +24,10 @@ mongoose.connect(
   }
 );
 
-// set up routes
-
 app.use("/auth", require("./routers/userRouter"));
 
-function getLoggedMA(){
-    let mtu = process.env['USERPROFILE']
-    return mtu.slice(mtu.length-7);
-}
+app.get("/test", (req, res) => {
+  res.send("Hey "+getLoggedMA());
+});
 
 

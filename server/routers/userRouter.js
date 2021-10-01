@@ -3,59 +3,102 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// register
-
-router.post("/createpassword", async (req, res) => {
+router.post("/create", async (req, res) => {
   try {
-    const { MA, password, passwordVerify } = req.body;
+    const { iMA, password, passwordVerify, supersecretMATOBEUPGRADED2022 } = req.body;
+    if (supersecretMATOBEUPGRADED2022 != undefined && supersecretMATOBEUPGRADED2022.length == 7)
+    {
+      // validation
 
-    // validation
+      if (User.findOne({MA : iMA}) != null)
+        return res
+          .status(400)
+          .json({ errorMessage: "user already exists" })
 
-    if (!MA || !password || !passwordVerify)
-      return res
-        .status(400)
-        .json({ errorMessage: "נא להזין הכל" });
+      const passwordHash = "passed";
+      const role = "SCREW";
 
-    if (password.length < 1)
-      return res.status(400).json({
-        errorMessage: "השתמש בלפחות תו אחד לסיסמה",
-      });
+      // save a user account to the db
 
-    if (password !== passwordVerify)
-      return res.status(400).json({
-        errorMessage: "סיסמאות לא תואמות",
-      });
-    
-    // hash the password
+      const newUser = {iMA, passwordHash, role};
 
-    const salt = await bcrypt.genSalt();
-    const passwordHash = await bcrypt.hash(password, salt);
+      const savedUser = await newUser.save();
 
-    // save (an almost new) user account to the db
+      // sign the token
 
-    const newUser = await User.findOne({ MA });
-    newUser.passwordHash=passwordHash;
+      const token = jwt.sign(
+        {
+          user: savedUser._id,
+        },
+        process.env.JWTSECRET
+      );
 
-    const savedUser = await newUser.save();
+      // send the token in a HTTP-only cookie
 
-    // sign the token
+      res
+        .cookie("token", token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "none",
+        })
+        .send();
+    }
+    else
+    {
+      // validation
 
-    const token = jwt.sign(
-      {
-        user: savedUser._id,
-      },
-      "lkdfnkdfnvkldfnkldnfklgnfdklgndfkkdfklrngklrngklnklgnrklngv"
-    );
+      if (!iMA || !password || !passwordVerify)
+        return res
+          .status(400)
+          .json({ errorMessage: "missing input" });
 
-    // send the token in a HTTP-only cookie
+      // console.log(await User.findOne({MA : iMA}))
+      if (await User.findOne({MA : iMA}) != null)
+        return res
+          .status(400)
+          .json({ errorMessage: "user already exists" })
 
-    res
-      .cookie("token", token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "none",
-      })
-      .send();
+      if (password.length < 1)
+        return res.status(400).json({
+          errorMessage: "password is empty",
+        });
+
+      if (password !== passwordVerify)
+        return res.status(400).json({
+          errorMessage: "passwords dont match",
+        });
+      
+      // hash the password
+
+      const salt = await bcrypt.genSalt();
+      const passwordHash = await bcrypt.hash(password, salt);
+      const Role = "SCREW";
+      const MA = iMA;
+      // save a user account to the db
+
+      const newUser = new User ({MA, passwordHash, Role});
+
+      const savedUser = await newUser.save();
+
+      // sign the token
+
+      const token = jwt.sign(
+        {
+          user: savedUser._id,
+        },
+        process.env.JWTSECRET
+      );
+
+      // send the token in a HTTP-only cookie
+
+      res
+        .cookie("token", token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "none",
+        })
+        .send();
+    }
   } catch (err) {
     console.error(err);
     res.status(500).send();
@@ -63,11 +106,12 @@ router.post("/createpassword", async (req, res) => {
 });
 
 
+
 // log in
 
 router.post("/login", async (req, res) => {
   try {
-    const { MA, password } = req.body;
+    const { MA, password, supersecretMATOBEUPGRADED2022 } = req.body;
 
     // validate
 
