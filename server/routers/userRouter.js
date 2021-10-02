@@ -6,21 +6,22 @@ const jwt = require("jsonwebtoken");
 router.post("/create", async (req, res) => {
   try {
     const { iMA, password, passwordVerify, supersecretMATOBEUPGRADED2022 } = req.body;
-    if (supersecretMATOBEUPGRADED2022 != undefined && supersecretMATOBEUPGRADED2022.length == 7)
+    if (supersecretMATOBEUPGRADED2022 != undefined && supersecretMATOBEUPGRADED2022.length > 1)
     {
       // validation
-
-      if (User.findOne({MA : iMA}) != null)
-        return res
-          .status(400)
-          .json({ errorMessage: "user already exists" })
+      docuser = (await User.findOne({MA : supersecretMATOBEUPGRADED2022}));
+      if (docuser != null)
+        if (docuser.MA == supersecretMATOBEUPGRADED2022)
+          return res
+            .status(400)
+            .json({ errorMessage: "user already exists" })
 
       const passwordHash = "passed";
-      const role = "SCREW";
-
+      const Role = "SCREW";
+      const MA = supersecretMATOBEUPGRADED2022;
       // save a user account to the db
 
-      const newUser = {iMA, passwordHash, role};
+      const newUser = new User ({MA, passwordHash, Role});
 
       const savedUser = await newUser.save();
 
@@ -52,11 +53,12 @@ router.post("/create", async (req, res) => {
           .status(400)
           .json({ errorMessage: "missing input" });
 
-      // console.log(await User.findOne({MA : iMA}))
-      if (await User.findOne({MA : iMA}) != null)
-        return res
-          .status(400)
-          .json({ errorMessage: "user already exists" })
+      docuser = (await User.findOne({MA : iMA}));
+      if (docuser != null)
+        if (docuser.MA == iMA)
+          return res
+            .status(400)
+            .json({ errorMessage: "user already exists" })
 
       if (password.length < 1)
         return res.status(400).json({
@@ -114,44 +116,73 @@ router.post("/login", async (req, res) => {
     const { MA, password, supersecretMATOBEUPGRADED2022 } = req.body;
 
     // validate
-
-    if (!MA || !password)
+      
+    if (!supersecretMATOBEUPGRADED2022)
+    {
+       
+      if (!MA || !password)
       return res
         .status(400)
-        .json({ errorMessage: "נא להזין מספר אישי וסיסמה" });
+        .json({ errorMessage: "missing login info" });
+      
+      const existingUser = await User.findOne({ MA });
+      if (!existingUser)
+        return res.status(401).json({ errorMessage: "user doesnt exists" });
 
-    const existingUser = await User.findOne({ MA });
-    if (!existingUser)
-      return res.status(401).json({ errorMessage: "אינך רשום במערכת" });
+      if (!existingUser.passwordHash)
+        return res.status(401).json({ errorMessage: "wrong password" });
 
-    if (!existingUser.passwordHash)
-      return res.status(401).json({ errorMessage: "סיסמה שגויה" });
+      const passwordCorrect = await bcrypt.compare(
+        password,
+        existingUser.passwordHash
+      );
+      if (!passwordCorrect)
+        return res.status(401).json({ errorMessage: "wrong password" });
 
-    const passwordCorrect = await bcrypt.compare(
-      password,
-      existingUser.passwordHash
-    );
-    if (!passwordCorrect)
-      return res.status(401).json({ errorMessage: "סיסמה שגויה" });
+      // sign the token
 
-    // sign the token
+      const token = jwt.sign(
+        {
+          user: existingUser._id,
+        },
+        process.env.JWTSECRET
+      );
 
-    const token = jwt.sign(
-      {
-        user: existingUser._id,
-      },
-      "lkdfnkdfnvkldfnkldnfklgnfdklgndfkkdfklrngklrngklnklgnrklngv"
-    );
+      // send the token in a HTTP-only cookie
 
-    // send the token in a HTTP-only cookie
+      res
+        .cookie("token", token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "none",
+        })
+        .send();
+    }
+    else
+    {
+      const existingUser = await User.findOne({ supersecretMATOBEUPGRADED2022 });
+      if (!existingUser)
+        return res.status(401).json({ errorMessage: "user doenst exists" });
 
-    res
-      .cookie("token", token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "none",
-      })
-      .send();
+      // sign the token
+
+      const token = jwt.sign(
+        {
+          user: existingUser._id,
+        },
+        process.env.JWTSECRET
+      );
+
+      // send the token in a HTTP-only cookie
+
+      res
+        .cookie("token", token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "none",
+        })
+        .send();
+    }
   } catch (err) {
     console.error(err);
     res.status(500).send();
