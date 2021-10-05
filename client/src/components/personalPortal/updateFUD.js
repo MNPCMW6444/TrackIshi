@@ -1,12 +1,12 @@
 import Axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import domain from "../../util/domain";
 import ErrorMessage from "../misc/ErrorMessage";
 import "../auth/AuthForm.scss";
 
-function updateFUD() {
+function UpdateFUD() {
   const [oldFUD, setOldFUD] = useState("");
   const [firstname, setFirstname] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
@@ -17,10 +17,10 @@ function updateFUD() {
 
   async function getFUD() {
     const FUDRes = await Axios.get(`${domain}/auth/getFullDetails`);
-    setOldFUD(FUDRes.data.FirstName);
+    setOldFUD(FUDRes.data);
   }
 
-  async function updateFUD(e) {
+  async function updatefud(e) {
     e.preventDefault();
 
     const updateFUDData = {
@@ -42,43 +42,30 @@ function updateFUD() {
     history.push("/");
   }
 
+  useEffect(() => {
+    getFUD();
+  });
+
   return (
-    <div className="auth-form">
-      <h2>עדכון פרטים איישים למספר אישי {updateFUD.}</h2>
-      <form className="form" onSubmit={create}>
-        <label htmlFor="form-ma">מספר אישי</label>
+    <div className="update-form">
+      <h2>עדכון פרטים איישים למספר אישי {0}</h2>
+      <form className="form" onSubmit={updatefud}>
+        <label htmlFor="form-firstname">שם פרטי</label>
         <input
-          id="form-ma"
-          type="number"
-          value={formMA}
-          onChange={(e) => setFormMA(e.target.value)}
+          id="form-firstname"
+          type="string"
+          value={oldFUD.FirstName}
+          onChange={(e) => setFirstname(e.target.value)}
         />
-
-        <label htmlFor="form-password">בחר סיסמה</label>
-        <input
-          id="form-password"
-          type="password"
-          value={formPassword}
-          onChange={(e) => setFormPassword(e.target.value)}
-        />
-
-        <label htmlFor="form-passwordVerify">אמת סיסמה</label>
-        <input
-          id="form-passwordVerify"
-          type="password"
-          value={formPasswordVerify}
-          onChange={(e) => setFormPasswordVerify(e.target.value)}
-        />
-
         <button className="btn-submit" type="submit">
-          צור משתמש חדש
+          עדכן פרטים
         </button>
       </form>
       <p>
-        משתמש קיים? <Link to="/login">היכנס</Link>
+        בטל <Link to="/logout">וצא</Link>
       </p>
     </div>
   );
 }
 
-export default updateFUD;
+export default UpdateFUD;
