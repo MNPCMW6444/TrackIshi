@@ -43,6 +43,12 @@ function Create() {
   return (
     <div className="auth-form">
       <h2>הוספת משתמש חדש</h2>
+      {errorMessage && (
+        <ErrorMessage
+          message={errorMessage}
+          clear={() => setErrorMessage(null)}
+        />
+      )}
       <form className="form" onSubmit={create}>
         <label htmlFor="form-ma">מספר אישי</label>
         <input

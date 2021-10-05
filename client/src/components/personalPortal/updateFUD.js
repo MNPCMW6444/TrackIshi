@@ -7,8 +7,9 @@ import ErrorMessage from "../misc/ErrorMessage";
 import "../auth/AuthForm.scss";
 
 function UpdateFUD() {
-  const [oldFUD, setOldFUD] = useState("");
-  const [firstname, setFirstname] = useState("");
+  const [oldFUD, setOldFUD] = useState();
+  const [ma, setMa] = useState(0);
+  const [firstname, setFirstname] = useState("שם פרטי");
   const [errorMessage, setErrorMessage] = useState(null);
 
   const { getUser } = useContext(UserContext);
@@ -18,6 +19,8 @@ function UpdateFUD() {
   async function getFUD() {
     const FUDRes = await Axios.get(`${domain}/auth/getFullDetails`);
     setOldFUD(FUDRes.data);
+    try {if (oldFUD.FirstName) setFirstname(oldFUD.FirstName);} catch (err){}
+    try {if (oldFUD.MA) setMa(oldFUD.MA);} catch (err){}
   }
 
   async function updatefud(e) {
@@ -28,7 +31,7 @@ function UpdateFUD() {
     };
 
     try {
-      await Axios.post(`${domain}/auth/updateFullDetails`, updateFUDData);
+      await Axios.put(`${domain}/auth/updateFullDetails`, updateFUDData);
     } catch (err) {
       if (err.response) {
         if (err.response.data.errorMessage) {
@@ -48,13 +51,13 @@ function UpdateFUD() {
 
   return (
     <div className="update-form">
-      <h2>עדכון פרטים איישים למספר אישי {0}</h2>
+      <h2>עדכון פרטים איישים למספר אישי {ma}</h2>
       <form className="form" onSubmit={updatefud}>
         <label htmlFor="form-firstname">שם פרטי</label>
         <input
           id="form-firstname"
           type="string"
-          value={oldFUD.FirstName}
+          value={firstname}
           onChange={(e) => setFirstname(e.target.value)}
         />
         <button className="btn-submit" type="submit">

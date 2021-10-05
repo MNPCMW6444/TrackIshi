@@ -41,6 +41,12 @@ function Login() {
   return (
     <div className="auth-form">
       <h2>כניסה</h2>
+      {errorMessage && (
+        <ErrorMessage
+          message={errorMessage}
+          clear={() => setErrorMessage(null)}
+        />
+      )}
       <form className="form" onSubmit={login}>
         <label htmlFor="form-ma">מספר אישי</label>
         <input

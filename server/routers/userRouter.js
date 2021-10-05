@@ -10,23 +10,23 @@ router.post("/create", async (req, res) => {
       if (!iMA || !password || !passwordVerify)
         return res
           .status(400)
-          .json({ errorMessage: "missing input" });
+          .json({ errorMessage: "מספר אישי או שתי סיסמאות לא התקבלו" });
 
       docuser = (await User.findOne({MA : iMA}));
       if (docuser != null)
         if (docuser.MA == iMA)
           return res
             .status(400)
-            .json({ errorMessage: "user already exists" })
+            .json({ errorMessage: "משתמש כבר קיים" })
 
       if (password.length < 1)
         return res.status(400).json({
-          errorMessage: "password is empty",
+          errorMessage: "לא ניתן להשתמש בסיסמה ריקה",
         });
 
       if (password !== passwordVerify)
         return res.status(400).json({
-          errorMessage: "passwords dont match",
+          errorMessage: "סיסמאות לא תואמות",
         });
       
 
@@ -70,21 +70,21 @@ router.post("/login", async (req, res) => {
       if (!MA || !password)
       return res
         .status(400)
-        .json({ errorMessage: "missing login info" });
+        .json({ errorMessage: "מספר אישי או סיסמה לא התקבלו" });
       
       const existingUser = await User.findOne({ MA });
       if (!existingUser)
-        return res.status(401).json({ errorMessage: "user doesnt exists" });
+        return res.status(401).json({ errorMessage: "משתמש לא קיים" });
 
       if (!existingUser.passwordHash)
-        return res.status(401).json({ errorMessage: "wrong password" });
+        return res.status(401).json({ errorMessage: "סיסמתך שגויה כי אינה קיימת" });
 
       const passwordCorrect = await bcrypt.compare(
         password,
         existingUser.passwordHash
       );
       if (!passwordCorrect)
-        return res.status(401).json({ errorMessage: "wrong password" });
+        return res.status(401).json({ errorMessage: "סיסמתך שגויה" });
 
 
       const token = jwt.sign(
@@ -147,6 +147,35 @@ router.get("/getFullDetails", async (req, res) => {
     res.json(userr);
   } catch (err) {
     res.status(401).send();
+  }
+});
+
+router.put("/updateFullDetails", async (req, res) => {
+  try {
+    const { firstname } = req.body;
+
+      if (!firstname)
+        return res
+          .status(400)
+          .json({ errorMessage: "שם פרטי לא התקבל" });
+
+      const token = req.cookies.token;
+
+      if (!token) return res.json(null);
+  
+      const validatedUser = jwt.verify(token, process.env.JWTSECRET);
+  
+      const userr = await User.findById(validatedUser.user);
+
+      userr.FirstName = firstname;
+
+      const saveduserr = await userr.save();
+
+      res
+        .json(saveduserr);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
   }
 });
 
