@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
   NickName: String,
   CourseNo: Number,
   BirthDate: Date,
-  email: String,
+  Email: String,
   MainPhone: String,
   EmergencyPhone: String,
   AddressCity: String,

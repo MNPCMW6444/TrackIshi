@@ -104,7 +104,6 @@ router.post("/login", async (req, res) => {
         .send();
 
   } catch (err) {
-    console.error(err);
     res.status(500).send();
   }
 });
@@ -120,7 +119,7 @@ router.get("/logout", (req, res) => {
     .send();
 });
 
-router.get("/loggedIn", (req, res) => {
+router.get("/loggedIn", async (req, res) => {
   try {
     const token = req.cookies.token;
 
@@ -128,7 +127,9 @@ router.get("/loggedIn", (req, res) => {
 
     const validatedUser = jwt.verify(token, process.env.JWTSECRET);
 
-    res.json(validatedUser.id);
+    const userr = await User.findById(validatedUser.user);
+
+    res.json(userr.MA);
   } catch (err) {
     return res.json(null);
   }
@@ -152,12 +153,52 @@ router.get("/getFullDetails", async (req, res) => {
 
 router.put("/updateFullDetails", async (req, res) => {
   try {
-    const { firstname } = req.body;
+    const { firstname, lastname, nickname, courseno, birthdate, email, mainphone, emergencyphone, addresscity, addressline, rank } = req.body;
 
-      if (!firstname)
-        return res
-          .status(400)
-          .json({ errorMessage: "שם פרטי לא התקבל" });
+    if (!firstname)
+    return res
+      .status(400)
+      .json({ errorMessage: "נא למלא שם פרטי" });
+
+  if (!lastname)
+    return res
+      .status(400)
+      .json({ errorMessage: "נא למלא שם משפחה" });
+
+  if (!courseno)
+    return res
+      .status(400)
+      .json({ errorMessage: "נא למלא מספר קורס" });
+
+  if (!birthdate)
+  return res
+    .status(400)
+    .json({ errorMessage: "נא למלא תאריך לידה" });
+
+  if (!email)
+    return res
+      .status(400)
+      .json({ errorMessage: "נא למלא כתובת דואר אלקטרוני" });
+
+  if (!mainphone)
+  return res
+    .status(400)
+    .json({ errorMessage: "נא למלא מספר טלפון" });
+
+  if (!addresscity)
+  return res
+    .status(400)
+    .json({ errorMessage: "עיר מגורים" });addressline
+
+  if (!addressline)
+  return res
+    .status(400)
+    .json({ errorMessage: "נא למלא כתובת מגורים" });
+
+  if (!rank)
+  return res
+    .status(400)
+    .json({ errorMessage: "נא למלא דרגה" });
 
       const token = req.cookies.token;
 
@@ -168,6 +209,16 @@ router.put("/updateFullDetails", async (req, res) => {
       const userr = await User.findById(validatedUser.user);
 
       userr.FirstName = firstname;
+      userr.LastName = lastname;
+      userr.NickName = nickname;
+      userr.CourseNo = courseno;
+      userr.BirthDate = birthdate;
+      userr.Email = email;
+      userr.MainPhone = mainphone;
+      userr.EmergencyPhone = emergencyphone;
+      userr.AddressCity = addresscity;
+      userr.AddressLine = addressline;
+      userr.Rank = rank;
 
       const saveduserr = await userr.save();
 
@@ -175,7 +226,7 @@ router.put("/updateFullDetails", async (req, res) => {
         .json(saveduserr);
   } catch (err) {
     console.error(err);
-    res.status(500).send();
+    res.status(500).json({errorMessage: "נתונים לא תקינים"});
   }
 });
 
