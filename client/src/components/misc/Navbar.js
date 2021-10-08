@@ -16,11 +16,11 @@ function Navbar() {
   return (
     <div className="navbar">
       <Link to="/">
-        <h1>ברוכים הבאים לתיק אישי</h1>
+        <h1>תיק אישי מקצועי</h1>
       </Link>
       {user === null ? (
         <>
-          <Link to="/login">כניסה</Link>
+          <Link to="/login">התחברות</Link>
           <Link to="/create">הוספת משתמש חדש</Link>
         </>
       ) : (

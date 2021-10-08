@@ -1,0 +1,23 @@
+@import "../../style/mixins.scss";
+
+.success-message {
+  margin-bottom: 1rem;
+  padding: 0.3rem;
+  border: 1px solid var(--good-color);
+  border-radius: 5px;
+  background: var(--good-light-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    color: var(--text-good-color);
+  }
+
+  button {
+    @include btn();
+    padding: 0.1rem 0.4rem;
+    background: var(--good-color);
+    color: var(--text-light-color);
+  }
+}

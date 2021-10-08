@@ -1,27 +1,27 @@
 import React, {useState} from "react";
-import "./ErrorMessage.scss";
+import "./SuccessMessage.scss";
 
-function ErrorMessage({ message, clear }) {
+function SuccessMessage({ message, clear }) {
  
   const [stillRelevant, setStillRelevant] = useState(true);
   const [timeleft, setTimeleft] = useState(5);
   
   setTimeout(() => {
     if(timeleft <= 1)
-      {
-        setStillRelevant(false);
-        clear();
-      }
+    {
+      clear();
+      setStillRelevant(false);
+    }
     else
       setTimeleft(timeleft-1);
   }, 1000);
  
   return (
-    stillRelevant && <div className="error-message">
+    stillRelevant && <div className="success-message">
       <p>{message}</p>
       <button onClick={clear}>הבנתי ({timeleft})</button>
     </div>
   );
 }
 
-export default ErrorMessage;
+export default SuccessMessage;

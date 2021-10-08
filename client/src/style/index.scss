@@ -9,6 +9,55 @@
   direction: rtl;
 }
 
+#splashdiv {
+  background:#66dbc4;
+  position:absolute;
+  top:200px;
+  right:50px;
+  bottom:200px;
+  left:50px;
+}
+
+
+#splash1 {
+  padding: 60px;
+  text-align: center;
+  background: #66dbc4;
+  color: rgb(50, 50, 50);
+  font-size: 60px;
+}
+
+#splash2 {
+  padding: 20px;
+  text-align: center;
+  background: #66dbc4;
+  color: rgb(200, 200, 200);
+  font-size: 30px;
+}
+
+#bsplash2 {
+  padding: 20px;
+  border-radius: 25px;
+  text-align: center;
+  background: #000000;
+  color: rgb(200, 200, 200);
+  font-size: 30px;
+}
+
+.h3FUD {
+  width: 400px;
+  text-align: center;
+}
+
+.FUD {
+  display: flex;
+}
+
+.FUDcolumn {
+  flex: 50%;
+  padding-right: 100px;
+}
+
 body {
   background: var(--primary-color);
   color: var(--text-dark-color);
@@ -21,8 +70,6 @@ body {
   padding: 1rem;
   max-width: 1000px;
 }
-
-// reset
 
 button {
   border: unset;
