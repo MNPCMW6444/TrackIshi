@@ -1,7 +1,6 @@
 import Axios from "axios";
 import React, { useEffect, useState} from "react";
 import domain from "../../../util/domain";
-import "../../auth/AuthForm.scss";
 
 function ShowFUD() {
 
@@ -49,10 +48,10 @@ function ShowFUD() {
 
   return ready ? (
     <>
-      <h3 class="h3FUD">פרטים אישיים:</h3>
+      <h3 className="h3FUD">פרטים אישיים:</h3>
       <br />
-        <div class="FUD">
-          <div class="column">
+        <div className="FUD">
+          <div className="column">
             <h4>מספר אישי: </h4><div>{ma}</div>
             <br />
             <h4>שם פרטי: </h4><div>{firstname}</div>
@@ -66,7 +65,7 @@ function ShowFUD() {
             <h4>תאריך לידה: </h4><div>{birthdate}</div>
             <br />
           </div>
-          <div class="FUDcolumn">
+          <div className="FUDcolumn">
             <h4>כתובת דואר אלקטרוני (אזרחית): </h4><div>{email}</div>
             <br />
             <h4>מספר טלפון: </h4><div>{mainphone}</div>

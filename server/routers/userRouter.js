@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/userModel");
+const Opinion = require("../models/opinionModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -147,6 +148,29 @@ router.get("/getFullDetails", async (req, res) => {
 
     res.json(userr);
   } catch (err) {
+    res.status(401).send();
+  }
+});
+
+router.get("/getOpinion/:id", async (req, res) => {
+  try {
+    const token = req.cookies.token;
+
+    if (!token) return res.json(null);
+
+    const validatedUser = jwt.verify(token, process.env.JWTSECRET);
+
+    const userr = await User.findById(validatedUser.user);
+
+    const opinions = await Opinion.find({ CrewM: userr });
+
+    let josnres = opinions[0].toJSON();
+
+    josnres.CrewM=userr;
+
+    res.json(josnres);
+  } catch (err) {
+    console.log("Error on sending opinion: /n"+err)
     res.status(401).send();
   }
 });

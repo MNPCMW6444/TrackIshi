@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import domain from "../../util/domain";
-import "./Navbar.scss";
 
 function Navbar() {
   const { user, getUser } = useContext(UserContext);

@@ -3,9 +3,10 @@ import React, { useContext, useEffect, useState} from "react";
 import UserContext from "../../context/UserContext";
 import domain from "../../util/domain";
 import SuccessMessage from "../misc/SuccessMessage";
-import "../auth/AuthForm.scss";
 import OpenFUD from "./FUD/OpenFUD";
 import ShowFUD from "./FUD/ShowFUD";
+import OpenOpinion from "./Opinions/OpenOpinion";
+import ShowOpinion from "./Opinions/ShowOpinion";
 
 export default function PP() {
   
@@ -50,7 +51,7 @@ export default function PP() {
           {user && <h2>שלום {nickname},</h2>}
           <br />
           {!fudbutton && user && <button onClick={updatefud}>עדכון פרטים אישיים</button>}
-          {fudbutton && <OpenFUD setSuccessMessage={setSuccessMessage}/>}
+          {fudbutton && <OpenOpinion setSuccessMessage={setSuccessMessage}/>}
           <br />
           {successMessage && 
         <SuccessMessage
@@ -58,7 +59,7 @@ export default function PP() {
           clear={() => setSuccessMessage(null)}
         />}
         <br />
-        {!fudbutton && user && <ShowFUD />}
+        {!fudbutton && user && <ShowOpinion />}
       </div>):(<h2>טוען את הכינוי שלך מהשרת...</h2>
     );
   }

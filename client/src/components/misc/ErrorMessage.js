@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import "./ErrorMessage.scss";
 
 function ErrorMessage({ message, clear }) {
  

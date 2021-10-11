@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Splash from "./Splash";
+import App from "./App";
+import "./index.css";
 
-ReactDOM.render(<Splash />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));

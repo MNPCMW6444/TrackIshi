@@ -17,8 +17,10 @@ const userSchema = new mongoose.Schema({
   AddressCity: String,
   AddressLine: String,
   Rank: String,
+  Maslool: String,
+  SoogHatsava: String,
 
-  Dereg: String,
+  Dereg: Number,
   Certifications: [mongoose.Schema.Types.ObjectId],
   Team: String,
   fitnesses: [mongoose.Schema.Types.ObjectId],

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import App from "./App";
-import "./style/index.scss";
 
 function Splash() {
 

@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import "./SuccessMessage.scss";
 
 function SuccessMessage({ message, clear }) {
  
