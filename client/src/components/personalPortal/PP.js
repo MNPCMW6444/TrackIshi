@@ -28,7 +28,7 @@ export default function PP() {
     }, []);
 
     function updatefud () {
-        setFudbutton(true);
+      setFudbutton(true);
     }
 
     async function finishupdatefud (successm) {
@@ -45,13 +45,13 @@ export default function PP() {
         finishupdatefud(successMessage);
     },[successMessage]);
   
-  
+  debugger;
     return ready ? (
       <div>
           {user && <h2>שלום {nickname},</h2>}
           <br />
           {!fudbutton && user && <button onClick={updatefud}>עדכון פרטים אישיים</button>}
-          {fudbutton && <OpenOpinion setSuccessMessage={setSuccessMessage}/>}
+          {fudbutton && <OpenFUD setSuccessMessage={setSuccessMessage}/>}
           <br />
           {successMessage && 
         <SuccessMessage

@@ -26,8 +26,8 @@ const opinionSchema = new mongoose.Schema({
 
     M2: {type: Number, required: true},
     
-    Tp: {type: String, required: true},
-    Fp: {type: String, required: true}
+    Tp: [{type: String, required: true}],
+    Fp: [{type: String, required: true}]
 
 });
 
