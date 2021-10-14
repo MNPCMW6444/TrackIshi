@@ -367,16 +367,16 @@ function ShowOpinion(opinionid) {
             </tr>
             <tr>
                 <td>
-                    {}
+                    {"8652646"}
                 </td>
                 <td>
-                    {}
+                    {"רס''ן"}
                 </td>
                 <td>
-                    {}
+                    {"ביטון"}
                 </td>
                 <td>
-                    {}
+                    {"אור"}
                 </td>
             </tr>
         </tbody></table>
@@ -400,16 +400,16 @@ function ShowOpinion(opinionid) {
             </tr>
             <tr>
                 <td>
-                    {}
+                    {7652676}
                 </td>
                 <td>
-                    {}
+                    {"סא''ל"}
                 </td>
                 <td>
-                    {}
+                    {"ולדמן"}
                 </td>
                 <td>
-                    {}
+                    {"רועי"}
                 </td>
             </tr>
         </tbody></table>
@@ -451,7 +451,7 @@ function ShowOpinion(opinionid) {
                 <td className={c18}>
                     8
                 </td>
-                <td className={c19}>
+                <td className={"selected"}>
                     9
                 </td>
                 <td className={c110}>
@@ -471,7 +471,7 @@ function ShowOpinion(opinionid) {
                 <td className={c26}>
                     6
                 </td>
-                <td className={c27}>
+                <td className={"selected"}>
                     7
                 </td>
                 <td className={c28}>
@@ -503,7 +503,7 @@ function ShowOpinion(opinionid) {
                 <td className={c38}>
                     8
                 </td>
-                <td className={c39}>
+                <td className={"selected"}>
                     9
                 </td>
                 <td className={c310}>
@@ -526,7 +526,7 @@ function ShowOpinion(opinionid) {
                 <td className={c47}>
                     7
                 </td>
-                <td className={c48}>
+                <td className={"selected"}>
                     8
                 </td>
                 <td className={c49}>
@@ -552,7 +552,7 @@ function ShowOpinion(opinionid) {
                 <td className={c57}>
                     7
                 </td>
-                <td className={c58}>
+                <td className={"selected"}>
                     8
                 </td>
                 <td className={c59}>
@@ -569,7 +569,7 @@ function ShowOpinion(opinionid) {
                 <td className={c64}>
                     4
                 </td>
-                <td className={c65}>
+                <td className={"selected"}>
                     5
                 </td>
                 <td className={c66}>
@@ -613,7 +613,7 @@ function ShowOpinion(opinionid) {
                 <td className={c79}>
                     9
                 </td>
-                <td className={c710}>
+                <td className={"selected"}>
                     10
                 </td>
             </tr>
@@ -639,7 +639,7 @@ function ShowOpinion(opinionid) {
                 <td className={c89}>
                     9
                 </td>
-                <td className={c810}>
+                <td className={"selected"}>
                     10
                 </td>
             </tr>
@@ -662,7 +662,7 @@ function ShowOpinion(opinionid) {
                 <td className={c98}>
                     8
                 </td>
-                <td className={c99}>
+                <td className={"selected"}>
                     9
                 </td>
                 <td className={c910}>
@@ -709,7 +709,7 @@ function ShowOpinion(opinionid) {
                 <td className={m17}>
                     7
                 </td>
-                <td className={m18}>
+                <td className={"selected"}>
                     8
                 </td>
                 <td className={m19}>
@@ -747,7 +747,7 @@ function ShowOpinion(opinionid) {
                 <td className={m2b}>
                     ב
                 </td>
-                <td className={m2a2}>
+                <td className={"selected"}>
                     א-2
                 </td>
                 <td className={m2a1}>
