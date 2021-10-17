@@ -3,9 +3,8 @@ import React, { useContext, useEffect, useState} from "react";
 import UserContext from "../../context/UserContext";
 import domain from "../../util/domain";
 import SuccessMessage from "../misc/SuccessMessage";
+import SuccessMessage2 from "../misc/SuccessMessage";
 import OpenFUD from "./FUD/OpenFUD";
-import ShowFUD from "./FUD/ShowFUD";
-import OpenOpinion from "./Opinions/OpenOpinion";
 import ShowOpinion from "./Opinions/ShowOpinion";
 
 export default function PP() {
@@ -13,8 +12,11 @@ export default function PP() {
     const [nickname, setNickname] = useState();
     const [ready, setReady] = useState(false);
     const [fudbutton, setFudbutton] = useState(false);
+    
+    const [opinionButton, setOpinionButton] = useState(false);
   
     const [successMessage, setSuccessMessage] = useState(null);
+    const [successMessage2, setSuccessMessage2] = useState(null);
   
     const { user } = useContext(UserContext);
   
@@ -31,6 +33,10 @@ export default function PP() {
       setFudbutton(true);
     }
 
+    function updateopinion () {
+      setOpinionButton(true);
+    }
+
     async function finishupdatefud (successm) {
         if(successm!=null)
         {
@@ -45,7 +51,6 @@ export default function PP() {
         finishupdatefud(successMessage);
     },[successMessage]);
   
-  debugger;
     return ready ? (
       <div>
           {user && <h2>שלום {nickname},</h2>}
@@ -59,7 +64,14 @@ export default function PP() {
           clear={() => setSuccessMessage(null)}
         />}
         <br />
-        {!fudbutton && user && <ShowOpinion />}
+          {!opinionButton && user && <button onClick={updateopinion}>עדכון חוו"ד</button>}
+          {opinionButton && <ShowOpinion setSuccessMessage2={setSuccessMessage2}/>}
+          <br />
+          {successMessage2 &&
+        <SuccessMessage2
+          message={successMessage2}
+          clear={() => setSuccessMessage2(null)}
+        />}
       </div>):(<h2>טוען את הכינוי שלך מהשרת...</h2>
     );
   }

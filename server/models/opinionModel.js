@@ -9,7 +9,7 @@ const opinionSchema = new mongoose.Schema({
     MonthsNo: {type: Number, required: true},
     Position: {type: String, required: true},
 
-    Commandor: {type: mongoose.Schema.Types.ObjectId, required: true},
+    Commander: {type: mongoose.Schema.Types.ObjectId, required: true},
     Authorizer: {type: mongoose.Schema.Types.ObjectId, required: true},
 
     C1: {type: Number, required: true},

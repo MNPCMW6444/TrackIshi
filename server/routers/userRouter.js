@@ -163,10 +163,14 @@ router.get("/getOpinion/:id", async (req, res) => {
     const userr = await User.findById(validatedUser.user);
 
     const opinions = await Opinion.find({ CrewM: userr });
-
     let josnres = opinions[0].toJSON();
 
+    const comanderr = await User.findById(josnres.Commander);
+    const authorizerr = await User.findById(josnres.Authorizer);
+
     josnres.CrewM=userr;
+    josnres.Commander=comanderr;
+    josnres.Authorizer=authorizerr;
 
     res.json(josnres);
   } catch (err) {

@@ -82,6 +82,8 @@ h5 {
   background-color: #d0f3e6;
   font-family:  FFFFF, Helvetica, sans-serif;
   font-size: medium;
+  width: 300px;
+  margin: auto;
 }
 
 h4,h5,p {
