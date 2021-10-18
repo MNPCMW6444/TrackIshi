@@ -33,8 +33,4 @@ mongoose.connect(
 
 app.use("/auth", require("./routers/userRouter"));
 
-app.get("/test", (req, res) => {
-  res.send("Hey "+getLoggedMA());
-});
-
 

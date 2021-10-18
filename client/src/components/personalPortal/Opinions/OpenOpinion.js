@@ -1,8 +1,8 @@
 import React from 'react';
-import UpdateOpinion from './OpenOpinion';
+import UpdateOpinion from './UpdateOpinion';
 
 export default function OpenOpinion(props) {
     return (
-        <UpdateOpinion suc={props.setSuccessMessage} />
+        <UpdateOpinion suc={props.setSuccessMessage} shel={props.shel}/>
     );
 }

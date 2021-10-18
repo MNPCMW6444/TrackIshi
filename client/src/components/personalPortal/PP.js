@@ -5,7 +5,7 @@ import domain from "../../util/domain";
 import SuccessMessage from "../misc/SuccessMessage";
 import SuccessMessage2 from "../misc/SuccessMessage";
 import OpenFUD from "./FUD/OpenFUD";
-import ShowOpinion from "./Opinions/ShowOpinion";
+import OpenOpinion from "./Opinions/OpenOpinion";
 
 export default function PP() {
   
@@ -50,6 +50,12 @@ export default function PP() {
     useEffect(()=> {
         finishupdatefud(successMessage);
     },[successMessage]);
+
+    async function asdasd(){
+      Axios.put("http://localhost:10004/auth/updateOpinion/61630992a638573e2bbff640", { 
+        "otkufa":404
+  });
+    }
   
     return ready ? (
       <div>
@@ -65,7 +71,7 @@ export default function PP() {
         />}
         <br />
           {!opinionButton && user && <button onClick={updateopinion}>עדכון חוו"ד</button>}
-          {opinionButton && <ShowOpinion setSuccessMessage2={setSuccessMessage2}/>}
+          {opinionButton && <OpenOpinion setSuccessMessage2={setSuccessMessage2} shel={"61630992a638573e2bbff640"}/>}
           <br />
           {successMessage2 &&
         <SuccessMessage2

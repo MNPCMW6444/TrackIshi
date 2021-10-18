@@ -10,9 +10,9 @@ function Login() {
   const [formPassword, setFormPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
 
-    const { getUser } = useContext(UserContext);
+  const { getUser } = useContext(UserContext);
     
-    const history = useHistory();
+  const history = useHistory();
 
   async function login(e) {
     e.preventDefault();
