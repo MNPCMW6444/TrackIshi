@@ -9,7 +9,7 @@ import FgradeTable from "./Show/FgradeTable";
 import PotentialTable from "./Show/PotentialTable";
 import Paragraph from "../../global/Paragraph";
 import ErrorMessage from "../../misc/ErrorMessage";
-
+import TestC from "../../misc/TestC";
 
 function ShowOpinion(props) {
 
@@ -219,6 +219,7 @@ function ShowOpinion(props) {
         <h5>סיכום המשוב:</h5>
       <br />
         <Paragraph text={fp}/>
+        <TestC />
       <br /><br /><br />
       <button onClick={update}>שמור</button>
       <br /><br /><br /><br /><br /><br />
