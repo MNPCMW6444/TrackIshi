@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import domain from "../util/domain";
@@ -10,10 +10,12 @@ function Loginggbar() {
   
   let role ="לא מוגדר";
 
-  function toggleHelp(){
-    console.log("asdsdfsdfsdfdsfsdfsdf");
-    setHelp(!help);
-  }
+  useEffect( () => {
+    const doa = async () => {
+      setHelp(!help);
+    }
+    doa();
+  }, []);
   
   if (user)
     switch (user.Role) {
@@ -40,12 +42,12 @@ function Loginggbar() {
       ) : (
         user && (
           <>
-            <p>הנך מחובר למערכת כ{user.NickName} (מ.א. {user.MA}), ותפקידך ע"פ רישומי המערכת הוא: <button onclick={toggleHelp()} className="justALink">{role}</button></p>
+            <p>הנך מחובר למערכת כ{user.NickName} (מ.א. {user.MA}), ותפקידך ע"פ רישומי המערכת הוא: <button onclick={null} className="justALink">{role}</button></p>
             <button className="btn-logout" onClick={logOut()}>
               התנתק
             </button>
             {help && <><p>help</p>
-            <button onclick={toggleHelp()}>סגור</button></>}
+            <button onclick={null}>סגור</button></>}
           </>
         )
       )}
