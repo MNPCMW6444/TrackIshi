@@ -4,7 +4,7 @@ import UserContext from "../../../../context/UserContext";
 import domain from "../../../../util/domain";
 import ErrorMessage from "../../../messages/ErrorMessage";
 
-function UpdateFUD() {
+function UpdateFUD(props) {
   const [ffirstname, fsetFirstname] = useState();
   const [flastname, fsetLastname] = useState();
   const [fnickname, fsetNickname] = useState();
@@ -28,6 +28,8 @@ function UpdateFUD() {
   const [addresscity, setAddresscity] = useState();
   const [addressline, setAddressline] = useState();
   const [rank, setRank] = useState();
+  const [ready, setReady] = useState(false);
+
 
   const { user } = useContext(UserContext);
 
@@ -58,13 +60,13 @@ function UpdateFUD() {
       try {fsetAddresscity(FUDRes.data.AddressCity);} catch (err){console.log(err);}
       try {fsetAddressline(FUDRes.data.AddressLine);} catch (err){console.log(err);}
       try {fsetRank(FUDRes.data.Rank);} catch (err){console.log(err);}
+      setReady(true);
     }
     getFUD();
   }, []);
 
   async function updatefud(e) {
     e.preventDefault();
-    console.log("WORKING");
     const updateFUDData = {
       firstname: ffirstname,
       lastname: flastname,
@@ -81,6 +83,9 @@ function UpdateFUD() {
 
     try {
       await Axios.put(`${domain}/auth/updateFullDetails`, updateFUDData);
+      props.suc("הפרטים עודכנו בהצלחה!");
+      const done=props.whendone;
+      done(false);
     } catch (err) {
       if (err.response) {
         if (err.response.data.errorMessage) {
@@ -95,122 +100,128 @@ function UpdateFUD() {
 
   
 
-  return <div className="update-form">
-    {<h3 className="h3FUDp">עדכון פרטים אישיים למספר אישי {user.NickName}:</h3>}
-    <br />
-    {errorMessage && <ErrorMessage message={errorMessage} clear={() => setErrorMessage(null)} />}
-    <form classNameName="form" onSubmit={updatefud}>
-      <div className="FUDp">
-        <div className="columnp">
-          <label htmlFor="form-firstname">שם פרטי</label>
-          <input
-            id="form-firstname"
-            type="text"
-            placeholder="שם פרטי"
-            defaultValue={firstname}
-            value={ffirstname}
-            onChange={(e) => fsetFirstname(e.target.value)}
-          />
-          <label htmlFor="form-lastname">שם משפחה</label>
-          <input
-            id="form-lastname"
-            type="text"
-            placeholder="שם משפחה"
-            defaultValue={lastname}
-            value={flastname}
-            onChange={(e) => fsetLastname(e.target.value)}
-          />
-          <label htmlFor="form-nickname">כינוי</label>
-          <input
-            id="form-nickname"
-            type="text"
-            placeholder="כינוי"
-            defaultValue={nickname}
-            value={fnickname}
-            onChange={(e) => fsetNickname(e.target.value)}
-          />
-          <label htmlFor="form-courseno">מספר קורס</label>
-          <input
-            id="form-courseno"
-            type="number"
-            placeholder="מספר קורס"
-            defaultValue={courseno}
-            value={fcourseno}
-            onChange={(e) => fsetCourseno(e.target.value)}
-          />
-          <label htmlFor="form-birthdate">תאריך לידה</label>
-          <input
-            id="form-birthdate"
-            type="date"
-            placeholder="תאריך לידה"
-            defaultValue={birthdate}
-            value={fbirthdate}
-            onChange={(e) => fsetBirthdate(e.target.value)}
-          />
-          <label htmlFor="form-email">כתובת דואר אלקטרוני (אזרחית)</label>
-          <input
-            id="form-email"
-            type="email"
-            placeholder="כתובת דואר אלקטרוני (אזרחית)"
-            defaultValue={email}
-            value={femail}
-            onChange={(e) => fsetEmail(e.target.value)}
-          />
+  return ready ? (
+    <div className="update-form">
+      <h3 className="h3FUDp">עדכון פרטים אישיים למספר אישי {user.NickName}:</h3><br />
+      {errorMessage && (
+        <ErrorMessage
+          message={errorMessage}
+          clear={() => setErrorMessage(null)}
+        />
+      )}
+      <form classNameName="form" onSubmit={updatefud}>
+        <div className="FUDp">
+          <div className="columnp">
+            <label htmlFor="form-firstname">שם פרטי</label>
+            <input
+              id="form-firstname"
+              type="text"
+              placeholder="שם פרטי"
+              defaultValue={firstname}
+              value={ffirstname}
+              onChange={(e) => fsetFirstname(e.target.value)}
+            />
+            <label htmlFor="form-lastname">שם משפחה</label>
+            <input
+              id="form-lastname"
+              type="text"
+              placeholder="שם משפחה"
+              defaultValue={lastname}
+              value={flastname}
+              onChange={(e) => fsetLastname(e.target.value)}
+            />
+            <label htmlFor="form-nickname">כינוי</label>
+            <input
+              id="form-nickname"
+              type="text"
+              placeholder="כינוי"
+              defaultValue={nickname}
+              value={fnickname}
+              onChange={(e) => fsetNickname(e.target.value)}
+            />
+            <label htmlFor="form-courseno">מספר קורס</label>
+            <input
+              id="form-courseno"
+              type="number"
+              placeholder="מספר קורס"
+              defaultValue={courseno}
+              value={fcourseno}
+              onChange={(e) => fsetCourseno(e.target.value)}
+            />
+            <label htmlFor="form-birthdate">תאריך לידה</label>
+            <input
+              id="form-birthdate"
+              type="date"
+              placeholder="תאריך לידה"
+              defaultValue={birthdate}
+              value={fbirthdate}
+              onChange={(e) => fsetBirthdate(e.target.value)}
+            />
+            <label htmlFor="form-email">כתובת דואר אלקטרוני (אזרחית)</label>
+            <input
+              id="form-email"
+              type="email"
+              placeholder="כתובת דואר אלקטרוני (אזרחית)"
+              defaultValue={email}
+              value={femail}
+              onChange={(e) => fsetEmail(e.target.value)}
+            />
+          </div>
+          <div className="FUDcolumnp">
+            <label htmlFor="form-mainphone">מספר טלפון</label>
+            <input
+              id="form-mainphone"
+              type="text"
+              placeholder="מספר טלפון"
+              defaultValue={mainphone}
+              value={fmainphone}
+              onChange={(e) => fsetMainphone(e.target.value)}
+            />
+            <label htmlFor="form-emergencyphone">מספר טלפון נוסף למקרה חירום</label>
+            <input
+              id="form-emergencyphone"
+              type="text"
+              placeholder="מספר טלפון נוסף למקרה חירום"
+              defaultValue={emergencyphone}
+              value={femergencyphone}
+              onChange={(e) => fsetEmergencyphone(e.target.value)}
+            />
+            <label htmlFor="form-addresscity">עיר מגורים</label>
+            <input
+              id="form-addresscity"
+              type="text"
+              placeholder="עיר מגורים"
+              defaultValue={addresscity}
+              value={faddresscity}
+              onChange={(e) => fsetAddresscity(e.target.value)}
+            />
+            <label htmlFor="form-addressline">כתובת מגורים</label>
+            <input
+              id="form-addressline"
+              type="text"
+              placeholder="כתובת מגורים"
+              defaultValue={addressline}
+              value={faddressline}
+              onChange={(e) => fsetAddressline(e.target.value)}
+            />
+            <label htmlFor="form-rank">דרגה</label>
+            <input
+              id="form-rank"
+              type="text"
+              placeholder="דרגה"
+              defaultValue={rank}
+              value={frank}
+              onChange={(e) => fsetRank(e.target.value)}
+            />
+            <br />
+            <button className="btn-submit" type="submit">
+              עדכן פרטים
+            </button>
+          </div>
         </div>
-        <div className="FUDcolumnp">
-          <label htmlFor="form-mainphone">מספר טלפון</label>
-          <input
-            id="form-mainphone"
-            type="text"
-            placeholder="מספר טלפון"
-            defaultValue={mainphone}
-            value={fmainphone}
-            onChange={(e) => fsetMainphone(e.target.value)}
-          />
-          <label htmlFor="form-emergencyphone">מספר טלפון נוסף למקרה חירום</label>
-          <input
-            id="form-emergencyphone"
-            type="text"
-            placeholder="מספר טלפון נוסף למקרה חירום"
-            defaultValue={emergencyphone}
-            value={femergencyphone}
-            onChange={(e) => fsetEmergencyphone(e.target.value)}
-          />
-          <label htmlFor="form-addresscity">עיר מגורים</label>
-          <input
-            id="form-addresscity"
-            type="text"
-            placeholder="עיר מגורים"
-            defaultValue={addresscity}
-            value={faddresscity}
-            onChange={(e) => fsetAddresscity(e.target.value)}
-          />
-          <label htmlFor="form-addressline">כתובת מגורים</label>
-          <input
-            id="form-addressline"
-            type="text"
-            placeholder="כתובת מגורים"
-            defaultValue={addressline}
-            value={faddressline}
-            onChange={(e) => fsetAddressline(e.target.value)}
-          />
-          <label htmlFor="form-rank">דרגה</label>
-          <input
-            id="form-rank"
-            type="text"
-            placeholder="דרגה"
-            defaultValue={rank}
-            value={frank}
-            onChange={(e) => fsetRank(e.target.value)}
-          />
-          <br />
-          <button className="btn-submit" type="submit">
-            שלח עדכון
-          </button>
-        </div>
-      </div>
-    </form>
-  </div> ;
+      </form>
+    </div>):(<h2>טוען את הפרטים האישיים הקיימים שלך מהשרת...</h2>
+  );
 }
 
 export default UpdateFUD;

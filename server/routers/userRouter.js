@@ -3,6 +3,7 @@ const User = require("../models/userModel");
 const Opinion = require("../models/opinionModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const auth = require("../middleware/auth");
 
 router.post("/create", async (req, res) => {
   try {
@@ -133,6 +134,15 @@ router.get("/loggedIn", async (req, res) => {
     res.json(userr);
   } catch (err) {
     return res.json(null);
+  }
+});
+
+router.get("/getAllOpinions", auth, async (req, res) => {
+  try {
+    const opinions = await Opinion.find({ CrewM: req.user });
+    res.json(opinions);
+  } catch (err) {
+    res.status(500).send();
   }
 });
 

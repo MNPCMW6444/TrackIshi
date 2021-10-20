@@ -2,8 +2,11 @@ import Axios from "axios";
 import React, { useEffect, useState} from "react";
 import domain from "../../../../util/domain";
 import UpdateFUD from './UpdateFUD';
+import SuccessMessage from "../../../messages/SuccessMessage";
 
-function ShowFUD(props) {
+
+
+function ShowFUD() {
 
   const [ma, setMa] = useState();
   const [firstname, setFirstname] = useState();
@@ -17,8 +20,11 @@ function ShowFUD(props) {
   const [addresscity, setAddresscity] = useState();
   const [addressline, setAddressline] = useState();
   const [rank, setRank] = useState();
-  
+  const [ready, setReady] = useState(false);
+
   const [edit, setEdit] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(null);
+
 
   useEffect( () => {
     const getFUD = async () => {
@@ -43,13 +49,16 @@ function ShowFUD(props) {
       try {setAddresscity(FUDRes.data.AddressCity);} catch (err){console.log(err);}
       try {setAddressline(FUDRes.data.AddressLine);} catch (err){console.log(err);}
       try {setRank(FUDRes.data.Rank);} catch (err){console.log(err);}
+      setReady(true);
     }
     getFUD();
   }, []);
 
-  return <>
+  return ready ? (
+    <>
       <h3 className="h3FUD">פרטים אישיים:</h3>
-      {edit && <UpdateFUD />}
+      {edit && <UpdateFUD suc={setSuccessMessage} whendone={setEdit} />}
+      {successMessage && <SuccessMessage message={successMessage} clear={() => setSuccessMessage(null)}/>}
       <br />
         {!edit && <div className="FUD">
           <div className="column">
@@ -82,8 +91,8 @@ function ShowFUD(props) {
           </div>
           <button onClick={() => setEdit(true)}>עדכון הפרטים</button>
         </div>
-      }
-    </>
+        }</>):(<h2>טוען את הפרטים האישיים שלך מהשרת... (רוב הסיכויים שאם אתה מספיק לקרוא את ההודעה הזאת אז יש תקלה בשרת)</h2>
+  );
 }
 
 export default ShowFUD;

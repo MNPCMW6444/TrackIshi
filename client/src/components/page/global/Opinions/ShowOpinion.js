@@ -1,13 +1,13 @@
 import Axios from "axios";
 import React, { useEffect, useState} from "react";
-import domain from "../../../util/domain";
+import domain from "../../../../util/domain";
 import DetailsTable from "./Show/DetailsTable";
 import ClassesTable from "./Show/ClassesTable";
 import PersonDetails from "./Show/PersonDetails";
 import GradesTable from "./Show/GradesTable";
 import FgradeTable from "./Show/FgradeTable";
 import PotentialTable from "./Show/PotentialTable";
-import Paragraph from "../../global/Paragraph";
+import Paragraph from "../../global/usefull/Paragraph";
 
 function ShowOpinion(props) {
 
@@ -39,8 +39,8 @@ function ShowOpinion(props) {
   
   useEffect( () => {
     const getOpinion = async () => {
-        const OpinionRes = await Axios.get(`${domain}/auth/getOpinion/${props.opinionid}`);
-
+        const OpinionRes = await Axios.get(`${domain}/auth/getOpinion/${props.id}`);
+        console.log(props.oid);
         try {setCrewm(OpinionRes.data.CrewM);} catch (err){console.log(err);}
 
         let siginit = (OpinionRes.data.Signed)?("כן"):("לא");
@@ -152,7 +152,7 @@ function ShowOpinion(props) {
       <br />
         <Paragraph text={fp}/>
       <br /><br /><br /><br /><br /><br /><br />
-    </div>):(<h2>טוען את החוו"ד שלך מהשרת...</h2>
+    </div>):(<h2>טוען את החוו"ד שלך מהשרת... (רוב הסיכויים שאם אתה מספיק לקרוא את ההודעה הזאת אז יש תקלה בשרת)</h2>
   );
 }
 
