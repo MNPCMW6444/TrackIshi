@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Inforole() {
+export default function PAKMATS() {
     return (
         <div>
-            שדגשדגשדג
+            qwdwqd
         </div>
     )
 }

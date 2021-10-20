@@ -7,7 +7,7 @@ import PersonDetails from "./Show/PersonDetails";
 import GradesTable from "./Show/GradesTable";
 import FgradeTable from "./Show/FgradeTable";
 import PotentialTable from "./Show/PotentialTable";
-import Paragraph from "../../global/Paragraph";
+import Paragraph from "../Paragraph";
 import ErrorMessage from "../../misc/ErrorMessage";
 import TestC from "../../misc/TestC";
 

@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React, { useEffect, useState} from "react";
-import domain from "../../../util/domain";
+import domain from "../../../../util/domain";
 
 function ShowFUD() {
 
