@@ -1,8 +1,9 @@
 import Axios from "axios";
 import React, { useEffect, useState} from "react";
 import domain from "../../../../util/domain";
+import UpdateFUD from './UpdateFUD';
 
-function ShowFUD() {
+function ShowFUD(props) {
 
   const [ma, setMa] = useState();
   const [firstname, setFirstname] = useState();
@@ -16,7 +17,8 @@ function ShowFUD() {
   const [addresscity, setAddresscity] = useState();
   const [addressline, setAddressline] = useState();
   const [rank, setRank] = useState();
-  const [ready, setReady] = useState(false);
+  
+  const [edit, setEdit] = useState(false);
 
   useEffect( () => {
     const getFUD = async () => {
@@ -41,16 +43,15 @@ function ShowFUD() {
       try {setAddresscity(FUDRes.data.AddressCity);} catch (err){console.log(err);}
       try {setAddressline(FUDRes.data.AddressLine);} catch (err){console.log(err);}
       try {setRank(FUDRes.data.Rank);} catch (err){console.log(err);}
-      setReady(true);
     }
     getFUD();
   }, []);
 
-  return ready ? (
-    <>
+  return <>
       <h3 className="h3FUD">פרטים אישיים:</h3>
+      {edit && <UpdateFUD />}
       <br />
-        <div className="FUD">
+        {!edit && <div className="FUD">
           <div className="column">
             <h4>מספר אישי: </h4><div>{ma}</div>
             <br />
@@ -79,9 +80,10 @@ function ShowFUD() {
             <h4>דרגה: </h4><div>{rank}</div>
             <br />
           </div>
+          <button onClick={() => setEdit(true)}>עדכון הפרטים</button>
         </div>
-    </>):(<h2>טוען את הפרטים האישיים שלך מהשרת...</h2>
-  );
+      }
+    </>
 }
 
 export default ShowFUD;
