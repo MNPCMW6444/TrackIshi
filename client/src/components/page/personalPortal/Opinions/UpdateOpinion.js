@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React, { useEffect, useState} from "react";
-import domain from "../../../util/domain";
+import domain from "../../../../util/domain";
 import DetailsTable from "./Show/DetailsTable";
 import ClassesTable from "./Show/ClassesTable";
 import PersonDetails from "./Show/PersonDetails";

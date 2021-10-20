@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
   fitnesses: [mongoose.Schema.Types.ObjectId],
 
   passwordHash: { type: String, required: true }, // || empty means unregistred || passed means 2021 || hash means 2022 ||
-  Role: {type: String, required : true } // || "SCREW" || "DIRECT" || "GENE" || "KEEP" || "ADMIN" ||
+  Role: {type: String, required : true } // || "SCREW" || "DIRECT" || "AUTHCO" || "PAKMATS" || "SCHOOL" || "MALAM" || "ADMIN" || => || SimpleCrewMember || DirectFluentCommander|| AuthorizerCommander || Pakmatsit || SchoolCommander || FitnessContributingPhase || AppAdministrator ||
 });
 
 const User = mongoose.model("user", userSchema);

@@ -1,7 +1,7 @@
 import Axios from "axios";
 import React, { useContext, useEffect, useState} from "react";
-import UserContext from "../../../context/UserContext";
-import domain from "../../../util/domain";
+import UserContext from "../../../../context/UserContext";
+import domain from "../../../../util/domain";
 import ErrorMessage from "../../misc/ErrorMessage";
 
 function UpdateFUD(props) {

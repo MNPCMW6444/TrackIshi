@@ -1,7 +1,7 @@
 import Axios from "axios";
 import React, { useContext, useEffect, useState} from "react";
-import UserContext from "../../context/UserContext";
-import domain from "../../util/domain";
+import UserContext from "../../../context/UserContext";
+import domain from "../../../util/domain";
 import SuccessMessage from "../misc/SuccessMessage";
 import SuccessMessage2 from "../misc/SuccessMessage";
 import OpenFUD from "./FUD/OpenFUD";

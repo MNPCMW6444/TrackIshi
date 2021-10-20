@@ -130,7 +130,7 @@ router.get("/loggedIn", async (req, res) => {
 
     const userr = await User.findById(validatedUser.user);
 
-    res.json(userr.MA);
+    res.json(userr);
   } catch (err) {
     return res.json(null);
   }

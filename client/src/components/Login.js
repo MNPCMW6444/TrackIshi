@@ -1,9 +1,9 @@
 import Axios from "axios";
 import React, { useContext, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import UserContext from "../../context/UserContext";
-import domain from "../../util/domain";
-import ErrorMessage from "../misc/ErrorMessage";
+import UserContext from "../context/UserContext";
+import domain from "../util/domain";
+import ErrorMessage from "./global/messages/ErrorMessage";
 
 function Login() {
   const [formMA, setFormMA] = useState("");

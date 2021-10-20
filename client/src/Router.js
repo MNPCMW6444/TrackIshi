@@ -1,23 +1,23 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Login from "./components/auth/Login";
-import Create from "./components/auth/Create";
-import PP from "./components/personalPortal/PP";
-import Navbar from "./components/misc/Navbar";
+import Login from "./components/Login";
+import Loggingbar from "./components/Loggingbar";
+import Page from "./components/Page";
+import Inforole from "./components/info/Inforole";
 
 function Router() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <Loggingbar />
       <Switch>
         <Route exact path="/">
-          <PP />
+          <Page />
         </Route>
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/create">
-          <Create />
+        <Route path="/info/role">
+          <Inforole />
         </Route>
       </Switch>
     </BrowserRouter>
