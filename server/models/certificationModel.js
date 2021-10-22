@@ -10,7 +10,7 @@ const certificationSchema = new mongoose.Schema({
 
     Grade: {type: Number, required: true},
 
-    Name: {type: Number, required: true}
+    Name: {type: String, required: true}
 });
 
 const Certification = mongoose.model("certification", certificationSchema);

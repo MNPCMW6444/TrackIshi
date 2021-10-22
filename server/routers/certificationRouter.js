@@ -34,8 +34,9 @@ router.get("/getmyCertificate/:id", async (req, res) => {
 
     const certification = await Certification.findById(req.params.id);
 
-    if(certification.CrewM != userr)
-    .json({ errorMessage: "אינך יכול לצפות בהסמכה זו מכיוון שאינה שלך"});
+    if(certification.CrewM.toJSON() != userr._id.toJSON())
+      return res.status(400)
+        .json({ errorMessage: "אינך יכול לצפות בהסמכה זו מכיוון שאינה שלך"});
 
     let josnres = certification.toJSON();
 
