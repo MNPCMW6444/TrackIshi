@@ -23,7 +23,7 @@ function Login() {
     };
 
     try {
-      await Axios.post(`${domain}/auth/login`, loginData);
+      await Axios.post(`${domain}/user/login`, loginData);
     } catch (err) {
       if (err.response) {
         if (err.response.data.errorMessage) {

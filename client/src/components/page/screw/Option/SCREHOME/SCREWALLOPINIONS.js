@@ -4,6 +4,7 @@ import Axios from "axios";
 import OpinionSumu from "../../../global/Opinions/OpinionSumu";
 
 
+
 export default function SCREWALLOPINIONS() {
     
     const [ready, setReady] = useState(false);
@@ -11,7 +12,7 @@ export default function SCREWALLOPINIONS() {
 
     useEffect( () => {
         const getAllOpinions = async () => {
-            const allOpinionsRes = await Axios.get(`${domain}/auth/getAllOpinions`);
+            const allOpinionsRes = await Axios.get(`${domain}/opinion/getallmy`);
             setRes(allOpinionsRes.data);
             setReady(true);
         }

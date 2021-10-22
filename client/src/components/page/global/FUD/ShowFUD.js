@@ -28,7 +28,7 @@ function ShowFUD() {
 
   useEffect( () => {
     const getFUD = async () => {
-      const FUDRes = await Axios.get(`${domain}/auth/getFullDetails`);
+      const FUDRes = await Axios.get(`${domain}/user/getFullDetails`);
       try {setFirstname(FUDRes.data.FirstName);} catch (err){console.log(err);}
       try {setMa(FUDRes.data.MA);} catch (err){console.log(err);}
       try {setLastname(FUDRes.data.LastName);} catch (err){console.log(err);}

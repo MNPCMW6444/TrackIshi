@@ -25,7 +25,7 @@ function Create() {
     };
 
     try {
-      await Axios.post(`${domain}/auth/create`, createData);
+      await Axios.post(`${domain}/user/????`, createData);
     } catch (err) {
       if (err.response) {
         if (err.response.data.errorMessage) {

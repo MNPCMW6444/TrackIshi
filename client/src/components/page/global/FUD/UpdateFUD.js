@@ -37,7 +37,7 @@ function UpdateFUD(props) {
 
   useEffect( () => {
     const getFUD = async () => {
-      const FUDRes = await Axios.get(`${domain}/auth/getFullDetails`);
+      const FUDRes = await Axios.get(`${domain}/user/getFullDetails`);
       try {setFirstname(FUDRes.data.FirstName);} catch (err){console.log(err);}
       try {setLastname(FUDRes.data.LastName);} catch (err){console.log(err);}
       try {setNickname(FUDRes.data.NickName);} catch (err){console.log(err);}
@@ -82,7 +82,7 @@ function UpdateFUD(props) {
     };
 
     try {
-      await Axios.put(`${domain}/auth/updateFullDetails`, updateFUDData);
+      await Axios.put(`${domain}/user/updateFullDetails`, updateFUDData);
       props.suc("הפרטים עודכנו בהצלחה!");
       const done=props.whendone;
       done(false);

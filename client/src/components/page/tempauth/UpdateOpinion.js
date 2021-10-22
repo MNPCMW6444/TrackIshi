@@ -1,12 +1,12 @@
 import Axios from "axios";
 import React, { useEffect, useState} from "react";
-import domain from "../../../../util/domain";
-import DetailsTable from "./Show/DetailsTable";
-import ClassesTable from "./Show/ClassesTable";
-import PersonDetails from "./Show/PersonDetails";
-import GradesTable from "./Show/GradesTable";
-import FgradeTable from "./Show/FgradeTable";
-import PotentialTable from "./Show/PotentialTable";
+import domain from "../../../util/domain";
+import DetailsTable from "../global/Opinions/Show/DetailsTable";
+import ClassesTable from "../global/Opinions/Show/ClassesTable";
+import PersonDetails from "../global/Opinions/Show/PersonDetails";
+import GradesTable from "../global/Opinions/Show/GradesTable";
+import FgradeTable from "../global/Opinions/Show/FgradeTable";
+import PotentialTable from "../global/Opinions/Show/PotentialTable";
 import Paragraph from "../Paragraph";
 import ErrorMessage from "../../misc/ErrorMessage";
 import TestC from "../../misc/TestC";
@@ -67,7 +67,7 @@ function ShowOpinion(props) {
   
   useEffect( () => {
     const getOpinion = async () => {
-        const OpinionRes = await Axios.get(`${domain}/auth/getOpinion/${props.shel}`);
+        const OpinionRes = await Axios.get(`${domain}/opinion/getmyOpinion/${props.shel}`);
 
         try {setCrewm(OpinionRes.data.CrewM);} catch (err){console.log(err);}
 
@@ -167,7 +167,7 @@ function ShowOpinion(props) {
     };
 
     try {
-      await Axios.post(`${domain}/auth/updateOpinion/${props.shel}`, updateData);
+      await Axios.post(`${domain}/opinion/update?????Opinion/${props.shel}`, updateData);
     } catch (err) {
       if (err.response) {
         if (err.response.data.errorMessage) {

@@ -21,12 +21,12 @@ const userSchema = new mongoose.Schema({
   SoogHatsava: String,
 
   Dereg: Number,
-  Certifications: [mongoose.Schema.Types.ObjectId],
   Team: String,
-  fitnesses: [mongoose.Schema.Types.ObjectId],
 
   passwordHash: { type: String, required: true }, // || empty means unregistred || passed means 2021 || hash means 2022 ||
-  Role: {type: String, required : true } // || "SCREW" || "DIRECT" || "AUTHCO" || "PAKMATS" || "SCHOOL" || "MALAM" || "ADMIN" || => || SimpleCrewMember || DirectFluentCommander|| AuthorizerCommander || Pakmatsit || SchoolCommander || FitnessContributingPhase || AppAdministrator ||
+  Role: {type: String, required : true }, // || "SCREW" || "DIRECT" || "AUTHCO" || "PAKMATS" || "SCHOOL" || "MALAM" || "ADMIN" || => || SimpleCrewMember || DirectFluentCommander|| AuthorizerCommander || Pakmatsit || SchoolCommander || FitnessContributingPhase || AppAdministrator ||
+  MyComm: mongoose.Schema.Types.ObjectId,
+  MyAuth: mongoose.Schema.Types.ObjectId
 });
 
 const User = mongoose.model("user", userSchema);

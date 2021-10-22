@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import ShowOpinion from "./ShowOpinion";
 
 export default function OpinionSumu(props) {
-    debugger;
     let tkufaNum = props.opinion.Tkufa;
     let TkufaYear = (tkufaNum%2===0)?(tkufaNum/2):(tkufaNum/2+0.5);
     let tkufainYear = (tkufaNum%2===0)?("2"):("1");

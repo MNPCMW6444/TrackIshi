@@ -30,7 +30,7 @@ export default function Loggingbar() {
   }
 
   async function logOut() {
-    await Axios.get(`${domain}/auth/logOut`);
+    await Axios.get(`${domain}/user/logOut`);
     await getUser();
   }
 
@@ -47,7 +47,7 @@ export default function Loggingbar() {
       ) : (
         user && (
           <>
-            <p>הנך מחובר למערכת כ{user.NickName} (מ.א. {user.MA}), ותפקידך ע"פ רישומי המערכת הוא <button onClick={toggleTextON} className="justALink">{role}</button></p>
+            <p>הנך מחובר למערכת כ{user.NickName} (מ.א. {user.MA}), ותפקידך ע"פ רישומי המערכת הוא <button onClick={help?toggleTextOFF:toggleTextON} className="justALink">{role+(help?" [סגור הסבר]":"")}</button></p>
             <button className="btn-logout" onClick={logOut}>
               התנתק
             </button>

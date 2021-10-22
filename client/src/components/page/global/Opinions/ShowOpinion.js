@@ -39,10 +39,9 @@ function ShowOpinion(props) {
   
   useEffect( () => {
     const getOpinion = async () => {
-        const OpinionRes = await Axios.get(`${domain}/auth/getOpinion/${props.id}`);
-        console.log(props.oid);
+        const OpinionRes = await Axios.get(`${domain}/opinion/getmyOpinion/${props.id}`);
+        debugger;
         try {setCrewm(OpinionRes.data.CrewM);} catch (err){console.log(err);}
-
         let siginit = (OpinionRes.data.Signed)?("כן"):("לא");
         try {setSigned(siginit);} catch (err){console.log(err);}
 

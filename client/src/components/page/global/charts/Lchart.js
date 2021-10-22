@@ -1,9 +1,9 @@
 import React from 'react'
 import { LineChart, CartesianGrid, XAxis, YAxis, Legend, Line, Label } from 'recharts';
 
-export default function TestC() {
+export default function Lchart(props) {
     
-  const data = [{tkufa:"1.2018", overGrade:6}, {tkufa:"2.2018", overGrade:10}, {tkufa:"1.2019", overGrade:7}, {tkufa:"2.2019", overGrade:4}, {tkufa:"1.2020", overGrade:5}, {tkufa:"2.2020", overGrade:7}, {tkufa:"1.2021", overGrade:8}, {tkufa:"2.2021", data:8} ]
+  const data = props.data;
   
 
     return (
