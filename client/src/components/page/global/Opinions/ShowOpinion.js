@@ -113,7 +113,7 @@ function ShowOpinion(props) {
   return ready ? (
     <div className="opinion">
       <br /><br /><br /><br /><br /><br />
-        <h3 className="h3Opinion">טופס מישוב והערכה לרמת הבקרה של {crewm.NickName} - תקופה {tkufa}:</h3>
+        <h3 className="oh3Opinion">טופס מישוב והערכה לרמת הבקרה של {crewm.NickName} - תקופה {tkufa}:</h3>
       <br /><br />
         <h4>פרטי הקצין המוערך</h4>
       <br />

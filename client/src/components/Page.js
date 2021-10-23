@@ -7,6 +7,8 @@ import PAKMATS from "./page/PAKMATS";
 import SCHOOL from "./page/SCHOOL";
 import MALAM from "./page/MALAM";
 import ADMIN from "./page/ADMIN";
+import { Link } from "react-router-dom";
+
 
 export default function Page() {
   
@@ -42,6 +44,9 @@ export default function Page() {
         return (
             <div className="pageSwitcher"><ADMIN /></div>
             );
-    default: return <div className="pageSwitcherThatisEmptybecuaseuser is balmaz"></div>;
+    default: return <div className="pageSwitcherThatisEmptybecuaseuser is balmaz">
+        <p> מי זה? </p>
+        <Link to="/login">הזדהה</Link>
+    </div>;
     }
 }

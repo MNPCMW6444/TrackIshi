@@ -26,25 +26,25 @@ export default function GradeRow(props) {
     
     return (
         <>
-            <td className={o4}>
+            <td className={"o"+o4}>
                 4
             </td>
-            <td className={o5}>
+            <td className={"o"+o5}>
                 5
             </td>
-            <td className={o6}>
+            <td className={"o"+o6}>
                 6
             </td>
-            <td className={o7}>
+            <td className={"o"+o7}>
                 7
             </td>
-            <td className={o8}>
+            <td className={"o"+o8}>
                 8
             </td>
-            <td className={o9}>
+            <td className={"o"+o9}>
                 9
             </td>
-            <td className={o10}>
+            <td className={"o"+o10}>
                 10
             </td>
         </>

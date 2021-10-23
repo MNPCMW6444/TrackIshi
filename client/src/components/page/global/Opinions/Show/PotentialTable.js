@@ -21,8 +21,8 @@ export default function PotentialTable(props) {
     }, [props.grade]);
 
     return (
-        <table><tbody>
-            <tr>
+        <table className="otable"><tbody>
+            <tr className="otr">
                 <th>
                     נמוך
                 </th>
@@ -35,21 +35,21 @@ export default function PotentialTable(props) {
                 <th>
                     גבוה מאוד
                 </th>
-                <th rowSpan="2" className={m0}>
+                <th rowSpan="2" className={"o"+m0}>
                     לא רלוונטי
                 </th>
             </tr>
-            <tr>
-                <td className={m4}>
+            <tr className="otr">
+                <td className={"o"+m4}>
                     ג
                 </td>
-                <td className={m3}>
+                <td className={"o"+m3}>
                     ב
                 </td>
-                <td className={m2}>
+                <td className={"o"+m2}>
                     א-2
                 </td>
-                <td className={m1}>
+                <td className={"o"+m1}>
                     א-1
                 </td>
             </tr>

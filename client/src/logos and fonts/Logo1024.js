@@ -1,8 +1,8 @@
 import React from 'react'
-import logo from "./logos and fonts/logo1024.png";
+import logo from "./logo1024.png";
 
-export default function logo48() {
+export default function Logo1024(props) {
     return (
-        <div><img  src={logo} alt="fireSpot"/></div>
+        <div><img  src={logo} alt="Logo" width={1024*props.resize} height={1024*props.resize}/></div>
     )
 }

@@ -1,12 +1,10 @@
 import React, {useState, useContext} from 'react';
 import UserContext from "../context/UserContext";
 import { Link } from "react-router-dom";
-import domain from "../util/domain";
-import Axios from "axios";
 
 export default function Loggingbar() {
   
-  const { user, getUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   let role = "לא מוגדר";
   const [help, setHelp] = useState(false);
 
@@ -29,16 +27,9 @@ export default function Loggingbar() {
     setHelp(false);
   }
 
-  async function logOut() {
-    await Axios.get(`${domain}/user/logOut`);
-    await getUser();
-  }
-
   return (
     <div className="loggingbar">
-      <Link to="/">
-        <h1>תיק אישי מקצועי</h1>
-      </Link>
+      <h1 className="mainHeader">טרק אישי</h1>
       {user === null ? (
         <>
           <p>אינך מחובר למערכת, נא להתחבר</p>
@@ -47,27 +38,49 @@ export default function Loggingbar() {
       ) : (
         user && (
           <>
-            <p>הנך מחובר למערכת כ{user.NickName} (מ.א. {user.MA}), ותפקידך ע"פ רישומי המערכת הוא <button onClick={help?toggleTextOFF:toggleTextON} className="justALink">{role+(help?" [סגור הסבר]":"")}</button></p>
-            <button className="btn-logout" onClick={logOut}>
-              התנתק
-            </button>
-            {help && <div>
-              <h2>הסבר על סוגי המשתמשים והרשאותיהם:</h2>
-              <h3>איש צוות:</h3>
-              <h4>בלה בלה</h4>
-              <h3>איש צוות:</h3>
-              <h4>בלה בלה</h4>
-              <h3>איש צוות:</h3>
-              <h4>בלה בלה</h4>
-              <h3>איש צוות:</h3>
-              <h4>בלה בלה</h4>
-              <h3>איש צוות:</h3>
-              <h4>בלה בלה</h4>
-              <h3>איש צוות:</h3>
-              <h4>בלה בלה</h4>
-              <h3>איש צוות:</h3>
-              <h4>בלה בלה</h4>
-              <button onClick={toggleTextOFF}>סגור</button>
+            <p>הנך מחובר / היית מחובר אחרון למערכת כ{user.NickName} (מ.א. {user.MA}), ותפקידך במערכת הוא
+              <button 
+                onClick={help?toggleTextOFF:toggleTextON} 
+                className="justALinkNotButton"
+              >
+                <span className={help?"":"justALinkLink"}>{role}</span>
+                <span> </span>
+                <span className="justALinkLink">{help && "[סגור הסבר]"}</span>
+              </button>
+            </p>
+            {help && <div className="Roles">
+              <div className="RolesHeader">הסבר על סוגי המשתמשים והרשאותיהם:</div>
+              <br/>
+              <div className="Roleheader">איש צוות:</div>
+              <br/>
+              <div className="Rolemeaning">בלההל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'הל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה דלגההל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה דהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה דה ד  'רקלעה ד בלה</div>
+              <br/>
+              <div className="Roleheader">איש צוות:</div>
+              <br/>
+              <div className="Rolemeaning">בלההל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה ד בלה</div>
+              <br/>
+              <div className="Roleheader">איש צוותצוות:</div>
+              <br/>
+              <div className="Rolemeaning">בלההל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה דהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה ד בלה</div>
+              <br/>
+              <div className="Roleheader">אישאיש צוות:</div>
+              <br/>
+              <div className="Rolemeaning">בלה בהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה דלעה דלה</div>
+              <br/>
+              <div className="Roleheader">איש צאישוות:</div>
+              <br/>
+              <div className="Rolemeaning">בלההל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה ד בלהל' הצ דלה דכלה לדכ הלדכ הלדגכ הלהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה ד' גהל 'לגה  'רקלעה דה</div>
+              <br/>
+              <div className="Roleheader">איש צוואישת:</div>
+              <br/>
+              <div className="Rolemeaning">בלה דגכל'קכ 'קכל 'קכ ל'קכ  קר קחרחה קהח גה גח הגכחה גכ גכ גכ גכח חגכ כ  כהח לנ 'לעה 'לעה ח'שג ה' גלעה 'לכה לכ הל רהח 'דגלה 'לר עהלקדר גהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה דלרה לד רעה בלה</div>
+              <br/>
+              <div className="Roleheader">איאישש צוות:</div>
+              <br/>
+              <div className="Rolemeaning">בלההל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה ד בהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'הל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה דהל 'לגה  'רקלעה דהל 'לגה  'רקלעה דה  'רקלעה דלה</div>
+              <br/><br /><br />
+              <button className="closeRoles" onClick={toggleTextOFF}>סגור</button>
+              <br />
             </div>}
           </>
         )

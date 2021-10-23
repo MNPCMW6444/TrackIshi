@@ -1,17 +1,34 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import Option from "./screw/Option.js";
+import Axios from "axios";
+import domain from "../../util/domain";
+import UserContext from "../../context/UserContext";
+import { useHistory } from "react-router-dom";
 
 export default function SCREW() {
     
     const [navbar, setNavbar] = useState("home");
+    const { user, getUser } = useContext(UserContext);
+    const history = useHistory();
+
+    
+    
+    async function logOut() {
+        await Axios.get(`${domain}/user/logOut`);
+        history.push("/login");
+      };
+
+        
     
     return (
-        <div className="SCREWpage">
-            <div className="Buttons">
-                <button className="navbar" onClick={() => setNavbar("home")}>דף הבית</button>
-                <button className="navbar" onClick={() => setNavbar("fud")}>פרטים אישיים</button>
+        <><br /><br /><div className="SCREWpage">
+            <div className="navButtons">
+                <button className={navbar==="fud"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("fud")}>פרטים אישיים</button>
+                <button className={navbar==="home"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("home")}>דף הבית - תמונת מצב אישית</button>
+                <button className={navbar==="allopinions"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("allopinions")}>כל החוו"דים שלי</button>
+                <button className="navlogout" onClick={logOut}>התנתק</button>
             </div>
             <Option selected={navbar} />
-        </div>
+        </div></>
     )
 }

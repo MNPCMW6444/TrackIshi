@@ -3,63 +3,63 @@ import React from "react";
 function OpinionDetails(props) {
 
   return (
-    <table><tbody>
-        <tr>
-            <th>
+    <table className="otable"><tbody>
+        <tr className="otr">
+            <th className="oth">
                 מספר אישי
             </th>
-            <th>
+            <th className="oth">
                 דרגה
             </th>
-            <th>
+            <th className="oth">
                 שם משפחה
             </th>
-            <th>
+            <th className="oth">
                 שם פרטי
             </th>
-            <th>
+            <th className="oth">
                 האם נחתם?
             </th>
         </tr>
-        <tr>
-            <td>
+        <tr className="otr">
+            <td className="otd">
                 {props.crewm.MA}
             </td>
-            <td>
+            <td className="otd">
                 {props.crewm.Rank}
             </td>
-            <td>
+            <td className="otd">
                 {props.crewm.LastName}
             </td>
-            <td>
+            <td className="otd">
                 {props.crewm.FirstName}
             </td>
-            <td>
+            <td className="otd">
                 {props.signed}
             </td>
         </tr>
-        <tr>
-            <th>
+        <tr className="otr">
+            <th className="oth">
                 תקופה
             </th>
-            <th>
+            <th className="oth">
                 תאריך מילוי
             </th>
-            <th>
+            <th className="oth">
                 מס' חודשים תחת פיקודך
             </th>
             <th colSpan="2">
                 תפקיד / נע''ת
             </th>
         </tr>
-        <tr>
-            <td>
+        <tr className="otr">
+            <td className="otd">
                 {props.tkufa}
             </td>
-            <td>
+            <td className="otd">
                 {props.filldate}
             </td>
-            <td>
+            <td className="otd">
                 {props.monthsno}
             </td>
             <td colSpan="2">

@@ -17,8 +17,8 @@ export default function OpinionSumu(props) {
     const [opened, setOpened] = useState(false);
 
     return (
-        <>{!opened &&<div><button onClick={()=> {setOpened(true);}}>{finilTkuda}</button></div>}
+        <>{!opened &&<div><button className="OpinionOpen" onClick={()=> {setOpened(true);}}>{finilTkuda}</button></div>}
         {opened &&<div><ShowOpinion id={props.opinion._id}></ShowOpinion></div>}
-        {opened &&<div><button onClick={()=> {setOpened(false);}}>סגור את חוו"ד {finilTkuda}</button></div>}</>
+        {opened &&<div><button className="OpinionClose" onClick={()=> {setOpened(false);}}>סגור את חוו"ד {finilTkuda}</button></div>}</>
     )
 }

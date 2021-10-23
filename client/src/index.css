@@ -1,0 +1,275 @@
+
+@font-face {
+    font-family: 'my';
+    src: url('./logos and fonts/VarelaRound-Regular.ttf') format('truetype');
+}
+
+/***************************************************************************/
+/************************            ALL            ************************/
+/***************************************************************************/
+
+body {
+    background-color: orange;
+    font-family: my;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+/***************************************************************************/
+/************************            GENERAL            ************************/
+/***************************************************************************/
+
+h1 {
+    font-size: 80px;
+}
+
+p {
+    font-size: 16pt;
+}
+
+button {
+    border: unset;
+    font: unset;
+    color: unset;
+    cursor: pointer;
+    background-color: green;
+    border-radius: 5px;
+}
+
+button:active {
+    background-color: blue;
+    border-radius: 15px;
+}
+
+/***************************************************************************/
+/************************            SPLASH            ************************/
+/***************************************************************************/
+
+.splash {
+    margin: auto;
+    position: relative;
+    width: 593px;
+    height: 593px;
+}
+
+.splashbutton {
+    border: unset;
+    background: unset;
+    font: unset;
+    color: unset;
+    cursor: pointer;
+    position: absolute;
+    top: 470px;
+    right: 200px;
+    width: 190px;
+    height: 40px;
+    font-size: 27px;
+}
+
+.splashbutton:hover {
+    background-color: green;
+    border-radius: 15px;
+}
+
+.splashbutton:active {
+    background-color: blue;
+    border-radius: 15px;
+}
+
+/***************************************************************************/
+/************************            Header            ************************/
+/***************************************************************************/
+
+.mainHeader {
+    text-align: center;
+}
+
+/***************************************************************************/
+/************************            LoggingBar            ************************/
+/***************************************************************************/
+
+.justALinkNotButton {
+    border: unset;
+    background: unset;
+    font: unset;
+    color: unset;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.justALinkLink {
+    color: blue;
+    text-decoration-line: underline;
+    text-decoration-style: double;
+}
+
+/***************************************************************************/
+/************************            RolesExplanation            ************************/
+/***************************************************************************/
+
+.Roles {
+    background-color: rgba(255, 255, 255, 0.425);
+    border-radius: 50px;
+    padding: 40px;
+}
+
+.RolesHeader {
+    font-size: 20pt;
+    font-weight: bolder;
+}
+
+.Roleheader {
+    font-size: 15pt;
+    color: rgba(4, 0, 255, 0.514);
+    font-weight: bold;
+}
+
+.Rolemeaning {
+    font-size: 10ptpt;
+    color: rgb(0, 26, 1);
+}
+
+.closeRoles {
+    font-size: 30pt;
+    width: 110px;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+
+
+/***************************************************************************/
+/************************            NavBar            ************************/
+/***************************************************************************/
+
+.navButtons {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgba(5, 46, 2, 0.322);
+    border-color: black;
+    border-width: thin;
+    border-style: solid;
+}
+
+.naveachbutton {
+    display: block;
+    display: inline;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15pt;
+    border-color: black;
+    border-width: thin;
+    border-style: solid;
+}
+
+.naveachbuttonselected {
+    display: block;
+    display: inline;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15pt;
+    border-color: blue;
+    border-width: thin;
+    border-style: solid;
+    background-color: rgb(0, 99, 0);
+}
+
+.navlogout {
+    display: block;
+    display: inline;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15pt;
+    border-color: black;
+    border-width: thin;
+    border-style: solid;
+    float: left;
+}
+
+
+
+/***************************************************************************/
+/************************            Opinions            ************************/
+/***************************************************************************/
+
+.OpinionOpen {
+    font-size: 25pt;
+}
+
+.OpinionClose {
+    font-size: 20pt;
+}
+
+.opinion{background-color: rgb(224, 216, 193);
+    position: absolute;
+     right: 300px; left: 300px; 
+  }
+  
+  
+.otable {
+    margin-left: auto;
+    margin-right: auto;
+} 
+
+.otd,  .oth {
+    border: 1px solid rgb(172, 155, 155);
+    padding: 8px;
+}
+
+.oth {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #008856;
+    color: white;
+}
+
+.otd {
+    text-align: center;
+}
+
+.oselected {
+    background-color: #71b0f8;
+}
+
+.oh3 {
+    background-color: #5fc275;
+    font-size: xx-large;
+    text-align: center;
+    border-radius:7%;
+    font-family:  FFFFF, Helvetica, sans-serif;
+}
+
+.oh4 {
+    background-color: #b4f1db;
+    font-family:  FFFFF, Helvetica, sans-serif;
+    font-size: large;
+}
+
+
+.oh5 {
+    background-color: #d0f3e6;
+    font-family:  FFFFF, Helvetica, sans-serif;
+    font-size: medium;
+    width: 300px;
+    margin: auto;
+}
+
+.oh4,.oh5,.op {
+    text-align: center;
+    border-radius:25%;
+}

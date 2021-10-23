@@ -48,49 +48,49 @@ function ClassesTable(props) {
   
 
   return (
-    <table><tbody>
-            <tr>
-                <th>
+    <table className="otable"><tbody>
+            <tr className="otr">
+                <th className="oth">
                     מסלול
                 </th>
-                <td className={isMesima}>
+                <td className={"o"+isMesima}>
                     משימה
                 </td>
-                <td className={isTaavura}>
+                <td className={"o"+isTaavura}>
                     תעבורה
                 </td>
-                <td className={isVersatili}>
+                <td className={"o"+isVersatili}>
                     ורסטילי
                 </td>
             </tr>
-            <tr>
-                <th>
+            <tr className="otr">
+                <th className="oth">
                     סוג הצבה
                 </th>
-                <td className={isSadir}>
+                <td className={"o"+isSadir}>
                     סדיר
                 </td>
-                <td className={isHatsach}>
+                <td className={"o"+isHatsach}>
                     הצ"ח
                 </td>
-                <td className={isMill}>
+                <td className={"o"+isMill}>
                     מילואים
                 </td>
             </tr>
-            <tr>
-                <th>
+            <tr className="otr">
+                <th className="oth">
                     דרג
                 </th>
-                <td className={isDeregA}>
+                <td className={"o"+isDeregA}>
                     א'
                 </td>
-                <td className={isDeregB}>
+                <td className={"o"+isDeregB}>
                     ב'
                 </td>
-                <td className={isDeregC}>
+                <td className={"o"+isDeregC}>
                     ג'
                 </td>
-                <td className={isDeregD}>
+                <td className={"o"+isDeregD}>
                     ד'
                 </td>
             </tr>
