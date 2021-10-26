@@ -20,7 +20,6 @@ const userSchema = new mongoose.Schema({
   Maslool: String,
   SoogHatsava: String,
 
-  Dereg: Number,
   Team: String,
 
   passwordHash: { type: String, required: true }, // || empty means unregistred || passed means 2021 || hash means 2022 ||

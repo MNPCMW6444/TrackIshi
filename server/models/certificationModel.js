@@ -9,6 +9,7 @@ const certificationSchema = new mongoose.Schema({
     Exammer: {type: mongoose.Schema.Types.ObjectId, required: true},
 
     Grade: {type: Number, required: true},
+    Paseed: {type: Boolean, required: true},
 
     Name: {type: String, required: true}
 });

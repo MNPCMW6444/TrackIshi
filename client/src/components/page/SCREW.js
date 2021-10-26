@@ -23,6 +23,7 @@ export default function SCREW() {
     return (
         <><br /><br /><div className="SCREWpage">
             <div className="navButtons">
+                <button className={navbar==="nchsal"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("nachsal")}>נכס"ל</button>
                 <button className={navbar==="fud"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("fud")}>פרטים אישיים</button>
                 <button className={navbar==="home"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("home")}>דף הבית - תמונת מצב אישית</button>
                 <button className={navbar==="allopinions"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("allopinions")}>כל החוו"דים שלי</button>

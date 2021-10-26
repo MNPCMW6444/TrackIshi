@@ -421,6 +421,37 @@ router.get("/getFullDetails", async (req, res) => {
   }
 });
 
+router.get("/getNachsal", async (req, res) => {
+  try {
+    const token = req.cookies.token;
+
+    if (!token) return res.status(400)
+          .json({ errorMessage: "אינך מחובר" });
+
+    const validatedUser = jwt.verify(token, process.env.JWTSECRET);
+
+    if (!validatedUser) return res.status(400)
+          .json({ errorMessage: "תפקידך לא מוגדר" });
+
+    const resa = await User.find({MA:{$exists: true}});
+
+    for(let i=0; i<resa.length;i++)
+    {
+      delete resa[i]['_id'];
+      delete resa[i]['fitnesses'];
+      delete resa[i]['Role'];
+      delete resa[i]['Certifications'];
+      delete resa[i]['__v'];
+      delete resa[i]['passwordHash'];
+    }
+
+    res.json(resa);
+  } catch (err) {
+    console.log(err);
+    res.status(401).send();
+  }
+});
+
 router.put("/updateFullDetails", async (req, res) => {
   try {
     const { firstname, lastname, nickname, courseno, birthdate, email, mainphone, emergencyphone, addresscity, addressline, rank } = req.body;
