@@ -29,6 +29,20 @@ export default function TACHSALTB(props) {
           goten[i].isTaavura=(goten[i].Maslool==="תעבורה")?"כן":"לא";
           goten[i].isVersatili=(goten[i].Maslool==="ורסטילי")?"כן":"לא";
         }
+
+        for(let i=0; i<goten.length;i++)
+        {
+          goten[i].is506=(goten[i].Unit==="יב''א 506")?"כן":"לא";
+          goten[i].is509=(goten[i].Unit==="יב''א 509")?"כן":"לא";
+          goten[i].is528=(goten[i].Unit==="צוער/ת")?"כן":"לא";
+        }
+
+        for(let i=0; i<goten.length;i++)
+        {
+          goten[i].isSadir=(goten[i].SoogHatsava==="sadir")?"כן":"לא";
+          goten[i].isHatsach=(goten[i].SoogHatsava==="hatsach")?"כן":"לא";
+          goten[i].isMiluim=(goten[i].SoogHatsava==="miluim")?"כן":"לא";
+        }
       
       const data = React.useMemo(
           () => 
@@ -91,6 +105,10 @@ export default function TACHSALTB(props) {
               accessor: "BirthDate",
             },
             {
+              Header: "יחידה",
+              accessor: "Unit",
+            },
+            {
               Header: "האם משימתי",
               accessor: "isMesima",
               show:false,
@@ -104,6 +122,36 @@ export default function TACHSALTB(props) {
               Header: "האם ורסטילי",
               accessor: "isVersatili",
               show:false,
+            },
+            {
+              Header: "האם 506",
+              accessor: "is506",
+              show:false,
+            },
+            {
+              Header: "האם 509",
+              accessor: "is509",
+              show:false,
+            },
+            {
+              Header: "האם צוער",
+              accessor: "is528",
+              show:false,
+            },
+            {
+              Header: "האם סדיר",
+              accessor: "isSadir",
+              show:false,
+            },
+            {
+              Header: "האם הצ''ח",
+              accessor: "isHatsach",
+              show:false,
+            },
+            {
+              Header: "האם מילואים",
+              accessor: "isMiluim",
+              show:false,
             }
         ],
         []
@@ -115,10 +163,7 @@ export default function TACHSALTB(props) {
         headerGroups,
         rows,
         prepareRow,
-        setFilter,
-        setAllFilters,
-        allColumns,
-        getToggleHideAllColumnsProps
+        setFilter
       } = useTable({ columns, data, initialState: {
         hiddenColumns: columns.map(column => {
             if (column.show === false) return column.accessor || column.id;
@@ -226,412 +271,125 @@ export default function TACHSALTB(props) {
           setMas3clicked(false);
     };
 
+    const [mas1clickedUNIT, setMas1clickedUNIT] = useState(false);
+    const [mas2clickedUNIT, setMas2clickedUNIT] = useState(false);
+    const [mas3clickedUNIT, setMas3clickedUNIT] = useState(false);
 
-    {/****************
-    המסגרת זה בגכלל מעקף הסתרת עומדות!!!!
-    const [mas1clicked, setMas1clicked] = useState(false);
-      const [mas2clicked, setMas2clicked] = useState(false);
-      const [mas3clicked, setMas3clicked] = useState(false);
 
-      function checkLogic(status)
-      {
-        if(!status[0] && !status[1] && !status[2])
-          return ["", "", ""];
-  
-        if(status[0] && !status[1] && !status[2])
-          return ["כן","",""];
-        if(!status[0] && status[1] && !status[2])
-          return ["","כן",""];
-        if(!status[0] && !status[1] && status[2])
-          return ["", "", "כן"];
-  
-          if(status[0] && status[1] && !status[2])
-          return ["","","לא"];
-        if(status[0] && !status[1] && status[2])
-          return ["","לא",""];
-        if(!status[0] && status[1] && status[2])
-          return ["לא", "", ""];
-  
-        if(status[0] && status[1] && status[2])
-          return ["", "", ""];
-      }
-
-      const handleFilterChange6mesima = e => {
-        const res=checkLogic([!mas1clicked, mas2clicked, mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas1clicked)
-          setMas1clicked(true);
-        else
-          setMas1clicked(false);
-      };
-
-      const handleFilterChange6taavura = e => {
-        debugger;
-        const res=checkLogic([mas1clicked, !mas2clicked, mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas2clicked)
-          setMas2clicked(true);
-        else
-          setMas2clicked(false);
-      };
-
-      const handleFilterChange6versatili = e => {
-        const res=checkLogic([mas1clicked, mas2clicked, !mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas3clicked)
-            setMas3clicked(true);
-        else
-          setMas3clicked(false);
+    const handleFilterChange6506 = e => {
+      const res=checkLogic([!mas1clickedUNIT, mas2clickedUNIT, mas3clickedUNIT]);
+      setFilter("is506", res[0]);
+      setFilter("is509", res[1]);
+      setFilter("is528", res[2]);
+      if(!mas1clickedUNIT)
+        setMas1clickedUNIT(true);
+      else
+        setMas1clickedUNIT(false);
     };
-    const [mas1clicked, setMas1clicked] = useState(false);
-      const [mas2clicked, setMas2clicked] = useState(false);
-      const [mas3clicked, setMas3clicked] = useState(false);
 
-      function checkLogic(status)
-      {
-        if(!status[0] && !status[1] && !status[2])
-          return ["", "", ""];
-  
-        if(status[0] && !status[1] && !status[2])
-          return ["כן","",""];
-        if(!status[0] && status[1] && !status[2])
-          return ["","כן",""];
-        if(!status[0] && !status[1] && status[2])
-          return ["", "", "כן"];
-  
-          if(status[0] && status[1] && !status[2])
-          return ["","","לא"];
-        if(status[0] && !status[1] && status[2])
-          return ["","לא",""];
-        if(!status[0] && status[1] && status[2])
-          return ["לא", "", ""];
-  
-        if(status[0] && status[1] && status[2])
-          return ["", "", ""];
-      }
-
-      const handleFilterChange6mesima = e => {
-        const res=checkLogic([!mas1clicked, mas2clicked, mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas1clicked)
-          setMas1clicked(true);
-        else
-          setMas1clicked(false);
-      };
-
-      const handleFilterChange6taavura = e => {
-        debugger;
-        const res=checkLogic([mas1clicked, !mas2clicked, mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas2clicked)
-          setMas2clicked(true);
-        else
-          setMas2clicked(false);
-      };
-
-      const handleFilterChange6versatili = e => {
-        const res=checkLogic([mas1clicked, mas2clicked, !mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas3clicked)
-            setMas3clicked(true);
-        else
-          setMas3clicked(false);
+    const handleFilterChange6509 = e => {
+      debugger;
+      const res=checkLogic([mas1clickedUNIT, !mas2clickedUNIT, mas3clickedUNIT]);
+      setFilter("is506", res[0]);
+      setFilter("is509", res[1]);
+      setFilter("is528", res[2]);
+      if(!mas2clickedUNIT)
+        setMas2clickedUNIT(true);
+      else
+        setMas2clickedUNIT(false);
     };
-    const [mas1clicked, setMas1clicked] = useState(false);
-      const [mas2clicked, setMas2clicked] = useState(false);
-      const [mas3clicked, setMas3clicked] = useState(false);
 
-      function checkLogic(status)
-      {
-        if(!status[0] && !status[1] && !status[2])
-          return ["", "", ""];
-  
-        if(status[0] && !status[1] && !status[2])
-          return ["כן","",""];
-        if(!status[0] && status[1] && !status[2])
-          return ["","כן",""];
-        if(!status[0] && !status[1] && status[2])
-          return ["", "", "כן"];
-  
-          if(status[0] && status[1] && !status[2])
-          return ["","","לא"];
-        if(status[0] && !status[1] && status[2])
-          return ["","לא",""];
-        if(!status[0] && status[1] && status[2])
-          return ["לא", "", ""];
-  
-        if(status[0] && status[1] && status[2])
-          return ["", "", ""];
-      }
+    const handleFilterChange6528 = e => {
+      const res=checkLogic([mas1clickedUNIT, mas2clickedUNIT, !mas3clickedUNIT]);
+      setFilter("is506", res[0]);
+      setFilter("is509", res[1]);
+      setFilter("is528", res[2]);
+      if(!mas3clickedUNIT)
+          setMas3clickedUNIT(true);
+      else
+        setMas3clickedUNIT(false);
+  };
+    
 
-      const handleFilterChange6mesima = e => {
-        const res=checkLogic([!mas1clicked, mas2clicked, mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas1clicked)
-          setMas1clicked(true);
-        else
-          setMas1clicked(false);
-      };
+    const [mas1clickedHATSAVA, setMas1clickedHATSAVA] = useState(false);
+    const [mas2clickedHATSAVA, setMas2clickedHATSAVA] = useState(false);
+    const [mas3clickedHATSAVA, setMas3clickedHATSAVA] = useState(false);
 
-      const handleFilterChange6taavura = e => {
-        debugger;
-        const res=checkLogic([mas1clicked, !mas2clicked, mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas2clicked)
-          setMas2clicked(true);
-        else
-          setMas2clicked(false);
-      };
 
-      const handleFilterChange6versatili = e => {
-        const res=checkLogic([mas1clicked, mas2clicked, !mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas3clicked)
-            setMas3clicked(true);
-        else
-          setMas3clicked(false);
+    const handleFilterChange6Sadir = e => {
+      const res=checkLogic([!mas1clickedHATSAVA, mas2clickedHATSAVA, mas3clickedHATSAVA]);
+      setFilter("isSadir", res[0]);
+      setFilter("isHatsach", res[1]);
+      setFilter("isMiluim", res[2]);
+      if(!mas1clickedHATSAVA)
+        setMas1clickedHATSAVA(true);
+      else
+        setMas1clickedHATSAVA(false);
     };
-    const [mas1clicked, setMas1clicked] = useState(false);
-      const [mas2clicked, setMas2clicked] = useState(false);
-      const [mas3clicked, setMas3clicked] = useState(false);
 
-      function checkLogic(status)
-      {
-        if(!status[0] && !status[1] && !status[2])
-          return ["", "", ""];
-  
-        if(status[0] && !status[1] && !status[2])
-          return ["כן","",""];
-        if(!status[0] && status[1] && !status[2])
-          return ["","כן",""];
-        if(!status[0] && !status[1] && status[2])
-          return ["", "", "כן"];
-  
-          if(status[0] && status[1] && !status[2])
-          return ["","","לא"];
-        if(status[0] && !status[1] && status[2])
-          return ["","לא",""];
-        if(!status[0] && status[1] && status[2])
-          return ["לא", "", ""];
-  
-        if(status[0] && status[1] && status[2])
-          return ["", "", ""];
-      }
-
-      const handleFilterChange6mesima = e => {
-        const res=checkLogic([!mas1clicked, mas2clicked, mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas1clicked)
-          setMas1clicked(true);
-        else
-          setMas1clicked(false);
-      };
-
-      const handleFilterChange6taavura = e => {
-        debugger;
-        const res=checkLogic([mas1clicked, !mas2clicked, mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas2clicked)
-          setMas2clicked(true);
-        else
-          setMas2clicked(false);
-      };
-
-      const handleFilterChange6versatili = e => {
-        const res=checkLogic([mas1clicked, mas2clicked, !mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas3clicked)
-            setMas3clicked(true);
-        else
-          setMas3clicked(false);
+    const handleFilterChange6Hatsach = e => {
+      debugger;
+      const res=checkLogic([mas1clickedHATSAVA, !mas2clickedHATSAVA, mas3clickedHATSAVA]);
+      setFilter("isSadir", res[0]);
+      setFilter("isHatsach", res[1]);
+      setFilter("isMiluim", res[2]);
+      if(!mas2clickedHATSAVA)
+        setMas2clickedHATSAVA(true);
+      else
+        setMas2clickedHATSAVA(false);
     };
-    const [mas1clicked, setMas1clicked] = useState(false);
-      const [mas2clicked, setMas2clicked] = useState(false);
-      const [mas3clicked, setMas3clicked] = useState(false);
 
-      function checkLogic(status)
-      {
-        if(!status[0] && !status[1] && !status[2])
-          return ["", "", ""];
-  
-        if(status[0] && !status[1] && !status[2])
-          return ["כן","",""];
-        if(!status[0] && status[1] && !status[2])
-          return ["","כן",""];
-        if(!status[0] && !status[1] && status[2])
-          return ["", "", "כן"];
-  
-          if(status[0] && status[1] && !status[2])
-          return ["","","לא"];
-        if(status[0] && !status[1] && status[2])
-          return ["","לא",""];
-        if(!status[0] && status[1] && status[2])
-          return ["לא", "", ""];
-  
-        if(status[0] && status[1] && status[2])
-          return ["", "", ""];
-      }
-
-      const handleFilterChange6mesima = e => {
-        const res=checkLogic([!mas1clicked, mas2clicked, mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas1clicked)
-          setMas1clicked(true);
-        else
-          setMas1clicked(false);
-      };
-
-      const handleFilterChange6taavura = e => {
-        debugger;
-        const res=checkLogic([mas1clicked, !mas2clicked, mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas2clicked)
-          setMas2clicked(true);
-        else
-          setMas2clicked(false);
-      };
-
-      const handleFilterChange6versatili = e => {
-        const res=checkLogic([mas1clicked, mas2clicked, !mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas3clicked)
-            setMas3clicked(true);
-        else
-          setMas3clicked(false);
-    };
-    const [mas1clicked, setMas1clicked] = useState(false);
-      const [mas2clicked, setMas2clicked] = useState(false);
-      const [mas3clicked, setMas3clicked] = useState(false);
-
-      function checkLogic(status)
-      {
-        if(!status[0] && !status[1] && !status[2])
-          return ["", "", ""];
-  
-        if(status[0] && !status[1] && !status[2])
-          return ["כן","",""];
-        if(!status[0] && status[1] && !status[2])
-          return ["","כן",""];
-        if(!status[0] && !status[1] && status[2])
-          return ["", "", "כן"];
-  
-          if(status[0] && status[1] && !status[2])
-          return ["","","לא"];
-        if(status[0] && !status[1] && status[2])
-          return ["","לא",""];
-        if(!status[0] && status[1] && status[2])
-          return ["לא", "", ""];
-  
-        if(status[0] && status[1] && status[2])
-          return ["", "", ""];
-      }
-
-      const handleFilterChange6mesima = e => {
-        const res=checkLogic([!mas1clicked, mas2clicked, mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas1clicked)
-          setMas1clicked(true);
-        else
-          setMas1clicked(false);
-      };
-
-      const handleFilterChange6taavura = e => {
-        debugger;
-        const res=checkLogic([mas1clicked, !mas2clicked, mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas2clicked)
-          setMas2clicked(true);
-        else
-          setMas2clicked(false);
-      };
-
-      const handleFilterChange6versatili = e => {
-        const res=checkLogic([mas1clicked, mas2clicked, !mas3clicked]);
-        setFilter("isMesima", res[0]);
-        setFilter("isTaavura", res[1]);
-        setFilter("isVersatili", res[2]);
-        if(!mas3clicked)
-            setMas3clicked(true);
-        else
-          setMas3clicked(false);
-    };
-    ******************/}
-
+    const handleFilterChange6Miluim = e => {
+      const res=checkLogic([mas1clickedHATSAVA, mas2clickedHATSAVA, !mas3clickedHATSAVA]);
+      setFilter("isSadir", res[0]);
+      setFilter("isHatsach", res[1]);
+      setFilter("isMiluim", res[2]);
+      if(!mas3clickedHATSAVA)
+          setMas3clickedHATSAVA(true);
+      else
+        setMas3clickedHATSAVA(false);
+  };
     
 
     return (
         <div key={props.data} key={props.data}>
           <br/><br/><br/>
           <div className="MasloolFilter">
-            <button className="MasloolFilterBH" onClick={handleFilterChange6mesima}>יחידה:</button>
-            <button className="MasloolFilterBSs" onClick={handleFilterChange6mesima}></button>
-            <button className={"MasloolFilterB"+mas1clicked} onClick={handleFilterChange6mesima}>506</button>
-            <button className="MasloolFilterBS" onClick={handleFilterChange6mesima}></button>
-            <button className={"MasloolFilterB"+mas2clicked} onClick={handleFilterChange6taavura}>509</button>
-            <button className="MasloolFilterBS" onClick={handleFilterChange6mesima}></button>
-            <button className={"MasloolFilterB"+mas3clicked} onClick={handleFilterChange6versatili}>צוערים</button>
+            <button className="MasloolFilterBH">יחידה:</button>
+            <button className="MasloolFilterBSs"></button>
+            <button className={"MasloolFilterB"+mas1clickedUNIT} onClick={handleFilterChange6506}>506</button>
+            <button className="MasloolFilterBS"></button>
+            <button className={"MasloolFilterB"+mas2clickedUNIT} onClick={handleFilterChange6509}>509</button>
+            <button className="MasloolFilterBS"></button>
+            <button className={"MasloolFilterB"+mas3clickedUNIT} onClick={handleFilterChange6528}>צוערים</button>
           </div><br/>
           <div className="MasloolFilter">
-            <button className="MasloolFilterBH" onClick={handleFilterChange6mesima}>מסלול:</button>
-            <button className="MasloolFilterBSs" onClick={handleFilterChange6mesima}></button>
+            <button className="MasloolFilterBH">מסלול:</button>
+            <button className="MasloolFilterBSs"></button>
             <button className={"MasloolFilterB"+mas1clicked} onClick={handleFilterChange6mesima}>משימה</button>
-            <button className="MasloolFilterBS" onClick={handleFilterChange6mesima}></button>
+            <button className="MasloolFilterBS"></button>
             <button className={"MasloolFilterB"+mas2clicked} onClick={handleFilterChange6taavura}>תעבורה</button>
-            <button className="MasloolFilterBS" onClick={handleFilterChange6mesima}></button>
+            <button className="MasloolFilterBS"></button>
             <button className={"MasloolFilterB"+mas3clicked} onClick={handleFilterChange6versatili}>ורסטילי</button>
           </div><br/>
           <div className="MasloolFilter">
-            <button className="MasloolFilterBH" onClick={handleFilterChange6mesima}>הצבה:</button>
-            <button className="MasloolFilterBSs" onClick={handleFilterChange6mesima}></button>
-            <button className={"MasloolFilterB"+mas1clicked} onClick={handleFilterChange6mesima}>סדיר</button>
-            <button className="MasloolFilterBS" onClick={handleFilterChange6mesima}></button>
-            <button className={"MasloolFilterB"+mas2clicked} onClick={handleFilterChange6taavura}>הצ"ח</button>
-            <button className="MasloolFilterBS" onClick={handleFilterChange6mesima}></button>
-            <button className={"MasloolFilterB"+mas3clicked} onClick={handleFilterChange6versatili}>מילואים</button>
+            <button className="MasloolFilterBH">הצבה:</button>
+            <button className="MasloolFilterBSs"></button>
+            <button className={"MasloolFilterB"+mas1clickedHATSAVA} onClick={handleFilterChange6Sadir}>סדיר</button>
+            <button className="MasloolFilterBS"></button>
+            <button className={"MasloolFilterB"+mas2clickedHATSAVA} onClick={handleFilterChange6Hatsach}>הצ"ח</button>
+            <button className="MasloolFilterBS"></button>
+            <button className={"MasloolFilterB"+mas3clickedHATSAVA} onClick={handleFilterChange6Miluim}>מילואים</button>
           </div><br/>
           <div className="MasloolFilter">
-            <button className="MasloolFilterBH" onClick={handleFilterChange6mesima}>דרג מקצועי:</button>
-            <button className="MasloolFilterBSs" onClick={handleFilterChange6mesima}></button>
+            <button className="MasloolFilterBH">דרג מקצועי:</button>
+            <button className="MasloolFilterBSs"></button>
             <button className={"MasloolFilterB"+mas1clicked} onClick={handleFilterChange6mesima}>א'</button>
-            <button className="MasloolFilterBS" onClick={handleFilterChange6mesima}></button>
+            <button className="MasloolFilterBS"></button>
             <button className={"MasloolFilterB"+mas2clicked} onClick={handleFilterChange6taavura}>ב'</button>
-            <button className="MasloolFilterBS" onClick={handleFilterChange6mesima}></button>
+            <button className="MasloolFilterBS"></button>
             <button className={"MasloolFilterB"+mas3clicked} onClick={handleFilterChange6versatili}>ג'</button>
-            <button className="MasloolFilterBS" onClick={handleFilterChange6mesima}></button>
+            <button className="MasloolFilterBS"></button>
             <button className={"MasloolFilterB"+mas3clicked} onClick={handleFilterChange6versatili}>ד'</button>
           </div><br/><br/><br/>
             <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
