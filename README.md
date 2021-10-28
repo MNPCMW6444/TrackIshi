@@ -9,7 +9,18 @@ Air Controlling Professional Human Resource Management app - Developed using MER
 Managing profession-oriented data of crew members:
 1. Personal Details
 2. Proffesional Opinions
-3. Skills
+3. Certifications
+
+## VDDs
+
+## ENVs
+
+## ARCHITECURE
+
+## Installation
+
+
+
 
 ## Installation
 
