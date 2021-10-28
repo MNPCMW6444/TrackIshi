@@ -1,4 +1,6 @@
-# ACPHRM
+# TickIshi
+
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
 
 Air Controlling Professional Human Resource Management app - Developed using MERN stack
 

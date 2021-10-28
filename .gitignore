@@ -1,32 +1,32 @@
 ############################## SERVER and docs folder ##################################################################
 
-/server/.env
-/docs
-/server/node_modules
+#TOTHISWHENPUBLIC#/server/.env
+#TOTHISWHENPUBLIC#/docs
+#TOTHISWHENPUBLIC#/server/node_modules
 
 ############################## CLIENT ##################################################################
 
 # dependencies
-/client/node_modules
-/client/.pnp
-/client/.pnp.js
+#TOTHISWHENPUBLIC#/client/node_modules
+#TOTHISWHENPUBLIC#/client/.pnp
+#TOTHISWHENPUBLIC#/client/.pnp.js
 
 # testing
-/client/coverage
+#TOTHISWHENPUBLIC#/client/coverage
 
 # production
-/client/build
+#TOTHISWHENPUBLIC#/client/build
 
 # misc
-/client/.DS_Store
-/client/.env.local
-/client/.env.development.local
-/client/.env.test.local
-/client/.env.production.local
+#TOTHISWHENPUBLIC#/client/.DS_Store
+#TOTHISWHENPUBLIC#/client/.env.local
+#TOTHISWHENPUBLIC#/client/.env.development.local
+#TOTHISWHENPUBLIC#/client/.env.test.local
+#TOTHISWHENPUBLIC#/client/.env.production.local
 
-/client/npm-debug.log*
-/client/yarn-debug.log*
-/client/yarn-error.log*
+#TOTHISWHENPUBLIC#/client/npm-debug.log*
+#TOTHISWHENPUBLIC#/client/yarn-debug.log*
+#TOTHISWHENPUBLIC#/client/yarn-error.log*
 
-/client/.eslientcache
-/client/debug.log
+#TOTHISWHENPUBLIC#/client/.eslientcache
+#TOTHISWHENPUBLIC#/client/debug.log
