@@ -1,6 +1,6 @@
 # TickIshi
 
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![alt text](https://github.com/MNPCMW6444/TrackIshi/blob/main_react/more/documentation/info/repository-card.png?rsw=true)
 
 Air Controlling Professional Human Resource Management app - Developed using MERN stack
 
