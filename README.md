@@ -31,13 +31,13 @@ Use the node package manager [npm] to install server and client.
 
 For development:
 > make sure you have installed a MongoDB server locally and updated your URI in the .env file<br />
-> Terminal #1<br />
+> Terminal #1:<br />
  ```bash
  cd server
  npm install
  npm run dev
  ```
-> Terminal #2 <br />
+> Terminal #2: <br />
  ```bash
  cd client
  npm install
@@ -47,13 +47,13 @@ For development:
 For FAT:
 > make sure you have  a MongoDB server on MongoDB Atlas updated your URI in the .env file <br />
 > make sure you have a git repo connected to heroku account <br />
-> Terminal #1 <br />
+> Terminal #1: <br />
  ```bash
  cd server
  npm install
  npm run fat
  ```
-> Terminal #2 <br />
+> Terminal #2: <br />
  ```bash
  cd client
  npm install
@@ -63,7 +63,12 @@ For FAT:
 
 ## VDDs
 
-Version 
+Version 0.5 :
+><br />
+> <br />
+> <br />
+> <br />
+> <br />
 
 
 
