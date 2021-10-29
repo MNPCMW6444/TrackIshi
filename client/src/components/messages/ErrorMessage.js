@@ -17,8 +17,8 @@ function ErrorMessage({ message, clear }) {
  
   return (
     stillRelevant && <div className="error-message">
-      <p>{message}</p>
-      <button onClick={clear}>הבנתי ({timeleft})</button>
+      <p className="error-message-p">{message}</p>
+      <button className="error-message-button" onClick={clear}>הבנתי ({timeleft})</button>
     </div>
   );
 }

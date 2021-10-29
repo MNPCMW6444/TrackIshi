@@ -41,6 +41,62 @@ button:active {
     border-radius: 15px;
 }
 
+.error-message {
+    margin-bottom: 50px;
+    padding: 0px;
+    border: 1px solid red;
+    border-radius: 5px;
+    background: rgb(230, 139, 139);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+}
+
+.error-message-button {
+    padding:6px 40px;
+    background: red;
+    color: black;
+    font-weight: bolder;
+    font-size: 18pt;
+}
+
+.error-message-p {
+    color: black;
+    font-weight: bolder;
+    font-size: 18pt;
+}
+
+
+
+.success-message {
+    margin-bottom: 50px;
+    padding: 0px;
+    border: 1px solid rgb(0, 153, 20);
+    border-radius: 5px;
+    background: rgb(84, 212, 72);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+}
+
+.success-message-button {
+    padding:6px 40px;
+    background: rgba(1, 165, 23, 0.932);
+    color: black;
+    font-weight: bolder;
+    font-size: 18pt;
+}
+
+.success-message-p {
+    color: black;
+    font-weight: bolder;
+    font-size: 18pt;
+}
+
+
+
 /***************************************************************************/
 /************************            SPLASH            ************************/
 /***************************************************************************/
@@ -204,18 +260,103 @@ button:active {
 
 
 /***************************************************************************/
-/************************            NachSAL Filters            ************************/
+/************************            NachSAL Filters misc         ************************/
 /***************************************************************************/
 
-.tdSPACE {
-    width: 100px;
+
+.filtersbigrow {
+    width: 100%;
 }
 
-.MasloolFilter {
-   background: orange;
+
+.filterSpace {
+    display: block;
+    display: inline;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 25pt;
+    border-color: orange;
+    border-width: thin;
+    border-style: solid;
+    background-color: orange;
+    cursor: default;
+    width: 20px;
+    height: 32px;
 }
 
-.MasloolFilterBfalse {
+
+.filterbigSpace {
+    display: block;
+    display: inline;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 10pt;
+    border-color: orange;
+    border-width: thin;
+    border-style: solid;
+    background-color: orange;
+    cursor: default;
+    width: 50px;
+    height: 32px;
+}
+
+
+.filterSmallSpace {
+    display: block;
+    display: inline;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 10pt;
+    border-color: orange;
+    border-width: thin;
+    border-style: solid;
+    background-color: orange;
+    cursor: default;
+    width: 15px;
+    height: 32px;
+}
+
+.filterSpace:active, .filterbigSpace:active .filterSmallSpace:active {
+    background-color: orange;
+    border-radius: 15px;
+}
+
+
+.filterHeader {
+    display: block;
+    display: inline;
+    color: white;
+    text-align: center;
+    width: 200px;
+    text-decoration: none;
+    font-size: 14pt;
+    border-color: black;
+    border-width: thin;
+    border-style: solid;
+    background-color: black;
+    cursor: default;
+    height: 33px;
+}
+
+.filterHeader:active {
+    background-color: black;
+    border-radius: 5px;
+}
+
+
+/***************************************************************************/
+/************************            NachSAL Filters - Buttons         ************************/
+/***************************************************************************/
+
+.buttonfilters {
+    position: relative;
+    right: 20px;
+}
+
+.filterBTNof3false {
     display: block;
     display: inline;
     color: white;
@@ -227,89 +368,78 @@ button:active {
     border-width: thin;
     border-style: solid;
     background-color: red;
-    height: 25px;
+    width: 95px;
+    height: 33px;
 }
 
-.MasloolFilterBtrue {
+.filterBTNof3true {
     display: block;
     display: inline;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 1px 16px;
     text-decoration: none;
     font-size: 15pt;
     border-color: blue;
     border-width: thin;
     border-style: solid;
     background-color: green;
-    height: 25px;
+    width: 95px;
+    height: 33px;
 }
 
-.MasloolFilterBH {
+
+.filterBTNof4false {
     display: block;
     display: inline;
     color: white;
     text-align: center;
-    width: 130px;
-    height: 25px;
+    padding: 1px 7px;
     text-decoration: none;
-    font-size: 12pt;
+    font-size: 15pt;
     border-color: black;
     border-width: thin;
     border-style: solid;
-    background-color: black;
-    cursor: default;
+    background-color: red;
+    width: 70px;
+    height: 33px;
 }
 
-.MasloolFilterBS {
+.filterBTNof4true {
     display: block;
     display: inline;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 1px 7px;
     text-decoration: none;
-    font-size: 25pt;
-    border-color: orange;
+    font-size: 15pt;
+    border-color: blue;
     border-width: thin;
     border-style: solid;
-    background-color: orange;
-    width: 20px;
-    height: 25px;
-    cursor: default;
+    background-color: green;
+    width: 70px;
+    height: 33px;
 }
 
-.MasloolFilterBH:active {
-    background-color: black;
-    border-radius: 5px;
-    height: 25px;
+
+/***************************************************************************/
+/************************            NachSAL Filters - Inputs         ************************/
+/***************************************************************************/
+
+.inputfilters {
+    position: relative;
+    right: 110px;
 }
 
-.MasloolFilterBS:active, .MasloolFilterBSs:active {
-    background-color: orange;
-    border-radius: 15px;
-    height: 25px;
-}
-
-.MasloolFilterBSs {
-    display: block;
-    display: inline;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 10pt;
-    border-color: orange;
-    border-width: thin;
-    border-style: solid;
-    background-color: orange;
-    width: 50px;
-    height: 25px;
-    cursor: default;
-}
-
-.moreofiltersINPUT{
-    height: 25x;
+.inputfilterINPUT{
     font-size: 13pt;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+}
+
+.inputfilterINPUT:placeholder { 
+    color: black;
+    opacity: 0.7; 
 }
 
 
@@ -318,7 +448,109 @@ button:active {
 /***************************************************************************/
 
 
+.theTable {
+    border-collapse: collapse;
+    border: 3px solid rgb(160, 111, 111);
+    background-color: white;
+}
 
+.theTableTH {
+    background-color: #f1d9c1 ;
+    color: rgb(0, 0, 97);
+    font-weight: 'bolder';
+    border: 2px solid rgb(23, 0, 107);
+}
+
+.theTableTR:nth-child(even) {
+    background-color: #1e6dff93;
+    text-align: "center";
+    font-weight: "bold";
+}
+
+.theTableTR:nth-child(odd) {
+    background-color: #5085e6a2;
+    text-align: "center";
+    font-weight: "bold";
+}
+
+.theTableTD {
+    border: 1px solid rgb(19, 20, 97);
+    text-align: "center";
+    font-weight: "bold";
+    text-align: center;
+    padding-right:10px;
+    padding-left:10px;
+}
+
+/***************************************************************************/
+/************************            FUD            ************************/
+/***************************************************************************/
+
+
+
+.FUD {
+    display: flex;
+}
+
+  
+.FUDcolumn {
+    flex: 25%;
+    padding-right: 70px;
+}
+
+.fudheader {
+    font-size: 28pt;
+}
+
+.fudheaderdiv {
+    text-align: center;
+}
+
+.fudunit {
+    border: 3px solid rgba(12, 141, 23, 0.671);
+}
+
+.fudTitle {
+    text-align: center;
+    font-family:  FFFFF, Helvetica, sans-serif;
+    font-size: large;
+    background-color: rgba(182, 118, 0, 0.705);
+    font-weight: bolder;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.fudContent {
+    text-align: center;
+    background-color: rgba(253, 196, 89, 0.897);
+    font-family:  FFFFF, Helvetica, sans-serif;
+    font-size: large;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.fudupdatebuttondiv {
+    text-align: center;
+}
+
+.fudupdatebutton {
+    font-size: 20pt;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 10px;
+    padding-bottom:10px;
+}
+
+.fudinput { 
+    font-size: 13pt;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+}
+
+.fudinput:placeholder { 
+    color: black;
+    opacity: 0.7; 
+}
 
 /***************************************************************************/
 /************************            Opinions            ************************/

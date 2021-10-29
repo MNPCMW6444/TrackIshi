@@ -17,8 +17,8 @@ function SuccessMessage({ message, clear }) {
  
   return (
     stillRelevant && <div className="success-message">
-      <p>{message}</p>
-      <button onClick={clear}>הבנתי ({timeleft})</button>
+      <p className="success-message-p">{message}</p>
+      <button className="success-message-button" onClick={clear}>הבנתי ({timeleft})</button>
     </div>
   );
 }

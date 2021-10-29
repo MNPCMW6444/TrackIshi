@@ -54,44 +54,79 @@ function ShowFUD() {
     getFUD();
   }, []);
 
-  return ready ? (
-    <>
-      <h3 className="h3FUD">פרטים אישיים:</h3>
-      {edit && <UpdateFUD suc={setSuccessMessage} whendone={setEdit} />}
-      {successMessage && <SuccessMessage message={successMessage} clear={() => setSuccessMessage(null)}/>}
-      <br />
-        {!edit && <div className="FUD">
-          <div className="column">
-            <h4>מספר אישי: </h4><div>{ma}</div>
-            <br />
-            <h4>שם פרטי: </h4><div>{firstname}</div>
-            <br />
-            <h4>שם משפחה: </h4><div>{lastname}</div>
-            <br />
-            <h4>כינוי: </h4><div>{nickname}</div>
-            <br />
-            <h4>קורס: </h4><div>{courseno}</div>
-            <br />
-            <h4>תאריך לידה: </h4><div>{birthdate}</div>
-            <br />
-          </div>
-          <div className="FUDcolumn">
-            <h4>כתובת דואר אלקטרוני (אזרחית): </h4><div>{email}</div>
-            <br />
-            <h4>מספר טלפון: </h4><div>{mainphone}</div>
-            <br />
-            <h4>מספר טלפון נוסף למקרה חירום: </h4><div>{emergencyphone}</div>
-            <br />
-            <h4>עיר מוגרים: </h4><div>{addresscity}</div>
-            <br />
-            <h4>כתובת: </h4><div>{addressline}</div>
-            <br />
-            <h4>דרגה: </h4><div>{rank}</div>
-            <br />
-          </div>
-          <button onClick={() => setEdit(true)}>עדכון הפרטים</button>
+  return ready ? ( <>
+    {!edit && <div className="fudheaderdiv"><h3 className="fudheader">פרטים אישיים:</h3></div>}
+    {edit && <UpdateFUD suc={setSuccessMessage} whendone={setEdit} />}
+    {successMessage && <SuccessMessage message={successMessage} clear={() => setSuccessMessage(null)}/>}
+    {!edit && <div className="FUD">
+      <div className="FUDcolumn">
+        <div className="fudunit">
+          <div className="fudTitle">מספר אישי: </div>
+          <div className="fudContent">{ma}</div>
         </div>
-        }</>):(<h2>טוען את הפרטים האישיים שלך מהשרת... (רוב הסיכויים שאם אתה מספיק לקרוא את ההודעה הזאת אז יש תקלה בשרת)</h2>
+        <br />
+        <div className="fudunit">
+          <div className="fudTitle">קורס: </div>
+          <div className="fudContent">{courseno}</div>
+        </div>
+        <br />
+        <div className="fudunit">
+          <div className="fudTitle">תאריך לידה: </div>
+          <div className="fudContent">{birthdate}</div>
+        </div>
+      </div>
+      <div className="FUDcolumn">
+        <div className="fudunit">
+          <div className="fudTitle">שם פרטי: </div>
+          <div className="fudContent">{firstname}</div>
+        </div>
+        <br />
+        <div className="fudunit">
+          <div className="fudTitle">שם משפחה: </div>
+          <div className="fudContent">{lastname}</div>
+        </div>
+        <br />
+        <div className="fudunit">
+          <div className="fudTitle">כינוי: </div>
+          <div className="fudContent">{nickname}</div>
+        </div>
+      </div>
+      <div className="FUDcolumn">
+        <div className="fudunit">
+          <div className="fudTitle">מספר טלפון: </div>
+          <div className="fudContent">{mainphone}</div>
+        </div>
+        <br />
+        <div className="fudunit">
+          <div className="fudTitle">מספר טלפון למקרה חירום: </div>
+          <div className="fudContent">{emergencyphone}</div>
+        </div>
+        <br />
+        <div className="fudunit">
+          <div className="fudTitle">כתובת דוא"ל אזרחי: </div>
+          <div className="fudContent">{email}</div>
+        </div>
+      </div>
+      <div className="FUDcolumn">
+        <div className="fudunit">
+          <div className="fudTitle">עיר מגורים: </div>
+          <div className="fudContent">{addresscity}</div>
+        </div>
+        <br />
+        <div className="fudunit">
+          <div className="fudTitle">כתובת: </div>
+          <div className="fudContent">{addressline}</div>
+        </div>
+        <br />
+        <div className="fudunit">
+          <div className="fudTitle">דרגה: </div>
+          <div className="fudContent">{rank}</div>
+        </div>
+        <br /><br />
+      </div>
+    </div>}
+    {!edit && <div className="fudupdatebuttondiv"><button className="fudupdatebutton" onClick={() => setEdit(true)}>עדכון הפרטים</button></div>}
+  </>):(<h2>טוען את הפרטים האישיים שלך מהשרת... (רוב הסיכויים שאם אתה מספיק לקרוא את ההודעה הזאת אז יש תקלה בשרת)</h2>
   );
 }
 

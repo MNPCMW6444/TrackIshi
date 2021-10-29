@@ -27,6 +27,7 @@ export default function SCREW() {
                 <button className={navbar==="fud"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("fud")}>פרטים אישיים</button>
                 <button className={navbar==="home"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("home")}>דף הבית - תמונת מצב אישית</button>
                 <button className={navbar==="allopinions"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("allopinions")}>כל החוו"דים שלי</button>
+                <button className={navbar==="allopinions"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("allopinions")}>כל ההסמכות שלי</button>
                 <button className="navlogout" onClick={logOut}>התנתק</button>
             </div>
             <Option selected={navbar} />
