@@ -21,45 +21,45 @@ The system's clean architecture:
 Develoment environment - localhost
 
 FAT (UnClassified Production for Factory Acceptance Test) environment - free online hosting:
-> Database is hosted on MongoDB Atlas
-> Backend is hosted on Heroku
-> Frontend is hosted on Netlify
+> Database is hosted on MongoDB Atlas<br />
+> Backend is hosted on Heroku<br />
+> Frontend is hosted on Netlify<br />
 
 ## Installation
 
 Use the node package manager [npm] to install server and client.
 
 For development:
-> make sure you have installed a MongoDB server locally and updated your URI in the .env file
-> Terminal #1
-> ```bash
-> cd server
-> npm install
-> npm run dev
-> ```
-> Terminal #2
-> ```bash
-> cd client
-> npm install
-> npm start
-> ```
+> make sure you have installed a MongoDB server locally and updated your URI in the .env file<br />
+> Terminal #1<br />
+ ```bash
+ cd server
+ npm install
+ npm run dev
+ ```
+> Terminal #2 <br />
+ ```bash
+ cd client
+ npm install
+ npm start
+ ```
 
 For FAT:
-> make sure you have  a MongoDB server on MongoDB Atlas updated your URI in the .env file
-> make sure you have a git repo connected to heroku account
-> Terminal #1
-> ```bash
-> cd server
-> npm install
-> npm run fat
-> ```
-> Terminal #2
-> ```bash
-> cd client
-> npm install
-> npm run build
-> ```
-> than drag the build folder to your netlify account to finish deployment
+> make sure you have  a MongoDB server on MongoDB Atlas updated your URI in the .env file <br />
+> make sure you have a git repo connected to heroku account <br />
+> Terminal #1 <br />
+ ```bash
+ cd server
+ npm install
+ npm run fat
+ ```
+> Terminal #2 <br />
+ ```bash
+ cd client
+ npm install
+ npm run build
+ ```
+> than drag the build folder to your netlify account to finish deployment<br />
 
 ## VDDs
 
