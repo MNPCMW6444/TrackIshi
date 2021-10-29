@@ -1,34 +1,81 @@
 # TickIshi
 
-![alt text](https://github.com/MNPCMW6444/TrackIshi/blob/main_react/more/documentation/info/repository-card.png?rsw=true)
+![alt text](https://github.com/MNPCMW6444/TrackIshi/blob/main_react/more/documentation/info/repository-card.png?raw=true)
 
-Air Controlling Professional Human Resource Management app - Developed using MERN stack
+Enterprise - Custom Human Resource Management Application - Developed using MERN stack
 
-## Porpose
+## Designation and Porpose
 
-Managing profession-oriented data of crew members:
-1. Personal Details
-2. Proffesional Opinions
-3. Certifications
+Managing (air control) profession-oriented data and personal details of crew members:
 
-## VDDs
+The profession-oriented data includes proffesional opinions and examinations.
 
-## ENVs
-
-## ARCHITECURE
-
-## Installation
+## Architecture
+The system's clean architecture:
 
 
+![alt text](https://github.com/MNPCMW6444/TrackIshi/blob/main_react/more/documentation/architecture/system%20architecture.png?raw=true)
 
+## Environment and Deployment
+
+Develoment environment - localhost
+
+FAT (UnClassified Production for Factory Acceptance Test) environment - free online hosting:
+    Database is hosted on MongoDB Atlas
+    Backend is hosted on Heroku
+    Frontend is hosted on Netlify
 
 ## Installation
 
 Use the node package manager [npm] to install server and client.
 
-```bash
-npm install
-```
+For development:
+    make sure you have installed a MongoDB server locally and updated your URI in the .env file
+    Terminal #1
+    ```bash
+    cd server
+    npm install
+    npm run dev
+    ```
+    Terminal #2
+    ```bash
+    cd client
+    npm install
+    npm start
+    ```
+
+For FAT:
+    make sure you have  a MongoDB server on MongoDB Atlas updated your URI in the .env file
+    make sure you have a git repo connected to heroku account
+    Terminal #1
+    ```bash
+    cd server
+    npm install
+    npm run fat
+    ```
+    Terminal #2
+    ```bash
+    cd client
+    npm install
+    npm run build
+    ```
+    than drag the build folder to your netlify account to finish deployment
+
+## VDDs
+
+Version 
+
+
+
+
+## Installation
+
+
+
+
+## Installation
+
+
 
 ## Usage
 
