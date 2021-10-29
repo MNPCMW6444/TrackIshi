@@ -24,6 +24,6 @@ export default function NACHSAL() {
     
     
       return (
-          ready && <NACHSALTB data={datas}/>
+          ready && <> <br/><br/><br/><NACHSALTB data={datas}/></>
         )
 }

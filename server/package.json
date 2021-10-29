@@ -2,7 +2,7 @@
   "scripts": {
     "start": "node server",
     "dev": "nodemon server",
-    "fat" : "git commit -am \"make it bettera\" && git push heroku master"
+    "fat": "git commit -am \"make it bettera\" && git push heroku master"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

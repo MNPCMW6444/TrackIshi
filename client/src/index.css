@@ -207,6 +207,10 @@ button:active {
 /************************            NachSAL Filters            ************************/
 /***************************************************************************/
 
+.tdSPACE {
+    width: 100px;
+}
+
 .MasloolFilter {
    background: orange;
 }
@@ -216,13 +220,14 @@ button:active {
     display: inline;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 1px 16px;
     text-decoration: none;
     font-size: 15pt;
     border-color: black;
     border-width: thin;
     border-style: solid;
     background-color: red;
+    height: 25px;
 }
 
 .MasloolFilterBtrue {
@@ -237,6 +242,7 @@ button:active {
     border-width: thin;
     border-style: solid;
     background-color: green;
+    height: 25px;
 }
 
 .MasloolFilterBH {
@@ -244,10 +250,10 @@ button:active {
     display: inline;
     color: white;
     text-align: center;
-    width: 180px;
-    height: 50px;
+    width: 130px;
+    height: 25px;
     text-decoration: none;
-    font-size: 15pt;
+    font-size: 12pt;
     border-color: black;
     border-width: thin;
     border-style: solid;
@@ -262,24 +268,26 @@ button:active {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 15pt;
+    font-size: 25pt;
     border-color: orange;
     border-width: thin;
     border-style: solid;
     background-color: orange;
-    width: 50px;
-    height: 50px;
+    width: 20px;
+    height: 25px;
     cursor: default;
 }
 
 .MasloolFilterBH:active {
     background-color: black;
     border-radius: 5px;
+    height: 25px;
 }
 
 .MasloolFilterBS:active, .MasloolFilterBSs:active {
     background-color: orange;
     border-radius: 15px;
+    height: 25px;
 }
 
 .MasloolFilterBSs {
@@ -289,16 +297,25 @@ button:active {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 15pt;
+    font-size: 10pt;
     border-color: orange;
     border-width: thin;
     border-style: solid;
     background-color: orange;
-    width: 100px;
-    height: 50px;
+    width: 50px;
+    height: 25px;
     cursor: default;
 }
 
+.moreofiltersINPUT{
+    height: 25x;
+    font-size: 13pt;
+}
+
+
+/***************************************************************************/
+/************************            Nachsal Table            ************************/
+/***************************************************************************/
 
 
 

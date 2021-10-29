@@ -60,6 +60,18 @@ export default function TACHSALTB(props) {
   
   const columns = React.useMemo(
     () => [
+        {
+          Header: "יחידה",
+          accessor: "Unit",
+        },
+        {
+          Header: "מסלול",
+          accessor: "Maslool",
+        },
+        {
+          Header: "קורס",
+          accessor: "CourseNo",
+        },
         {  
             Header: "מספר אישי",
             accessor: "MA",
@@ -75,10 +87,6 @@ export default function TACHSALTB(props) {
         {
             Header: "כינוי",
             accessor: "NickName",
-        },
-        {
-            Header: "קורס",
-            accessor: "CourseNo",
         },
         {
             Header: "מספר טלפון נייד",
@@ -101,20 +109,12 @@ export default function TACHSALTB(props) {
             accessor: "Rank",
         },
         {
-          Header: "מסלול",
-          accessor: "Maslool",
-        },
-        {
           Header: "אימייל",
           accessor: "Email",
         },
         {
           Header: "תאריך לידה",
           accessor: "BirthDate",
-        },
-        {
-          Header: "יחידה",
-          accessor: "Unit",
         },
         {
           Header: "האם משימתי",
@@ -238,6 +238,14 @@ export default function TACHSALTB(props) {
     setFilterInput5(value);
   };
 
+  const [filterInputz, setFilterInputz] = useState("");
+
+  const handleFilterChangez = e => {
+    const value = e.target.value || undefined;
+    setFilter("MainPhone", value);
+    setFilterInputz(value);
+  };
+
   const [mas1clicked, setMas1clicked] = useState(false);
   const [mas2clicked, setMas2clicked] = useState(false);
   const [mas3clicked, setMas3clicked] = useState(false);
@@ -277,7 +285,6 @@ export default function TACHSALTB(props) {
   };
 
   const handleFilterChange6taavura = e => {
-    debugger;
     const res=checkLogic([mas1clicked, !mas2clicked, mas3clicked]);
     setFilter("isMesima", res[0]);
     setFilter("isTaavura", res[1]);
@@ -316,7 +323,6 @@ export default function TACHSALTB(props) {
   };
 
   const handleFilterChange6509 = e => {
-    debugger;
     const res=checkLogic([mas1clickedUNIT, !mas2clickedUNIT, mas3clickedUNIT]);
     setFilter("is506", res[0]);
     setFilter("is509", res[1]);
@@ -356,7 +362,6 @@ export default function TACHSALTB(props) {
   };
 
   const handleFilterChange6Hatsach = e => {
-    debugger;
     const res=checkLogic([mas1clickedHATSAVA, !mas2clickedHATSAVA, mas3clickedHATSAVA]);
     setFilter("isSadir", res[0]);
     setFilter("isHatsach", res[1]);
@@ -472,124 +477,150 @@ export default function TACHSALTB(props) {
   };
 
   return (
-      <div key={props.data} key={props.data}>
-        <br/><br/><br/>
-        <div className="MasloolFilter">
-          <button className="MasloolFilterBH">יחידה:</button>
+    <div className="theTable" key={props.data} key={props.data}>
+      <div className="allfilters">
+      <table><tbody><tr><td>
+        <div className="buttonfilters">
+          <div className="MasloolFilter">
+            <button className="MasloolFilterBH">לפי יחידה:</button>
+            <button className="MasloolFilterBSs"></button>
+            <button className={"MasloolFilterB"+mas1clickedUNIT} onClick={handleFilterChange6506}>506</button>
+            <button className="MasloolFilterBS"></button>
+            <button className={"MasloolFilterB"+mas2clickedUNIT} onClick={handleFilterChange6509}>509</button>
+            <button className="MasloolFilterBS"></button>
+            <button className={"MasloolFilterB"+mas3clickedUNIT} onClick={handleFilterChange6528}>צוערים</button>
+          </div>
+          <div className="MasloolFilter">
+            <button className="MasloolFilterBH">לפי מסלול:</button>
+            <button className="MasloolFilterBSs"></button>
+            <button className={"MasloolFilterB"+mas1clicked} onClick={handleFilterChange6mesima}>משימה</button>
+            <button className="MasloolFilterBS"></button>
+            <button className={"MasloolFilterB"+mas2clicked} onClick={handleFilterChange6taavura}>תעבורה</button>
+            <button className="MasloolFilterBS"></button>
+            <button className={"MasloolFilterB"+mas3clicked} onClick={handleFilterChange6versatili}>ורסטילי</button>
+          </div>
+          <div className="MasloolFilter">
+            <button className="MasloolFilterBH">לפי הצבה:</button>
+            <button className="MasloolFilterBSs"></button>
+            <button className={"MasloolFilterB"+mas1clickedHATSAVA} onClick={handleFilterChange6Sadir}>סדיר</button>
+            <button className="MasloolFilterBS"></button>
+            <button className={"MasloolFilterB"+mas2clickedHATSAVA} onClick={handleFilterChange6Hatsach}>הצ"ח</button>
+            <button className="MasloolFilterBS"></button>
+            <button className={"MasloolFilterB"+mas3clickedHATSAVA} onClick={handleFilterChange6Miluim}>מילואים</button>
+          </div>
+          <div className="MasloolFilter">
+            <button className="MasloolFilterBH">לפי דרג מקצועי:</button>
+            <button className="MasloolFilterBSs"></button>
+            <button className={"MasloolFilterB"+mas1clickedDEREG} onClick={handleFilterChange6A}>א'</button>
+            <button className="MasloolFilterBS"></button>
+            <button className={"MasloolFilterB"+mas2clickedDEREG} onClick={handleFilterChange6B}>ב'</button>
+            <button className="MasloolFilterBS"></button>
+            <button className={"MasloolFilterB"+mas3clickedDEREG} onClick={handleFilterChange6C}>ג'</button>
+            <button className="MasloolFilterBS"></button>
+            <button className={"MasloolFilterB"+mas4clickedDEREG} onClick={handleFilterChange6D}>ד'</button>
+          </div>
+          <button className="MasloolFilterBH">לפי קורס:</button>
           <button className="MasloolFilterBSs"></button>
-          <button className={"MasloolFilterB"+mas1clickedUNIT} onClick={handleFilterChange6506}>506</button>
-          <button className="MasloolFilterBS"></button>
-          <button className={"MasloolFilterB"+mas2clickedUNIT} onClick={handleFilterChange6509}>509</button>
-          <button className="MasloolFilterBS"></button>
-          <button className={"MasloolFilterB"+mas3clickedUNIT} onClick={handleFilterChange6528}>צוערים</button>
-        </div><br/>
-        <div className="MasloolFilter">
-          <button className="MasloolFilterBH">מסלול:</button>
-          <button className="MasloolFilterBSs"></button>
-          <button className={"MasloolFilterB"+mas1clicked} onClick={handleFilterChange6mesima}>משימה</button>
-          <button className="MasloolFilterBS"></button>
-          <button className={"MasloolFilterB"+mas2clicked} onClick={handleFilterChange6taavura}>תעבורה</button>
-          <button className="MasloolFilterBS"></button>
-          <button className={"MasloolFilterB"+mas3clicked} onClick={handleFilterChange6versatili}>ורסטילי</button>
-        </div><br/>
-        <div className="MasloolFilter">
-          <button className="MasloolFilterBH">הצבה:</button>
-          <button className="MasloolFilterBSs"></button>
-          <button className={"MasloolFilterB"+mas1clickedHATSAVA} onClick={handleFilterChange6Sadir}>סדיר</button>
-          <button className="MasloolFilterBS"></button>
-          <button className={"MasloolFilterB"+mas2clickedHATSAVA} onClick={handleFilterChange6Hatsach}>הצ"ח</button>
-          <button className="MasloolFilterBS"></button>
-          <button className={"MasloolFilterB"+mas3clickedHATSAVA} onClick={handleFilterChange6Miluim}>מילואים</button>
-        </div><br/>
-        <div className="MasloolFilter">
-          <button className="MasloolFilterBH">דרג מקצועי:</button>
-          <button className="MasloolFilterBSs"></button>
-          <button className={"MasloolFilterB"+mas1clickedDEREG} onClick={handleFilterChange6A}>א'</button>
-          <button className="MasloolFilterBS"></button>
-          <button className={"MasloolFilterB"+mas2clickedDEREG} onClick={handleFilterChange6B}>ב'</button>
-          <button className="MasloolFilterBS"></button>
-          <button className={"MasloolFilterB"+mas3clickedDEREG} onClick={handleFilterChange6C}>ג'</button>
-          <button className="MasloolFilterBS"></button>
-          <button className={"MasloolFilterB"+mas4clickedDEREG} onClick={handleFilterChange6D}>ד'</button>
-        </div><br/><br/><br/>
-          <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
-          <thead>
-          <tr><td><input
-            style={{width:"90px"}}
-            value={filterInput}
-            onChange={handleFilterChange}
-            placeholder={"לפי מספר אישי"}
-          /></td>
-          <td><input
-            style={{width:"90px"}}
-            value={filterInput2}
-            onChange={handleFilterChange2}
-            placeholder={"לפי שם פרטי"}
-          /></td>
-          <td><input
-            style={{width:"90px"}}
-            value={filterInput3}
-            onChange={handleFilterChange3}
-            placeholder={"לפי שם משפחה"}
-          /></td>
-          <td><input
-            style={{width:"90px"}}
-            value={filterInput4}
-            onChange={handleFilterChange4}
-            placeholder={"לפי כינוי"}
-            /></td>
-          <td><input
-            style={{width:"90px"}}
+          <input className="moreofiltersINPUT"
             value={filterInput5}
             onChange={handleFilterChange5}
-            placeholder={"לפי קורס"}
-          /></td>
-          <td></td></tr>
-            {headerGroups.map(headerGroup => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map(column => (
-                  <th
-                    {...column.getHeaderProps()}
-                    style={{
-                      borderBottom: 'solid 3px red',
-                      background: 'aliceblue',
-                      color: 'black',
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    {column.render('Header')}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.map(row => {
-              prepareRow(row)
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map(cell => {
-                    return (
-                      <td
-                        {...cell.getCellProps()}
-                        style={{
-                          padding: '10px',
-                          border: 'solid 1px gray',
-                          background: 'papayawhip',
-                          textAlign: "center",
-                          fontWeight: "bold"
-                        }}
-                      >
-                        {cell.render('Cell')}
-                      </td>
-                    )
-                  })}
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+            placeholder={"הקלד קורס"}
+          />
+        </div>
+      </td>
+      <td className="tdSPACE"></td>
+      <td>
+        <div className="freefilters">
+          <button className="MasloolFilterBH">לפי מספר אישי:</button>
+          <button className="MasloolFilterBSs"></button>
+          <input className="moreofiltersINPUT"
+            value={filterInput}
+            onChange={handleFilterChange}
+            placeholder={"הקלד מספר אישי"}
+          />
+          <br/>
+          <button className="MasloolFilterBH">לפי שם פרטי:</button>
+          <button className="MasloolFilterBSs"></button>
+          <input className="moreofiltersINPUT"
+            value={filterInput2}
+            onChange={handleFilterChange2}
+            placeholder={"הקלד שם פרטי"}
+          />
+          <br/>
+          <button className="MasloolFilterBH">לפי שם משפחה:</button>
+          <button className="MasloolFilterBSs"></button>
+          <input className="moreofiltersINPUT"
+            value={filterInput3}
+            onChange={handleFilterChange3}
+            placeholder={"הקלד שם משפחה"}
+          />
+          <br/>
+          <button className="MasloolFilterBH">לפי כינוי:</button>
+          <button className="MasloolFilterBSs"></button>
+          <input className="moreofiltersINPUT"
+            value={filterInput4}
+            onChange={handleFilterChange4}
+            placeholder={"הקלד כינוי"}
+            />
+          <br/>
+          <button className="MasloolFilterBH">לפי מספר טלפון:</button>
+          <button className="MasloolFilterBSs"></button>
+          <input className="moreofiltersINPUT"
+            value={filterInputz}
+            onChange={handleFilterChangez}
+            placeholder={"הקלד מספר טלפון"}
+            />
+          <br/>
+        </div>
+      </td></tr></tbody></table>
+        <br/><br/><br/>
       </div>
-      
+      <table {...getTableProps()} >
+        <thead>
+          {headerGroups.map(headerGroup => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map(column => (
+                <th
+                  {...column.getHeaderProps()}
+                  style={{
+                    borderBottom: 'solid 3px red',
+                    background: 'aliceblue',
+                    color: 'black',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {column.render('Header')}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {rows.map(row => {
+            prepareRow(row)
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map(cell => {
+                  return (
+                    <td
+                      {...cell.getCellProps()}
+                      style={{
+                        padding: '10px',
+                        border: 'solid 1px gray',
+                        background: 'papayawhip',
+                        textAlign: "center",
+                        fontWeight: "bold"
+                      }}
+                    >
+                      {cell.render('Cell')}
+                    </td>
+                  )
+                })}
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 }
