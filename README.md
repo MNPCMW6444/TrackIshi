@@ -75,11 +75,6 @@ Version 1 - New Feature:
 2. פורטל מפקדים
 
 
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
 ## License
 No license
+If you wish for license, contact me and I may add one.

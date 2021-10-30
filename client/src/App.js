@@ -4,6 +4,7 @@ import { UserContextProvider } from "./context/UserContext";
 import Router from "./Router";
 import "@fontsource/varela-round";
 import Logo989 from "./logos and fonts/Logo989";
+import Footer from "./Footer";
 
 Axios.defaults.withCredentials = true;
 
@@ -23,6 +24,7 @@ const [entered, setEntered] = useState(false);
           <Router />
         </div>
       </UserContextProvider>}
+      <Footer />
     </>
   );
 }

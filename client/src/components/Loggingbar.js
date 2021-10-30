@@ -51,33 +51,29 @@ export default function Loggingbar() {
             {help && <div className="Roles">
               <div className="RolesHeader">הסבר על סוגי המשתמשים והרשאותיהם:</div>
               <br/>
+              <div className="Roleheader">מנהל כח אדם:</div>
+              <br/>
+              <div className="Rolemeaning">בעל גישה לנכס"ל בלבד</div>
+              <br/>
               <div className="Roleheader">איש צוות:</div>
               <br/>
-              <div className="Rolemeaning">בלההל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'הל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה דלגההל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה דהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה דה ד  'רקלעה ד בלה</div>
+              <div className="Rolemeaning">בעל גישה לתמונת מצב אישית, קריאת כל החוו"דים והמבחנים ועדכון פרטים אישיים</div>
               <br/>
-              <div className="Roleheader">איש צוות:</div>
+              <div className="Roleheader">מקפד מקצועי שוטף:</div>
               <br/>
-              <div className="Rolemeaning">בלההל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה ד בלה</div>
+              <div className="Rolemeaning"></div>
               <br/>
-              <div className="Roleheader">איש צוותצוות:</div>
+              <div className="Roleheader">מפקד מאשר:</div>
               <br/>
-              <div className="Rolemeaning">בלההל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה דהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה ד בלה</div>
+              <div className="Rolemeaning"></div>
               <br/>
-              <div className="Roleheader">אישאיש צוות:</div>
+              <div className="Roleheader">מפקד הכשרה:</div>
               <br/>
-              <div className="Rolemeaning">בלה בהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה דלעה דלה</div>
+              <div className="Rolemeaning"></div>
               <br/>
-              <div className="Roleheader">איש צאישוות:</div>
+              <div className="Roleheader">מפקד מופע תורם כשירות:</div>
               <br/>
-              <div className="Rolemeaning">בלההל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה ד בלהל' הצ דלה דכלה לדכ הלדכ הלדגכ הלהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה ד' גהל 'לגה  'רקלעה דה</div>
-              <br/>
-              <div className="Roleheader">איש צוואישת:</div>
-              <br/>
-              <div className="Rolemeaning">בלה דגכל'קכ 'קכל 'קכ ל'קכ  קר קחרחה קהח גה גח הגכחה גכ גכ גכ גכח חגכ כ  כהח לנ 'לעה 'לעה ח'שג ה' גלעה 'לכה לכ הל רהח 'דגלה 'לר עהלקדר גהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה דלרה לד רעה בלה</div>
-              <br/>
-              <div className="Roleheader">איאישש צוות:</div>
-              <br/>
-              <div className="Rolemeaning">בלההל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה ד בהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'הל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל' הצ דלה דכלה לדכ הלדכ הלדגכ הל' גהל 'לגה  'רקלעה דהל 'לגה  'רקלעה דהל 'לגה  'רקלעה דה  'רקלעה דלה</div>
+              <div className="Rolemeaning"></div>
               <br/><br /><br />
               <button className="closeRoles" onClick={toggleTextOFF}>סגור</button>
               <br />

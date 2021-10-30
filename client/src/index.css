@@ -623,3 +623,94 @@ button:active {
     text-align: center;
     border-radius:25%;
 }
+
+
+
+/***************************************************************************/
+/************************            Footer            ************************/
+/***************************************************************************/
+
+
+
+.footer {
+    font-size: 10pt;
+    text-align: center;
+    font-weight: bold;
+}
+
+.footerlabel {
+    text-align: center;
+    font-weight: bolder;
+}
+
+.footerinput {
+    margin: auto;
+    width: 25%;
+}
+
+.footerinputshort {
+    width: 300px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.418);
+}
+
+.footerinputlong {
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.418);
+}
+
+.footerinputlong:placeholder {
+    font-size: 30pt;
+}
+
+.footerbuttonwarapper {
+    width: 500px;
+    overflow: hidden; 
+    position: relative;
+    right: 450px;
+}
+
+
+.footersend {
+    margin: auto;
+    width: 180px;
+    float:right; 
+}
+
+.footersendbutton {
+    margin: auto;
+    width: 125px;
+    height: 50px;
+    font-size: 20pt;
+}
+
+.footercancel {
+    margin: auto;
+    border: 1px sold green;
+    overflow: hidden;
+}
+
+.footercancelbutton {
+    margin: auto;
+    width: 125px;
+    height: 50px;
+    font-size: 20pt;
+    background-color: red;
+    color: white;
+}
+
+.version {
+    text-align: center;
+    opacity: 0.5;
+}
+
+.author {
+    text-align: center;
+    opacity: 0.35;
+}
+
+
+
+
