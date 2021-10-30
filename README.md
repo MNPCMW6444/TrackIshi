@@ -61,29 +61,18 @@ For FAT:
  ```
 > than drag the build folder to your netlify account to finish deployment<br />
 
-## VDDs
+## Versions
 
-Version 0.5 :
-><br />
-> <br />
-> <br />
-> <br />
-> <br />
-
+Version 0.5 - Features:
+1. נכס"ל
+2. עדכון פרטים אישיים
+3. דיווח תקלות
+4. הצעות לשיפור
 
 
-
-## Installation
-
-
-
-
-## Installation
-
-
-
-## Usage
-
+Version 1 - New Feature:
+1. חוות דעת מקצועיות והסמכות (מבחנים)
+2. פורטל מפקדים
 
 
 
@@ -93,4 +82,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+No license
