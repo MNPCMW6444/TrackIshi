@@ -383,6 +383,13 @@ input {
     text-align: center;
 }
 
+.cleanFiltersBtn{
+   color:white;
+   width: 250px;
+   height:35px;
+   font-size: 15pt;
+   background-color: rgba(177, 0, 0, 0.664);
+}
 
 /***************************************************************************/
 /************************            NachSAL Filters - Buttons         ************************/

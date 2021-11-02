@@ -5,7 +5,7 @@ import OpinionSumu from "../../global/Opinions/OpinionSumu";
 
 
 
-export default function SCREWALLOPINIONS() {
+export default function SCREALLTESTS() {
     
     const [ready, setReady] = useState(false);
     const [res, setRes] = useState();
@@ -22,8 +22,7 @@ export default function SCREWALLOPINIONS() {
     
     return ready ? (
         <div className="col">
-          <h2>רשימת כל החוודים ע"פ תקופות:</h2>
-          {res.map((opinion) => <><OpinionSumu opinion={opinion}/><br/></>)}
+          <h2>רשימת כל ההסמכות:</h2>
           <p style={{textAlign:"center", fontSize:"20pt", color:"red", backgroundColor:"white", fontWeight:"bolder"}}>עמוד זה ייכנס לפעולה בגרסה הבאה שתושק ב1.1.22 :)</p>
         </div>
         

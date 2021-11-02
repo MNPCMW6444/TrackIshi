@@ -593,6 +593,31 @@ export default function TACHSALTB(props) {
       setMas4clickedRank(false);
   };
 
+  const cleanAll = e => {
+    setFilterInput("");
+    setFilterInput2("");
+    setFilterInput3("");
+    setFilterInput4("");
+    setFilterInput5("");
+    if(mas1clickedUNIT) handleFilterChange6506();
+    if(mas2clickedUNIT) handleFilterChange6509();
+    if(mas3clickedUNIT) handleFilterChange6528();
+    if(mas1clicked) handleFilterChange6mesima();
+    if(mas2clicked) handleFilterChange6taavura();
+    if(mas3clicked) handleFilterChange6versatili();
+    if(mas1clickedHATSAVA) handleFilterChange6Sadir();
+    if(mas2clickedHATSAVA) handleFilterChange6Hatsach();
+    if(mas3clickedHATSAVA) handleFilterChange6Miluim();
+    if(mas1clickedDEREG) handleFilterChange6A();
+    if(mas2clickedDEREG) handleFilterChange6B();
+    if(mas3clickedDEREG) handleFilterChange6C();
+    if(mas4clickedDEREG) handleFilterChange6D();
+    if(mas1clickedRank) handleFilterChange6Seren();
+    if(mas2clickedRank) handleFilterChange6Rasan();
+    if(mas3clickedRank) handleFilterChange6Saal();
+    if(mas4clickedRank) handleFilterChange6Other();
+  };
+
 
   return (
     <div className="filtersAndTable" key={props.data} key={props.data}>
@@ -694,13 +719,13 @@ export default function TACHSALTB(props) {
           <br/>
         </div>
       </td></tr></tbody></table>
-      <br/><br/>
+      <br/>
         <br/>
       </div>
       {((mas2clickedUNIT||mas3clickedUNIT||mas1clicked||mas2clicked||mas3clicked||mas1clickedHATSAVA||mas2clickedHATSAVA||mas3clickedHATSAVA||mas1clickedDEREG||mas2clickedDEREG||mas3clickedDEREG||mas4clickedDEREG||mas1clickedRank||mas2clickedRank||mas3clickedRank||mas4clickedRank) || (filterInput!=="" ||filterInput2!=="" ||filterInput3!=="" ||filterInput4!=="" ||filterInput5!=="")) && <div className="cleanFilters">
-        <button>נקה את כל הסינונים</button>
-        <br/>
-      </div>} <br/>
+        <button className="cleanFiltersBtn" onClick={cleanAll}>נקה את כל הסינונים</button>
+        <br/><br/><br/>
+      </div>} <br/><br/>
       <table className="theTable"{...getTableProps()} >
         <thead>
           {headerGroups.map(headerGroup => (

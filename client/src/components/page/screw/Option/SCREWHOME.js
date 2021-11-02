@@ -28,6 +28,7 @@ export default function SCREWHOME() {
         {ready ? <Timeline crewmobject={user} cersarray={cersarray}/> : <div>טוען את ההסמכות שלך מהשרת... (רוב הסיכויים שאם אתה מספיק לקרוא את ההודעה הזאת אז יש תקלה בשרת)</div>}
 
         <br/><br/><br/>
+        <p style={{textAlign:"center", fontSize:"20pt", color:"red", backgroundColor:"white", fontWeight:"bolder"}}>עמוד זה ייכנס לפעולה בגרסה הבאה שתושק ב1.1.22 :)</p>
         <br/><br/><br/>
         <br/><br/><br/>
 

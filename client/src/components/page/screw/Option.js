@@ -2,6 +2,7 @@ import React from 'react'
 import SCREWHOME from "./Option/SCREWHOME";
 import SHOWFUD from "../global/FUD/ShowFUD";
 import SCREWALLOPINIONS from "./Option/SCREWALLOPINIONS";
+import SCREALLTESTS from "./Option/SCREALLTESTS";
 import NACHSAL from "../pakmats/Option/NACHSAL";
 
 
@@ -25,7 +26,13 @@ export default function Option(props) {
                 <SCREWALLOPINIONS />
             </div>
         );
-        default:
+        case "alltests":
+        return (
+            <div className="optionSwitcher">
+                <SCREALLTESTS />
+            </div>
+        );
+        default:  
         return (
             <div className="optionSwitcher">
                 <SCREWHOME/>
