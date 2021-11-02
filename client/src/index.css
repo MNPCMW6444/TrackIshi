@@ -63,6 +63,7 @@ button {
     cursor: pointer;
     background-color: rgba(23, 1, 148, 0.692);
     border-radius: 10px;
+    color:white;
 }
 
 button:active {
@@ -226,8 +227,7 @@ input {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    color:white;
-}
+ }
 
 
 
@@ -384,7 +384,6 @@ input {
 }
 
 .cleanFiltersBtn{
-   color:white;
    width: 250px;
    height:35px;
    font-size: 15pt;
@@ -495,31 +494,29 @@ input {
 
 .theTable {
     border-collapse: collapse;
-    border: 3px solid rgb(160, 111, 111);
-    background-color: white;
+    border: 0px solid rgba(23, 25, 53, 0.445);
 }
 
 .theTableTH {
-    background-color: #f1d9c1 ;
-    color: rgb(0, 0, 97);
+    background-color: rgba(23, 1, 148, 0.692);
     font-weight: 'bolder';
     border: 2px solid rgb(23, 0, 107);
+    color:white;
 }
 
 .theTableTR:nth-child(even) {
-    background-color: #1e6dff93;
     text-align: "center";
     font-weight: "bold";
 }
 
 .theTableTR:nth-child(odd) {
-    background-color: #5085e6a2;
+    background-color: rgba(255, 255, 255, 0.795);
     text-align: "center";
     font-weight: "bold";
 }
 
 .theTableTD {
-    border: 1px solid rgb(19, 20, 97);
+    border: 1px solid rgba(19, 20, 97, 0.247);
     text-align: "center";
     font-weight: "bold";
     text-align: center;
@@ -557,28 +554,31 @@ input {
 }
 
 .fudunit {
-    border: 3px solid rgba(12, 141, 23, 0.671);
+    border: 1px solid rgba(23, 25, 53, 0.445);
 }
 
 .fudTitle {
     text-align: center;
     font-family:  FFFFF, Helvetica, sans-serif;
-    font-size: large;
-    background-color: rgba(182, 118, 0, 0.705);
-    font-weight: bolder;
+    font-size: 15pt;
     padding-top: 5px;
     padding-bottom: 5px;
     font-family: my;
+    background-color: rgba(23, 1, 148, 0.692);
+    font-weight: 'bolder';
+    border: 2px solid rgb(23, 0, 107);
+    color:white;
 }
 
 .fudContent {
     text-align: center;
-    background-color: rgba(253, 196, 89, 0.897);
     font-family:  FFFFF, Helvetica, sans-serif;
     font-size: large;
     padding-top: 5px;
     padding-bottom: 5px;
     font-family: my;
+    background-color: rgba(255, 255, 255, 0.795);
+    font-weight: bold;
 }
 
 .fudupdatebuttondiv {
@@ -591,7 +591,7 @@ input {
     padding-left: 50/2px;
     padding-top: 10px;
     padding-bottom:10px;
-}
+ }
 
 .fudinput { 
     font-size: 13pt;

@@ -59,6 +59,12 @@ export default function TACHSALTB(props) {
     goten[i].isSaal=(goten[i].Rank==="סא\"ל")?"כן":"לא";
     goten[i].isOther=(goten[i].isSeren==="כן"||goten[i].isRasan==="כן"||goten[i].isSaal==="כן")?"לא":"כן";
   }
+  for(let i=0; i<goten.length;i++)
+  {
+    goten[i].SoogHatsava=(goten[i].SoogHatsava==="sadir")?"סדיר":goten[i].SoogHatsava;
+    goten[i].SoogHatsava=(goten[i].SoogHatsava==="hatsach")?"הצ\"ח":goten[i].SoogHatsava;
+    goten[i].SoogHatsava=(goten[i].SoogHatsava==="miluim")?"מילואים":goten[i].SoogHatsava;
+  }
   
 
 
@@ -77,6 +83,10 @@ export default function TACHSALTB(props) {
         {
           Header: "מסלול",
           accessor: "Maslool",
+        },
+        {
+          Header: "הצבה",
+          accessor: "SoogHatsava",
         },
         {
           Header: "קורס",
@@ -722,7 +732,7 @@ export default function TACHSALTB(props) {
       <br/>
         <br/>
       </div>
-      {((mas2clickedUNIT||mas3clickedUNIT||mas1clicked||mas2clicked||mas3clicked||mas1clickedHATSAVA||mas2clickedHATSAVA||mas3clickedHATSAVA||mas1clickedDEREG||mas2clickedDEREG||mas3clickedDEREG||mas4clickedDEREG||mas1clickedRank||mas2clickedRank||mas3clickedRank||mas4clickedRank) || (filterInput!=="" ||filterInput2!=="" ||filterInput3!=="" ||filterInput4!=="" ||filterInput5!=="")) && <div className="cleanFilters">
+      {((mas1clickedUNIT||mas2clickedUNIT||mas3clickedUNIT||mas1clicked||mas2clicked||mas3clicked||mas1clickedHATSAVA||mas2clickedHATSAVA||mas3clickedHATSAVA||mas1clickedDEREG||mas2clickedDEREG||mas3clickedDEREG||mas4clickedDEREG||mas1clickedRank||mas2clickedRank||mas3clickedRank||mas4clickedRank) || (filterInput!=="" ||filterInput2!=="" ||filterInput3!=="" ||filterInput4!=="" ||filterInput5!=="")) && <div className="cleanFilters">
         <button className="cleanFiltersBtn" onClick={cleanAll}>נקה את כל הסינונים</button>
         <br/><br/><br/>
       </div>} <br/><br/>

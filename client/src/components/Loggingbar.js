@@ -29,7 +29,7 @@ export default function Loggingbar() {
 
   return (
     <div className="loggingbar">
-      <h1 className="mainHeader">טרק אישי</h1>
+      <h1 className="mainHeader">טרק אישי {/*user?(user.MA):("ריק")*/}</h1>
       {user === null ? (
         <>
           <p>אינך מחובר למערכת, נא להתחבר</p>
@@ -38,6 +38,7 @@ export default function Loggingbar() {
       ) : (
         user && (
           <>
+            {/*{user === null ? ( */}
             <p>הנך מחובר <span style={{fontSize:"10pt"}}>/</span><span style={{fontSize:"13pt"}}>התחברת לאחרונה </span>למערכת כ{user.NickName} (מ.א. {user.MA}), ותפקידך במערכת הוא
               <button 
                 onClick={help?toggleTextOFF:toggleTextON} 
@@ -48,6 +49,7 @@ export default function Loggingbar() {
                 <span className="justALinkLink">{help && "[סגור הסבר]"}</span>
               </button>
             </p>
+            {/*):(<br />)} */}
             {help && <div className="Roles">
               <div className="RolesHeader">הסבר על סוגי המשתמשים והרשאותיהם:</div>
               <br/>

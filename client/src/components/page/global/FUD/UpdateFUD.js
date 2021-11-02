@@ -4,7 +4,7 @@ import UserContext from "../../../../context/UserContext";
 import domain from "../../../../util/domain";
 import ErrorMessage from "../../../messages/ErrorMessage";
 
-function UpdateFUD(props) {
+function UpdateFUD(props) {  
   const [ma, setMA] = useState();
 
   const [ffirstname, fsetFirstname] = useState();
@@ -18,6 +18,9 @@ function UpdateFUD(props) {
   const [faddresscity, fsetAddresscity] = useState();
   const [faddressline, fsetAddressline] = useState();
   const [frank, fsetRank] = useState();
+  const [funit, fsetUnit] = useState();
+  const [fsoogHatsava, fsetSoogHatsava] = useState();
+  const [fmaslool, fsetMaslool] = useState();
 
   const [firstname, setFirstname] = useState();
   const [lastname, setLastname] = useState();
@@ -30,6 +33,9 @@ function UpdateFUD(props) {
   const [addresscity, setAddresscity] = useState();
   const [addressline, setAddressline] = useState();
   const [rank, setRank] = useState();
+  const [unit, setUnit] = useState();
+  const [soogHatsava, setSoogHatsava] = useState();
+  const [maslool, setMaslool] = useState();
   const [ready, setReady] = useState(false);
 
 
@@ -52,6 +58,21 @@ function UpdateFUD(props) {
       try {setAddresscity(FUDRes.data.AddressCity);} catch (err){console.log(err);}
       try {setAddressline(FUDRes.data.AddressLine);} catch (err){console.log(err);}
       try {setRank(FUDRes.data.Rank);} catch (err){console.log(err);}
+      try {setUnit(FUDRes.data.Unit);} catch (err){console.log(err);}
+      let hatsv;
+      try {
+        hatsv=(FUDRes.data.SoogHatsava==="sadir")?"סדיר":hatsv;
+        hatsv=(FUDRes.data.SoogHatsava==="hatsach")?"הצ\"ח":hatsv;
+        hatsv=(FUDRes.data.SoogHatsava==="miluim")?"מילואים":hatsv;
+        setSoogHatsava(hatsv);
+      } catch (err){console.log(err);}
+      let msll;
+      try {
+        msll=(FUDRes.data.Maslool==="mesima")?"משימה":msll;
+        msll=(FUDRes.data.Maslool==="taavura")?"תעבורה":msll;
+        msll=(FUDRes.data.Maslool==="versatili")?"ורסטילי":msll;
+        setMaslool(msll);
+      } catch (err){console.log(err);}
       try {fsetFirstname(FUDRes.data.FirstName);} catch (err){console.log(err);}
       try {fsetLastname(FUDRes.data.LastName);} catch (err){console.log(err);}
       try {fsetNickname(FUDRes.data.NickName);} catch (err){console.log(err);}
@@ -63,6 +84,21 @@ function UpdateFUD(props) {
       try {fsetAddresscity(FUDRes.data.AddressCity);} catch (err){console.log(err);}
       try {fsetAddressline(FUDRes.data.AddressLine);} catch (err){console.log(err);}
       try {fsetRank(FUDRes.data.Rank);} catch (err){console.log(err);}
+      try {fsetUnit(FUDRes.data.Unit);} catch (err){console.log(err);}
+      let fhatsv;
+      try {
+        fhatsv=(FUDRes.data.SoogHatsava==="sadir")?"סדיר":fhatsv;
+        fhatsv=(FUDRes.data.SoogHatsava==="hatsach")?"הצ\"ח":fhatsv;
+        fhatsv=(FUDRes.data.SoogHatsava==="miluim")?"מילואים":fhatsv;
+        fsetSoogHatsava(fhatsv);
+      } catch (err){console.log(err);}
+      let fmsll;
+      try {
+        fmsll=(FUDRes.data.Maslool==="mesima")?"משימה":fmsll;
+        fmsll=(FUDRes.data.Maslool==="taavura")?"תעבורה":fmsll;
+        fmsll=(FUDRes.data.Maslool==="versatili")?"ורסטילי":fmsll;
+        fsetMaslool(msll);
+      } catch (err){console.log(err);}
       setReady(true);
     }
     getFUD();
@@ -70,6 +106,19 @@ function UpdateFUD(props) {
 
   async function updatefud(e) {
     e.preventDefault();
+    let hatsv2;
+    try {
+      hatsv2=(fsoogHatsava==="סדיר")?"sadir":hatsv2;
+      hatsv2=(fsoogHatsava==="הצ\"ח")?"hatsach":hatsv2;
+      hatsv2=(fsoogHatsava==="מילואים")?"miluim":hatsv2;
+    } catch (err){console.log(err);}
+    let msll2;
+    try {
+      msll2=(fmaslool==="משימה")?"mesima":msll2;
+      msll2=(fmaslool==="תעבורה")?"taavura":msll2;
+      msll2=(fmaslool==="ורסטילי")?"versatili":msll2;
+    } catch (err){console.log(err);}
+
     const updateFUDData = {
       firstname: ffirstname,
       lastname: flastname,
@@ -81,7 +130,10 @@ function UpdateFUD(props) {
       emergencyphone: femergencyphone,
       addresscity: faddresscity,
       addressline: faddressline,
-      rank: frank
+      rank: frank,
+      unit: funit,
+      soogHatsava: hatsv2,
+      maslool: msll2
     };
 
     try {
@@ -114,7 +166,7 @@ function UpdateFUD(props) {
       )}
       <form>
         <div className="FUD">
-          <div className="FUDcolumn">
+          <div className="FUDcolumnFirst">
             <div className="fudunit">
               <div className="fudTitle">מספר אישי: </div>
               <div className="fudContent">{ma}</div>
@@ -275,6 +327,49 @@ function UpdateFUD(props) {
                   defaultValue={rank}
                   value={frank}
                   onChange={(e) => fsetRank(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="FUDcolumn">
+            <div className="fudunit">
+              <div className="fudTitle">יחידה: </div>
+              <div className="fudContent">
+                <input className="fudinput"
+                  id="form-unit"
+                  type="text"
+                  placeholder="יחידה"
+                  defaultValue={unit}
+                  value={funit}
+                  onChange={(e) => fsetUnit(e.target.value)}
+                />
+              </div>
+            </div>
+            <br />
+            <div className="fudunit">
+              <div className="fudTitle">סוג הצבה: </div>
+              <div className="fudContent">
+                <input className="fudinput"
+                  id="form-addressline"
+                  type="text"
+                  placeholder="סוג הצבה"
+                  defaultValue={soogHatsava}
+                  value={fsoogHatsava}
+                  onChange={(e) => fsetSoogHatsava(e.target.value)}
+                />
+              </div>
+            </div>
+            <br />
+            <div className="fudunit">
+              <div className="fudTitle">מסלול: </div>
+              <div className="fudContent">
+                <input className="fudinput"
+                  id="form-maslool"
+                  type="text"
+                  placeholder="מסלול"
+                  defaultValue={maslool}
+                  value={fmaslool}
+                  onChange={(e) => fsetMaslool(e.target.value)}
                 />
               </div>
             </div>

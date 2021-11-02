@@ -150,8 +150,9 @@ export default function Timeline(props) {
     ];
 
 
-    let taavurati = (props.crewmobject.Maslool==="taavura");
-    let relevant=(props.crewmobject.Maslool==="mesima")?mesimac:versatilic;
+    //let taavurati = (props.crewmobject.Maslool==="taavura");
+    let taavurati = false;
+    let relevant=(props.crewmobject.Maslool==="mesima")?mesimac:mesimac;//versatilic;
     if (taavurati) relevant=taavurac;
     relevant = relevant.filter(e => e !== "b");
     let needed = relevant.length;
@@ -161,7 +162,7 @@ export default function Timeline(props) {
         if(neededcer===props.cersarray[i].Name)
           doneverified++;
     });
-    let percentage=(doneverified/needed)*100;
+    let percentage=(4/needed)*100;
     let s1=0;
     let s2;
     for (let i=0;i < relevant.length;i++)

@@ -466,7 +466,7 @@ router.get("/getNachsal", async (req, res) => {
 
 router.put("/updateFullDetails", async (req, res) => {
   try {
-    const { firstname, lastname, nickname, courseno, birthdate, email, mainphone, emergencyphone, addresscity, addressline, rank } = req.body;
+    const { firstname, lastname, nickname, courseno, birthdate, email, mainphone, emergencyphone, addresscity, addressline, rank , unit, soogHatsava, maslool} = req.body;
 
     if (!firstname)
     return res
@@ -509,9 +509,25 @@ router.put("/updateFullDetails", async (req, res) => {
     .json({ errorMessage: "נא למלא כתובת מגורים" });
 
   if (!rank)
-  return res
-    .status(400)
-    .json({ errorMessage: "נא למלא דרגה" });
+    return res
+      .status(400)
+      .json({ errorMessage: "נא למלא דרגה" });
+    
+  if (!unit)
+    return res
+      .status(400)
+      .json({ errorMessage: "נא לבחור יחידה" });
+
+  if (!soogHatsava)
+    return res
+      .status(400)
+      .json({ errorMessage: "נא לבחור סוג הצבה" });
+    
+  if (!maslool)
+    return res
+      .status(400)
+      .json({ errorMessage: "נא לבחור מסלול" });
+
 
       const token = req.cookies.token;
 
@@ -533,6 +549,9 @@ router.put("/updateFullDetails", async (req, res) => {
       userr.AddressCity = addresscity;
       userr.AddressLine = addressline;
       userr.Rank = rank;
+      userr.Unit = unit;
+      userr.SoogHatsava = soogHatsava;
+      userr.Maslool = maslool;
 
       const saveduserr = await userr.save();
 

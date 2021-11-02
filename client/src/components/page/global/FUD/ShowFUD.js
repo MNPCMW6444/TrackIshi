@@ -20,6 +20,9 @@ function ShowFUD() {
   const [addresscity, setAddresscity] = useState();
   const [addressline, setAddressline] = useState();
   const [rank, setRank] = useState();
+  const [unit, setUnit] = useState();
+  const [soogHatsava, setSoogHatsava] = useState();
+  const [maslool, setMaslool] = useState();
   const [ready, setReady] = useState(false);
 
   const [edit, setEdit] = useState(false);
@@ -27,7 +30,7 @@ function ShowFUD() {
 
 
   useEffect( () => {
-    const getFUD = async () => {
+    const getFUDI = setInterval(async () => {
       const FUDRes = await Axios.get(`${domain}/user/getFullDetails`);
       try {setFirstname(FUDRes.data.FirstName);} catch (err){console.log(err);}
       try {setMa(FUDRes.data.MA);} catch (err){console.log(err);}
@@ -50,9 +53,52 @@ function ShowFUD() {
       try {setAddressline(FUDRes.data.AddressLine);} catch (err){console.log(err);}
       try {setRank(FUDRes.data.Rank);} catch (err){console.log(err);}
       setReady(true);
-    }
+    }, 3000);
+    const getFUD = async () => {
+      const FUDRes = await Axios.get(`${domain}/user/getFullDetails`);
+      try {setFirstname(FUDRes.data.FirstName);} catch (err){console.log(err);}
+      try {setMa(FUDRes.data.MA);} catch (err){console.log(err);}
+      try {setLastname(FUDRes.data.LastName);} catch (err){console.log(err);}
+      try {setNickname(FUDRes.data.NickName);} catch (err){console.log(err);}
+      try {setCourseno(FUDRes.data.CourseNo);} catch (err){console.log(err);}
+      try {
+        let finil = "DIDNOTDOWANAD";
+        finil = (FUDRes.data.BirthDate).substring(0,10);
+        const day = finil.substring(5,7)
+        const month = finil.substring(8,10);
+        const year= finil.substring(0,4);
+        finil= day+"/"+month+"/"+year;
+        setBirthdate(finil);
+      } catch (err){console.log(err);}
+      try {setEmail(FUDRes.data.Email);} catch (err){console.log(err);}
+      try {setMainphone(FUDRes.data.MainPhone);} catch (err){console.log(err);}
+      try {setEmergencyphone(FUDRes.data.EmergencyPhone);} catch (err){console.log(err);}
+      try {setAddresscity(FUDRes.data.AddressCity);} catch (err){console.log(err);}
+      try {setAddressline(FUDRes.data.AddressLine);} catch (err){console.log(err);}
+      try {setRank(FUDRes.data.Rank);} catch (err){console.log(err);}
+      try {setUnit(FUDRes.data.Unit);} catch (err){console.log(err);}
+      let hatsv;
+      try {
+        hatsv=(FUDRes.data.SoogHatsava==="sadir")?"סדיר":hatsv;
+        hatsv=(FUDRes.data.SoogHatsava==="hatsach")?"הצ\"ח":hatsv;
+        hatsv=(FUDRes.data.SoogHatsava==="miluim")?"מילואים":hatsv;
+        setSoogHatsava(hatsv);
+      } catch (err){console.log(err);}
+      let msll;
+      try {
+        msll=(FUDRes.data.Maslool==="mesima")?"משימה":msll;
+        msll=(FUDRes.data.Maslool==="taavura")?"תעבורה":msll;
+        msll=(FUDRes.data.Maslool==="versatili")?"ורסטילי":msll;
+        setMaslool(msll);
+      } catch (err){console.log(err);}
+      setReady(true);
+    };
     getFUD();
+    return () => clearInterval(getFUDI); 
   }, []);
+
+
+    
 
   return ready ? ( <>
     {!edit && <div className="fudheaderdiv"><h3 className="fudheader">פרטים אישיים:</h3></div>}
@@ -98,7 +144,7 @@ function ShowFUD() {
         </div>
         <br />
         <div className="fudunit">
-          <div className="fudTitle">מספר טלפון למקרה חירום: </div>
+          <div className="fudTitle">טלפון למקרה חירום: </div>
           <div className="fudContent">{emergencyphone}</div>
         </div>
         <br />
@@ -121,6 +167,23 @@ function ShowFUD() {
         <div className="fudunit">
           <div className="fudTitle">דרגה: </div>
           <div className="fudContent">{rank}</div>
+        </div>
+        <br /><br />
+      </div>
+      <div className="FUDcolumn">
+        <div className="fudunit">
+          <div className="fudTitle">יחידה: </div>
+          <div className="fudContent">{unit}</div>
+        </div>
+        <br />
+        <div className="fudunit">
+          <div className="fudTitle">הצבה: </div>
+          <div className="fudContent">{soogHatsava}</div>
+        </div>
+        <br />
+        <div className="fudunit">
+          <div className="fudTitle">מסלול: </div>
+          <div className="fudContent">{maslool}</div>
         </div>
         <br /><br />
       </div>

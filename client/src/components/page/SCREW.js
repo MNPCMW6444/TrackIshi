@@ -7,14 +7,13 @@ import { useHistory } from "react-router-dom";
 
 export default function SCREW() {
     
-    const [navbar, setNavbar] = useState("home");
+    const [navbar, setNavbar] = useState("nachsal");
     const { user, getUser } = useContext(UserContext);
     const history = useHistory();
-
-    
     
     async function logOut() {
         await Axios.get(`${domain}/user/logOut`);
+        getUser();
         history.push("/login");
       };
 
@@ -25,7 +24,7 @@ export default function SCREW() {
             <div className="navButtons">
                 <button className={navbar==="nachsal"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("nachsal")}>נכס"ל</button>
                 <button className={navbar==="fud"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("fud")}>פרטים אישיים</button>
-                <button className={navbar==="home"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("home")}>דף הבית - תמונת מצב אישית</button>
+                <button className={navbar==="home"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("home")}>תמונת מצב אישית</button>
                 <button className={navbar==="allopinions"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("allopinions")}>כל החוו"דים שלי</button>
                 <button className={navbar==="alltests"?"naveachbuttonselected":"naveachbutton"} onClick={() => setNavbar("alltests")}>כל ההסמכות שלי</button>
                 <button className="navlogout" onClick={logOut}>התנתק</button>

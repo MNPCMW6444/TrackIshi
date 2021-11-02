@@ -16,10 +16,12 @@ function ErrorMessage({ message, clear }) {
   }, 1000);
  
   return (
-    stillRelevant && <div className="error-message">
+    stillRelevant && <><div className="error-message">
       <p className="error-message-p">{message}</p>
       <button className="error-message-button" onClick={clear}>הבנתי ({timeleft})</button>
     </div>
+    <br/>
+    </>
   );
 }
 
