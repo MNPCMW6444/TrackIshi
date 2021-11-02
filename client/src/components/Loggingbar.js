@@ -38,7 +38,7 @@ export default function Loggingbar() {
       ) : (
         user && (
           <>
-            <p>הנך מחובר <span style={{fontSize:"10pt"}}>/</span><span style={{fontSize:"13pt"}}>היית מחובר אחרון </span>למערכת כ{user.NickName} (מ.א. {user.MA}), ותפקידך במערכת הוא
+            <p>הנך מחובר <span style={{fontSize:"10pt"}}>/</span><span style={{fontSize:"13pt"}}>התחברת לאחרונה </span>למערכת כ{user.NickName} (מ.א. {user.MA}), ותפקידך במערכת הוא
               <button 
                 onClick={help?toggleTextOFF:toggleTextON} 
                 className="justALinkNotButton"

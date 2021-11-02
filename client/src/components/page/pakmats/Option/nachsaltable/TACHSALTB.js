@@ -693,11 +693,11 @@ export default function TACHSALTB(props) {
           />
           <br/>
         </div>
-        <br/><br/>
       </td></tr></tbody></table>
+      <br/><br/>
         <br/>
       </div>
-      {(!mas1clickedUNIT&&!mas2clickedUNIT&&!mas3clickedUNIT&&!mas1clicked&&!mas2clicked&&!mas3clicked&&!mas1clickedHATSAVA&&!mas2clickedHATSAVA&&!mas3clickedHATSAVA&&!mas1clickedDEREG&&!mas2clickedDEREG&&!mas3clickedDEREG&&!mas4clickedDEREG&&!mas1clickedRank&&!mas2clickedRank&&!mas3clickedRank&&!mas4clickedRank) && <div className="cleanFilters">
+      {((mas2clickedUNIT||mas3clickedUNIT||mas1clicked||mas2clicked||mas3clicked||mas1clickedHATSAVA||mas2clickedHATSAVA||mas3clickedHATSAVA||mas1clickedDEREG||mas2clickedDEREG||mas3clickedDEREG||mas4clickedDEREG||mas1clickedRank||mas2clickedRank||mas3clickedRank||mas4clickedRank) || (filterInput!=="" ||filterInput2!=="" ||filterInput3!=="" ||filterInput4!=="" ||filterInput5!=="")) && <div className="cleanFilters">
         <button>נקה את כל הסינונים</button>
         <br/>
       </div>} <br/>

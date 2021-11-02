@@ -59,7 +59,7 @@ function ShowFUD() {
     {edit && <UpdateFUD suc={setSuccessMessage} whendone={setEdit} />}
     {successMessage && <SuccessMessage message={successMessage} clear={() => setSuccessMessage(null)}/>}
     {!edit && <div className="FUD">
-      <div className="FUDcolumn">
+      <div className="FUDcolumnFirst">
         <div className="fudunit">
           <div className="fudTitle">מספר אישי: </div>
           <div className="fudContent">{ma}</div>
