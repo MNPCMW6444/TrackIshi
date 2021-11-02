@@ -13,7 +13,36 @@ body {
     font-family: my;
     padding-left: 10%;
     padding-right: 10%;
+    zoom: 50%;
 }
+
+@media (min-width: 720px){
+    body {
+        zoom: 55%;
+    }
+}
+
+@media (min-width: 1500px){
+    body {
+        zoom: 90%;
+    }
+}
+
+
+@media (min-width: 2000px){
+    body {
+        zoom: 100%;
+    }
+}
+
+
+@media (min-width: 2300px){
+    body {
+        zoom: 110%;
+    }
+}
+
+
 
 /***************************************************************************/
 /************************            GENERAL            ************************/
@@ -42,7 +71,7 @@ button:active {
 }
 
 .error-message {
-    margin-bottom: 50px;
+    margin-bottom: 50/2px;
     padding: 0px;
     border: 1px solid red;
     border-radius: 5px;
@@ -70,7 +99,7 @@ button:active {
 
 
 .success-message {
-    margin-bottom: 50px;
+    margin-bottom: 50/2px;
     padding: 0px;
     border: 1px solid rgb(0, 153, 20);
     border-radius: 5px;
@@ -165,7 +194,7 @@ button:active {
 
 .Roles {
     background-color: rgba(255, 255, 255, 0.425);
-    border-radius: 50px;
+    border-radius: 50/2px;
     padding: 40px;
 }
 
@@ -216,7 +245,6 @@ button:active {
 }
 
 .naveachbutton {
-    display: block;
     display: inline;
     color: white;
     text-align: center;
@@ -229,7 +257,6 @@ button:active {
 }
 
 .naveachbuttonselected {
-    display: block;
     display: inline;
     color: white;
     text-align: center;
@@ -243,7 +270,6 @@ button:active {
 }
 
 .navlogout {
-    display: block;
     display: inline;
     color: white;
     text-align: center;
@@ -298,7 +324,7 @@ button:active {
     border-style: solid;
     background-color: orange;
     cursor: default;
-    width: 50px;
+    width: 50/2px;
     height: 32px;
 }
 
@@ -344,6 +370,10 @@ button:active {
 .filterHeader:active {
     background-color: black;
     border-radius: 5px;
+}
+
+.cleanFilters{
+    text-align: center;
 }
 
 
@@ -443,6 +473,7 @@ button:active {
 }
 
 
+
 /***************************************************************************/
 /************************            Nachsal Table            ************************/
 /***************************************************************************/
@@ -492,7 +523,7 @@ button:active {
     display: flex;
 }
 
-  
+
 .FUDcolumn {
     flex: 25%;
     padding-right: 70px;
@@ -535,8 +566,8 @@ button:active {
 
 .fudupdatebutton {
     font-size: 20pt;
-    padding-right: 50px;
-    padding-left: 50px;
+    padding-right: 50/2px;
+    padding-left: 50/2px;
     padding-top: 10px;
     padding-bottom:10px;
 }
@@ -566,10 +597,10 @@ button:active {
 
 .opinion{background-color: rgb(224, 216, 193);
     position: absolute;
-     right: 300px; left: 300px; 
-  }
-  
-  
+    right: 300px; left: 300px; 
+}
+
+
 .otable {
     margin-left: auto;
     margin-right: auto;
@@ -669,7 +700,7 @@ button:active {
     width: 500px;
     overflow: hidden; 
     position: relative;
-    right: 450px;
+    right: 450/2px;
 }
 
 
@@ -682,7 +713,7 @@ button:active {
 .footersendbutton {
     margin: auto;
     width: 125px;
-    height: 50px;
+    height: 50/2px;
     font-size: 20pt;
 }
 
@@ -695,7 +726,7 @@ button:active {
 .footercancelbutton {
     margin: auto;
     width: 125px;
-    height: 50px;
+    height: 50/2px;
     font-size: 20pt;
     background-color: red;
     color: white;
@@ -710,7 +741,3 @@ button:active {
     text-align: center;
     opacity: 0.35;
 }
-
-
-
-

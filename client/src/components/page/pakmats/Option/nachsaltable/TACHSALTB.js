@@ -52,6 +52,16 @@ export default function TACHSALTB(props) {
     goten[i].isD=(goten[i].Dereg==="d")?"כן":"לא";
   }
   
+  for(let i=0; i<goten.length;i++)
+  {
+    goten[i].isSeren=(goten[i].Rank==="סרן")?"כן":"לא";
+    goten[i].isRasan=(goten[i].Rank==="רס\"ן")?"כן":"לא";
+    goten[i].isSaal=(goten[i].Rank==="סא\"ל")?"כן":"לא";
+    goten[i].isOther=(goten[i].isSeren==="כן"||goten[i].isRasan==="כן"||goten[i].isSaal==="כן")?"לא":"כן";
+  }
+  
+
+
   const data = React.useMemo(
       () => 
         goten,
@@ -180,6 +190,26 @@ export default function TACHSALTB(props) {
           Header: "האם דרג ד",
           accessor: "isD",
           show:false,
+        },
+        {
+          Header: "האם סרן",
+          accessor: "isSeren",
+          show:false,
+        },
+        {
+          Header: "האם רס''ן",
+          accessor: "isRasan",
+          show:false,
+        },
+        {
+          Header: "האם סא''ל",
+          accessor: "isSaal",
+          show:false,
+        },
+        {
+          Header: "האם אחר",
+          accessor: "isOther",
+          show:false,
         }
     ],
     []
@@ -238,13 +268,6 @@ export default function TACHSALTB(props) {
     setFilterInput5(value);
   };
 
-  const [filterInputz, setFilterInputz] = useState("");
-
-  const handleFilterChangez = e => {
-    const value = e.target.value || undefined;
-    setFilter("MainPhone", value);
-    setFilterInputz(value);
-  };
 
   const [mas1clicked, setMas1clicked] = useState(false);
   const [mas2clicked, setMas2clicked] = useState(false);
@@ -476,6 +499,101 @@ export default function TACHSALTB(props) {
       setMas4clickedDEREG(false);
   };
 
+
+  const [mas1clickedRank, setMas1clickedRank] = useState(false);
+  const [mas2clickedRank, setMas2clickedRank] = useState(false);
+  const [mas3clickedRank, setMas3clickedRank] = useState(false);
+  const [mas4clickedRank, setMas4clickedRank] = useState(false);
+
+  function checkLogic4(status)
+  {
+    if(!status[0] && !status[1] && !status[2] && !status[3])
+      return ["", "", "", ""];
+
+    if(status[0] && !status[1] && !status[2] && !status[3])
+      return ["כן","","",""];
+    if(!status[0] && status[1] && !status[2] && !status[3])
+      return ["","כן","",""];
+    if(!status[0] && !status[1] && status[2] && !status[3])
+      return ["","","כן",""];
+    if(!status[0] && !status[1] && !status[2] && status[3])
+      return ["","","","כן"];
+
+    if(status[0] && status[1] && !status[2] && !status[3])
+      return ["","","לא","לא"];
+    if(!status[0] && status[1] && status[2] && !status[3])
+      return ["לא","","","לא"];
+    if(!status[0] && !status[1] && status[2] && status[3])
+      return ["לא","לא","",""];
+    if(status[0] && !status[1] && !status[2] && status[3])
+      return ["","לא","לא",""];
+    if(!status[0] && status[1] && !status[2] && status[3])
+      return ["לא","","לא",""];
+    if(status[0] && !status[1] && status[2] && !status[3])
+      return ["","לא","","לא"];
+
+    if(status[0] && status[1] && status[2] && !status[3])
+      return ["","","","לא"];
+    if(status[0] && status[1] && !status[2] && status[3])
+      return ["","","לא",""];
+    if(status[0] && !status[1] && status[2] && status[3])
+      return ["","לא","",""];
+    if(!status[0] && status[1] && status[2] && status[3])
+      return ["לא","","",""];
+
+    if(status[0] && status[1] && status[2] && status[3])
+      return ["", "", "", ""];
+  }
+
+  const handleFilterChange6Seren = e => {
+    const res=checkLogic4([!mas1clickedRank, mas2clickedRank, mas3clickedRank, mas4clickedRank]);
+    setFilter("isSeren", res[0]);
+    setFilter("isRasan", res[1]);
+    setFilter("isSaal", res[2]);
+    setFilter("isOther", res[3]);
+    if(!mas1clickedRank)
+      setMas1clickedRank(true);
+    else
+      setMas1clickedRank(false);
+  };
+
+  const handleFilterChange6Rasan = e => {
+    const res=checkLogic4([mas1clickedRank, !mas2clickedRank, mas3clickedRank, mas4clickedRank]);
+    setFilter("isSeren", res[0]);
+    setFilter("isRasan", res[1]);
+    setFilter("isSaal", res[2]);
+    setFilter("isOther", res[3]);
+    if(!mas2clickedRank)
+      setMas2clickedRank(true);
+    else
+      setMas2clickedRank(false);
+  };
+
+  const handleFilterChange6Saal = e => {
+    const res=checkLogic4([mas1clickedRank, mas2clickedRank, !mas3clickedRank, mas4clickedRank]);
+    setFilter("isSeren", res[0]);
+    setFilter("isRasan", res[1]);
+    setFilter("isSaal", res[2]);
+    setFilter("isOther", res[3]);
+    if(!mas3clickedRank)
+      setMas3clickedRank(true);
+    else
+      setMas3clickedRank(false);
+  };
+
+  const handleFilterChange6Other = e => {
+    const res=checkLogic4([mas1clickedRank, mas2clickedRank, mas3clickedRank, !mas4clickedRank]);
+    setFilter("isSeren", res[0]);
+    setFilter("isRasan", res[1]);
+    setFilter("isSaal", res[2]);
+    setFilter("isOther", res[3]);
+    if(!mas4clickedRank)
+      setMas4clickedRank(true);
+    else
+      setMas4clickedRank(false);
+  };
+
+
   return (
     <div className="filtersAndTable" key={props.data} key={props.data}>
       <div className="allfilters">
@@ -515,20 +633,20 @@ export default function TACHSALTB(props) {
             <button className="filterSmallSpace"></button>
             <button className={"filterBTNof4"+mas2clickedDEREG} onClick={handleFilterChange6B}>ב'</button>
             <button className="filterSmallSpace"></button>
-            <button className={"filterBTNof4"+mas4clickedDEREG} onClick={handleFilterChange6C}>ג'</button>
+            <button className={"filterBTNof4"+mas3clickedDEREG} onClick={handleFilterChange6C}>ג'</button>
             <button className="filterSmallSpace"></button>
             <button className={"filterBTNof4"+mas4clickedDEREG} onClick={handleFilterChange6D}>ד'</button>
           </div>
           <div className="filterHeaderROW">
             <button className="filterHeader">לפי דרגה:</button>
             <button className="filterbigSpace"></button>
-            <button className={"filterBTNof4"+mas1clickedDEREG} onClick={handleFilterChange6A}>סרן</button>
+            <button className={"filterBTNof4"+mas1clickedRank} onClick={handleFilterChange6Seren}>סרן</button>
             <button className="filterSmallSpace"></button>
-            <button className={"filterBTNof4"+mas2clickedDEREG} onClick={handleFilterChange6B}>סא"ל</button>
+            <button className={"filterBTNof4"+mas2clickedRank} onClick={handleFilterChange6Rasan}>רס"ן</button>
             <button className="filterSmallSpace"></button>
-            <button className={"filterBTNof4"+mas4clickedDEREG} onClick={handleFilterChange6C}>רס"ן</button>
+            <button className={"filterBTNof4"+mas3clickedRank} onClick={handleFilterChange6Saal}>סא"ל</button>
             <button className="filterSmallSpace"></button>
-            <button className={"filterBTNof4"+mas4clickedDEREG} onClick={handleFilterChange6D}>אחר</button>
+            <button className={"filterBTNof4"+mas4clickedRank} onClick={handleFilterChange6Other}>אחר</button>
           </div>
         </div>
       </td>
@@ -575,9 +693,14 @@ export default function TACHSALTB(props) {
           />
           <br/>
         </div>
+        <br/><br/>
       </td></tr></tbody></table>
-        <br/><br/><br/>
+        <br/>
       </div>
+      {(!mas1clickedUNIT&&!mas2clickedUNIT&&!mas3clickedUNIT&&!mas1clicked&&!mas2clicked&&!mas3clicked&&!mas1clickedHATSAVA&&!mas2clickedHATSAVA&&!mas3clickedHATSAVA&&!mas1clickedDEREG&&!mas2clickedDEREG&&!mas3clickedDEREG&&!mas4clickedDEREG&&!mas1clickedRank&&!mas2clickedRank&&!mas3clickedRank&&!mas4clickedRank) && <div className="cleanFilters">
+        <button>נקה את כל הסינונים</button>
+        <br/>
+      </div>} <br/>
       <table className="theTable"{...getTableProps()} >
         <thead>
           {headerGroups.map(headerGroup => (
