@@ -741,7 +741,7 @@ export default function TACHSALTB(props) {
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                <th class="theTableTH"
+                <th className="theTableTH"
                   {...column.getHeaderProps()}
                 >
                   {column.render('Header')}

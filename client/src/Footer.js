@@ -29,7 +29,7 @@ const [successMessager, setSuccessMessager] = useState(null);
             <br/><br/><br/>
             <div className="version">גרסה 0.5</div><br/><br/>
             <div className="author"><a href="mailto:s8370716@iaf.idf.il?subject=%D7%98%D7%A8%D7%A7%20%D7%90%D7%99%D7%A9%D7%99" >מפתח: מיכאל נסייר</a></div><br/>
-            <div className="author"><a>קפ"ט: חן מארק</a></div><br/>
+            <div className="author"><a href="mailto:s8041154@iaf.idf.il?subject=%D7%98%D7%A8%D7%A7%20%D7%90%D7%99%D7%A9%D7%99" >קפ"ט: חן מארק</a></div><br/>
        </div>
     )
 }

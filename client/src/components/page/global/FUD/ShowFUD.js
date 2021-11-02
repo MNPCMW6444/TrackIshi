@@ -52,6 +52,21 @@ function ShowFUD() {
       try {setAddresscity(FUDRes.data.AddressCity);} catch (err){console.log(err);}
       try {setAddressline(FUDRes.data.AddressLine);} catch (err){console.log(err);}
       try {setRank(FUDRes.data.Rank);} catch (err){console.log(err);}
+      try {setUnit(FUDRes.data.Unit);} catch (err){console.log(err);}
+      let hatsv;
+      try {
+        hatsv=(FUDRes.data.SoogHatsava==="sadir")?"סדיר":hatsv;
+        hatsv=(FUDRes.data.SoogHatsava==="hatsach")?"הצ\"ח":hatsv;
+        hatsv=(FUDRes.data.SoogHatsava==="miluim")?"מילואים":hatsv;
+        setSoogHatsava(hatsv);
+      } catch (err){console.log(err);}
+      let msll;
+      try {
+        msll=(FUDRes.data.Maslool==="mesima")?"משימה":msll;
+        msll=(FUDRes.data.Maslool==="taavura")?"תעבורה":msll;
+        msll=(FUDRes.data.Maslool==="versatili")?"ורסטילי":msll;
+        setMaslool(msll);
+      } catch (err){console.log(err);}
       setReady(true);
     }, 3000);
     const getFUD = async () => {

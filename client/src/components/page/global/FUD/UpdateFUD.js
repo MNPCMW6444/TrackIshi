@@ -261,7 +261,7 @@ function UpdateFUD(props) {
             </div>
             <br />
             <div className="fudunit">
-              <div className="fudTitle">מספר טלפון למקרה חירום: </div>
+              <div className="fudTitle">טלפון למקרה חירום: </div>
               <div className="fudContent">
                 <input className="fudinput"
                   id="form-emergencyphone"
