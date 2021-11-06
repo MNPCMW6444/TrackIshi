@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 
 export default function SCREW() {
     
-    const [navbar, setNavbar] = useState("nachsal");
+    const [navbar, setNavbar] = useState("home");
     const { user, getUser } = useContext(UserContext);
     const history = useHistory();
     

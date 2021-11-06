@@ -1,7 +1,6 @@
-
 @font-face {
-    font-family: 'my';
-    src: url('./logos and fonts/VarelaRound-Regular.ttf') format('truetype');
+  font-family: "my";
+  src: url("./logos and fonts/VarelaRound-Regular.ttf") format("truetype");
 }
 
 /***************************************************************************/
@@ -9,166 +8,159 @@
 /***************************************************************************/
 
 body {
-    background-color: #e1f5f5;
-    font-family: my;
-    padding-left: 10%;
-    padding-right: 10%;
-    zoom: 50%;
+  background-color: #e1f5f5;
+  font-family: my;
+  padding-left: 10%;
+  padding-right: 10%;
+  zoom: 50%;
 }
 
-@media (min-width: 720px){
-    body {
-        zoom: 55%;
-    }
+@media (min-width: 720px) {
+  body {
+    zoom: 55%;
+  }
 }
 
-@media (min-width: 1100px){
-    body {
-        zoom: 90%;
-    }
+@media (min-width: 1100px) {
+  body {
+    zoom: 90%;
+  }
 }
 
-
-@media (min-width: 1300px){
-    body {
-        zoom: 100%;
-    }
+@media (min-width: 1300px) {
+  body {
+    zoom: 100%;
+  }
 }
 
-
-@media (min-width: 1500px){
-    body {
-        zoom: 110%;
-    }
+@media (min-width: 1500px) {
+  body {
+    zoom: 110%;
+  }
 }
 
-@media (min-width: 1600px){
-    body {
-        zoom: 130%;
-    }
+@media (min-width: 1600px) {
+  body {
+    zoom: 130%;
+  }
 }
-
-
 
 /***************************************************************************/
 /************************            GENERAL            ************************/
 /***************************************************************************/
 
 h1 {
-    font-size: 80px;
+  font-size: 80px;
 }
 
 p {
-    font-size: 16pt;
+  font-size: 16pt;
 }
 
 button {
-    border: unset;
-    font: unset;
-    color: unset;
-    cursor: pointer;
-    background-color: rgba(23, 1, 148, 0.692);
-    border-radius: 10px;
-    color:white;
+  border: unset;
+  font: unset;
+  color: unset;
+  cursor: pointer;
+  background-color: rgba(23, 1, 148, 0.692);
+  border-radius: 10px;
+  color: white;
 }
 
 button:active {
-    background-color: blue;
-    border-radius: 10px;
+  background-color: blue;
+  border-radius: 10px;
 }
 
 .error-message {
-    margin-bottom: 50/2px;
-    padding: 0px;
-    border: 1px solid red;
-    border-radius: 5px;
-    background: rgb(230, 139, 139);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 40px;
+  margin-bottom: 50/2px;
+  padding: 0px;
+  border: 1px solid red;
+  border-radius: 5px;
+  background: rgb(230, 139, 139);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
 }
 
 .error-message-button {
-    padding:6px 40px;
-    background: red;
-    color: black;
-    font-weight: bolder;
-    font-size: 18pt;
+  padding: 6px 40px;
+  background: red;
+  color: black;
+  font-weight: bolder;
+  font-size: 18pt;
 }
 
 .error-message-p {
-    color: black;
-    font-weight: bolder;
-    font-size: 18pt;
+  color: black;
+  font-weight: bolder;
+  font-size: 18pt;
 }
 
-
 .success-message {
-    margin-bottom: 50/2px;
-    padding: 0px;
-    border: 1px solid rgb(0, 153, 20);
-    border-radius: 5px;
-    background: rgb(84, 212, 72);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 40px;
+  margin-bottom: 50/2px;
+  padding: 0px;
+  border: 1px solid rgb(0, 153, 20);
+  border-radius: 5px;
+  background: rgb(84, 212, 72);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
 }
 
 .success-message-button {
-    padding:6px 40px;
-    background: rgba(1, 165, 23, 0.932);
-    color: black;
-    font-weight: bolder;
-    font-size: 18pt;
+  padding: 6px 40px;
+  background: rgba(1, 165, 23, 0.932);
+  color: black;
+  font-weight: bolder;
+  font-size: 18pt;
 }
 
 .success-message-p {
-    color: black;
-    font-weight: bolder;
-    font-size: 18pt;
+  color: black;
+  font-weight: bolder;
+  font-size: 18pt;
 }
 
 input {
-    font-family: my;
+  font-family: my;
 }
-
-
 
 /***************************************************************************/
 /************************            SPLASH            ************************/
 /***************************************************************************/
 
 .splash {
-    margin: auto;
-    position: relative;
-    width: 593px;
-    height: 593px;
+  margin: auto;
+  position: relative;
+  width: 593px;
+  height: 593px;
 }
 
 .splashbutton {
-    border: unset;
-    background: unset;
-    font: unset;
-    color: unset;
-    cursor: pointer;
-    position: absolute;
-    top: 470px;
-    right: 200px;
-    width: 190px;
-    height: 40px;
-    font-size: 27px;
+  border: unset;
+  background: unset;
+  font: unset;
+  color: unset;
+  cursor: pointer;
+  position: absolute;
+  top: 470px;
+  right: 200px;
+  width: 190px;
+  height: 40px;
+  font-size: 27px;
 }
 
 .splashbutton:hover {
-    background-color: green;
-    border-radius: 15px;
+  background-color: green;
+  border-radius: 15px;
 }
 
 .splashbutton:active {
-    background-color: blue;
-    border-radius: 15px;
+  background-color: blue;
+  border-radius: 15px;
 }
 
 /***************************************************************************/
@@ -176,7 +168,7 @@ input {
 /***************************************************************************/
 
 .mainHeader {
-    text-align: center;
+  text-align: center;
 }
 
 /***************************************************************************/
@@ -184,217 +176,204 @@ input {
 /***************************************************************************/
 
 .justALinkNotButton {
-    border: unset;
-    background: unset;
-    font: unset;
-    color: unset;
-    cursor: pointer;
-    font-weight: bold;
+  border: unset;
+  background: unset;
+  font: unset;
+  color: unset;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .justALinkLink {
-    color: blue;
-    text-decoration-line: underline;
-    text-decoration-style: double;
+  color: blue;
+  text-decoration-line: underline;
+  text-decoration-style: double;
 }
-
 
 /***************************************************************************/
 /************************            RolesExplanation            ************************/
 /***************************************************************************/
 
 .Roles {
-    background-color: rgba(255, 255, 255, 0.425);
-    border-radius: 50/2px;
-    padding: 40px;
+  background-color: rgba(255, 255, 255, 0.425);
+  border-radius: 50/2px;
+  padding: 40px;
 }
 
 .RolesHeader {
-    font-size: 20pt;
-    font-weight: bolder;
+  font-size: 20pt;
+  font-weight: bolder;
 }
 
 .Roleheader {
-    font-size: 15pt;
-    color: rgba(4, 0, 255, 0.514);
-    font-weight: bold;
+  font-size: 15pt;
+  color: rgba(4, 0, 255, 0.514);
+  font-weight: bold;
 }
 
 .Rolemeaning {
-    font-size: 10pt;
-    color: rgb(0, 26, 1);
+  font-size: 10pt;
+  color: rgb(0, 26, 1);
 }
 
 .closeRoles {
-    font-size: 25pt;
-    width: 110px;
-    margin: 0;
-    position: absolute;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
- }
-
-
-
-
-
+  font-size: 25pt;
+  width: 110px;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 
 /***************************************************************************/
 /************************            NavBar            ************************/
 /***************************************************************************/
 
 .navButtons {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: rgba(0, 81, 255, 0.212);
-    border-color: rgba(0, 0, 0, 0);
-    border-width: thin;
-    border-style: solid;
-    border-radius: 20px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgba(0, 81, 255, 0.212);
+  border-color: rgba(0, 0, 0, 0);
+  border-width: thin;
+  border-style: solid;
+  border-radius: 20px;
 }
 
 .naveachbutton {
-    display: inline;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 15pt;
-    border-color: black;
-    border-width: thin;
-    border-style: solid;
-    margin-left: 5px;
+  display: inline;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15pt;
+  border-color: black;
+  border-width: thin;
+  border-style: solid;
+  margin-left: 5px;
 }
 
 .naveachbuttonselected {
-    display: inline;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 15pt;
-    border-color: blue;
-    border-width: thin;
-    border-style: solid;
-    background-color: rgb(27, 2, 121);
-    margin-left: 5px;
+  display: inline;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15pt;
+  border-color: blue;
+  border-width: thin;
+  border-style: solid;
+  background-color: rgb(27, 2, 121);
+  margin-left: 5px;
 }
 
 .navlogout {
-    display: inline;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 15pt;
-    border-color: black;
-    border-width: thin;
-    border-style: solid;
-    float: left;
+  display: inline;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15pt;
+  border-color: black;
+  border-width: thin;
+  border-style: solid;
+  float: left;
 }
-
-
-
 
 /***************************************************************************/
 /************************            NachSAL Filters misc         ************************/
 /***************************************************************************/
 
-
 .filtersbigrow {
-    width: 100%;
+  width: 100%;
 }
-
 
 .filterSpace {
-    display: block;
-    display: inline;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 25pt;
-    border-color: #e1f5f5;
-    border-width: thin;
-    border-style: solid;
-    background-color: #e1f5f5;
-    cursor: default;
-    width: 20px;
-    height: 32px;
+  display: block;
+  display: inline;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 25pt;
+  border-color: #e1f5f5;
+  border-width: thin;
+  border-style: solid;
+  background-color: #e1f5f5;
+  cursor: default;
+  width: 20px;
+  height: 32px;
 }
-
 
 .filterbigSpace {
-    display: block;
-    display: inline;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 10pt;
-    border-color: #e1f5f5;
-    border-width: thin;
-    border-style: solid;
-    background-color: #e1f5f5;
-    cursor: default;
-    width: 50/2px;
-    height: 32px;
+  display: block;
+  display: inline;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 10pt;
+  border-color: #e1f5f5;
+  border-width: thin;
+  border-style: solid;
+  background-color: #e1f5f5;
+  cursor: default;
+  width: 50/2px;
+  height: 32px;
 }
-
 
 .filterSmallSpace {
-    display: block;
-    display: inline;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 10pt;
-    border-color: #e1f5f5;
-    border-width: thin;
-    border-style: solid;
-    background-color: #e1f5f5;
-    cursor: default;
-    width: 15px;
-    height: 32px;
+  display: block;
+  display: inline;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 10pt;
+  border-color: #e1f5f5;
+  border-width: thin;
+  border-style: solid;
+  background-color: #e1f5f5;
+  cursor: default;
+  width: 15px;
+  height: 32px;
 }
 
-.filterSpace:active, .filterbigSpace:active .filterSmallSpace:active {
-    background-color: #e1f5f5;
-    border-radius: 15px;
+.filterSpace:active,
+.filterbigSpace:active .filterSmallSpace:active {
+  background-color: #e1f5f5;
+  border-radius: 15px;
 }
-
 
 .filterHeader {
-    display: block;
-    display: inline;
-    color: white;
-    text-align: center;
-    width: 200px;
-    text-decoration: none;
-    font-size: 14pt;
-    border-color: black;
-    border-width: thin;
-    border-style: solid;
-    background-color: black;
-    cursor: default;
-    height: 33px;
+  display: block;
+  display: inline;
+  color: white;
+  text-align: center;
+  width: 200px;
+  text-decoration: none;
+  font-size: 14pt;
+  border-color: black;
+  border-width: thin;
+  border-style: solid;
+  background-color: black;
+  cursor: default;
+  height: 33px;
 }
 
 .filterHeader:active {
-    background-color: black;
-    border-radius: 5px;
+  background-color: black;
+  border-radius: 5px;
 }
 
-.cleanFilters{
-    text-align: center;
+.cleanFilters {
+  text-align: center;
 }
 
-.cleanFiltersBtn{
-   width: 250px;
-   height:35px;
-   font-size: 15pt;
-   background-color: rgba(177, 0, 0, 0.664);
+.cleanFiltersBtn {
+  width: 250px;
+  height: 35px;
+  font-size: 15pt;
+  background-color: rgba(177, 0, 0, 0.664);
 }
 
 /***************************************************************************/
@@ -402,213 +381,205 @@ input {
 /***************************************************************************/
 
 .buttonfilters {
-    position: relative;
-    right: 20px;
+  position: relative;
+  right: 20px;
 }
 
 .filterBTNof3false {
-    display: block;
-    display: inline;
-    color: black;
-    text-align: center;
-    padding: 1px 16px;
-    text-decoration: none;
-    font-size: 15pt;
-    border-color: black;
-    border-width: thin;
-    border-style: solid;
-    width: 95px;
-    height: 33px;
-    background-color: rgba(255, 255, 255, 0.7);
+  display: block;
+  display: inline;
+  color: black;
+  text-align: center;
+  padding: 1px 16px;
+  text-decoration: none;
+  font-size: 15pt;
+  border-color: black;
+  border-width: thin;
+  border-style: solid;
+  width: 95px;
+  height: 33px;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .filterBTNof3true {
-    display: block;
-    display: inline;
-    color: white;
-    text-align: center;
-    padding: 1px 16px;
-    text-decoration: none;
-    font-size: 15pt;
-    border-color: blue;
-    border-width: thin;
-    border-style: solid;
-    background-color: rgb(27, 2, 121);
-    width: 95px;
-    height: 33px;
+  display: block;
+  display: inline;
+  color: white;
+  text-align: center;
+  padding: 1px 16px;
+  text-decoration: none;
+  font-size: 15pt;
+  border-color: blue;
+  border-width: thin;
+  border-style: solid;
+  background-color: rgb(27, 2, 121);
+  width: 95px;
+  height: 33px;
 }
 
-
 .filterBTNof4false {
-    display: block;
-    display: inline;
-    color: black;
-    text-align: center;
-    padding: 1px 7px;
-    text-decoration: none;
-    font-size: 15pt;
-    border-color: black;
-    border-width: thin;
-    border-style: solid;
-    width: 70px;
-    height: 33px;
-    background-color: rgba(255, 255, 255, 0.7);
+  display: block;
+  display: inline;
+  color: black;
+  text-align: center;
+  padding: 1px 7px;
+  text-decoration: none;
+  font-size: 15pt;
+  border-color: black;
+  border-width: thin;
+  border-style: solid;
+  width: 70px;
+  height: 33px;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .filterBTNof4true {
-    display: block;
-    display: inline;
-    color: white;
-    text-align: center;
-    padding: 1px 7px;
-    text-decoration: none;
-    font-size: 15pt;
-    border-color: blue;
-    border-width: thin;
-    border-style: solid;
-    background-color: rgb(27, 2, 121);
-    width: 70px;
-    height: 33px;
+  display: block;
+  display: inline;
+  color: white;
+  text-align: center;
+  padding: 1px 7px;
+  text-decoration: none;
+  font-size: 15pt;
+  border-color: blue;
+  border-width: thin;
+  border-style: solid;
+  background-color: rgb(27, 2, 121);
+  width: 70px;
+  height: 33px;
 }
-
 
 /***************************************************************************/
 /************************            NachSAL Filters - Inputs         ************************/
 /***************************************************************************/
 
 .inputfilters {
-    position: relative;
-    right: 110px;
+  position: relative;
+  right: 110px;
 }
 
-.inputfilterINPUT{
-    font-size: 13pt;
-    background-color: rgba(255, 255, 255, 0.7);
-    text-align: center;
+.inputfilterINPUT {
+  font-size: 13pt;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: center;
 }
 
-.inputfilterINPUT:placeholder { 
-    color: black;
-    opacity: 0.7; 
+.inputfilterINPUT:placeholder {
+  color: black;
+  opacity: 0.7;
 }
-
-
 
 /***************************************************************************/
 /************************            Nachsal Table            ************************/
 /***************************************************************************/
 
-
 .theTable {
-    border-collapse: collapse;
-    border: 0px solid rgba(23, 25, 53, 0.445);
+  border-collapse: collapse;
+  border: 0px solid rgba(23, 25, 53, 0.445);
 }
 
 .theTableTH {
-    background-color: rgba(23, 1, 148, 0.692);
-    font-weight: 'bolder';
-    border: 2px solid rgb(23, 0, 107);
-    color:white;
+  background-color: rgba(23, 1, 148, 0.692);
+  font-weight: "bolder";
+  border: 2px solid rgb(23, 0, 107);
+  color: white;
 }
 
 .theTableTR:nth-child(even) {
-    text-align: "center";
-    font-weight: "bold";
+  text-align: "center";
+  font-weight: "bold";
 }
 
 .theTableTR:nth-child(odd) {
-    background-color: rgba(255, 255, 255, 0.795);
-    text-align: "center";
-    font-weight: "bold";
+  background-color: rgba(255, 255, 255, 0.795);
+  text-align: "center";
+  font-weight: "bold";
 }
 
 .theTableTD {
-    border: 1px solid rgba(19, 20, 97, 0.247);
-    text-align: "center";
-    font-weight: "bold";
-    text-align: center;
-    padding-right:10px;
-    padding-left:10px;
+  border: 1px solid rgba(19, 20, 97, 0.247);
+  text-align: "center";
+  font-weight: "bold";
+  text-align: center;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 /***************************************************************************/
 /************************            FUD            ************************/
 /***************************************************************************/
 
-
-
 .FUD {
-    display: flex;
+  display: flex;
 }
 
-
 .FUDcolumn {
-    flex: 25%;
-    padding-right: 20px;
+  flex: 25%;
+  padding-right: 20px;
 }
 
 .FUDcolumnFirst {
-    flex: 25%;
-    padding-right: 0px;
+  flex: 25%;
+  padding-right: 0px;
 }
 
 .fudheader {
-    font-size: 28pt;
+  font-size: 28pt;
 }
 
 .fudheaderdiv {
-    text-align: center;
+  text-align: center;
 }
 
 .fudunit {
-    border: 1px solid rgba(23, 25, 53, 0.445);
+  border: 1px solid rgba(23, 25, 53, 0.445);
 }
 
 .fudTitle {
-    text-align: center;
-    font-family:  FFFFF, Helvetica, sans-serif;
-    font-size: 15pt;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-family: my;
-    background-color: rgba(23, 1, 148, 0.692);
-    font-weight: 'bolder';
-    border: 2px solid rgb(23, 0, 107);
-    color:white;
+  text-align: center;
+  font-family: FFFFF, Helvetica, sans-serif;
+  font-size: 15pt;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: my;
+  background-color: rgba(23, 1, 148, 0.692);
+  font-weight: "bolder";
+  border: 2px solid rgb(23, 0, 107);
+  color: white;
 }
 
 .fudContent {
-    text-align: center;
-    font-family:  FFFFF, Helvetica, sans-serif;
-    font-size: large;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-family: my;
-    background-color: rgba(255, 255, 255, 0.795);
-    font-weight: bold;
+  text-align: center;
+  font-family: FFFFF, Helvetica, sans-serif;
+  font-size: large;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: my;
+  background-color: rgba(255, 255, 255, 0.795);
+  font-weight: bold;
 }
 
 .fudupdatebuttondiv {
-    text-align: center;
+  text-align: center;
 }
 
 .fudupdatebutton {
-    font-size: 20pt;
-    padding-right: 50/2px;
-    padding-left: 50/2px;
-    padding-top: 10px;
-    padding-bottom:10px;
- }
-
-.fudinput { 
-    font-size: 13pt;
-    background-color: rgba(255, 255, 255, 0.7);
-    text-align: center;
+  font-size: 20pt;
+  padding-right: 50/2px;
+  padding-left: 50/2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
-.fudinput:placeholder { 
-    color: black;
-    opacity: 0.7; 
+.fudinput {
+  font-size: 13pt;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+.fudinput:placeholder {
+  color: black;
+  opacity: 0.7;
 }
 
 /***************************************************************************/
@@ -616,156 +587,169 @@ input {
 /***************************************************************************/
 
 .OpinionOpen {
-    font-size: 25pt;
+  font-size: 25pt;
 }
 
-.OpinionClose {
-    font-size: 20pt;
+.odiv {
+  background-color: rgba(23, 66, 207, 0.233);
 }
-
-.opinion{background-color: rgb(224, 216, 193);
-    position: absolute;
-    right: 300px; left: 300px; 
-}
-
 
 .otable {
-    margin-left: auto;
-    margin-right: auto;
-} 
+  margin-left: auto;
+  margin-right: auto;
+}
 
-.otd,  .oth {
-    border: 1px solid rgb(172, 155, 155);
-    padding: 8px;
+.otd,
+.oth {
+  border: 1px solid rgba(0, 0, 0, 0);
+  padding: 8px;
 }
 
 .oth {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: #008856;
-    color: white;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  color: white;
+  background-color: rgba(23, 1, 148, 0.692);
+  font-weight: "bolder";
+  border: 2px solid rgb(23, 0, 107);
 }
 
 .otd {
-    text-align: center;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.438);
+  font-weight: "bold";
 }
 
-.oselected {
-    background-color: #71b0f8;
+.otdselected {
+  background-color: #71b0f8;
+  border: 2px solid rgba(0, 17, 255, 0.712);
+  text-align: center;
 }
 
 .oh3 {
-    background-color: #5fc275;
-    font-size: xx-large;
-    text-align: center;
-    border-radius:7%;
-    font-family:  FFFFF, Helvetica, sans-serif;
+  background-color: #b6b6d8a2;
+  font-size: xx-large;
+  text-align: center;
+  border-radius: 100px;
+  margin: auto;
+  font-family: FFFFF, Helvetica, sans-serif;
+  width: 85%;
 }
 
 .oh4 {
-    background-color: #b4f1db;
-    font-family:  FFFFF, Helvetica, sans-serif;
-    font-size: large;
+  background-color: #5353c983;
+  font-family: FFFFF, Helvetica, sans-serif;
+  font-size: large;
+  margin: auto;
+  width: 60%;
 }
-
 
 .oh5 {
-    background-color: #d0f3e6;
-    font-family:  FFFFF, Helvetica, sans-serif;
-    font-size: medium;
-    width: 300px;
-    margin: auto;
+  background-color: #43435eb7;
+  font-family: FFFFF, Helvetica, sans-serif;
+  font-size: medium;
+  margin: auto;
+  width: 50%;
 }
 
-.oh4,.oh5,.op {
-    text-align: center;
-    border-radius:25%;
+.oh4,
+.oh5,
+.op {
+  text-align: center;
+  border-radius: 25%;
 }
 
+.opd {
+  text-align: center;
+}
 
+.OpinionClose {
+  text-align: center;
+}
+
+.OpinionCloseButton {
+  font-size: 20pt;
+}
 
 /***************************************************************************/
 /************************            Footer            ************************/
 /***************************************************************************/
 
-
-
 .footer {
-    font-size: 10pt;
-    text-align: center;
-    font-weight: bold;
+  font-size: 10pt;
+  text-align: center;
+  font-weight: bold;
 }
 
 .footerlabel {
-    text-align: center;
-    font-weight: bolder;
+  text-align: center;
+  font-weight: bolder;
 }
 
 .footerinput {
-    margin: auto;
-    width: 25%;
+  margin: auto;
+  width: 25%;
 }
 
 .footerinputshort {
-    width: 300px;
-    height: 30px;
-    background-color: rgba(255, 255, 255, 0.418);
+  width: 300px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.418);
 }
 
 .footerinputlong {
-    width: 300px;
-    height: 300px;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.418);
+  width: 300px;
+  height: 300px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.418);
 }
 
 .footerinputlong:placeholder {
-    font-size: 30pt;
+  font-size: 30pt;
 }
 
 .footerbuttonwarapper {
-    width: 500px;
-    overflow: hidden; 
-    position: relative;
-    right: 450/2px;
+  width: 500px;
+  overflow: hidden;
+  position: relative;
+  right: 450/2px;
 }
 
-
 .footersend {
-    margin: auto;
-    width: 180px;
-    float:right; 
+  margin: auto;
+  width: 180px;
+  float: right;
 }
 
 .footersendbutton {
-    margin: auto;
-    width: 125px;
-    height: 50/2px;
-    font-size: 20pt;
+  margin: auto;
+  width: 125px;
+  height: 50/2px;
+  font-size: 20pt;
 }
 
 .footercancel {
-    margin: auto;
-    border: 1px sold green;
-    overflow: hidden;
+  margin: auto;
+  border: 1px sold green;
+  overflow: hidden;
 }
 
 .footercancelbutton {
-    margin: auto;
-    width: 125px;
-    height: 50/2px;
-    font-size: 20pt;
-    background-color: red;
-    color: white;
+  margin: auto;
+  width: 125px;
+  height: 50/2px;
+  font-size: 20pt;
+  background-color: rgba(177, 0, 0, 0.664);
+  color: white;
 }
 
 .version {
-    text-align: center;
-    opacity: 0.5;
+  text-align: center;
+  opacity: 0.5;
 }
 
 .author {
-    text-align: center;
-    opacity: 0.35;
+  text-align: center;
+  opacity: 0.35;
 }

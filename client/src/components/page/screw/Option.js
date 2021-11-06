@@ -32,16 +32,10 @@ export default function Option(props) {
                 <SCREALLTESTS />
             </div>
         );
-        case "home":
-        return (
-            <div className="optionSwitcher">
-                <SCREWHOME/>
-            </div>
-        );
         default:  
         return (
             <div className="optionSwitcher">
-                <NACHSAL/>
+                <SCREWHOME/>
             </div>
         );
     }
