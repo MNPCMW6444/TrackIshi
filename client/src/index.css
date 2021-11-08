@@ -1,5 +1,5 @@
 @font-face {
-  font-family: "my";
+  font-family: my;
   src: url("./logos and fonts/VarelaRound-Regular.ttf") format("truetype");
 }
 
@@ -13,6 +13,7 @@ body {
   padding-left: 10%;
   padding-right: 10%;
   zoom: 50%;
+  background-color: #e1f5f5;
 }
 
 @media (min-width: 720px) {
@@ -128,6 +129,10 @@ input {
   font-family: my;
 }
 
+textarea {
+  font-family: my;
+}
+
 /***************************************************************************/
 /************************            SPLASH            ************************/
 /***************************************************************************/
@@ -174,6 +179,9 @@ input {
 /***************************************************************************/
 /************************            LoggingBar            ************************/
 /***************************************************************************/
+
+.loggingbar {
+}
 
 .justALinkNotButton {
   border: unset;
@@ -476,9 +484,11 @@ input {
 .theTable {
   border-collapse: collapse;
   border: 0px solid rgba(23, 25, 53, 0.445);
+  table-layout: fixed;
+  width: 100%;
 }
 
-.theTableTH {
+[class^="theTableTH"] {
   background-color: rgba(23, 1, 148, 0.692);
   font-weight: "bolder";
   border: 2px solid rgb(23, 0, 107);
@@ -496,13 +506,17 @@ input {
   font-weight: "bold";
 }
 
-.theTableTD {
+[class^="theTableTD"] {
   border: 1px solid rgba(19, 20, 97, 0.247);
   text-align: "center";
   font-weight: "bold";
   text-align: center;
   padding-right: 10px;
   padding-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 1px;
 }
 
 /***************************************************************************/
@@ -537,7 +551,7 @@ input {
 
 .fudTitle {
   text-align: center;
-  font-family: FFFFF, Helvetica, sans-serif;
+  font-family: my;
   font-size: 15pt;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -550,7 +564,7 @@ input {
 
 .fudContent {
   text-align: center;
-  font-family: FFFFF, Helvetica, sans-serif;
+  font-family: my;
   font-size: large;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -575,11 +589,13 @@ input {
   font-size: 13pt;
   background-color: rgba(255, 255, 255, 0.7);
   text-align: center;
+  font-family: my;
 }
 
 .fudinput:placeholder {
   color: black;
   opacity: 0.7;
+  font-family: my;
 }
 
 /***************************************************************************/
@@ -619,27 +635,29 @@ input {
   text-align: center;
   background-color: rgba(255, 255, 255, 0.438);
   font-weight: "bold";
+  position: relative;
 }
 
 .otdselected {
   background-color: #71b0f8;
   border: 2px solid rgba(0, 17, 255, 0.712);
   text-align: center;
+  position: relative;
 }
 
 .oh3 {
-  background-color: #b6b6d8a2;
+  background-color: #0066ffaf;
   font-size: xx-large;
   text-align: center;
   border-radius: 100px;
   margin: auto;
-  font-family: FFFFF, Helvetica, sans-serif;
+  font-family: my;
   width: 85%;
 }
 
 .oh4 {
   background-color: #5353c983;
-  font-family: FFFFF, Helvetica, sans-serif;
+  font-family: my;
   font-size: large;
   margin: auto;
   width: 60%;
@@ -647,10 +665,11 @@ input {
 
 .oh5 {
   background-color: #43435eb7;
-  font-family: FFFFF, Helvetica, sans-serif;
+  font-family: my;
   font-size: medium;
   margin: auto;
   width: 50%;
+  color: rgba(255, 255, 255, 0.836);
 }
 
 .oh4,
@@ -664,22 +683,73 @@ input {
   text-align: center;
 }
 
+.rowWithHistory:hover {
+  background-color: rgba(0, 0, 0, 0.11);
+}
+
+.chartdiv {
+  visibility: hidden;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  top: -400px;
+  right: -450px;
+  z-index: 104;
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: white;
+}
+
+.chartdivshow {
+  visibility: visible;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  top: -280px;
+  right: -470px;
+  z-index: 104;
+  padding-right: 20px;
+  padding-left: 0px;
+  padding-top: 40px;
+  background-color: rgba(255, 255, 255, 0.966);
+  border-radius: 30px;
+}
+
+.chart {
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  direction: ltr;
+}
+
 .OpinionClose {
   text-align: center;
 }
 
 .OpinionCloseButton {
   font-size: 20pt;
+  background-color: rgba(177, 0, 0, 0.664);
 }
 
 /***************************************************************************/
 /************************            Footer            ************************/
 /***************************************************************************/
 
-.footer {
-  font-size: 10pt;
+.footerdiv {
   text-align: center;
-  font-weight: bold;
+  padding-left: 35%;
+  padding-right: 35%;
 }
 
 .footerlabel {
@@ -689,12 +759,13 @@ input {
 
 .footerinput {
   margin: auto;
-  width: 25%;
 }
 
 .footerinputshort {
   width: 300px;
   height: 30px;
+  text-align: center;
+
   background-color: rgba(255, 255, 255, 0.418);
 }
 
@@ -707,38 +778,31 @@ input {
 
 .footerinputlong:placeholder {
   font-size: 30pt;
+  text-align: center;
 }
 
 .footerbuttonwarapper {
-  width: 500px;
-  overflow: hidden;
-  position: relative;
-  right: 450/2px;
 }
 
 .footersend {
-  margin: auto;
-  width: 180px;
-  float: right;
+  float: left;
 }
 
 .footersendbutton {
   margin: auto;
   width: 125px;
-  height: 50/2px;
+  height: 50px;
   font-size: 20pt;
 }
 
 .footercancel {
-  margin: auto;
-  border: 1px sold green;
-  overflow: hidden;
+  float: right;
 }
 
 .footercancelbutton {
   margin: auto;
   width: 125px;
-  height: 50/2px;
+  height: 50px;
   font-size: 20pt;
   background-color: rgba(177, 0, 0, 0.664);
   color: white;
@@ -746,10 +810,10 @@ input {
 
 .version {
   text-align: center;
-  opacity: 0.5;
+  opacity: 0.75;
 }
 
 .author {
   text-align: center;
-  opacity: 0.35;
+  opacity: 0.25;
 }

@@ -6,7 +6,7 @@ const customStyles = {
   content: {
     top: "50%",
     left: "50%",
-    right: "auto",
+    right: "25%",
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
@@ -57,6 +57,7 @@ export default function OpinionSumu(props) {
           <ShowOpinion
             id={props.opinion._id}
             forClosing={closeModal}
+            allDATA={props.allDATA}
           ></ShowOpinion>
         </Modal>
       </div>

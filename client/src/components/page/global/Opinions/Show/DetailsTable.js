@@ -12,10 +12,10 @@ function OpinionDetails(props) {
           <th className="oth">האם נחתם?</th>
         </tr>
         <tr className="otr">
-          <td className="otd">{props.crewm.MA}</td>
-          <td className="otd">{props.crewm.Rank}</td>
-          <td className="otd">{props.crewm.LastName}</td>
-          <td className="otd">{props.crewm.FirstName}</td>
+          <td className="otd">{props.crewm && props.crewm.MA}</td>
+          <td className="otd">{props.crewm && props.crewm.Rank}</td>
+          <td className="otd">{props.crewm && props.crewm.LastName}</td>
+          <td className="otd">{props.crewm && props.crewm.FirstName}</td>
           <td className="otd">{props.signed}</td>
         </tr>
         <tr className="otr">

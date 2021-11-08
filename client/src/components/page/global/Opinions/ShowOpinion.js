@@ -10,8 +10,6 @@ import PotentialTable from "./Show/PotentialTable";
 import Paragraph from "../../global/usefull/Paragraph";
 
 function ShowOpinion(props) {
-  const [opened, setOpened] = useState(props.isOpened);
-
   const [crewm, setCrewm] = useState();
   const [signed, setSigned] = useState();
   const [tkufa, setTkufa] = useState();
@@ -189,7 +187,7 @@ function ShowOpinion(props) {
       } catch (err) {
         console.log(err);
       }
-      setReady(true);
+      if (!ready) setReady(true);
     };
     getOpinion();
   }, [props.opinionid]);
@@ -203,7 +201,8 @@ function ShowOpinion(props) {
       <br />
       <br />
       <h3 className="oh3">
-        טופס מישוב והערכה לרמת הבקרה של {crewm.NickName} - תקופה {tkufa}:
+        טופס מישוב והערכה לרמת הבקרה של {crewm && crewm.NickName} - תקופה{" "}
+        {tkufa}:
       </h3>
       <br />
       <br /> <br />
@@ -219,19 +218,19 @@ function ShowOpinion(props) {
       />
       <br />
       <ClassesTable
-        maslool={crewm.Maslool}
-        sooghatsava={crewm.SoogHatsava}
-        dereg={crewm.Dereg}
+        maslool={crewm && crewm.Maslool}
+        sooghatsava={crewm && crewm.SoogHatsava}
+        dereg={crewm && crewm.Dereg}
       />
       <br />
       <br /> <br />
       <h4 className="oh4">פרטי המעריך - מפקד גף</h4>
       <br />
       <PersonDetails
-        ma={commander.MA}
-        darga={commander.Rank}
-        firstn={commander.FirstName}
-        lastn={commander.LastName}
+        ma={commander && commander.MA}
+        darga={commander && commander.Rank}
+        firstn={commander && commander.FirstName}
+        lastn={commander && commander.LastName}
       />
       <br />
       <br /> <br /> <br />
@@ -240,10 +239,10 @@ function ShowOpinion(props) {
       <h5 className="oh5">(ומעריך בתנאי שהבקר מוסמך...)</h5>
       <br />
       <PersonDetails
-        ma={authorizer.MA}
-        darga={authorizer.Rank}
-        firstn={authorizer.FirstName}
-        lastn={authorizer.LastName}
+        ma={authorizer && authorizer.MA}
+        darga={authorizer && authorizer.Rank}
+        firstn={authorizer && authorizer.FirstName}
+        lastn={authorizer && authorizer.LastName}
       />
       <br />
       <br /> <br />
@@ -259,12 +258,13 @@ function ShowOpinion(props) {
         c7={c7}
         c8={c8}
         c9={c9}
+        allDATA={props.allDATA}
       />
       <br /> <br />
       <br />
       <h4 className="oh4">ציון מסכם:</h4>
       <br />
-      <FgradeTable grade={m1} />
+      <FgradeTable grade={m1} allDATA={props.allDATA} />
       <br />
       <br /> <br />
       <h4 className="oh4">פוטנציאל להובלה:</h4>
@@ -292,6 +292,11 @@ function ShowOpinion(props) {
           סגור את חוו"ד {tkufa}
         </button>
       </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <br />
       <br />
       <br />

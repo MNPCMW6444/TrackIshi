@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Lchart from "../../../../global/charts/Lchart";
 
 export default function GradeRow(props) {
   const [o4, setO4] = useState("");
@@ -8,6 +9,13 @@ export default function GradeRow(props) {
   const [o8, setO8] = useState("");
   const [o9, setO9] = useState("");
   const [o10, setO10] = useState("");
+  const [shown4, setShown4] = useState(false);
+  const [shown5, setShown5] = useState(false);
+  const [shown6, setShown6] = useState(false);
+  const [shown7, setShown7] = useState(false);
+  const [shown8, setShown8] = useState(false);
+  const [shown9, setShown9] = useState(false);
+  const [shown10, setShown10] = useState(false);
 
   useEffect(() => {
     try {
@@ -40,15 +48,122 @@ export default function GradeRow(props) {
     }
   }, [props.grade]);
 
+  function show4() {
+    setShown4(true);
+  }
+  function show5() {
+    setShown5(true);
+  }
+  function show6() {
+    setShown6(true);
+  }
+  function show7() {
+    setShown7(true);
+  }
+  function show8() {
+    setShown8(true);
+  }
+  function show9() {
+    setShown9(true);
+  }
+  function show10() {
+    setShown10(true);
+  }
+
+  function nshow4() {
+    setShown4(false);
+  }
+  function nshow5() {
+    setShown5(false);
+  }
+  function nshow6() {
+    setShown6(false);
+  }
+  function nshow7() {
+    setShown7(false);
+  }
+  function nshow8() {
+    setShown8(false);
+  }
+  function nshow9() {
+    setShown9(false);
+  }
+  function nshow10() {
+    setShown10(false);
+  }
+
   return (
     <>
-      <td className={"otd" + o4}>4</td>
-      <td className={"otd" + o5}>5</td>
-      <td className={"otd" + o6}>6</td>
-      <td className={"otd" + o7}>7</td>
-      <td className={"otd" + o8}>8</td>
-      <td className={"otd" + o9}>9</td>
-      <td className={"otd" + o10}>10</td>
+      <td onMouseOver={show4} onMouseLeave={nshow4} className={"otd" + o4}>
+        4
+        {o4 === "selected" && (
+          <Lchart
+            allDATA={props.allDATA}
+            isShown={shown4}
+            data={props.criteria}
+          />
+        )}
+      </td>
+      <td onMouseOver={show5} onMouseLeave={nshow5} className={"otd" + o5}>
+        5
+        {o5 === "selected" && (
+          <Lchart
+            allDATA={props.allDATA}
+            isShown={shown5}
+            data={props.criteria}
+          />
+        )}
+      </td>
+      <td onMouseOver={show6} onMouseLeave={nshow6} className={"otd" + o6}>
+        6
+        {o6 === "selected" && (
+          <Lchart
+            allDATA={props.allDATA}
+            isShown={shown6}
+            data={props.criteria}
+          />
+        )}
+      </td>
+      <td onMouseOver={show7} onMouseLeave={nshow7} className={"otd" + o7}>
+        7
+        {o7 === "selected" && (
+          <Lchart
+            allDATA={props.allDATA}
+            isShown={shown7}
+            data={props.criteria}
+          />
+        )}
+      </td>
+      <td onMouseOver={show8} onMouseLeave={nshow8} className={"otd" + o8}>
+        8
+        {o8 === "selected" && (
+          <Lchart
+            allDATA={props.allDATA}
+            isShown={shown8}
+            data={props.criteria}
+          />
+        )}
+      </td>
+      <td onMouseOver={show9} onMouseLeave={nshow9} className={"otd" + o9}>
+        9
+        {o9 === "selected" && (
+          <Lchart
+            allDATA={props.allDATA}
+            isShown={shown9}
+            data={props.criteria}
+          />
+        )}
+      </td>
+      <td onMouseOver={show10} onMouseLeave={nshow10} className={"otd" + o10}>
+        10
+        {o10 === "selected" && (
+          <Lchart
+            allDATA={props.allDATA}
+            isShown={shown10}
+            data={props.criteria}
+          />
+        )}
+      </td>
     </>
   );
 }
