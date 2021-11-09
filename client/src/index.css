@@ -232,6 +232,7 @@ textarea {
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  background-color: rgba(177, 0, 0, 0.664);
 }
 
 /***************************************************************************/
@@ -748,6 +749,10 @@ textarea {
 
 .footerdiv {
   text-align: center;
+
+  opacity: 0.75;
+}
+.footerdivitself {
   padding-left: 35%;
   padding-right: 35%;
 }
@@ -810,10 +815,10 @@ textarea {
 
 .version {
   text-align: center;
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
 .author {
   text-align: center;
-  opacity: 0.25;
+  opacity: 0.4;
 }

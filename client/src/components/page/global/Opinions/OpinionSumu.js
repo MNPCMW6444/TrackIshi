@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ShowOpinion from "./ShowOpinion";
+import ShowMyOpinion from "./ShowMyOpinion";
 import Modal from "react-modal";
 
 const customStyles = {
@@ -54,11 +54,11 @@ export default function OpinionSumu(props) {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <ShowOpinion
+          <ShowMyOpinion
             id={props.opinion._id}
             forClosing={closeModal}
             allDATA={props.allDATA}
-          ></ShowOpinion>
+          />
         </Modal>
       </div>
     </>

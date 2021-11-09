@@ -3,18 +3,33 @@ const User = require("../models/userModel");
 const Opinion = require("../models/opinionModel");
 const jwt = require("jsonwebtoken");
 
+async function addFudsToOpinion(theopinion) {
+  let josnres = theopinion.toJSON();
+  const screww = await User.findById(josnres.CrewM);
+  josnres.CrewM = screww;
+  const commm = await User.findById(josnres.Commander);
+  josnres.Commander = commm;
+  const authh = await User.findById(josnres.Authorizer);
+  josnres.Authorizer = authh;
+  console.log(josnres);
+  return josnres;
+}
+
 router.get("/getallmy", async (req, res) => {
   try {
     const token = req.cookies.token;
 
-    if (!token) return res.status(400)
-      .json({ errorMessage: "אינך מחובר"});
+    if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
 
     const validatedUser = jwt.verify(token, process.env.JWTSECRET);
 
     const userr = await User.findById(validatedUser.user);
 
     const opinions = await Opinion.find({ CrewM: userr });
+
+    for (let i = 0; i < opinions.length; i++)
+      opinions[i] = await addFudsToOpinion(opinions[i]);
+
     res.json(opinions);
   } catch (err) {
     res.status(500).send();
@@ -25,32 +40,54 @@ router.get("/getmyOpinion/:id", async (req, res) => {
   try {
     const token = req.cookies.token;
 
-    if (!token) return res.status(400)
-      .json({ errorMessage: "אינך מחובר"});
+    if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
 
     const validatedUser = jwt.verify(token, process.env.JWTSECRET);
 
     const userr = await User.findById(validatedUser.user);
 
     const opinion = await Opinion.findById(req.params.id);
-    
-    if(opinion.CrewM.toJSON() != userr._id.toJSON())
-      return res.status(400)
-        .json({ errorMessage: "אינך יכול לצפות בחוו''ד זה מכיוון שאינו שלך"});
 
-    let josnres = opinion.toJSON();
+    if (opinion.CrewM.toJSON() != userr._id.toJSON())
+      return res
+        .status(400)
+        .json({ errorMessage: "אינך יכול לצפות בחוו''ד זה מכיוון שאינו שלך" });
 
-    const comanderr = await User.findById(josnres.Commander);
-    const authorizerr = await User.findById(josnres.Authorizer);
-
-    josnres.CrewM=userr;
-    josnres.Commander=comanderr;
-    josnres.Authorizer=authorizerr;
-
-    res.json(josnres);
+    res.json(await addFudsToOpinion(opinion));
   } catch (err) {
-    console.log("Error on sending opinion: /n"+err)
     res.status(401).send();
+  }
+});
+router.get("/getallmyn/:ma", async (req, res) => {
+  try {
+    const token = req.cookies.token;
+
+    if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
+
+    const validatedUser = jwt.verify(token, process.env.JWTSECRET);
+
+    const comm = await User.findById(validatedUser.user);
+
+    const screww = await User.find({ MA: req.params.ma });
+
+    const opinions = await Opinion.find({ CrewM: screww });
+
+    if (
+      comm.Role === "DIRECT" &&
+      comm._id.toString() === screww[0].MyComm.toString()
+    ) {
+      for (let i = 0; i < opinions.length; i++)
+        opinions[i] = await addFudsToOpinion(opinions[i]);
+      res.json(opinions);
+    } else {
+      return res.status(401).json({
+        errorMessage:
+          'ניסית לקבל את כל החוו"דים של איש צוות אך אינך מפקד גף שלו',
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
   }
 });
 

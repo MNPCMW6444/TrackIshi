@@ -6,7 +6,7 @@ import UserContext from "../../context/UserContext";
 import { useHistory } from "react-router-dom";
 
 export default function Direct() {
-  const [navbar, setNavbar] = useState("home");
+  const [navbar, setNavbar] = useState("gaf");
   const { user, getUser } = useContext(UserContext);
   const history = useHistory();
 
@@ -36,33 +36,31 @@ export default function Direct() {
             }
             onClick={() => setNavbar("fud")}
           >
-            פרטים אישיים
+            עדכון פרטים אישיים
           </button>
           <button
             className={
-              navbar === "home" ? "naveachbuttonselected" : "naveachbutton"
+              navbar === "gaf" ? "naveachbuttonselected" : "naveachbutton"
             }
-            onClick={() => setNavbar("home")}
+            onClick={() => setNavbar("gaf")}
           >
             תמונת מצב גפית
           </button>
           <button
             className={
-              navbar === "allopinions"
-                ? "naveachbuttonselected"
-                : "naveachbutton"
+              navbar === "opinions" ? "naveachbuttonselected" : "naveachbutton"
             }
-            onClick={() => setNavbar("allopinions")}
+            onClick={() => setNavbar("opinions")}
           >
-            החוו"דים שלי
+            הזנת חוו"דים
           </button>
           <button
             className={
-              navbar === "alltests" ? "naveachbuttonselected" : "naveachbutton"
+              navbar === "tests" ? "naveachbuttonselected" : "naveachbutton"
             }
-            onClick={() => setNavbar("alltests")}
+            onClick={() => setNavbar("tests")}
           >
-            ההכשרות שלי
+            הזנת מבחנים
           </button>
           <button className="navlogout" onClick={logOut}>
             התנתק
