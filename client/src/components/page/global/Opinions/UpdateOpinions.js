@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import EditOpinionButton from "./EditOpinionButton";
+import NewOpinionButton from "./NewOpinionButton";
 import Axios from "axios";
 import domain from "../../../../util/domain";
 
 export default function UpdateOpinions(props) {
-  const [successMessage, setSuccessMessage] = useState(null);
-
   const [ready, setReady] = useState(false);
   const [res, setRes] = useState();
 
@@ -23,17 +22,10 @@ export default function UpdateOpinions(props) {
   return ready ? (
     <div className="col">
       <h2>רשימת כל החוודים ע"פ תקופות:</h2>
+      <div>{<NewOpinionButton />}</div>
       {res.map((opinion) => (
         <>
-          <div>
-            {
-              <EditOpinionButton
-                suc={setSuccessMessage}
-                oid={opinion._id}
-                allDATA={opinion}
-              />
-            }
-          </div>
+          <div>{<EditOpinionButton oid={opinion._id} allDATA={opinion} />}</div>
           <br />
         </>
       ))}

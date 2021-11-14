@@ -8,12 +8,12 @@
 /***************************************************************************/
 
 body {
-  background-color: #e1f5f5;
+  /*background-image: #e1f5f5;*/
   font-family: my;
   padding-left: 10%;
   padding-right: 10%;
   zoom: 50%;
-  background-color: #e1f5f5;
+  /*background-color: #e1f5f5;*/
 }
 
 @media (min-width: 720px) {
@@ -739,8 +739,16 @@ textarea {
 }
 
 .OpinionCloseButton {
-  font-size: 20pt;
+  font-size: 15pt;
   background-color: rgba(177, 0, 0, 0.664);
+}
+
+.OpinionSend {
+  text-align: center;
+}
+
+.OpinionSendButton {
+  font-size: 25pt;
 }
 
 /***************************************************************************/

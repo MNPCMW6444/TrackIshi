@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import domain from "../../../../util/domain";
 import DetailsTable from "./Edit/DetailsTable";
 import ClassesTable from "./Edit/ClassesTable";
@@ -8,8 +8,11 @@ import GradesTable from "./Edit/GradesTable";
 import FgradeTable from "./Edit/FgradeTable";
 import PotentialTable from "./Edit/PotentialTable";
 import Paragraph from "../usefull/Paragraph";
+import ErrorMessage from "../../../messages/ErrorMessage";
 
 function EditOpinion(props) {
+  const [newGrade, setNewGrade] = useState([4, "nelson"]);
+
   const OpinionRes = props.allOpinion;
   let wascrewm = OpinionRes.CrewM;
 
@@ -79,6 +82,99 @@ function EditOpinion(props) {
   let wasTp = tpp;
   let wasFp = fpp;
 
+  const [nc1, setNc1] = useState(wasC1);
+  const [nc2, setNc2] = useState(wasC2);
+  const [nc3, setNc3] = useState(wasC3);
+  const [nc4, setNc4] = useState(wasC4);
+  const [nc5, setNc5] = useState(wasC5);
+  const [nc6, setNc6] = useState(wasC6);
+  const [nc7, setNc7] = useState(wasC7);
+  const [nc8, setNc8] = useState(wasC8);
+  const [nc9, setNc9] = useState(wasC9);
+  const [nf, setNf] = useState(wasM1);
+
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  useEffect(() => {
+    switch (newGrade[1]) {
+      case "fi":
+        setNf(newGrade[0]);
+        break;
+
+      case "C1":
+        setNc1(newGrade[0]);
+        break;
+
+      case "C2":
+        setNc2(newGrade[0]);
+        break;
+
+      case "C3":
+        setNc3(newGrade[0]);
+        break;
+
+      case "C4":
+        setNc4(newGrade[0]);
+        break;
+
+      case "C5":
+        setNc5(newGrade[0]);
+        break;
+
+      case "C6":
+        setNc6(newGrade[0]);
+        break;
+
+      case "C7":
+        setNc7(newGrade[0]);
+        break;
+
+      case "C8":
+        setNc8(newGrade[0]);
+        break;
+
+      case "C9":
+        setNc9(newGrade[0]);
+        break;
+
+      default:
+        console.log("אתחול או שינוי לא מוכר");
+        break;
+    }
+  }, [newGrade]);
+
+  async function send() {
+    const newData = {
+      o1: nc1,
+      o2: nc2,
+      o3: nc3,
+      o4: nc4,
+      o5: nc5,
+      o6: nc6,
+      o7: nc7,
+      o8: nc8,
+      o9: nc9,
+      fn: nf,
+    };
+
+    try {
+      await Axios.put(
+        `${domain}/opinion/editOpinion/${OpinionRes._id}`,
+        newData
+      );
+      props.suc('חוו"ד ' + finilTkufa + " עדוכן בהצלחה!");
+      const closeModal = props.forClosing;
+      closeModal();
+    } catch (err) {
+      if (err.response) {
+        if (err.response.data.errorMessage) {
+          setErrorMessage(err.response.data.errorMessage);
+        }
+      } else console.log(err);
+    }
+    return;
+  }
+
   return (
     <div className="odiv">
       <br />
@@ -136,22 +232,27 @@ function EditOpinion(props) {
       <h4 className="oh4">הערכת תכונות בקרה:</h4>
       <br />
       <GradesTable
-        c1={wasC1}
-        c2={wasC2}
-        c3={wasC3}
-        c4={wasC4}
-        c5={wasC5}
-        c6={wasC6}
-        c7={wasC7}
-        c8={wasC8}
-        c9={wasC9}
+        c1={nc1}
+        c2={nc2}
+        c3={nc3}
+        c4={nc4}
+        c5={nc5}
+        c6={nc6}
+        c7={nc7}
+        c8={nc8}
+        c9={nc9}
         allDATA={props.allDATA}
+        setnewgrade={setNewGrade}
       />
       <br /> <br />
       <br />
       <h4 className="oh4">ציון מסכם:</h4>
       <br />
-      <FgradeTable grade={wasM1} allDATA={props.allDATA} />
+      <FgradeTable
+        setnewgrade={setNewGrade}
+        grade={nf}
+        allDATA={props.allDATA}
+      />
       <br />
       <br /> <br />
       <h4 className="oh4">פוטנציאל להובלה:</h4>
@@ -174,12 +275,24 @@ function EditOpinion(props) {
       <br />
       <br />
       <br />
-      <div className="OpinionClose">
-        <button className="OpinionCloseButton" onClick={props.forClosing}>
-          סגור את חוו"ד {wasTkufa}
+      <div className="OpinionSend">
+        <button className="OpinionSendButton" onClick={send}>
+          שלח {wasTkufa}
         </button>
+        <br /> <br />
+        {errorMessage && (
+          <ErrorMessage
+            message={errorMessage}
+            clear={() => setErrorMessage(null)}
+          />
+        )}
       </div>
       <br />
+      <div className="OpinionClose">
+        <button className="OpinionCloseButton" onClick={props.forClosing}>
+          סגור מבלי לשמור
+        </button>
+      </div>
       <br />
       <br />
       <br />

@@ -1,6 +1,7 @@
 import EditOpinion from "./EditOpinion";
 import Modal from "react-modal";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import SuccessMessage from "../../../messages/SuccessMessage";
 
 const customStyles = {
   content: {
@@ -47,7 +48,6 @@ export default function EditOpinionButton(props) {
           {finilTkuda}
         </button>
       </div>
-
       <div>
         <Modal
           isOpen={modalIsOpen}
@@ -56,9 +56,24 @@ export default function EditOpinionButton(props) {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <EditOpinion allOpinion={props.allDATA} forClosing={closeModal} />
+          <EditOpinion
+            allOpinion={props.allDATA}
+            forClosing={closeModal}
+            suc={setSuccessMessage}
+          />
         </Modal>
       </div>
+
+      {successMessage && (
+        <>
+          {" "}
+          <br />
+          <SuccessMessage
+            message={successMessage}
+            clear={() => setSuccessMessage(null)}
+          />
+        </>
+      )}
     </>
   );
 }
