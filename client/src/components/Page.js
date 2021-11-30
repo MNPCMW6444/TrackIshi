@@ -57,7 +57,7 @@ export default function Page() {
       );
     default:
       return (
-        <div className="pageSwitcherThatisEmptybecuaseuser is balmaz">
+        <div className="pageSwitcherThatisEmptybecuaseuser-is-balmaz">
           <p> מי זה? </p>
           <Link to="/login">הזדהה</Link>
         </div>
