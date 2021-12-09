@@ -20,7 +20,7 @@ The system's clean architecture:
 
 Develoment environment - localhost
 
-FAT (UnClassified Production for Factory Acceptance Test) environment - free online hosting:
+UnClassified Production environment - free online hosting:
 
 > Database is hosted on MongoDB Atlas<br />
 > Backend is hosted on Heroku<br />
@@ -49,7 +49,7 @@ npm install
 npm start
 ```
 
-For FAT:
+Online sandbox:
 
 > make sure you have a MongoDB server on MongoDB Atlas updated your URI in the .env file <br />
 > make sure you have a git repo connected to heroku account <br />
