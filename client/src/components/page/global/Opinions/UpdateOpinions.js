@@ -25,7 +25,15 @@ export default function UpdateOpinions(props) {
       <div>{<NewOpinionButton />}</div>
       {res.map((opinion) => (
         <>
-          <div>{<EditOpinionButton oid={opinion._id} allDATA={opinion} />}</div>
+          <div>
+            {
+              <EditOpinionButton
+                oid={opinion._id}
+                allDATA={opinion}
+                shel={props.shel}
+              />
+            }
+          </div>
           <br />
         </>
       ))}

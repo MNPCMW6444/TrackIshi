@@ -51,7 +51,11 @@ export default function NewOpinionButton(props) {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <NewOpinion forClosing={closeModal} suc={setSuccessMessage} />
+          <NewOpinion
+            forClosing={closeModal}
+            suc={setSuccessMessage}
+            shel={props.shel}
+          />
         </Modal>
       </div>
 

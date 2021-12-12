@@ -15,14 +15,14 @@ import ErrorMessage from "../../../messages/ErrorMessage";
 function NewOpinion(props) {
   const [newGrade, setNewGrade] = useState([4, "nelson"]);
 
-  const OpinionRes = props.allOpinion;
+  const OpinionRes = { CrewM: props.shel };
   let wascrewm = OpinionRes.CrewM;
 
   let siginit = OpinionRes.Signed ? "כן" : "לא";
   let wasSigned = siginit;
 
   //TKUFA
-  let tkufaNum = OpinionRes.Tkufa;
+  let tkufaNum = 4040;
   let TkufaYear = tkufaNum % 2 === 0 ? tkufaNum / 2 : tkufaNum / 2 + 0.5;
   let tkufainYear = tkufaNum % 2 === 0 ? "2" : "1";
   let yearString = TkufaYear.toString();
@@ -42,19 +42,19 @@ function NewOpinion(props) {
   finil = day + "/" + month + "/" + year;
   let wasFfilldate = finil;
 
-  let wasMonthsno = OpinionRes.MonthsNo;
+  let wasMonthsno = 6;
 
-  let wasPosition = OpinionRes.Position;
+  let wasPosition = "חולד";
 
-  let wasC1 = OpinionRes.C1;
+  let wasC1 = 7;
 
-  let wasC2 = OpinionRes.C2;
+  let wasC2 = 7;
 
-  let wasC3 = OpinionRes.C3;
+  let wasC3 = 7;
 
-  let wasC4 = OpinionRes.C4;
+  let wasC4 = 7;
 
-  let wasCommander = OpinionRes.Commander;
+  let wasCommander = user; //////////////////////////////////////
 
   let wasAuthorizer = OpinionRes.Authorizer;
 
