@@ -27,7 +27,7 @@ export default function KAHAD() {
             }
             onClick={() => setNavbar("home")}
           >
-            נכס"ל
+            ספר טלפונים
           </button>
           <button className="navlogout" onClick={logOut}>
             התנתק

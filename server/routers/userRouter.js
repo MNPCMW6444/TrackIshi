@@ -287,7 +287,7 @@ router.get("/getmypeople", async (req, res) => {
 
     const userr = await User.findById(validatedUser.user);
 
-    if (userr.Role === "DIRECT") {
+    if (userr.Role === "DIRECT" || userr.Role === "SCHOOL") {
       allusers = await User.find();
       for (let i = 0; i < allusers.length; i++) {
         if (!allusers[i].MyComm || allusers[i].MyComm.toString() != userr._id) {

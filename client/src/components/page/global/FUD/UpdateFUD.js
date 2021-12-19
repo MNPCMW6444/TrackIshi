@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import UserContext from "../../../../context/UserContext";
 import domain from "../../../../util/domain";
 import ErrorMessage from "../../../messages/ErrorMessage";
+import DropdownInput from "react-dropdown-input";
 
 function UpdateFUD(props) {
   const [ma, setMA] = useState();
@@ -467,6 +468,13 @@ function UpdateFUD(props) {
                     defaultValue={unit}
                     value={funit}
                     onChange={(e) => fsetUnit(e.target.value)}
+                  />
+                  <DropdownInput
+                    options={searchNames}
+                    defaultValue={this.props.initialValue}
+                    menuClassName="dropdown-input"
+                    onSelect={this.handleSelectName}
+                    placeholder="Search..."
                   />
                 </div>
               </div>

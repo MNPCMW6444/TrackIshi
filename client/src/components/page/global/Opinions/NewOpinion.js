@@ -1,7 +1,7 @@
 //now do this
 
 import Axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import domain from "../../../../util/domain";
 import DetailsTable from "./New/DetailsTable";
 import ClassesTable from "./New/ClassesTable";
@@ -10,6 +10,7 @@ import GradesTable from "./New/GradesTable";
 import FgradeTable from "./New/FgradeTable";
 import PotentialTable from "./New/PotentialTable";
 import Paragraph from "../usefull/Paragraph";
+import UserContext from "../../../../context/UserContext";
 import ErrorMessage from "../../../messages/ErrorMessage";
 
 function NewOpinion(props) {
@@ -17,7 +18,7 @@ function NewOpinion(props) {
 
   const OpinionRes = { CrewM: props.shel };
   let wascrewm = OpinionRes.CrewM;
-
+  //debugger;
   let siginit = OpinionRes.Signed ? "כן" : "לא";
   let wasSigned = siginit;
 
@@ -35,7 +36,7 @@ function NewOpinion(props) {
 
   //FILLDATE
   let finil = "DIDNOTDOWANAD";
-  finil = OpinionRes.fillDate.substring(0, 10);
+  finil = wasTkufa;
   const day = finil.substring(5, 7);
   const month = finil.substring(8, 10);
   const year = finil.substring(0, 4);
@@ -54,27 +55,25 @@ function NewOpinion(props) {
 
   let wasC4 = 7;
 
-  let wasCommander = user; //////////////////////////////////////
+  let wasCommander = useContext(UserContext).user;
 
-  let wasAuthorizer = OpinionRes.Authorizer;
+  let wasC5 = 7;
 
-  let wasC5 = OpinionRes.C5;
+  let wasC6 = 7;
 
-  let wasC6 = OpinionRes.C6;
+  let wasC7 = 7;
 
-  let wasC7 = OpinionRes.C7;
+  let wasC8 = 7;
 
-  let wasC8 = OpinionRes.C8;
+  let wasC9 = 7;
 
-  let wasC9 = OpinionRes.C9;
+  let wasM1 = 7;
 
-  let wasM1 = OpinionRes.M1;
-
-  let wasM2 = OpinionRes.M2;
+  let wasM2 = 7;
 
   //PARAGRAPHS
-  let tparr = OpinionRes.Tp;
-  let fparr = OpinionRes.Fp;
+  let tparr = 7;
+  let fparr = 7;
   let tpp = "";
   let fpp = "";
   for (let i = 0; i < tparr.length; i++) tpp = tpp + tparr[i] + "\n";
@@ -209,7 +208,7 @@ function NewOpinion(props) {
       />
       <br />
       <br /> <br />
-      <h4 className="oh4">פרטי המעריך - מפקד גף</h4>
+      <h4 className="oh4">פרטי המעריך - מפקד הכשרה...(?)</h4>
       <br />
       <PersonDetails
         ma={wasCommander && wasCommander.MA}
@@ -219,18 +218,6 @@ function NewOpinion(props) {
       />
       <br />
       <br /> <br /> <br />
-      <h4 className="oh4">פרטי המאשר - מפקד יחידה</h4>
-      <br />
-      <h5 className="oh5">(ומעריך בתנאי שהבקר מוסמך...)</h5>
-      <br />
-      <PersonDetails
-        ma={wasAuthorizer && wasAuthorizer.MA}
-        darga={wasAuthorizer && wasAuthorizer.Rank}
-        firstn={wasAuthorizer && wasAuthorizer.FirstName}
-        lastn={wasAuthorizer && wasAuthorizer.LastName}
-      />
-      <br />
-      <br /> <br />
       <h4 className="oh4">הערכת תכונות בקרה:</h4>
       <br />
       <GradesTable

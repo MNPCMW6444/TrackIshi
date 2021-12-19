@@ -73,8 +73,9 @@ router.get("/getallmyn/:ma", async (req, res) => {
     const opinions = await Opinion.find({ CrewM: screww });
 
     if (
-      comm.Role === "DIRECT" &&
-      comm._id.toString() === screww[0].MyComm.toString()
+      comm.Role === "DIRECT" ||
+      (comm.Role === "SCHOOL" &&
+        comm._id.toString() === screww[0].MyComm.toString())
     ) {
       for (let i = 0; i < opinions.length; i++)
         opinions[i] = await addFudsToOpinion(opinions[i]);

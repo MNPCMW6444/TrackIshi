@@ -28,7 +28,7 @@ export default function Direct() {
             }
             onClick={() => setNavbar("nachsal")}
           >
-            נכס"ל
+            ספר טלפונים
           </button>
           <button
             className={

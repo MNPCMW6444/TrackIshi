@@ -77,12 +77,12 @@ export default function Loggingbar() {
                 <br />
                 <div className="Roleheader">מבצעים:</div>
                 <br />
-                <div className="Rolemeaning">בעל גישה לנכס"ל בלבד</div>
+                <div className="Rolemeaning">בעל גישה לספר טלפונים בלבד</div>
                 <br />
                 <div className="Roleheader">מנהל כח אדם:</div>
                 <br />
                 <div className="Rolemeaning">
-                  בעל גישה לנכס"ל + עריכת פרטים אישיים של כולם
+                  בעל גישה לספר טלפונים + עריכת פרטים אישיים של כולם
                 </div>
                 <br />
                 <div className="Roleheader">איש צוות:</div>

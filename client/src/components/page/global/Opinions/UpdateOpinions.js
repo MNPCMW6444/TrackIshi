@@ -22,7 +22,7 @@ export default function UpdateOpinions(props) {
   return ready ? (
     <div className="col">
       <h2>רשימת כל החוודים ע"פ תקופות:</h2>
-      <div>{<NewOpinionButton />}</div>
+      <div>{<NewOpinionButton shel={props.shel} />}</div>
       {res.map((opinion) => (
         <>
           <div>
