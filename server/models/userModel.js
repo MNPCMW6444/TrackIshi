@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
   AddressCity: String,
   AddressLine: String,
   Rank: String,
+  Dereg: String,
   Maslool: String,
   SoogHatsava: String,
   Unit: String,

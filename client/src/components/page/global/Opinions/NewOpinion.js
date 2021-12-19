@@ -18,12 +18,15 @@ function NewOpinion(props) {
 
   const OpinionRes = { CrewM: props.shel };
   let wascrewm = OpinionRes.CrewM;
-  //debugger;
   let siginit = OpinionRes.Signed ? "כן" : "לא";
-  let wasSigned = siginit;
+  let wassigned = "לא";
 
   //TKUFA
-  let tkufaNum = 4040;
+  let today = new Date();
+  let thisYear = today.getFullYear();
+  let thisMonth = today.getMonth() + 1;
+  let tkufaNum = thisYear * 2;
+  if (thisMonth < 7) tkufaNum--;
   let TkufaYear = tkufaNum % 2 === 0 ? tkufaNum / 2 : tkufaNum / 2 + 0.5;
   let tkufainYear = tkufaNum % 2 === 0 ? "2" : "1";
   let yearString = TkufaYear.toString();
@@ -32,56 +35,57 @@ function NewOpinion(props) {
   let addex = "";
   for (let i = 0; i < countD; i++) addex = addex + "0";
   let finilTkufa = tkufainYear + "." + addex + yearString;
-  let wasTkufa = finilTkufa;
+  let wastkufa = finilTkufa;
 
   //FILLDATE
-  let finil = "DIDNOTDOWANAD";
-  finil = wasTkufa;
-  const day = finil.substring(5, 7);
-  const month = finil.substring(8, 10);
-  const year = finil.substring(0, 4);
-  finil = day + "/" + month + "/" + year;
-  let wasFfilldate = finil;
 
-  let wasMonthsno = 6;
+  let wasfilldate = today.getDate() + "/" + thisMonth + "/" + thisYear;
 
-  let wasPosition = "חולד";
+  let wasmonthsno = "";
 
-  let wasC1 = 7;
+  let wasposition = "";
 
-  let wasC2 = 7;
+  let wasC1 = 11;
 
-  let wasC3 = 7;
+  let wasC2 = 11;
 
-  let wasC4 = 7;
+  let wasC3 = 11;
+
+  let wasC4 = 11;
 
   let wasCommander = useContext(UserContext).user;
 
-  let wasC5 = 7;
+  let wasC5 = 11;
 
-  let wasC6 = 7;
+  let wasC6 = 11;
 
-  let wasC7 = 7;
+  let wasC7 = 11;
 
-  let wasC8 = 7;
+  let wasC8 = 11;
 
-  let wasC9 = 7;
+  let wasC9 = 11;
 
-  let wasM1 = 7;
+  let wasM1 = 11;
 
-  let wasM2 = 7;
+  let wasM2 = 11;
 
   //PARAGRAPHS
-  let tparr = 7;
-  let fparr = 7;
-  let tpp = "";
-  let fpp = "";
+  let tparr = 11;
+  let fparr = 11;
+  let tpp = "הקלד פה את היעדים לתקופה הקרובה באופן חופשי";
+  let fpp = 'הקלד פה את סיכום החוו"ד באופן חופשי';
   for (let i = 0; i < tparr.length; i++) tpp = tpp + tparr[i] + "\n";
 
   for (let i = 0; i < fparr.length; i++) fpp = fpp + fparr[i] + "\n";
 
   let wasTp = tpp;
   let wasFp = fpp;
+
+  const [signed, fsigned] = useState(wassigned);
+  const [tkufa, ftkufa] = useState(wastkufa);
+  const [filldate, ffilldate] = useState(wasfilldate);
+  const [monthsno, fmonthsno] = useState(wasmonthsno);
+  const [position, fposition] = useState(wasposition);
 
   const [nc1, setNc1] = useState(wasC1);
   const [nc2, setNc2] = useState(wasC2);
@@ -92,7 +96,12 @@ function NewOpinion(props) {
   const [nc7, setNc7] = useState(wasC7);
   const [nc8, setNc8] = useState(wasC8);
   const [nc9, setNc9] = useState(wasC9);
+
   const [nf, setNf] = useState(wasM1);
+  const [np, setNp] = useState(wasM2);
+
+  const [ntp, setNtp] = useState("");
+  const [nfp, setNfp] = useState("");
 
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -138,6 +147,14 @@ function NewOpinion(props) {
         setNc9(newGrade[0]);
         break;
 
+      case "final":
+        setNf(newGrade[0]);
+        break;
+
+      case "pot":
+        setNp(newGrade[0]);
+        break;
+
       default:
         console.log("אתחול או שינוי לא מוכר");
         break;
@@ -145,32 +162,50 @@ function NewOpinion(props) {
   }, [newGrade]);
 
   async function send() {
+    let tkufaintext = tkufa;
+    let year = parseInt(tkufa.substring(2, tkufa.length)) - 1;
+    let tkufanum = tkufaintext[0] === "1" ? year * 2 + 1 : year * 2 + 2;
+    if (
+      tkufaintext[1] !== "." ||
+      tkufaintext[0] !== "1" ||
+      tkufaintext[0] !== "2"
+    )
+      tkufanum = "חרא עליך";
     const newData = {
-      o1: nc1,
-      o2: nc2,
-      o3: nc3,
-      o4: nc4,
-      o5: nc5,
-      o6: nc6,
-      o7: nc7,
-      o8: nc8,
-      o9: nc9,
-      fn: nf,
+      CrewM: props.shel._id,
+      gSigned: signed,
+      Tkufa: tkufanum,
+      gfillDate: filldate,
+      MonthsNo: monthsno,
+      Position: position,
+      C1: nc1,
+      C2: nc2,
+      C3: nc3,
+      C4: nc4,
+      C5: nc5,
+      C6: nc6,
+      C7: nc7,
+      C8: nc8,
+      C9: nc9,
+      M1: nf,
+      M2: np,
+      Tp: ntp,
+      Fp: nfp,
     };
 
     try {
-      await Axios.put(
-        `${domain}/opinion/NewOpinion/${OpinionRes._id}`,
-        newData
-      );
-      props.suc('חוו"ד ' + finilTkufa + " עדוכן בהצלחה!");
+      await Axios.post(`${domain}/opinion/createOpinion`, newData);
+      props.suc('חוו"ד ' + finilTkufa + " נשמר בהצלחה!");
       const closeModal = props.forClosing;
       closeModal();
     } catch (err) {
       if (err.response) {
         if (err.response.data.errorMessage) {
           setErrorMessage(err.response.data.errorMessage);
-        }
+        } else
+          setErrorMessage(
+            "כנראה שהזנת תאריך או תקופה שלא בפורמט, נסה להזין בדומה לפוומט האוטומטי"
+          );
       } else console.log(err);
     }
     return;
@@ -186,19 +221,29 @@ function NewOpinion(props) {
       <br />
       <h3 className="oh3">
         טופס מישוב והערכה לרמת הבקרה של {wascrewm && wascrewm.NickName} - תקופה{" "}
-        {wasTkufa}:
+        {wastkufa}:
       </h3>
       <br />
       <br /> <br />
       <h4 className="oh4">פרטי הקצין המוערך</h4>
       <br />
       <DetailsTable
-        crewm={wascrewm}
-        signed={wasSigned}
-        tkufa={wasTkufa}
-        filldate={wasFfilldate}
-        monthsno={wasMonthsno}
-        position={wasPosition}
+        wascrewm={wascrewm}
+        wassigned={wassigned}
+        signed={signed}
+        fsigned={fsigned}
+        wastkufa={wastkufa}
+        tkufa={tkufa}
+        ftkufa={ftkufa}
+        wasfilldate={wasfilldate}
+        filldate={filldate}
+        ffilldate={ffilldate}
+        wasmonthsno={wasmonthsno}
+        monthsno={monthsno}
+        fmonthsno={fmonthsno}
+        wasposition={wasposition}
+        position={position}
+        fposition={fposition}
       />
       <br />
       <ClassesTable
@@ -208,7 +253,7 @@ function NewOpinion(props) {
       />
       <br />
       <br /> <br />
-      <h4 className="oh4">פרטי המעריך - מפקד הכשרה...(?)</h4>
+      <h4 className="oh4">פרטי המעריך - מפקד גף</h4>
       <br />
       <PersonDetails
         ma={wasCommander && wasCommander.MA}
@@ -246,27 +291,43 @@ function NewOpinion(props) {
       <br /> <br />
       <h4 className="oh4">פוטנציאל להובלה:</h4>
       <br />
-      <PotentialTable grade={wasM2} />
+      <PotentialTable
+        grade={np}
+        allDATA={props.allDATA}
+        setnewgrade={setNewGrade}
+      />
       <br />
       <br /> <br />
       <h4 className="oh4">הערכה מילולית מסכמת:</h4> <br />
       <h5 className="oh5">יעדים לתקופה הקרובה:</h5>
       <br />
       <div className="opd">
-        <Paragraph text={wasTp} />
+        <textarea
+          className="opinionInputPara"
+          type="text"
+          placeholder={wasTp}
+          value={ntp}
+          onChange={(e) => setNtp(e.target.value)}
+        />
       </div>
       <br />
       <h5 className="oh5">סיכום המשוב:</h5>
       <br />
       <div className="opd">
-        <Paragraph text={wasFp} />
+        <textarea
+          className="opinionInputPara"
+          type="text"
+          placeholder={wasFp}
+          value={nfp}
+          onChange={(e) => setNfp(e.target.value)}
+        />
       </div>
       <br />
       <br />
       <br />
       <div className="OpinionSend">
         <button className="OpinionSendButton" onClick={send}>
-          שלח {wasTkufa}
+          שלח {wastkufa}
         </button>
         <br /> <br />
         {errorMessage && (

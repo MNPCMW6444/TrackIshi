@@ -34,8 +34,8 @@ function EditOpinion(props) {
   //FILLDATE
   let finil = "DIDNOTDOWANAD";
   finil = OpinionRes.fillDate.substring(0, 10);
-  const day = finil.substring(5, 7);
-  const month = finil.substring(8, 10);
+  const month = finil.substring(5, 7);
+  const day = finil.substring(8, 10);
   const year = finil.substring(0, 4);
   finil = day + "/" + month + "/" + year;
   let wasFfilldate = finil;

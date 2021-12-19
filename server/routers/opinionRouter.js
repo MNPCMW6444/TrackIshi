@@ -282,195 +282,196 @@ router.put("/editOpinion/:id", async (req, res) => {
   }
 });
 
-router.put("/createOpinion/:id", async (req, res) => {
+router.post("/createOpinion", async (req, res) => {
   try {
     const token = req.cookies.token;
+
+    if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
+
+    const validatedUser = jwt.verify(token, process.env.JWTSECRET);
+
+    const userr = await User.findById(validatedUser.user);
+
     const {
-      otkufa,
-      ofilldate,
-      omonthsno,
-      oposition,
-
-      oc1,
-      oc2,
-      oc3,
-      oc4,
-      oc5,
-      oc6,
-      oc7,
-      oc8,
-      oc9,
-
-      om1,
-
-      om2,
-
-      otp,
-      ofp,
+      CrewM,
+      gSigned,
+      Tkufa,
+      gfillDate,
+      MonthsNo,
+      Position,
+      C1,
+      C2,
+      C3,
+      C4,
+      C5,
+      C6,
+      C7,
+      C8,
+      C9,
+      M1,
+      M2,
+      Tp,
+      Fp,
     } = req.body;
 
-    const opinionId = req.params.id;
-
-    if (!opinionId)
+    if (!CrewM) {
       return res.status(400).json({
-        errorMessage: "יש בעיה... לא התקבל מזהה חוו''ד",
-      });
-
-    if (!token)
-      return res.status(400).json({
-        errorMessage: "אינך מחובר",
-      });
-
-    if (!otkufa) {
-      return res.status(400).json({
-        errorMessage: "חובה להזין תקופה רלוונטית לחוו''ד",
+        errorMessage: "של מי החווד?",
       });
     }
-
-    if ((await Opinion.find({ Tkufa: otkufa })).length != 0) {
+    if (!gSigned) {
       return res.status(400).json({
-        errorMessage:
-          "לתקופה שהוזנה כבר קיימת חוו''ד, נא לערוך או למחוק את החו''ד הקיימת",
+        errorMessage: "האם החווד חתום?",
       });
     }
-
-    if (new Date() < ofilldate) {
+    if (!Tkufa) {
       return res.status(400).json({
-        errorMessage: "לא ניתן להזין תאריך מילוי חוו''ד עתידי",
+        errorMessage: "לאיזה תקופה החווד?",
       });
     }
-
-    if (!omonthsno) {
+    if (!gfillDate) {
       return res.status(400).json({
-        errorMessage: "יש להזין מס' חודשים תחת פיקודך",
+        errorMessage: "מתי הוזן החווד?",
       });
     }
-
-    if (omonthsno > 0) {
+    if (!MonthsNo) {
       return res.status(400).json({
-        errorMessage: "יש להזין מס' חודשים תחת פיקודך הגדול מ-0",
+        errorMessage: "כמה חודשים פיקדת?",
       });
     }
-
-    if (!oposition) {
+    if (
+      !(
+        MonthsNo == 1 ||
+        MonthsNo == 2 ||
+        MonthsNo == 3 ||
+        MonthsNo == 4 ||
+        MonthsNo == 5 ||
+        MonthsNo == 6 ||
+        MonthsNo == 0
+      )
+    )
+      return res
+        .status(400)
+        .json({ errorMessage: "לא ייתכן שפיקדת יותר מ6 חודשים בתקופה" });
+    if (!Position) {
       return res.status(400).json({
-        errorMessage: "יש להזין תפקיד / נע''ת כלשהו",
+        errorMessage: "מה תפקיד הפקוד?",
       });
     }
 
     if (
       !(
-        oc1 == 4 ||
-        oc1 == 5 ||
-        oc1 == 6 ||
-        oc1 == 7 ||
-        oc1 == 8 ||
-        oc1 == 9 ||
-        oc1 == 10
+        C1 == 4 ||
+        C1 == 5 ||
+        C1 == 6 ||
+        C1 == 7 ||
+        C1 == 8 ||
+        C1 == 9 ||
+        C1 == 10
       )
     )
       return res.status(400).json({ errorMessage: "פרמטר 1 חסר" });
 
     if (
       !(
-        oc2 == 4 ||
-        oc2 == 5 ||
-        oc2 == 6 ||
-        oc2 == 7 ||
-        oc2 == 8 ||
-        oc2 == 9 ||
-        oc2 == 10
+        C2 == 4 ||
+        C2 == 5 ||
+        C2 == 6 ||
+        C2 == 7 ||
+        C2 == 8 ||
+        C2 == 9 ||
+        C2 == 10
       )
     )
       return res.status(400).json({ errorMessage: "פרמטר 2 חסר" });
 
     if (
       !(
-        oc3 == 4 ||
-        oc3 == 5 ||
-        oc3 == 6 ||
-        oc3 == 7 ||
-        oc3 == 8 ||
-        oc3 == 9 ||
-        oc3 == 10
+        C3 == 4 ||
+        C3 == 5 ||
+        C3 == 6 ||
+        C3 == 7 ||
+        C3 == 8 ||
+        C3 == 9 ||
+        C3 == 10
       )
     )
       return res.status(400).json({ errorMessage: "פרמטר 3 חסר" });
 
     if (
       !(
-        oc4 == 4 ||
-        oc4 == 5 ||
-        oc4 == 6 ||
-        oc4 == 7 ||
-        oc4 == 8 ||
-        oc4 == 9 ||
-        oc4 == 10
+        C4 == 4 ||
+        C4 == 5 ||
+        C4 == 6 ||
+        C4 == 7 ||
+        C4 == 8 ||
+        C4 == 9 ||
+        C4 == 10
       )
     )
       return res.status(400).json({ errorMessage: "פרמטר 4 חסר" });
 
     if (
       !(
-        oc5 == 4 ||
-        oc5 == 5 ||
-        oc5 == 6 ||
-        oc5 == 7 ||
-        oc5 == 8 ||
-        oc5 == 9 ||
-        oc5 == 10
+        C5 == 4 ||
+        C5 == 5 ||
+        C5 == 6 ||
+        C5 == 7 ||
+        C5 == 8 ||
+        C5 == 9 ||
+        C5 == 10
       )
     )
       return res.status(400).json({ errorMessage: "פרמטר 5 חסר" });
 
     if (
       !(
-        oc6 == 4 ||
-        oc6 == 5 ||
-        oc6 == 6 ||
-        oc6 == 7 ||
-        oc6 == 8 ||
-        oc6 == 9 ||
-        oc6 == 10
+        C6 == 4 ||
+        C6 == 5 ||
+        C6 == 6 ||
+        C6 == 7 ||
+        C6 == 8 ||
+        C6 == 9 ||
+        C6 == 10
       )
     )
       return res.status(400).json({ errorMessage: "פרמטר 6 חסר" });
 
     if (
       !(
-        oc7 == 4 ||
-        oc7 == 5 ||
-        oc7 == 6 ||
-        oc7 == 7 ||
-        oc7 == 8 ||
-        oc7 == 9 ||
-        oc7 == 10
+        C7 == 4 ||
+        C7 == 5 ||
+        C7 == 6 ||
+        C7 == 7 ||
+        C7 == 8 ||
+        C7 == 9 ||
+        C7 == 10
       )
     )
       return res.status(400).json({ errorMessage: "פרמטר 7 חסר" });
 
     if (
       !(
-        oc8 == 4 ||
-        oc8 == 5 ||
-        oc8 == 6 ||
-        oc8 == 7 ||
-        oc8 == 8 ||
-        oc8 == 9 ||
-        oc8 == 10
+        C8 == 4 ||
+        C8 == 5 ||
+        C8 == 6 ||
+        C8 == 7 ||
+        C8 == 8 ||
+        C8 == 9 ||
+        C8 == 10
       )
     )
       return res.status(400).json({ errorMessage: "פרמטר 8 חסר" });
 
     if (
       !(
-        oc9 == 4 ||
-        oc9 == 5 ||
-        oc9 == 6 ||
-        oc9 == 7 ||
-        oc9 == 8 ||
-        oc9 == 9 ||
-        oc9 == 10
+        C9 == 4 ||
+        C9 == 5 ||
+        C9 == 6 ||
+        C9 == 7 ||
+        C9 == 8 ||
+        C9 == 9 ||
+        C9 == 10
       )
     ) {
       return res.status(400).json({
@@ -480,13 +481,13 @@ router.put("/createOpinion/:id", async (req, res) => {
 
     if (
       !(
-        om1 == 4 ||
-        om1 == 5 ||
-        om1 == 6 ||
-        om1 == 7 ||
-        om1 == 8 ||
-        om1 == 9 ||
-        om1 == 10
+        M1 == 4 ||
+        M1 == 5 ||
+        M1 == 6 ||
+        M1 == 7 ||
+        M1 == 8 ||
+        M1 == 9 ||
+        M1 == 10
       )
     ) {
       return res.status(400).json({
@@ -494,60 +495,89 @@ router.put("/createOpinion/:id", async (req, res) => {
       });
     }
 
-    if (!(om2 == 0 || om2 == 1 || om2 == 2 || om2 == 3 || om2 == 4)) {
+    if (!(M2 == 0 || M2 == 1 || M2 == 2 || M2 == 3 || M2 == 4)) {
       return res.status(400).json({
         errorMessage: "חסר פוטנציאל להובלה",
       });
     }
 
-    if (!otp) {
+    if (!Tp) {
       return res.status(400).json({
         errorMessage: "לא התקבלו יעדים לשיפור",
       });
     }
 
-    if (!ofp) {
+    if (!Fp) {
       return res.status(400).json({
         errorMessage: "לא התקבל סיכם",
       });
     }
 
-    const opinionn = await Opinion.findById(opinionId);
-    if (!opinionn)
-      return res.status(400).json({
-        errorMessage: "יש בעיה... אין חוו''ד עם הID הזה",
-      });
+    if (userr.Role === "DIRECT") {
+      const crewmm = await User.findById(CrewM);
+      const wasRank = crewmm.Rank;
+      const wasDereg = crewmm.Dereg;
+      const wasMaslool = crewmm.Maslool;
+      const wasSoogHatsava = crewmm.SoogHatsava;
+      const wasUnit = crewmm.Unit;
+      const wasMyComm = crewmm.MyComm;
+      const wasMyAuth = crewmm.MyAuth;
+      const fillDate = new Date(
+        gfillDate.substring(3, 5) +
+          "/" +
+          gfillDate.substring(0, 2) +
+          "/" +
+          gfillDate.substring(6, gfillDate.length) +
+          "Z"
+      );
+      const Signed = gSigned === "כן";
+      if (crewmm.MyComm.toString() === userr._id.toString()) {
+        if ((await Opinion.findOne({ CrewM: crewmm, Tkufa: Tkufa })) === null) {
+          const newOpinion = new Opinion({
+            CrewM,
+            Signed,
+            Tkufa,
+            fillDate,
+            MonthsNo,
+            Position,
+            wasRank,
+            wasDereg,
+            wasMaslool,
+            wasSoogHatsava,
+            wasUnit,
+            wasMyComm,
+            wasMyAuth,
+            C1,
+            C2,
+            C3,
+            C4,
+            C5,
+            C6,
+            C7,
+            C8,
+            C9,
+            M1,
+            M2,
+            Tp,
+            Fp,
+          });
 
-    if (opinionn.Commander.toString() !== req.user)
+          const savedOpinion = await newOpinion.save();
+
+          res.json(savedOpinion);
+        } else
+          return res.status(400).json({
+            errorMessage: "כבר קיים חווד לתקופה זו, ערוך אותו",
+          });
+      } else
+        return res.status(401).json({
+          errorMessage: "ניסיתי לעדכן חווד של פקוד בגף אך אינך מפקד גף שלו",
+        });
+    } else {
       return res.status(401).json({
-        errorMessage: "אינך מורשה לערוך חוו''ד זה מכיוון שלא אתה יצרת אותו",
+        errorMessage: "ניסיתי לעדכן חווד של פקוד בגף אך אינך מפקד בכללי",
       });
-
-    opinionn.Tkufa = otkufa;
-    opinionn.FillDate = ofilldate;
-    opinionn.MonthsNo = omonthsno;
-    opinionn.Position = oposition;
-
-    opinionn.C1 = oc1;
-    opinionn.C2 = oc2;
-    opinionn.C3 = oc3;
-    opinionn.C4 = oc4;
-    opinionn.C5 = oc5;
-    opinionn.C6 = oc6;
-    opinionn.C7 = oc7;
-    opinionn.C8 = oc8;
-    opinionn.C9 = oc9;
-
-    opinionn.M1 = om1;
-
-    opinionn.M2 = om2;
-
-    opinionn.Tp = otp;
-    opinionn.Fp = ofp;
-
-    const savedOpinion = await opinionn.save();
-
-    res.json({ savedOpinion });
+    }
   } catch (err) {
     res.status(500).send();
     console.log(err);

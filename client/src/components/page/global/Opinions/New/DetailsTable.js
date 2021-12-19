@@ -12,11 +12,24 @@ function OpinionDetails(props) {
           <th className="oth">האם נחתם?</th>
         </tr>
         <tr className="otr">
-          <td className="otd">{props.crewm && props.crewm.MA}</td>
-          <td className="otd">{props.crewm && props.crewm.Rank}</td>
-          <td className="otd">{props.crewm && props.crewm.LastName}</td>
-          <td className="otd">{props.crewm && props.crewm.FirstName}</td>
-          <td className="otd">{props.signed}</td>
+          <td className="otd">{props.wascrewm && props.wascrewm.MA}</td>
+          <td className="otd">{props.wascrewm && props.wascrewm.Rank}</td>
+          <td className="otd">{props.wascrewm && props.wascrewm.LastName}</td>
+          <td className="otd">{props.wascrewm && props.wascrewm.FirstName}</td>
+          <td className="otd">
+            <select
+              className="opinionInput"
+              value={props.signed}
+              onChange={(e) => props.fsigned(e.target.value)}
+            >
+              <option key={"לא"} value={"לא"}>
+                {"לא"}
+              </option>
+              <option key={"כן"} value={"כן"}>
+                {"כן"}
+              </option>
+            </select>
+          </td>
         </tr>
         <tr className="otr">
           <th className="oth">תקופה</th>
@@ -27,11 +40,40 @@ function OpinionDetails(props) {
           </th>
         </tr>
         <tr className="otr">
-          <td className="otd">{props.tkufa}</td>
-          <td className="otd">{props.filldate}</td>
-          <td className="otd">{props.monthsno}</td>
+          <td className="otd">
+            <input
+              className="opinionInput"
+              defaultValue={props.wasTkufa}
+              value={props.tkufa}
+              onChange={(e) => props.ftkufa(e.target.value)}
+            ></input>
+          </td>
+          <td className="otd">
+            <input
+              className="opinionInput"
+              defaultValue={props.wasfilldate}
+              value={props.filldate}
+              onChange={(e) => props.ffilldate(e.target.value)}
+            ></input>
+          </td>
+          <td className="otd">
+            {" "}
+            <input
+              className="opinionInput"
+              defaultValue={props.wasmonthsno}
+              value={props.monthsno}
+              placeholder="6"
+              onChange={(e) => props.fmonthsno(e.target.value)}
+            ></input>
+          </td>
           <td className="otd" colSpan="2">
-            {props.position}
+            <input
+              className="opinionInput"
+              defaultValue={props.wasposition}
+              value={props.position}
+              placeholder='רש"צ מערכות'
+              onChange={(e) => props.fposition(e.target.value)}
+            ></input>
           </td>
         </tr>
       </tbody>

@@ -751,6 +751,20 @@ textarea {
   font-size: 25pt;
 }
 
+.opinionInput {
+  font-size: 13pt;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  font-family: my;
+}
+
+.opinionInputPara {
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  padding: 20px 0;
+  background-color: rgba(255, 255, 255, 0.418);
+}
 /***************************************************************************/
 /************************            Footer            ************************/
 /***************************************************************************/
@@ -786,15 +800,14 @@ textarea {
   width: 300px;
   height: 300px;
   text-align: center;
+  padding: 20px 0;
+
   background-color: rgba(255, 255, 255, 0.418);
 }
 
 .footerinputlong:placeholder {
   font-size: 30pt;
   text-align: center;
-}
-
-.footerbuttonwarapper {
 }
 
 .footersend {

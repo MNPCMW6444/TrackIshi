@@ -12,18 +12,38 @@ export default function PotentialTable(props) {
       switch (props.grade) {
         case 4:
           setM4("selected");
+          setM0("");
+          setM1("");
+          setM2("");
+          setM3("");
           break;
         case 3:
           setM3("selected");
+          setM0("");
+          setM1("");
+          setM2("");
+          setM4("");
           break;
         case 2:
           setM2("selected");
+          setM0("");
+          setM1("");
+          setM3("");
+          setM4("");
           break;
         case 1:
           setM1("selected");
+          setM0("");
+          setM3("");
+          setM2("");
+          setM4("");
           break;
         case 0:
           setM0("selected");
+          setM3("");
+          setM1("");
+          setM2("");
+          setM4("");
           break;
         default:
       }
@@ -45,10 +65,38 @@ export default function PotentialTable(props) {
           </th>
         </tr>
         <tr className="otr">
-          <td className={"otd" + m4}>ג</td>
-          <td className={"otd" + m3}>ב</td>
-          <td className={"otd" + m2}>א-2</td>
-          <td className={"otd" + m1}>א-1</td>
+          <td
+            className={"otd" + m4}
+            onClick={() => {
+              props.setnewgrade([4, "pot"]);
+            }}
+          >
+            ג
+          </td>
+          <td
+            className={"otd" + m3}
+            onClick={() => {
+              props.setnewgrade([3, "pot"]);
+            }}
+          >
+            ב
+          </td>
+          <td
+            className={"otd" + m2}
+            onClick={() => {
+              props.setnewgrade([2, "pot"]);
+            }}
+          >
+            א-2
+          </td>
+          <td
+            className={"otd" + m1}
+            onClick={() => {
+              props.setnewgrade([1, "pot"]);
+            }}
+          >
+            א-1
+          </td>
         </tr>
       </tbody>
     </table>

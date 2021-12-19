@@ -9,8 +9,14 @@ const opinionSchema = new mongoose.Schema({
   MonthsNo: { type: Number, required: true },
   Position: { type: String, required: true },
 
-  Commander: { type: mongoose.Schema.Types.ObjectId, required: true },
-  Authorizer: { type: mongoose.Schema.Types.ObjectId, required: true },
+  wasRank: { type: String, required: true },
+  wasDereg: { type: String, required: true },
+  wasMaslool: { type: String, required: true },
+  wasSoogHatsava: { type: String, required: true },
+  wasUnit: { type: String, required: true },
+
+  wasMyComm: { type: mongoose.Schema.Types.ObjectId, required: true },
+  wasMyAuth: { type: mongoose.Schema.Types.ObjectId, required: true },
 
   C1: { type: Number, required: true },
   C2: { type: Number, required: true },
