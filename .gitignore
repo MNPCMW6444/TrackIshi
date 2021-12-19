@@ -2,8 +2,7 @@
 
 #TOTHISWHENPUBLIC
 /server/.env
-#TOTHISWHENPUBLIC
-/docs
+
 #TOTHISWHENPUBLIC
 /server/node_modules
 
