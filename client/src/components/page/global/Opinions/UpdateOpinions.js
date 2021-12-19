@@ -13,7 +13,11 @@ export default function UpdateOpinions(props) {
       const allOpinionsRes = await Axios.get(
         `${domain}/opinion/getallmyn/${props.shel.MA}`
       );
-      setRes(allOpinionsRes.data);
+      let sortingres = allOpinionsRes.data;
+      sortingres = sortingres.sort((s1, s2) => {
+        return s2.Tkufa - s1.Tkufa;
+      });
+      setRes(sortingres);
       setReady(true);
     };
     getAllOpinions();

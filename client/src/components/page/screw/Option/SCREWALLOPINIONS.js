@@ -10,7 +10,11 @@ export default function SCREWALLOPINIONS() {
   useEffect(() => {
     const getAllOpinions = async () => {
       const allOpinionsRes = await Axios.get(`${domain}/opinion/getallmy`);
-      setRes(allOpinionsRes.data);
+      let sortingres = allOpinionsRes.data;
+      sortingres = sortingres.sort((s1, s2) => {
+        return s2.Tkufa - s1.Tkufa;
+      });
+      setRes(sortingres);
       setReady(true);
     };
     getAllOpinions();

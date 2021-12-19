@@ -167,8 +167,7 @@ function NewOpinion(props) {
     let tkufanum = tkufaintext[0] === "1" ? year * 2 + 1 : year * 2 + 2;
     if (
       tkufaintext[1] !== "." ||
-      tkufaintext[0] !== "1" ||
-      tkufaintext[0] !== "2"
+      (tkufaintext[0] !== "1" && tkufaintext[0] !== "2")
     )
       tkufanum = "חרא עליך";
     const newData = {
@@ -204,7 +203,7 @@ function NewOpinion(props) {
           setErrorMessage(err.response.data.errorMessage);
         } else
           setErrorMessage(
-            "כנראה שהזנת תאריך או תקופה שלא בפורמט, נסה להזין בדומה לפוומט האוטומטי"
+            "כנראה שהזנת תאריך או תקופה שלא בפורמט, נסה להזין בדומה לפורמט האוטומטי"
           );
       } else console.log(err);
     }
