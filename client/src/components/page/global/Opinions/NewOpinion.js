@@ -191,7 +191,12 @@ function NewOpinion(props) {
 
     try {
       await Axios.post(`${domain}/opinion/createOpinion`, newData);
-      props.suc('חוו"ד ' + finilTkufa + " נשמר בהצלחה!");
+      props.suc(
+        'חוו"ד ' +
+          finilTkufa +
+          " נשמר בהצלחה! כדי לראות את השינוי יש לצאת ולבחור איש צוות מחדש"
+      );
+
       const closeModal = props.forClosing;
       closeModal();
     } catch (err) {

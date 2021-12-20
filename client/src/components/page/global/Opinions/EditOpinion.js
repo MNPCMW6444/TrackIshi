@@ -201,7 +201,11 @@ function NewOpinion(props) {
         `${domain}/opinion/editOpinion/${OpinionRes._id}`,
         newData
       );
-      props.suc('חוו"ד ' + finilTkufa + " נשמר בהצלחה!");
+      props.suc(
+        'חוו"ד ' +
+          finilTkufa +
+          " נשמר בהצלחה! כדי לראות את השינוי יש לצאת ולבחור איש צוות מחדש"
+      );
       const closeModal = props.forClosing;
       closeModal();
     } catch (err) {
