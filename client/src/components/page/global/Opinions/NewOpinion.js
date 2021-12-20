@@ -1,15 +1,12 @@
-//now do this
-
 import Axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import domain from "../../../../util/domain";
-import DetailsTable from "./New/DetailsTable";
-import ClassesTable from "./New/ClassesTable";
-import PersonDetails from "./New/PersonDetails";
-import GradesTable from "./New/GradesTable";
-import FgradeTable from "./New/FgradeTable";
-import PotentialTable from "./New/PotentialTable";
-import Paragraph from "../usefull/Paragraph";
+import DetailsTable from "./Edit/DetailsTable";
+import ClassesTable from "./Edit/ClassesTable";
+import PersonDetails from "./Edit/PersonDetails";
+import GradesTable from "./Edit/GradesTable";
+import FgradeTable from "./Edit/FgradeTable";
+import PotentialTable from "./Edit/PotentialTable";
 import UserContext from "../../../../context/UserContext";
 import ErrorMessage from "../../../messages/ErrorMessage";
 
@@ -220,7 +217,7 @@ function NewOpinion(props) {
       <br />
       <h3 className="oh3">
         טופס מישוב והערכה לרמת הבקרה של {wascrewm && wascrewm.NickName} - תקופה{" "}
-        {wastkufa}:
+        {tkufa}:
       </h3>
       <br />
       <br /> <br />

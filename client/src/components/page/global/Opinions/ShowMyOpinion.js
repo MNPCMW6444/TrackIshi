@@ -31,8 +31,15 @@ function ShowMyOpinion(props) {
   const [tp, setTp] = useState();
   const [fp, setFp] = useState();
 
-  const [commander, setCommander] = useState();
-  const [authorizer, setAuthorizer] = useState();
+  const [commma, setcommma] = useState();
+  const [commrank, setcommrank] = useState();
+  const [commlast, setcommlast] = useState();
+  const [commfirst, setcommfirst] = useState();
+
+  const [authma, setauthma] = useState();
+  const [authrank, setauthrank] = useState();
+  const [authlast, setauthlast] = useState();
+  const [authfirst, setauthfirst] = useState();
 
   const [ready, setReady] = useState(false);
 
@@ -95,13 +102,15 @@ function ShowMyOpinion(props) {
       }
 
       try {
-        setCommander(OpinionRes.data.Commander);
-      } catch (err) {
-        console.log(err);
-      }
+        setcommma(OpinionRes.data.wasMyCommMA);
+        setcommrank(OpinionRes.data.wasMyCommRank);
+        setcommlast(OpinionRes.data.wasMyCommLastName);
+        setcommfirst(OpinionRes.data.wasMyCommFirstName);
 
-      try {
-        setAuthorizer(OpinionRes.data.Authorizer);
+        setauthma(OpinionRes.data.wasMyAuthMA);
+        setauthrank(OpinionRes.data.wasMyAuthRank);
+        setauthlast(OpinionRes.data.wasMyAuthLastName);
+        setauthfirst(OpinionRes.data.wasMyAuthFirstName);
       } catch (err) {
         console.log(err);
       }
@@ -227,10 +236,10 @@ function ShowMyOpinion(props) {
       <h4 className="oh4">פרטי המעריך - מפקד גף</h4>
       <br />
       <PersonDetails
-        ma={commander && commander.MA}
-        darga={commander && commander.Rank}
-        firstn={commander && commander.FirstName}
-        lastn={commander && commander.LastName}
+        ma={commma}
+        darga={commrank}
+        firstn={commlast}
+        lastn={commfirst}
       />
       <br />
       <br /> <br /> <br />
@@ -239,10 +248,10 @@ function ShowMyOpinion(props) {
       <h5 className="oh5">(ומעריך בתנאי שהבקר מוסמך...)</h5>
       <br />
       <PersonDetails
-        ma={authorizer && authorizer.MA}
-        darga={authorizer && authorizer.Rank}
-        firstn={authorizer && authorizer.FirstName}
-        lastn={authorizer && authorizer.LastName}
+        ma={authma}
+        darga={authrank}
+        firstn={authlast}
+        lastn={authfirst}
       />
       <br />
       <br /> <br />
