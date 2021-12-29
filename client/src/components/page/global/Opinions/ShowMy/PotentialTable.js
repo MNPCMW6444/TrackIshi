@@ -40,9 +40,6 @@ export default function PotentialTable(props) {
           <th className="oth">בינוני</th>
           <th className="oth">גבוה</th>
           <th className="oth">גבוה מאוד</th>
-          <th rowSpan="2" className={"oth" + m0}>
-            לא רלוונטי
-          </th>
         </tr>
         <tr className="otr">
           <td className={"otd" + m4}>ג</td>

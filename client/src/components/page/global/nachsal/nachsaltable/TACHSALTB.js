@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { useTable, useFilters, useSortBy } from "react-table";
+import Modal from "react-modal";
+import ShowFUD from "../../FUD/ShowFUD";
 
 export default function TACHSALTB(props) {
   const goten = props.data;
 
+  const [externalMA, setExternalMA] = useState();
+
   for (let i = 0; i < goten.length; i++) {
     const finil = goten[i].BirthDate.substring(0, 10);
     const day = finil.substring(5, 7);
-    const month = finil.substring(8, 10);
+    const monthf = finil.substring(8, 10);
     const year = finil.substring(0, 4);
-    const finili = day + "/" + month + "/" + year;
+    const finili = day + "/" + monthf + "/" + year;
     goten[i].BirthDate = finili;
     let hebrewMaslool = "לא ידוע";
     switch (goten[i].Maslool) {
@@ -98,6 +102,10 @@ export default function TACHSALTB(props) {
         accessor: "MA",
       },
       {
+        Header: "דרגה",
+        accessor: "Rank",
+      },
+      {
         Header: "שם פרטי",
         accessor: "FirstName",
       },
@@ -114,28 +122,28 @@ export default function TACHSALTB(props) {
         accessor: "MainPhone",
       },
       {
-        Header: "טלפון חירום",
-        accessor: "EmergencyPhone",
-      },
-      {
         Header: "עיר מגורים",
         accessor: "AddressCity",
       },
       {
-        Header: "כתובת",
-        accessor: "AddressLine",
-      },
-      {
-        Header: "דרגה",
-        accessor: "Rank",
-      },
-      {
         Header: "אימייל",
         accessor: "Email",
+        show: false, ///////////
       },
       {
         Header: "תאריך לידה",
         accessor: "BirthDate",
+        show: false, ///////////
+      },
+      {
+        Header: "כתובת",
+        accessor: "AddressLine",
+        show: false, ///////////
+      },
+      {
+        Header: "טלפון חירום",
+        accessor: "EmergencyPhone",
+        show: false, ///////////
       },
       {
         Header: "האם משימתי",
@@ -650,6 +658,36 @@ export default function TACHSALTB(props) {
     if (mas4clickedRank) handleFilterChange6Other();
   };
 
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "25%",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      overflow: "auto",
+      maxHeight: "100vh",
+    },
+  };
+
+  function openFUD(ma) {
+    setIsOpen(true);
+    setExternalMA(ma);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {}
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
     <div className="filtersAndTable" key={props.data} key={props.data}>
       <div className="allfilters">
@@ -846,6 +884,15 @@ export default function TACHSALTB(props) {
             </tr>
           </tbody>
         </table>
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <ShowFUD ma={externalMA} />
+        </Modal>
         <br />
         <br />
       </div>
@@ -899,21 +946,17 @@ export default function TACHSALTB(props) {
             ))}
           </thead>
           <colgroup>
-            <col span="1" style={{ width: "6%" }} />
+            <col span="1" style={{ width: "5%" }} />
             <col span="1" style={{ width: "7%" }} />
-            <col span="1" style={{ width: "6%" }} />
+            <col span="1" style={{ width: "7%" }} />
             <col span="1" style={{ width: "5%" }} />
             <col span="1" style={{ width: "9%" }} />
-            <col span="1" style={{ width: "7%" }} />
-            <col span="1" style={{ width: "8%" }} />
-            <col span="1" style={{ width: "7%" }} />
+            <col span="1" style={{ width: "6%" }} />
+            <col span="1" style={{ width: "12%" }} />
             <col span="1" style={{ width: "13%" }} />
-            <col span="1" style={{ width: "13%" }} />
-            <col span="1" style={{ width: "10%" }} />
-            <col span="1" style={{ width: "6%" }} />
-            <col span="1" style={{ width: "7%" }} />
-            <col span="1" style={{ width: "6%" }} />
-            <col span="1" style={{ width: "6%" }} />
+            <col span="1" style={{ width: "12%" }} />
+            <col span="1" style={{ width: "12%" }} />
+            <col span="1" style={{ width: "12%" }} />
           </colgroup>
           <tbody {...getTableBodyProps()}>
             {rows.map((row) => {
@@ -923,13 +966,23 @@ export default function TACHSALTB(props) {
                   {row.cells.map((cell) => {
                     return (
                       <td
-                        className={"theTableTD" + cell.column.Header}
+                        className={"theTableTD" /* + cell.column.Header */}
                         {...cell.getCellProps()}
                       >
                         {cell.render("Cell")}
                       </td>
                     );
                   })}
+                  <th>
+                    <button
+                      className="plus"
+                      onClick={() => {
+                        openFUD(row.original.MA);
+                      }}
+                    >
+                      +
+                    </button>
+                  </th>
                 </tr>
               );
             })}

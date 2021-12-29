@@ -51,6 +51,7 @@ function OpinionDetails(props) {
           </td>
           <td className="otd">
             <input
+              /* type="date" */
               className="opinionInput"
               defaultValue={props.wasfilldate}
               value={props.filldate}

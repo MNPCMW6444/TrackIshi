@@ -4,7 +4,10 @@ import domain from "../../../../util/domain";
 import UpdateFUD from "./UpdateFUD";
 import SuccessMessage from "../../../messages/SuccessMessage";
 
-function ShowFUD() {
+function ShowFUD(props) {
+  let externalma;
+  if (props.ma) externalma = props.ma;
+
   const [ma, setMa] = useState();
   const [firstname, setFirstname] = useState();
   const [lastname, setLastname] = useState();
@@ -27,7 +30,12 @@ function ShowFUD() {
 
   useEffect(() => {
     const getFUDI = setInterval(async () => {
-      const FUDRes = await Axios.get(`${domain}/user/getFullDetails`);
+      let FUDRes;
+      if (externalma)
+        FUDRes = await Axios.get(
+          `${domain}/user/getFullDetailsE/${externalma}`
+        );
+      else FUDRes = await Axios.get(`${domain}/user/getFullDetails`);
       try {
         setFirstname(FUDRes.data.FirstName);
       } catch (err) {
@@ -120,7 +128,12 @@ function ShowFUD() {
       setReady(true);
     }, 3000);
     const getFUD = async () => {
-      const FUDRes = await Axios.get(`${domain}/user/getFullDetails`);
+      let FUDRes;
+      if (externalma)
+        FUDRes = await Axios.get(
+          `${domain}/user/getFullDetailsE/${externalma}`
+        );
+      else FUDRes = await Axios.get(`${domain}/user/getFullDetails`);
       try {
         setFirstname(FUDRes.data.FirstName);
       } catch (err) {
@@ -220,7 +233,9 @@ function ShowFUD() {
     <>
       {!edit && (
         <div className="fudheaderdiv">
-          <h3 className="fudheader">פרטים אישיים:</h3>
+          <h3 className="fudheader">
+            פרטים {externalma ? "מלאים" : "אישיים"}:
+          </h3>
         </div>
       )}
       {edit && <UpdateFUD suc={setSuccessMessage} whendone={setEdit} />}
@@ -320,9 +335,11 @@ function ShowFUD() {
       )}
       {!edit && (
         <div className="fudupdatebuttondiv">
-          <button className="fudupdatebutton" onClick={() => setEdit(true)}>
-            עדכון הפרטים
-          </button>
+          {!externalma && (
+            <button className="fudupdatebutton" onClick={() => setEdit(true)}>
+              עדכון הפרטים
+            </button>
+          )}
         </div>
       )}
     </>

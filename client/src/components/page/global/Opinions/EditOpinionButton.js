@@ -60,6 +60,7 @@ export default function EditOpinionButton(props) {
             allOpinion={props.allDATA}
             forClosing={closeModal}
             suc={setSuccessMessage}
+            setDidupdated={props.setDidupdated}
           />
         </Modal>
       </div>

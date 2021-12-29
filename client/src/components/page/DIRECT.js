@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 
 export default function Direct() {
   const [navbar, setNavbar] = useState("gaf");
-  const { user, getUser } = useContext(UserContext);
+  const { getUser } = useContext(UserContext);
   const history = useHistory();
 
   async function logOut() {

@@ -196,6 +196,8 @@ function NewOpinion(props) {
           finilTkufa +
           " נשמר בהצלחה! כדי לראות את השינוי יש לצאת ולבחור איש צוות מחדש"
       );
+      const setDidupdated = props.setDidupdated;
+      setDidupdated();
 
       const closeModal = props.forClosing;
       closeModal();
@@ -328,7 +330,7 @@ function NewOpinion(props) {
       <br />
       <div className="OpinionSend">
         <button className="OpinionSendButton" onClick={send}>
-          שלח {wastkufa}
+          שלח {tkufa}
         </button>
         <br /> <br />
         {errorMessage && (

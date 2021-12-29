@@ -17,6 +17,12 @@ function ShowMyOpinion(props) {
   const [monthsno, setMonthsno] = useState();
   const [position, setPosition] = useState();
 
+  const [wasDereg, setwasDereg] = useState();
+  const [wasRank, setwasRank] = useState();
+  const [wasMaslool, setwasMaslool] = useState();
+  const [wasSoogHatsava, setwasSoogHatsava] = useState();
+  const [wasUnit, setwasUnit] = useState();
+
   const [c1, setC1] = useState();
   const [c2, setC2] = useState();
   const [c3, setC3] = useState();
@@ -41,6 +47,9 @@ function ShowMyOpinion(props) {
   const [authlast, setauthlast] = useState();
   const [authfirst, setauthfirst] = useState();
 
+  const [created, setCreated] = useState();
+  const [modified, setModified] = useState();
+
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -48,6 +57,20 @@ function ShowMyOpinion(props) {
       const OpinionRes = await Axios.get(
         `${domain}/opinion/getmyOpinion/${props.id}`
       );
+      let c = OpinionRes.data.createdAt.toString();
+      let cyear = c.substring(0, 4);
+      let cmonth = c.substring(5, 7);
+      let cday = c.substring(8, 10);
+      let ctime = c.substring(11, 19);
+      setCreated(cday + "/" + cmonth + "/" + cyear + " " + ctime);
+
+      let m = OpinionRes.data.updatedAt.toString();
+      let myear = m.substring(0, 4);
+      let mmonth = m.substring(5, 7);
+      let mday = m.substring(8, 10);
+      let mtime = m.substring(11, 19);
+      setModified(mday + "/" + mmonth + "/" + myear + " " + mtime);
+
       try {
         setCrewm(OpinionRes.data.CrewM);
       } catch (err) {
@@ -102,6 +125,14 @@ function ShowMyOpinion(props) {
       }
 
       try {
+        setwasDereg(OpinionRes.data.wasDereg);
+        setwasMaslool(OpinionRes.data.wasMaslool);
+        setwasSoogHatsava(OpinionRes.data.wasSoogHatsava);
+        setwasUnit(OpinionRes.data.wasUnit);
+        setwasRank(OpinionRes.data.wasRank);
+        let objc = OpinionRes.data.CrewM;
+        objc.Rank = OpinionRes.data.wasRank;
+        setCrewm(objc);
         setcommma(OpinionRes.data.wasMyCommMA);
         setcommrank(OpinionRes.data.wasMyCommRank);
         setcommlast(OpinionRes.data.wasMyCommLastName);
@@ -227,9 +258,9 @@ function ShowMyOpinion(props) {
       />
       <br />
       <ClassesTable
-        maslool={crewm && crewm.Maslool}
-        sooghatsava={crewm && crewm.SoogHatsava}
-        dereg={crewm && crewm.Dereg}
+        maslool={wasMaslool}
+        sooghatsava={wasSoogHatsava}
+        dereg={wasDereg}
       />
       <br />
       <br /> <br />
@@ -276,11 +307,16 @@ function ShowMyOpinion(props) {
       <FgradeTable grade={m1} allDATA={props.allDATA} />
       <br />
       <br /> <br />
-      <h4 className="oh4">פוטנציאל להובלה:</h4>
-      <br />
-      <PotentialTable grade={m2} />
-      <br />
-      <br /> <br />
+      {wasDereg === "a" ||
+        (wasDereg === "b" && (
+          <>
+            <h4 className="oh4">פוטנציאל להובלה:</h4>
+            <br />
+            <PotentialTable grade={m2} />
+            <br />
+            <br /> <br />
+          </>
+        ))}
       <h4 className="oh4">הערכה מילולית מסכמת:</h4> <br />
       <h5 className="oh5">יעדים לתקופה הקרובה:</h5>
       <br />
@@ -294,7 +330,13 @@ function ShowMyOpinion(props) {
         <Paragraph text={fp} />
       </div>
       <br />
-      <br />
+      <h5 className="opinionH5">
+        נוצר:
+        <span className="lightero"> {created}</span>
+      </h5>
+      <h5 className="opinionH5">
+        עודכן לאחרונה:<span className="lightero"> {modified}</span>
+      </h5>
       <br />
       <div className="OpinionClose">
         <button className="OpinionCloseButton" onClick={props.forClosing}>

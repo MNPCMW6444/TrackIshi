@@ -8,6 +8,8 @@ export default function UpdateOpinions(props) {
   const [ready, setReady] = useState(false);
   const [res, setRes] = useState();
 
+  const [didupdated, setDidupdated] = useState();
+
   useEffect(() => {
     const getAllOpinions = async () => {
       const allOpinionsRes = await Axios.get(
@@ -21,12 +23,14 @@ export default function UpdateOpinions(props) {
       setReady(true);
     };
     getAllOpinions();
-  }, []);
+  }, [didupdated]);
 
   return ready ? (
     <div className="col">
       <h2>רשימת כל החוודים ע"פ תקופות:</h2>
-      <div>{<NewOpinionButton shel={props.shel} />}</div>
+      <div>
+        {<NewOpinionButton shel={props.shel} setDidupdated={setDidupdated} />}
+      </div>
       {res.map((opinion) => (
         <>
           <div>
@@ -35,6 +39,7 @@ export default function UpdateOpinions(props) {
                 oid={opinion._id}
                 allDATA={opinion}
                 shel={props.shel}
+                setDidupdated={setDidupdated}
               />
             }
           </div>

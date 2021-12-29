@@ -55,6 +55,7 @@ export default function NewOpinionButton(props) {
             forClosing={closeModal}
             suc={setSuccessMessage}
             shel={props.shel}
+            setDidupdated={props.setDidupdated}
           />
         </Modal>
       </div>

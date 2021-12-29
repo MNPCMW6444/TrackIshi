@@ -83,6 +83,26 @@ function NewOpinion(props) {
   let wasTp = tpp;
   let wasFp = fpp;
 
+  let created = "*לא ידוע*";
+  try {
+    let c = OpinionRes.data.createdAt.toString();
+    let cyear = c.substring(0, 4);
+    let cmonth = c.substring(5, 7);
+    let cday = c.substring(8, 10);
+    let ctime = c.substring(11, 19);
+    created = cday + "/" + cmonth + "/" + cyear + " " + ctime;
+  } catch (err) {}
+
+  let modified = "*לא ידוע*";
+  try {
+    let m = OpinionRes.data.updatedAt.toString();
+    let myear = m.substring(0, 4);
+    let mmonth = m.substring(5, 7);
+    let mday = m.substring(8, 10);
+    let mtime = m.substring(11, 19);
+    modified = mday + "/" + mmonth + "/" + myear + " " + mtime;
+  } catch (err) {}
+
   const [signed, fsigned] = useState(wassigned);
   const [tkufa, ftkufa] = useState(wastkufa);
   const [filldate, ffilldate] = useState(wasfilldate);
@@ -206,6 +226,10 @@ function NewOpinion(props) {
           finilTkufa +
           " נשמר בהצלחה! כדי לראות את השינוי יש לצאת ולבחור איש צוות מחדש"
       );
+
+      const setDidupdated = props.setDidupdated;
+      setDidupdated();
+
       const closeModal = props.forClosing;
       closeModal();
     } catch (err) {
@@ -343,9 +367,15 @@ function NewOpinion(props) {
         />
       </div>
       <br />
+      <h5 className="opinionH5">
+        נוצר:
+        <span className="lightero"> {created}</span>
+      </h5>
+      <h5 className="opinionH5">
+        עודכן לאחרונה:<span className="lightero"> {modified}</span>
+      </h5>
       <br />
-      <br />
-      <div className="OpinionSend">
+      <div className="OpinionClose">
         <button className="OpinionSendButton" onClick={send}>
           שלח {wastkufa}
         </button>

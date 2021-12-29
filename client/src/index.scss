@@ -520,6 +520,21 @@ textarea {
   width: 1px;
 }
 
+.theTableTD:hover {
+  overflow: visible;
+  width: auto;
+  position: absolute;
+  background-color: rgba(17, 0, 255, 0.616);
+  color: white;
+}
+
+.plus {
+  background-color: green;
+  color: white;
+  font-size: 13pt;
+  border-radius: 20px;
+}
+
 /***************************************************************************/
 /************************            FUD            ************************/
 /***************************************************************************/
@@ -678,6 +693,15 @@ textarea {
 .op {
   text-align: center;
   border-radius: 25%;
+}
+
+.opinionH5 {
+  font-family: my;
+  text-align: center;
+}
+
+.lightero {
+  font-weight: 100;
 }
 
 .opd {
