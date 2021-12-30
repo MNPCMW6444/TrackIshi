@@ -54,12 +54,43 @@ export default function Lchart(props) {
 
   let criteria = props.data;
   let allDATA = props.allDATA.reverse();
+  let allAVGSgapi = props.avgs.data.gapi.reverse();
+  for (let i = 0; i < allAVGSgapi.length; i++)
+    for (var k in allAVGSgapi[i].avg) allAVGSgapi[i][k] = allAVGSgapi[i].avg[k];
+
+  let entries;
+  let capsEntries;
+  for (let i = 0; i < allAVGSgapi.length; i++) {
+    entries = Object.entries(allAVGSgapi[i]);
+    capsEntries = entries.map((entry) => [
+      entry[0][0].toUpperCase() + entry[0].slice(1),
+      entry[1],
+    ]);
+    allAVGSgapi[i] = Object.fromEntries(capsEntries);
+  }
+
+  let allAVGScursi = props.avgs.data.cursi.reverse();
+  for (let i = 0; i < allAVGScursi.length; i++)
+    for (var k in allAVGScursi[i].avg)
+      allAVGScursi[i][k] = allAVGScursi[i].avg[k];
+
+  for (let i = 0; i < allAVGScursi.length; i++) {
+    entries = Object.entries(allAVGScursi[i]);
+    capsEntries = entries.map((entry) => [
+      entry[0][0].toUpperCase() + entry[0].slice(1),
+      entry[1],
+    ]);
+    allAVGScursi[i] = Object.fromEntries(capsEntries);
+  }
+
   let data = Array.from(allDATA.length);
 
   for (let i = 0; i < allDATA.length; i++) {
     data[i] = {
       tkufa: numtotext(allDATA[i].Tkufa),
       [criteria]: allDATA[i][criteria],
+      [criteria + "g"]: allAVGSgapi[i][criteria],
+      [criteria + "c"]: allAVGScursi[i][criteria],
     };
   }
 
@@ -92,13 +123,39 @@ export default function Lchart(props) {
           <Legend verticalAlign="bottom" height={36} />
           <Line
             name={
-              criteriatoName(criteria) === "ציון מסכם"
-                ? criteriatoName(criteria)
-                : "ציון ב" + criteriatoName(criteria)
+              //   criteriatoName(criteria) === "ציון מסכם"
+              // ? criteriatoName(criteria)
+              // :
+              "ציון אישי"
+              //"ציון ב" + criteriatoName(criteria)
             }
             type="monotone"
             dataKey={criteria}
-            stroke="#8884d8"
+            stroke="#0000ff"
+          />
+          <Line
+            name={
+              //criteriatoName(criteria + "c") === "ציון מסכם"
+              //  ? criteriatoName(criteria + "c")
+              //:
+              "ממוצע קורסי"
+              //"ציון ב" + criteriatoName(criteria)
+            }
+            type="monotone"
+            dataKey={criteria + "c"}
+            stroke="#ff0000"
+          />
+          <Line
+            name={
+              // criteriatoName(criteria + "g") === "ציון מסכם"
+              //  ? criteriatoName(criteria + "g")
+              // :
+              "ממוצע גפי"
+              //"ציון ב" + criteriatoName(criteria)
+            }
+            type="monotone"
+            dataKey={criteria + "g"}
+            stroke="#00ff00"
           />
         </LineChart>
       </span>

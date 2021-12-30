@@ -966,7 +966,7 @@ export default function TACHSALTB(props) {
                   {row.cells.map((cell) => {
                     return (
                       <td
-                        className={"theTableTD" /* + cell.column.Header */}
+                        className={"theTableTD" + (cell.value.length > 13)}
                         {...cell.getCellProps()}
                       >
                         {cell.render("Cell")}

@@ -25,42 +25,87 @@ export default function GradesTable(props) {
               למידה וקוגניציה
             </th>
             <th className="oth">למידה</th>
-            <GradeRow allDATA={props.allDATA} grade={props.c1} criteria="C1" />
+            <GradeRow
+              allDATA={props.allDATA}
+              avgs={props.avgs}
+              grade={props.c1}
+              criteria="C1"
+            />
           </tr>
           <tr className="rowWithHistory">
             <th className="oth">תכנון</th>
-            <GradeRow allDATA={props.allDATA} grade={props.c2} criteria="C2" />
+            <GradeRow
+              allDATA={props.allDATA}
+              avgs={props.avgs}
+              grade={props.c2}
+              criteria="C2"
+            />
           </tr>
           <tr className="rowWithHistory">
             <th className="oth">תפיסה מרחבית</th>
-            <GradeRow allDATA={props.allDATA} grade={props.c3} criteria="C3" />
+            <GradeRow
+              allDATA={props.allDATA}
+              avgs={props.avgs}
+              grade={props.c3}
+              criteria="C3"
+            />
           </tr>
           <tr className="rowWithHistory">
             <th className="oth">חלק"ש</th>
-            <GradeRow allDATA={props.allDATA} grade={props.c4} criteria="C4" />
+            <GradeRow
+              allDATA={props.allDATA}
+              avgs={props.avgs}
+              grade={props.c4}
+              criteria="C4"
+            />
           </tr>
           <tr className="rowWithHistory">
             <th className="oth">תקשורת</th>
-            <GradeRow allDATA={props.allDATA} grade={props.c5} criteria="C5" />
+            <GradeRow
+              allDATA={props.allDATA}
+              avgs={props.avgs}
+              grade={props.c5}
+              criteria="C5"
+            />
           </tr>
           <tr className="rowWithHistory">
             <th className="oth">עומס</th>
-            <GradeRow allDATA={props.allDATA} grade={props.c6} criteria="C6" />
+            <GradeRow
+              allDATA={props.allDATA}
+              avgs={props.avgs}
+              grade={props.c6}
+              criteria="C6"
+            />
           </tr>
           <tr className="rowWithHistory">
             <th className="oth" rowSpan="3">
               יכולות פיקוד וניהול
             </th>
             <th className="oth">קבלת החלטות</th>
-            <GradeRow allDATA={props.allDATA} grade={props.c7} criteria="C7" />
+            <GradeRow
+              allDATA={props.allDATA}
+              avgs={props.avgs}
+              grade={props.c7}
+              criteria="C7"
+            />
           </tr>
           <tr className="rowWithHistory">
             <th className="oth">הפעלה</th>
-            <GradeRow allDATA={props.allDATA} grade={props.c8} criteria="C8" />
+            <GradeRow
+              allDATA={props.allDATA}
+              avgs={props.avgs}
+              grade={props.c8}
+              criteria="C8"
+            />
           </tr>
           <tr className="rowWithHistory">
             <th className="oth">תחקור</th>
-            <GradeRow allDATA={props.allDATA} grade={props.c9} criteria="C9" />
+            <GradeRow
+              allDATA={props.allDATA}
+              avgs={props.avgs}
+              grade={props.c9}
+              criteria="C9"
+            />
           </tr>
         </tbody>
       </table>

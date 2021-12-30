@@ -51,12 +51,192 @@ function ShowMyOpinion(props) {
   const [modified, setModified] = useState();
 
   const [ready, setReady] = useState(false);
-
+  const [avgs, setAvgs] = useState();
   useEffect(() => {
     const getOpinion = async () => {
       const OpinionRes = await Axios.get(
         `${domain}/opinion/getmyOpinion/${props.id}`
       );
+
+      const avgsr = await Axios.get(`${domain}/opinion/getmyavgs`);
+      setAvgs(avgsr);
+      /* 
+      let gafopinions = [
+        [
+          {
+            _id: ' new ObjectId("61cda248748690aae8aa823e"),',
+            CrewM: ' new ObjectId("615e03eedf8dcc3fb95027c6"),',
+            Signed: " false,",
+            Tkufa: " 4042,",
+            fillDate: ' 2021-12-30T00:"00:"00.000Z,',
+            MonthsNo: " 12,",
+            Position: " 'כעגד',",
+            wasRank: " 'סגן',",
+            wasDereg: " 'b',",
+            wasMaslool: " 'mesima',",
+            wasSoogHatsava: " 'hatsach',",
+            wasUnit: " '506',",
+            wasMyCommMA: " 2222222,",
+            wasMyCommRank: " 'רסן',",
+            wasMyCommLastName: " 'ביטון',",
+            wasMyCommFirstName: " 'אור',",
+            wasMyAuthMA: " 1111111,",
+            wasMyAuthRank: " 'רסן',",
+            wasMyAuthLastName: " 'ביטון',",
+            wasMyAuthFirstName: " 'אור',",
+            C1: " 4,",
+            C2: " 5,",
+            C3: " 4,",
+            C4: " 5,",
+            C5: " 4,",
+            C6: " 5,",
+            C7: " 4,",
+            C8: " 5,",
+            C9: " 4,",
+            M1: " 7,",
+            M2: " 2,",
+            Tp: " [Array],",
+            Fp: " [Array],",
+            createdAt: ' 2021-12-30T12:"12:"56.456Z,',
+            updatedAt: ' 2021-12-30T12:"12:"56.456Z,',
+            __v: " 0",
+          },
+          {
+            _id: ' new ObjectId("61cda268748690aae8aa8245"),',
+            CrewM: ' new ObjectId("615e03eedf8dcc3fb95027c6"),',
+            Signed: " false,",
+            Tkufa: " 4041,",
+            fillDate: ' 2021-12-30T00:"00:"00.000Z,',
+            MonthsNo: " 43,",
+            Position: ",",
+            wasRank: " 'סגן',",
+            wasDereg: " 'b',",
+            wasMaslool: " 'mesima',",
+            wasSoogHatsava: " 'hatsach',",
+            wasUnit: " '506',",
+            wasMyCommMA: " 2222222,",
+            wasMyCommRank: " 'רסן',",
+            wasMyCommLastName: " 'ביטון',",
+            wasMyCommFirstName: " 'אור',",
+            wasMyAuthMA: " 1111111,",
+            wasMyAuthRank: " 'רסן',",
+            wasMyAuthLastName: " 'ביטון',",
+            wasMyAuthFirstName: " 'אור',",
+            C1: " 10,",
+            C2: " 9,",
+            C3: " 10,",
+            C4: " 9,",
+            C5: " 10,",
+            C6: " 9,",
+            C7: " 10,",
+            C8: " 10,",
+            C9: " 9,",
+            M1: " 8,",
+            M2: " 1,",
+            Tp: " [Array],",
+            Fp: " [Array],",
+            createdAt: ' 2021-12-30T12:"13:"28.823Z,',
+            updatedAt: ' 2021-12-30T12:"13:"28.823Z,',
+            __v: " 0",
+          },
+        ],
+        [
+          {
+            _id: ' new ObjectId("61cda283748690aae8aa8251"),',
+            CrewM: ' new ObjectId("61cda143f663c95971ab2aeb"),',
+            Signed: " false,",
+            Tkufa: " 4042,",
+            fillDate: ' 2021-12-30T00:"00:"00.000Z,',
+            MonthsNo: " 546,",
+            Position: " 'ראיטארי',",
+            wasRank: " 'סגן',",
+            wasDereg: " 'b',",
+            wasMaslool: " 'mesima',",
+            wasSoogHatsava: " 'hatsach',",
+            wasUnit: " '506',",
+            wasMyCommMA: " 2222222,",
+            wasMyCommRank: " 'רסן',",
+            wasMyCommLastName: " 'ביטון',",
+            wasMyCommFirstName: " 'אור',",
+            wasMyAuthMA: " 1111111,",
+            wasMyAuthRank: " 'רסן',",
+            wasMyAuthLastName: " 'ביטון',",
+            wasMyAuthFirstName: " 'אור',",
+            C1: " 9,",
+            C2: " 10,",
+            C3: " 9,",
+            C4: " 9,",
+            C5: " 10,",
+            C6: " 9,",
+            C7: " 9,",
+            C8: " 9,",
+            C9: " 10,",
+            M1: " 5,",
+            M2: " 2,",
+            Tp: " [Array],",
+            Fp: " [Array],",
+            createdAt: ' 2021-12-30T12:"13:"55.412Z,',
+            updatedAt: ' 2021-12-30T12:"13:"55.412Z,',
+            __v: " 0",
+          },
+          {
+            _id: ' new ObjectId("61cda299748690aae8aa825e"),',
+            CrewM: ' new ObjectId("61cda143f663c95971ab2aeb"),',
+            Signed: " false,",
+            Tkufa: " 4041,",
+            fillDate: ' 2021-12-30T00:"00:"00.000Z,',
+            MonthsNo: " 8,",
+            Position: " 'חמךחל',",
+            wasRank: " 'סגן',",
+            wasDereg: " 'b',",
+            wasMaslool: " 'mesima',",
+            wasSoogHatsava: " 'hatsach',",
+            wasUnit: " '506',",
+            wasMyCommMA: " 2222222,",
+            wasMyCommRank: " 'רסן',",
+            wasMyCommLastName: " 'ביטון',",
+            wasMyCommFirstName: " 'אור',",
+            wasMyAuthMA: " 1111111,",
+            wasMyAuthRank: " 'רסן',",
+            wasMyAuthLastName: " 'ביטון',",
+            wasMyAuthFirstName: " 'אור',",
+            C1: " 4,",
+            C2: " 4,",
+            C3: " 4,",
+            C4: " 5,",
+            C5: " 4,",
+            C6: " 4,",
+            C7: " 5,",
+            C8: " 5,",
+            C9: " 4,",
+            M1: " 7,",
+            M2: " 2,",
+            Tp: " [Array],",
+            Fp: " [Array],",
+            createdAt: ' 2021-12-30T12:"14:"17.593Z,',
+            updatedAt: ' 2021-12-30T12:"14:"17.593Z,',
+            __v: " 0",
+          },
+        ],
+      ];
+      let gafbytkufa = [];
+      let ttkufa = 0;
+      let temp = 0;
+      while (gafopinions.length > 0) {
+        ttkufa = gafopinions[0][0].Tkufa;
+        for (let i = 0; i < gafopinions.length; i++) {
+          for (let j = 0; j < gafopinions.length; j++) {
+            if (gafopinions[i][j].Tkufa === ttkufa) {
+              temp = gafopinions[i][j];
+              gafopinions[i].splice(j, 1);
+              gafbytkufa.push({ tkufa: ttkufa, opinion: temp });
+            }
+          }
+        }
+        if (gafopinions[0].length === 0) gafopinions.splice(0, 1);
+      }
+      console.log(gafbytkufa);*/
+
       let c = OpinionRes.data.createdAt.toString();
       let cyear = c.substring(0, 4);
       let cmonth = c.substring(5, 7);
@@ -299,12 +479,13 @@ function ShowMyOpinion(props) {
         c8={c8}
         c9={c9}
         allDATA={props.allDATA}
+        avgs={avgs}
       />
       <br /> <br />
       <br />
       <h4 className="oh4">ציון מסכם:</h4>
       <br />
-      <FgradeTable grade={m1} allDATA={props.allDATA} />
+      <FgradeTable grade={m1} allDATA={props.allDATA} avgs={avgs} />
       <br />
       <br /> <br />
       {wasDereg === "a" ||

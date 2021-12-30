@@ -98,6 +98,7 @@ export default function GradeRow(props) {
         4
         {o4 === "selected" && (
           <Lchart
+            avgs={props.avgs}
             allDATA={props.allDATA}
             isShown={shown4}
             data={props.criteria}
@@ -108,6 +109,7 @@ export default function GradeRow(props) {
         5
         {o5 === "selected" && (
           <Lchart
+            avgs={props.avgs}
             allDATA={props.allDATA}
             isShown={shown5}
             data={props.criteria}
@@ -118,6 +120,7 @@ export default function GradeRow(props) {
         6
         {o6 === "selected" && (
           <Lchart
+            avgs={props.avgs}
             allDATA={props.allDATA}
             isShown={shown6}
             data={props.criteria}
@@ -128,6 +131,7 @@ export default function GradeRow(props) {
         7
         {o7 === "selected" && (
           <Lchart
+            avgs={props.avgs}
             allDATA={props.allDATA}
             isShown={shown7}
             data={props.criteria}
@@ -138,6 +142,7 @@ export default function GradeRow(props) {
         8
         {o8 === "selected" && (
           <Lchart
+            avgs={props.avgs}
             allDATA={props.allDATA}
             isShown={shown8}
             data={props.criteria}
@@ -148,6 +153,7 @@ export default function GradeRow(props) {
         9
         {o9 === "selected" && (
           <Lchart
+            avgs={props.avgs}
             allDATA={props.allDATA}
             isShown={shown9}
             data={props.criteria}
@@ -158,6 +164,7 @@ export default function GradeRow(props) {
         10
         {o10 === "selected" && (
           <Lchart
+            avgs={props.avgs}
             allDATA={props.allDATA}
             isShown={shown10}
             data={props.criteria}

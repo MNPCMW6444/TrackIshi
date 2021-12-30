@@ -15,7 +15,12 @@ export default function FgradeTable(props) {
           <th className="oth">מצוין</th>
         </tr>
         <tr className="rowWithHistory">
-          <GradeRow grade={props.grade} criteria="M1" allDATA={props.allDATA} />
+          <GradeRow
+            grade={props.grade}
+            criteria="M1"
+            allDATA={props.allDATA}
+            avgs={props.avgs}
+          />
         </tr>
       </tbody>
     </table>
