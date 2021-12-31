@@ -129,7 +129,7 @@ export default function Lchart(props) {
               "ציון אישי"
               //"ציון ב" + criteriatoName(criteria)
             }
-            type="monotone"
+            type="linear"
             dataKey={criteria}
             stroke="#0000ff"
           />
@@ -141,7 +141,7 @@ export default function Lchart(props) {
               "ממוצע קורסי"
               //"ציון ב" + criteriatoName(criteria)
             }
-            type="monotone"
+            type="linear"
             dataKey={criteria + "c"}
             stroke="#ff0000"
           />
@@ -153,7 +153,7 @@ export default function Lchart(props) {
               "ממוצע גפי"
               //"ציון ב" + criteriatoName(criteria)
             }
-            type="monotone"
+            type="linear"
             dataKey={criteria + "g"}
             stroke="#00ff00"
           />

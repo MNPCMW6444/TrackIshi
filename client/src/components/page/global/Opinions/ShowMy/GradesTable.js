@@ -8,7 +8,7 @@ export default function GradesTable(props) {
         <tbody>
           <tr className="tr">
             <th className="oth" colSpan="2">
-              משוב אישי(כהערכה כוללת)
+              משוב אישי (כהערכה כוללת)
             </th>
             <th className="oth" colSpan="2">
               נכשל

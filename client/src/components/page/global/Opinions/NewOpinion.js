@@ -213,7 +213,7 @@ function NewOpinion(props) {
     }
     return;
   }
-
+  debugger;
   return (
     <div className="odiv">
       <br />
@@ -292,15 +292,20 @@ function NewOpinion(props) {
       />
       <br />
       <br /> <br />
-      <h4 className="oh4">פוטנציאל להובלה:</h4>
-      <br />
-      <PotentialTable
-        grade={np}
-        allDATA={props.allDATA}
-        setnewgrade={setNewGrade}
-      />
-      <br />
-      <br /> <br />
+      {(wascrewm.Dereg === "a" || wascrewm.Dereg === "b") &&
+        wascrewm.SoogHatsava !== "miluim" && (
+          <>
+            <h4 className="oh4">פוטנציאל להובלה:</h4>
+            <br />
+            <PotentialTable
+              grade={np}
+              allDATA={props.allDATA}
+              setnewgrade={setNewGrade}
+            />
+            <br />
+            <br /> <br />
+          </>
+        )}
       <h4 className="oh4">הערכה מילולית מסכמת:</h4> <br />
       <h5 className="oh5">יעדים לתקופה הקרובה:</h5>
       <br />

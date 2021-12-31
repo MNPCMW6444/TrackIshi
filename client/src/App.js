@@ -9,9 +9,7 @@ import Footer from "./Footer";
 Axios.defaults.withCredentials = true;
 
 function App() {
-  const [entered, setEntered] = useState(
-    process.env.NODE_ENV !== "development"
-  );
+  const [entered, setEntered] = useState(false);
 
   return (
     <>
