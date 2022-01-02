@@ -1,4 +1,5 @@
 import NewOpinion from "./NewOpinion";
+import NewOpinionGeneral from "./NewOpinionGeneral";
 import Modal from "react-modal";
 import React, { useState } from "react";
 import SuccessMessage from "../../../messages/SuccessMessage";
@@ -31,6 +32,9 @@ export default function NewOpinionButton(props) {
     setIsOpen(false);
   }
 
+  let general = " לאיש צוות זה";
+  if (props.shel === "general") general = " באמצעות טופס כללי";
+
   return (
     <>
       <div>
@@ -39,7 +43,7 @@ export default function NewOpinionButton(props) {
           style={{ backgroundColor: "green" }}
           onClick={openModal}
         >
-          {'הזן חוו"ד חדש'}
+          {'הזן חוו"ד חדש' + general}
         </button>
       </div>
       <br />
@@ -51,12 +55,22 @@ export default function NewOpinionButton(props) {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <NewOpinion
-            forClosing={closeModal}
-            suc={setSuccessMessage}
-            shel={props.shel}
-            setDidupdated={props.setDidupdated}
-          />
+          {props.shel === "general" ? (
+            <NewOpinionGeneral
+              forClosing={closeModal}
+              suc={setSuccessMessage}
+              shel={props.shel}
+              shels={props.shels}
+              setDidupdated={props.setDidupdated}
+            />
+          ) : (
+            <NewOpinion
+              forClosing={closeModal}
+              suc={setSuccessMessage}
+              shel={props.shel}
+              setDidupdated={props.setDidupdated}
+            />
+          )}
         </Modal>
       </div>
 

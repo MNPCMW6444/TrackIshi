@@ -22,6 +22,10 @@ function OpinionDetails(props) {
               value={props.signed}
               onChange={(e) => props.fsigned(e.target.value)}
             >
+              <option disabled selected value>
+                {" "}
+                -בחר-{" "}
+              </option>
               <option key={"לא"} value={"לא"}>
                 {"לא"}
               </option>

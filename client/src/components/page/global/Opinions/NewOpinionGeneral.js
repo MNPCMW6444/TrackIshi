@@ -12,10 +12,8 @@ import ErrorMessage from "../../../messages/ErrorMessage";
 
 function NewOpinion(props) {
   const [newGrade, setNewGrade] = useState([4, "nelson"]);
+  const [wascrewm, setwascrewm] = useState(new Object());
 
-  const OpinionRes = { CrewM: props.shel };
-  let wascrewm = OpinionRes.CrewM;
-  let siginit = OpinionRes.Signed ? "כן" : "לא";
   let wassigned = "לא";
 
   //TKUFA
@@ -168,7 +166,7 @@ function NewOpinion(props) {
     )
       tkufanum = "חרא עליך";
     const newData = {
-      CrewM: props.shel._id,
+      CrewM: wascrewm._id,
       gSigned: signed,
       Tkufa: tkufanum,
       gfillDate: filldate,
@@ -213,6 +211,14 @@ function NewOpinion(props) {
     }
     return;
   }
+
+  function setwascrewmbymick(nick) {
+    let index;
+    for (let i = 0; i < props.shels.length; i++) {
+      if (props.shels[i].NickName === nick) index = i;
+    }
+    setwascrewm(props.shels[index]);
+  }
   return (
     <div className="odiv">
       <br />
@@ -222,9 +228,30 @@ function NewOpinion(props) {
       <br />
       <br />
       <h3 className="oh3">
-        טופס מישוב והערכה לרמת הבקרה של {wascrewm && wascrewm.NickName} - תקופה{" "}
-        {tkufa}:
+        טופס כללי למישוב והערכה לרמת הבקרה של {wascrewm && wascrewm.NickName} -
+        תקופה {tkufa}:
       </h3>
+      <br />
+      <br /> <br />
+      <div className="choose">
+        <label className="chooselabel">בחר איש צוות לפי כינוי: </label>
+
+        <select
+          className="chooseselect"
+          onChange={(e) => setwascrewmbymick(e.target.value)}
+        >
+          <option disabled selected value>
+            {" "}
+            -- בחר --{" "}
+          </option>
+
+          {props.shels.map((shel) => (
+            <option key={shel.NickName} value={shel.NickName}>
+              {shel.NickName}
+            </option>
+          ))}
+        </select>
+      </div>
       <br />
       <br /> <br />
       <h4 className="oh4">פרטי הקצין המוערך</h4>
