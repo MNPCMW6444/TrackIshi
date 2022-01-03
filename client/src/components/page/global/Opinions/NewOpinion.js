@@ -194,7 +194,7 @@ function NewOpinion(props) {
       await Axios.post(`${domain}/opinion/createOpinion`, newData);
       props.suc(
         'חוו"ד ' +
-          finilTkufa +
+          tkufa +
           " נשמר בהצלחה! כדי לראות את השינוי יש לצאת ולבחור איש צוות מחדש"
       );
       const setDidupdated = props.setDidupdated;
@@ -214,7 +214,6 @@ function NewOpinion(props) {
     }
     return;
   }
-  debugger;
 
   return (
     <div className="odiv">

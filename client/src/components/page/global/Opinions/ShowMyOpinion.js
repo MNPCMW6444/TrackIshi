@@ -411,7 +411,6 @@ function ShowMyOpinion(props) {
     };
     getOpinion();
   }, [props.opinionid]);
-  if (ready) debugger;
 
   return ready ? (
     <div className="odiv">
