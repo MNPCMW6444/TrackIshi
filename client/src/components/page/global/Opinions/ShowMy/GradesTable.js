@@ -26,6 +26,7 @@ export default function GradesTable(props) {
             </th>
             <th className="oth">למידה</th>
             <GradeRow
+              isGray={props.isGray}
               allDATA={props.allDATA}
               avgs={props.avgs}
               grade={props.c1}
@@ -35,6 +36,7 @@ export default function GradesTable(props) {
           <tr className="rowWithHistory">
             <th className="oth">תכנון</th>
             <GradeRow
+              isGray={props.isGray}
               allDATA={props.allDATA}
               avgs={props.avgs}
               grade={props.c2}
@@ -44,6 +46,7 @@ export default function GradesTable(props) {
           <tr className="rowWithHistory">
             <th className="oth">תפיסה מרחבית</th>
             <GradeRow
+              isGray={props.isGray}
               allDATA={props.allDATA}
               avgs={props.avgs}
               grade={props.c3}
@@ -53,6 +56,7 @@ export default function GradesTable(props) {
           <tr className="rowWithHistory">
             <th className="oth">חלק"ש</th>
             <GradeRow
+              isGray={props.isGray}
               allDATA={props.allDATA}
               avgs={props.avgs}
               grade={props.c4}
@@ -62,6 +66,7 @@ export default function GradesTable(props) {
           <tr className="rowWithHistory">
             <th className="oth">תקשורת</th>
             <GradeRow
+              isGray={props.isGray}
               allDATA={props.allDATA}
               avgs={props.avgs}
               grade={props.c5}
@@ -71,6 +76,7 @@ export default function GradesTable(props) {
           <tr className="rowWithHistory">
             <th className="oth">עומס</th>
             <GradeRow
+              isGray={props.isGray}
               allDATA={props.allDATA}
               avgs={props.avgs}
               grade={props.c6}
@@ -83,6 +89,7 @@ export default function GradesTable(props) {
             </th>
             <th className="oth">קבלת החלטות</th>
             <GradeRow
+              isGray={props.isGray}
               allDATA={props.allDATA}
               avgs={props.avgs}
               grade={props.c7}
@@ -92,6 +99,7 @@ export default function GradesTable(props) {
           <tr className="rowWithHistory">
             <th className="oth">הפעלה</th>
             <GradeRow
+              isGray={props.isGray}
               allDATA={props.allDATA}
               avgs={props.avgs}
               grade={props.c8}
@@ -101,6 +109,7 @@ export default function GradesTable(props) {
           <tr className="rowWithHistory">
             <th className="oth">תחקור</th>
             <GradeRow
+              isGray={props.isGray}
               allDATA={props.allDATA}
               avgs={props.avgs}
               grade={props.c9}

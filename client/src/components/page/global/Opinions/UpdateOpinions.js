@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import EditOpinionButton from "./EditOpinionButton";
 import NewOpinionButton from "./NewOpinionButton";
 import Axios from "axios";
 import domain from "../../../../util/domain";
+import UserContext from "../../../../context/UserContext";
 
 export default function UpdateOpinions(props) {
   const [ready, setReady] = useState(false);
   const [res, setRes] = useState();
+  const { user } = useContext(UserContext);
 
   const [didupdated, setDidupdated] = useState();
 
@@ -29,7 +31,9 @@ export default function UpdateOpinions(props) {
     <div className="col">
       <h2>רשימת כל החוודים ע"פ תקופות:</h2>
       <div>
-        {<NewOpinionButton shel={props.shel} setDidupdated={setDidupdated} />}
+        {props.isGray !== "gray" && (
+          <NewOpinionButton shel={props.shel} setDidupdated={setDidupdated} />
+        )}
       </div>
       {res.map((opinion) => (
         <>
@@ -40,6 +44,12 @@ export default function UpdateOpinions(props) {
                 allDATA={opinion}
                 shel={props.shel}
                 setDidupdated={setDidupdated}
+                isGray={opinion.wasMyEvaMA !== user.MA ? "gray" : ""}
+                style={
+                  opinion.wasMyEvaMA !== user.MA
+                    ? { backgroundColor: "gray" }
+                    : {}
+                }
               />
             }
           </div>

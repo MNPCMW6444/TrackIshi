@@ -37,10 +37,10 @@ function ShowMyOpinion(props) {
   const [tp, setTp] = useState();
   const [fp, setFp] = useState();
 
-  const [commma, setcommma] = useState();
-  const [commrank, setcommrank] = useState();
-  const [commlast, setcommlast] = useState();
-  const [commfirst, setcommfirst] = useState();
+  const [Evama, setEvama] = useState();
+  const [Evarank, setEvarank] = useState();
+  const [Evalast, setEvalast] = useState();
+  const [Evafirst, setEvafirst] = useState();
 
   const [authma, setauthma] = useState();
   const [authrank, setauthrank] = useState();
@@ -76,10 +76,10 @@ function ShowMyOpinion(props) {
             wasMaslool: " 'mesima',",
             wasSoogHatsava: " 'hatsach',",
             wasUnit: " '506',",
-            wasMyCommMA: " 2222222,",
-            wasMyCommRank: " 'רסן',",
-            wasMyCommLastName: " 'ביטון',",
-            wasMyCommFirstName: " 'אור',",
+            wasMyEvaMA: " 2222222,",
+            wasMyEvaRank: " 'רסן',",
+            wasMyEvaLastName: " 'ביטון',",
+            wasMyEvaFirstName: " 'אור',",
             wasMyAuthMA: " 1111111,",
             wasMyAuthRank: " 'רסן',",
             wasMyAuthLastName: " 'ביטון',",
@@ -114,10 +114,10 @@ function ShowMyOpinion(props) {
             wasMaslool: " 'mesima',",
             wasSoogHatsava: " 'hatsach',",
             wasUnit: " '506',",
-            wasMyCommMA: " 2222222,",
-            wasMyCommRank: " 'רסן',",
-            wasMyCommLastName: " 'ביטון',",
-            wasMyCommFirstName: " 'אור',",
+            wasMyEvaMA: " 2222222,",
+            wasMyEvaRank: " 'רסן',",
+            wasMyEvaLastName: " 'ביטון',",
+            wasMyEvaFirstName: " 'אור',",
             wasMyAuthMA: " 1111111,",
             wasMyAuthRank: " 'רסן',",
             wasMyAuthLastName: " 'ביטון',",
@@ -154,10 +154,10 @@ function ShowMyOpinion(props) {
             wasMaslool: " 'mesima',",
             wasSoogHatsava: " 'hatsach',",
             wasUnit: " '506',",
-            wasMyCommMA: " 2222222,",
-            wasMyCommRank: " 'רסן',",
-            wasMyCommLastName: " 'ביטון',",
-            wasMyCommFirstName: " 'אור',",
+            wasMyEvaMA: " 2222222,",
+            wasMyEvaRank: " 'רסן',",
+            wasMyEvaLastName: " 'ביטון',",
+            wasMyEvaFirstName: " 'אור',",
             wasMyAuthMA: " 1111111,",
             wasMyAuthRank: " 'רסן',",
             wasMyAuthLastName: " 'ביטון',",
@@ -192,10 +192,10 @@ function ShowMyOpinion(props) {
             wasMaslool: " 'mesima',",
             wasSoogHatsava: " 'hatsach',",
             wasUnit: " '506',",
-            wasMyCommMA: " 2222222,",
-            wasMyCommRank: " 'רסן',",
-            wasMyCommLastName: " 'ביטון',",
-            wasMyCommFirstName: " 'אור',",
+            wasMyEvaMA: " 2222222,",
+            wasMyEvaRank: " 'רסן',",
+            wasMyEvaLastName: " 'ביטון',",
+            wasMyEvaFirstName: " 'אור',",
             wasMyAuthMA: " 1111111,",
             wasMyAuthRank: " 'רסן',",
             wasMyAuthLastName: " 'ביטון',",
@@ -313,10 +313,10 @@ function ShowMyOpinion(props) {
         let objc = OpinionRes.data.CrewM;
         objc.Rank = OpinionRes.data.wasRank;
         setCrewm(objc);
-        setcommma(OpinionRes.data.wasMyCommMA);
-        setcommrank(OpinionRes.data.wasMyCommRank);
-        setcommlast(OpinionRes.data.wasMyCommLastName);
-        setcommfirst(OpinionRes.data.wasMyCommFirstName);
+        setEvama(OpinionRes.data.wasMyEvaMA);
+        setEvarank(OpinionRes.data.wasMyEvaRank);
+        setEvalast(OpinionRes.data.wasMyEvaLastName);
+        setEvafirst(OpinionRes.data.wasMyEvaFirstName);
 
         setauthma(OpinionRes.data.wasMyAuthMA);
         setauthrank(OpinionRes.data.wasMyAuthRank);
@@ -411,6 +411,7 @@ function ShowMyOpinion(props) {
     };
     getOpinion();
   }, [props.opinionid]);
+  if (ready) debugger;
 
   return ready ? (
     <div className="odiv">
@@ -444,28 +445,34 @@ function ShowMyOpinion(props) {
       />
       <br />
       <br /> <br />
-      <h4 className="oh4">פרטי המעריך - מפקד גף</h4>
+      <h4 className="oh4">פרטי המעריך</h4>
+      <br />
+      <h5 className="oh5">
+        (עבור דרג א'/ב' - מפקד גף, עבור דרג ג'/ד' - מפקד יחידה)
+      </h5>
       <br />
       <PersonDetails
-        ma={commma}
-        darga={commrank}
-        firstn={commlast}
-        lastn={commfirst}
+        ma={Evama}
+        darga={Evarank}
+        firstn={Evalast}
+        lastn={Evafirst}
       />
       <br />
       <br /> <br /> <br />
-      <h4 className="oh4">פרטי המאשר - מפקד יחידה</h4>
-      <br />
-      <h5 className="oh5">(ומעריך בתנאי שהבקר מוסמך...)</h5>
-      <br />
-      <PersonDetails
-        ma={authma}
-        darga={authrank}
-        firstn={authlast}
-        lastn={authfirst}
-      />
-      <br />
-      <br /> <br />
+      {(wasDereg === "a" || wasDereg === "b") && (
+        <>
+          <h4 className="oh4">פרטי המאשר - מפקד יחידה</h4>
+          <br />
+          <PersonDetails
+            ma={authma}
+            darga={authrank}
+            firstn={authlast}
+            lastn={authfirst}
+          />
+          <br />
+          <br /> <br />{" "}
+        </>
+      )}
       <h4 className="oh4">הערכת תכונות בקרה:</h4>
       <br />
       <GradesTable
@@ -480,24 +487,29 @@ function ShowMyOpinion(props) {
         c9={c9}
         allDATA={props.allDATA}
         avgs={avgs}
+        isGray={props.isGray}
       />
       <br /> <br />
       <br />
       <h4 className="oh4">ציון מסכם:</h4>
       <br />
-      <FgradeTable grade={m1} allDATA={props.allDATA} avgs={avgs} />
+      <FgradeTable
+        isGray={props.isGray}
+        grade={m1}
+        allDATA={props.allDATA}
+        avgs={avgs}
+      />
       <br />
       <br /> <br />
-      {wasDereg === "a" ||
-        (wasDereg === "b" && (
-          <>
-            <h4 className="oh4">פוטנציאל להובלה:</h4>
-            <br />
-            <PotentialTable grade={m2} />
-            <br />
-            <br /> <br />
-          </>
-        ))}
+      {(wasDereg === "a" || wasDereg === "b") && wasSoogHatsava !== "miluim" && (
+        <>
+          <h4 className="oh4">פוטנציאל להובלה:</h4>
+          <br />
+          <PotentialTable grade={m2} />
+          <br />
+          <br /> <br />
+        </>
+      )}
       <h4 className="oh4">הערכה מילולית מסכמת:</h4> <br />
       <h5 className="oh5">יעדים לתקופה הקרובה:</h5>
       <br />

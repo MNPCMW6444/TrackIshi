@@ -1,4 +1,5 @@
 import EditOpinion from "./EditOpinion";
+import ShowMyOpinion from "./ShowMyOpinion";
 import Modal from "react-modal";
 import React, { useState } from "react";
 import SuccessMessage from "../../../messages/SuccessMessage";
@@ -44,7 +45,7 @@ export default function EditOpinionButton(props) {
   return (
     <>
       <div>
-        <button className="OpinionOpen" onClick={openModal}>
+        <button className="OpinionOpen" onClick={openModal} style={props.style}>
           {finilTkuda}
         </button>
       </div>
@@ -56,12 +57,23 @@ export default function EditOpinionButton(props) {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <EditOpinion
-            allOpinion={props.allDATA}
-            forClosing={closeModal}
-            suc={setSuccessMessage}
-            setDidupdated={props.setDidupdated}
-          />
+          {props.isGray === "gray" ? (
+            <ShowMyOpinion
+              id={props.allDATA._id}
+              allDATA={props.allDATA}
+              forClosing={closeModal}
+              suc={setSuccessMessage}
+              setDidupdated={props.setDidupdated}
+              isGray={props.isGray}
+            />
+          ) : (
+            <EditOpinion
+              allOpinion={props.allDATA}
+              forClosing={closeModal}
+              suc={setSuccessMessage}
+              setDidupdated={props.setDidupdated}
+            />
+          )}
         </Modal>
       </div>
 

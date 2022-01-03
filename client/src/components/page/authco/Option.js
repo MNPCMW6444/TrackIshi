@@ -1,5 +1,5 @@
 import React from "react";
-import Gaf from "./Option/Gaf.js";
+import Unit from "./Option/Unit.js";
 import Fud from "../global/FUD/ShowFUD";
 import Opinions from "./Option/Opinions";
 import NACHSAL from "../global/nachsal/NACHSAL";
@@ -24,11 +24,10 @@ export default function Option(props) {
           <Opinions />
         </div>
       );
-
     default:
       return (
         <div className="optionSwitcher">
-          <Gaf />
+          <Unit />
         </div>
       );
   }

@@ -54,14 +54,7 @@ export default function Direct() {
           >
             הזנת חוו"דים
           </button>
-          <button
-            className={
-              navbar === "tests" ? "naveachbuttonselected" : "naveachbutton"
-            }
-            onClick={() => setNavbar("tests")}
-          >
-            הזנת מבחנים
-          </button>
+
           <button className="navlogout" onClick={logOut}>
             התנתק
           </button>

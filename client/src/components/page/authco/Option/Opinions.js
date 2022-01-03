@@ -11,27 +11,30 @@ export default function Opinions(props) {
 
   useEffect(() => {
     const getMyPeople = async () => {
-      const allpeopleres = await Axios.get(`${domain}/user/getmypeople`);
+      const allpeopleres = await Axios.get(`${domain}/user/getmypeopleba`);
       setRes(allpeopleres.data);
       let shelst = new Array(...allpeopleres.data);
-      for (let i = 0; i < shelst.length; i++)
-        if (shelst[i].Dereg === "c" || shelst[i].Dereg === "d") {
+      for (let i = 0; i < shelst.length; i++) {
+        if (shelst[i].Dereg === "a" || shelst[i].Dereg === "b") {
           shelst.splice(i, 1);
           i--;
         }
+      }
       setshels(shelst);
       if (!ready) setReady(true);
     };
     if (!ready) getMyPeople();
   }, []);
 
+  let imauth = "auth";
+
   return ready ? (
     <div className="col">
       <h2>רשימת האנשים שלי:</h2>
-      <NewOpinionButton shel={"general"} shels={shels} />
+      <NewOpinionButton shel={"general"} imauth={imauth} shels={shels} />
       {res.map((screw) => (
         <>
-          <OpenOpinions shel={screw} />
+          <OpenOpinions shel={screw} imauth={imauth} />
           <br />
         </>
       ))}

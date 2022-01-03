@@ -96,7 +96,7 @@ export default function GradeRow(props) {
     <>
       <td onMouseOver={show4} onMouseLeave={nshow4} className={"otd" + o4}>
         4
-        {o4 === "selected" && (
+        {o4 === "selected" && props.isGray !== "gray" && (
           <Lchart
             avgs={props.avgs}
             allDATA={props.allDATA}
@@ -107,7 +107,7 @@ export default function GradeRow(props) {
       </td>
       <td onMouseOver={show5} onMouseLeave={nshow5} className={"otd" + o5}>
         5
-        {o5 === "selected" && (
+        {o5 === "selected" && props.isGray !== "gray" && (
           <Lchart
             avgs={props.avgs}
             allDATA={props.allDATA}
@@ -118,7 +118,7 @@ export default function GradeRow(props) {
       </td>
       <td onMouseOver={show6} onMouseLeave={nshow6} className={"otd" + o6}>
         6
-        {o6 === "selected" && (
+        {o6 === "selected" && props.isGray !== "gray" && (
           <Lchart
             avgs={props.avgs}
             allDATA={props.allDATA}
@@ -129,7 +129,7 @@ export default function GradeRow(props) {
       </td>
       <td onMouseOver={show7} onMouseLeave={nshow7} className={"otd" + o7}>
         7
-        {o7 === "selected" && (
+        {o7 === "selected" && props.isGray !== "gray" && (
           <Lchart
             avgs={props.avgs}
             allDATA={props.allDATA}
@@ -140,7 +140,7 @@ export default function GradeRow(props) {
       </td>
       <td onMouseOver={show8} onMouseLeave={nshow8} className={"otd" + o8}>
         8
-        {o8 === "selected" && (
+        {o8 === "selected" && props.isGray !== "gray" && (
           <Lchart
             avgs={props.avgs}
             allDATA={props.allDATA}
@@ -151,7 +151,7 @@ export default function GradeRow(props) {
       </td>
       <td onMouseOver={show9} onMouseLeave={nshow9} className={"otd" + o9}>
         9
-        {o9 === "selected" && (
+        {o9 === "selected" && props.isGray !== "gray" && (
           <Lchart
             avgs={props.avgs}
             allDATA={props.allDATA}
@@ -162,7 +162,7 @@ export default function GradeRow(props) {
       </td>
       <td onMouseOver={show10} onMouseLeave={nshow10} className={"otd" + o10}>
         10
-        {o10 === "selected" && (
+        {o10 === "selected" && props.isGray !== "gray" && (
           <Lchart
             avgs={props.avgs}
             allDATA={props.allDATA}

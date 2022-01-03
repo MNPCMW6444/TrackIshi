@@ -40,10 +40,10 @@ function NewOpinion(props) {
 
   let wasposition = OpinionRes.Position;
 
-  let wasMyCommMA = OpinionRes.wasMyCommMA;
-  let wasMyCommRank = OpinionRes.wasMyCommRank;
-  let wasMyCommLastName = OpinionRes.wasMyCommLastName;
-  let wasMyCommFirstName = OpinionRes.wasMyCommFirstName;
+  let wasMyEvaMA = OpinionRes.wasMyEvaMA;
+  let wasMyEvaRank = OpinionRes.wasMyEvaRank;
+  let wasMyEvaLastName = OpinionRes.wasMyEvaLastName;
+  let wasMyEvaFirstName = OpinionRes.wasMyEvaFirstName;
 
   let wasMyAuthMA = OpinionRes.wasMyAuthMA;
   let wasMyAuthRank = OpinionRes.wasMyAuthRank;
@@ -287,26 +287,34 @@ function NewOpinion(props) {
       />
       <br />
       <br /> <br />
-      <h4 className="oh4">פרטי המעריך - מפקד גף</h4>
+      <h4 className="oh4">פרטי המעריך</h4>
+      <br />
+      <h5 className="oh5">
+        (עבור דרג א'/ב' - מפקד גף, עבור דרג ג'/ד' - מפקד יחידה)
+      </h5>
       <br />
       <PersonDetails
-        ma={wasMyCommMA}
-        darga={wasMyCommRank}
-        firstn={wasMyCommLastName}
-        lastn={wasMyCommFirstName}
+        ma={wasMyEvaMA}
+        darga={wasMyEvaRank}
+        firstn={wasMyEvaLastName}
+        lastn={wasMyEvaFirstName}
       />
       <br />
       <br /> <br /> <br />
-      <h4 className="oh4">פרטי המאשר - מפקד יחידה</h4>
-      <br />
-      <PersonDetails
-        ma={wasMyAuthMA}
-        darga={wasMyAuthRank}
-        firstn={wasMyAuthLastName}
-        lastn={wasMyAuthFirstName}
-      />
-      <br />
-      <br /> <br />
+      {(wascrewm.Dereg === "a" || wascrewm.Dereg === "b") && (
+        <>
+          <h4 className="oh4">פרטי המאשר - מפקד יחידה</h4>
+          <br />
+          <PersonDetails
+            ma={wasMyAuthMA}
+            darga={wasMyAuthRank}
+            firstn={wasMyAuthLastName}
+            lastn={wasMyAuthFirstName}
+          />
+          <br />
+          <br /> <br />
+        </>
+      )}
       <h4 className="oh4">הערכת תכונות בקרה:</h4>
       <br />
       <GradesTable

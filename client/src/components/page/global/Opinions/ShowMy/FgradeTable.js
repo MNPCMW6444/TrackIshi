@@ -16,6 +16,7 @@ export default function FgradeTable(props) {
         </tr>
         <tr className="rowWithHistory">
           <GradeRow
+            isGray={props.isGray}
             grade={props.grade}
             criteria="M1"
             allDATA={props.allDATA}

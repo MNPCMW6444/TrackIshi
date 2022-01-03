@@ -28,10 +28,25 @@ export default function OpenOpinion(props) {
     setIsOpen(false);
   }
 
+  let gray = "";
+  let isauth = props.imauth === "auth";
+
+  if (isauth) {
+    if (!(props.shel.Dereg === "c" || props.shel.Dereg === "d")) {
+      gray = "gray";
+      customStyles.content.backgroundColor = "#DDDDDD";
+    } else customStyles.content.backgroundColor = "#FFFFFF";
+  } else {
+    if (props.shel.Dereg === "c" || props.shel.Dereg === "d") {
+      gray = "gray";
+      customStyles.content.backgroundColor = "#DDDDDD";
+    } else customStyles.content.backgroundColor = "#FFFFFF";
+  }
+
   return (
     <>
       <div>
-        <button className="OpinionOpen" onClick={openModal}>
+        <button className={"OpinionOpen" + gray} onClick={openModal}>
           {props.shel.NickName}
         </button>
       </div>
@@ -44,7 +59,7 @@ export default function OpenOpinion(props) {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <UpdateOpinions shel={props.shel} />
+          <UpdateOpinions shel={props.shel} isGray={gray} />
         </Modal>
       </div>
     </>

@@ -47,10 +47,16 @@ router.get("/getmyOpinion/:id", async (req, res) => {
 
     const opinion = await Opinion.findById(req.params.id);
 
-    if (opinion.CrewM.toJSON() != userr._id.toJSON())
-      return res
-        .status(400)
-        .json({ errorMessage: "אינך יכול לצפות בחוו''ד זה מכיוון שאינו שלך" });
+    let ifpakud = await User.findById(opinion.CrewM.toJSON());
+
+    if (
+      opinion.CrewM.toJSON() != userr._id.toJSON() &&
+      ifpakud.MyComm.toJSON() != userr._id.toJSON()
+    )
+      return res.status(400).json({
+        errorMessage:
+          "אינך יכול לצפות בחוו''ד זה מכיוון שאינו שלך או של פקוד שלך",
+      });
 
     res.json(await addFudsToOpinion(opinion));
   } catch (err) {
@@ -81,14 +87,52 @@ router.get("/getallmyn/:ma", async (req, res) => {
         opinions[i] = await addFudsToOpinion(opinions[i]);
       res.json(opinions);
     } else {
-      return res.status(401).json({
-        errorMessage:
-          'ניסית לקבל את כל החוו"דים של איש צוות אך אינך מפקד גף שלו',
-      });
+      try {
+        if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
+
+        if (comm._id.toString() === screww[0].MyAuth.toString()) {
+          for (let i = 0; i < opinions.length; i++)
+            opinions[i] = await addFudsToOpinion(opinions[i]);
+          res.json(opinions);
+        } else {
+          return res.status(401).json({
+            errorMessage:
+              'ניסית לקבל את כל החוו"דים של איש צוות אך אינך מפקד יחידה שלו',
+          });
+        }
+      } catch (err) {
+        console.error(err);
+        res.status(500).send();
+      }
     }
   } catch (err) {
-    console.log(err);
-    res.status(500).send();
+    try {
+      const token = req.cookies.token;
+
+      if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
+
+      const validatedUser = jwt.verify(token, process.env.JWTSECRET);
+
+      const userr = await User.findById(validatedUser.user);
+
+      const screww = await User.find({ MA: req.params.ma });
+
+      const opinions = await Opinion.find({ CrewM: screww });
+
+      if (userr._id.toString() === screww[0].MyAuth.toString()) {
+        for (let i = 0; i < opinions.length; i++)
+          opinions[i] = await addFudsToOpinion(opinions[i]);
+        res.json(opinions);
+      } else {
+        return res.status(401).json({
+          errorMessage:
+            'ניסית לקבל את כל החוו"דים של איש צוות אך אינך מפקד יחידה שלו',
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).send();
+    }
   }
 });
 

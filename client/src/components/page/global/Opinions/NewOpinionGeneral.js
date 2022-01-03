@@ -48,7 +48,7 @@ function NewOpinion(props) {
 
   let wasC4 = 11;
 
-  let wasCommander = useContext(UserContext).user;
+  let user = useContext(UserContext).user;
 
   let wasC5 = 11;
 
@@ -284,14 +284,34 @@ function NewOpinion(props) {
       <br /> <br />
       <h4 className="oh4">פרטי המעריך - מפקד גף</h4>
       <br />
+      <h4 className="oh4">פרטי המעריך</h4>
+      <br />
+      <h5 className="oh5">
+        (עבור דרג א'/ב' - מפקד גף, עבור דרג ג'/ד' - מפקד יחידה)
+      </h5>
+      <br />
       <PersonDetails
-        ma={wasCommander && wasCommander.MA}
-        darga={wasCommander && wasCommander.Rank}
-        firstn={wasCommander && wasCommander.FirstName}
-        lastn={wasCommander && wasCommander.LastName}
+        ma={user.MA}
+        darga={user.Rank}
+        firstn={user.FirstName}
+        lastn={user.LastName}
       />
       <br />
       <br /> <br /> <br />
+      {(wascrewm.Dereg === "a" || wascrewm.Dereg === "b") && (
+        <>
+          <h4 className="oh4">פרטי המאשר - מפקד יחידה</h4>
+          <br />
+          <PersonDetails
+            ma={user.MA}
+            darga={user.Rank}
+            firstn={user.FirstName}
+            lastn={user.LastName}
+          />
+          <br />
+          <br /> <br />
+        </>
+      )}
       <h4 className="oh4">הערכת תכונות בקרה:</h4>
       <br />
       <GradesTable

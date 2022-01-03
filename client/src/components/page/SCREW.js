@@ -56,14 +56,7 @@ export default function SCREW() {
           >
             החוו"דים שלי
           </button>
-          <button
-            className={
-              navbar === "alltests" ? "naveachbuttonselected" : "naveachbutton"
-            }
-            onClick={() => setNavbar("alltests")}
-          >
-            ההכשרות שלי
-          </button>
+
           <button className="navlogout" onClick={logOut}>
             התנתק
           </button>
