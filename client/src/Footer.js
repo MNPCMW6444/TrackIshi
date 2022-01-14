@@ -11,21 +11,6 @@ export default function Footer() {
 
   return (
     <div className="footerdiv">
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
       {!reportB && !suggestB && (
         <p className="footer">
           חווה בעיה במערכת?
@@ -82,6 +67,33 @@ export default function Footer() {
         </div>
         <br />
       </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br /> <br /> <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br /> <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 }

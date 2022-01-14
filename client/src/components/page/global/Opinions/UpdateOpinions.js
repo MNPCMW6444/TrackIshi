@@ -56,6 +56,7 @@ export default function UpdateOpinions(props) {
           <br />
         </>
       ))}
+      {!res[0] && <h3>-אין לי חוו"דים-</h3>}
     </div>
   ) : (
     <div>

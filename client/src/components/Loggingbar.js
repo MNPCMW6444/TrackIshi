@@ -74,39 +74,73 @@ export default function Loggingbar() {
                 <div className="RolesHeader">
                   הסבר על סוגי המשתמשים והרשאותיהם:
                 </div>
-                <br />
+                <br /> <br />
                 <div className="Roleheader">מבצעים:</div>
-                <br />
-                <div className="Rolemeaning">בעל גישה לספר טלפונים בלבד</div>
-                <br />
-                <div className="Roleheader">מנהל כח אדם:</div>
-                <br />
                 <div className="Rolemeaning">
-                  בעל גישה לספר טלפונים + עריכת פרטים אישיים של כולם
+                  <ul>
+                    <li>בעל גישה לספר טלפונים</li>
+                  </ul>
+                </div>
+                <br />
+                <div className="Roleheader" style={{ color: "Red" }}>
+                  מנהל כח אדם:
+                </div>
+                <div className="Rolemeaning" style={{ color: "Red" }}>
+                  <ul>
+                    <li>בעל גישה לספר טלפונים</li>
+                    <li>בעל יכולת עריכת פרטים אישיים של כולם</li>
+                  </ul>
                 </div>
                 <br />
                 <div className="Roleheader">איש צוות:</div>
-                <br />
                 <div className="Rolemeaning">
-                  בעל גישה לתמונת מצב אישית, קריאת כל החוו"דים והמבחנים ועדכון
-                  פרטים אישיים
+                  <ul>
+                    <li>בעל גישה לספר טלפונים</li>
+                    <li>בעל יכולת עריכת פרטים אישיים שלו</li>
+                    <li>בעל יכולת קריאת כל החוו"דים שלו</li>
+                    <li style={{ color: "Red" }}>
+                      בעל יכולת קריאת כל המבחנים וההסמכות שלו
+                    </li>
+                    <li>
+                      בעל גישה לתמונת מצב אישית, קריאת כל החוו"דים ועדכון פרטים
+                    </li>
+                  </ul>
                 </div>
                 <br />
-                <div className="Roleheader">מקפד הכשרה:</div>
-                <br />
-                <div className="Rolemeaning"></div>
-                <br />
                 <div className="Roleheader">מפקד גף:</div>
-                <br />
-                <div className="Rolemeaning"></div>
+                <div className="Rolemeaning">
+                  <ul>
+                    <li>
+                      asdasdfsdfsfds sd sdsd dasdfsd sd sd csdfsdfsdfsdsdfsdfsd
+                    </li>
+                  </ul>
+                </div>
                 <br />
                 <div className="Roleheader">מפקד יחידה:</div>
+                <div className="Rolemeaning">
+                  <ul>
+                    <li>asdasd sd asdasda as sd ssd sd sd sd dsa</li>
+                  </ul>
+                </div>
                 <br />
-                <div className="Rolemeaning"></div>
+                <div className="Roleheader" style={{ color: "Red" }}>
+                  מפקד הכשרה:
+                </div>
+                <div className="Rolemeaning" style={{ color: "Red" }}>
+                  <ul>
+                    <li>awdawdawd</li>
+                  </ul>
+                </div>
                 <br />
-                <div className="Roleheader">מנהל-על מערכת:</div>
+                <div className="Roleheader" style={{ color: "Red" }}>
+                  מנהל-על מערכת:
+                </div>
+                <div className="Rolemeaning" style={{ color: "Red" }}>
+                  <ul>
+                    <li>יכול לעדכן כל פרט בבסיס הנתונים</li>
+                  </ul>
+                </div>
                 <br />
-                <div className="Rolemeaning"></div>
                 <br />
                 <br />
                 <br />

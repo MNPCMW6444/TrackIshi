@@ -25,6 +25,7 @@ export default function Opinionsa(props) {
           <Apopb is={opinion} />
         </>
       ))}
+      {!res[0] && <h3>-אין לי חוו"דים הממתינים לאישור-</h3>}
     </div>
   ) : (
     <div>

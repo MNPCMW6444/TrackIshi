@@ -47,7 +47,7 @@ export default function SCREWHOME() {
           fontWeight: "bolder",
         }}
       >
-        עמוד זה ייכנס לפעולה בגרסה הבאה שתושק ב1.1.22 :)
+        עמוד זה ייכנס לפעולה בגרסה הבאה
       </p>
       <br />
       <br />

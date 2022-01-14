@@ -8,12 +8,14 @@
 /***************************************************************************/
 
 body {
-  /*background-image: #e1f5f5;*/
   font-family: my;
   padding-left: 10%;
   padding-right: 10%;
   zoom: 50%;
   background-color: #e1f5f5;
+  background-image: url("./logos\ and\ fonts/logo993BlueBackg.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 @media (min-width: 720px) {
@@ -244,7 +246,7 @@ textarea {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: rgba(0, 81, 255, 0);
+  background-color: rgba(25, 0, 255, 0);
   border-color: rgba(0, 0, 0, 0);
   border-width: thin;
   border-style: solid;
@@ -499,6 +501,7 @@ textarea {
 .theTableTR:nth-child(even) {
   text-align: "center";
   font-weight: "bold";
+  background-color: #e1f5f5;
 }
 
 .theTableTR:nth-child(odd) {

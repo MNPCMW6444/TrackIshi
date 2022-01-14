@@ -29,6 +29,7 @@ export default function SCREWALLOPINIONS() {
           <br />
         </>
       ))}
+      {!res[0] && <h3>-אין לי חוו"דים-</h3>}
     </div>
   ) : (
     <div>

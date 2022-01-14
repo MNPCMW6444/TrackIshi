@@ -56,7 +56,7 @@ export default function AUTHCO() {
           </button>
           <button
             className={
-              navbar === "opinions" ? "naveachbuttonselected" : "naveachbutton"
+              navbar === "opinionsa" ? "naveachbuttonselected" : "naveachbutton"
             }
             onClick={() => setNavbar("opinionsa")}
           >

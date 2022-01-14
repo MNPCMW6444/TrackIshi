@@ -22,13 +22,13 @@ function App() {
         </div>
       )}
       {entered && (
-        <UserContextProvider>
-          <div className="container">
+        <>
+          <UserContextProvider>
             <Router />
-          </div>
-        </UserContextProvider>
+          </UserContextProvider>
+          <Footer />
+        </>
       )}
-      <Footer />
     </>
   );
 }

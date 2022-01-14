@@ -1,5 +1,20 @@
 import React from "react";
 
 export default function Unit() {
-  return <div>unit</div>;
+  return (
+    <div>
+      {" "}
+      <p
+        style={{
+          textAlign: "center",
+          fontSize: "20pt",
+          color: "red",
+          backgroundColor: "white",
+          fontWeight: "bolder",
+        }}
+      >
+        עמוד זה ייכנס לפעולה בגרסה הבאה
+      </p>
+    </div>
+  );
 }

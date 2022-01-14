@@ -38,6 +38,7 @@ export default function Opinions(props) {
           <br />
         </>
       ))}
+      {!res[0] && <h3>-אין לי אנשים-</h3>}
     </div>
   ) : (
     <div>

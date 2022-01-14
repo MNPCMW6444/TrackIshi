@@ -9,33 +9,123 @@ export default function Option(props) {
   switch (props.selected) {
     case "nachsal":
       return (
-        <div className="optionSwitcher">
-          <NACHSAL />
-        </div>
+        <>
+          <div className="optionSwitcher">
+            <NACHSAL />
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        </>
       );
     case "fud":
       return (
-        <div className="optionSwitcher">
-          <SHOWFUD />
-        </div>
+        <>
+          <div className="optionSwitcher">
+            <SHOWFUD />
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        </>
       );
     case "allopinions":
       return (
-        <div className="optionSwitcher">
-          <SCREWALLOPINIONS />
-        </div>
+        <>
+          <div className="optionSwitcher">
+            <SCREWALLOPINIONS />
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        </>
       );
     case "alltests":
       return (
-        <div className="optionSwitcher">
-          <SCREALLTESTS />
-        </div>
+        <>
+          <div className="optionSwitcher">
+            <SCREALLTESTS />
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        </>
       );
     default:
       return (
-        <div className="optionSwitcher">
-          <SCREWHOME />
-        </div>
+        <>
+          <div className="optionSwitcher">
+            <SCREWHOME />
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        </>
       );
   }
 }

@@ -11,7 +11,7 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const { getUser } = useContext(UserContext);
-    
+
   const history = useHistory();
 
   async function login(e) {
@@ -62,14 +62,27 @@ function Login() {
           value={formPassword}
           onChange={(e) => setFormPassword(e.target.value)}
         />
-        
+
         <button className="btn-submit" type="submit">
           היכנס
         </button>
       </form>
-      <p>
-        אינך קיים במערכת?   בקש מהמפקד ליצור עבורך משתמש
-      </p>
+      <p>אינך קיים במערכת? בקש מהמפקד ליצור עבורך משתמש</p>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 }
