@@ -2,6 +2,7 @@ import React from "react";
 import Unit from "./Option/Unit.js";
 import Fud from "../global/FUD/ShowFUD";
 import Opinions from "./Option/Opinions";
+import Opinionsa from "./Option/Opinionsa";
 import NACHSAL from "../global/nachsal/NACHSAL";
 
 export default function Option(props) {
@@ -22,6 +23,12 @@ export default function Option(props) {
       return (
         <div className="optionSwitcher">
           <Opinions />
+        </div>
+      );
+    case "opinionsa":
+      return (
+        <div className="optionSwitcher">
+          <Opinionsa />
         </div>
       );
     default:

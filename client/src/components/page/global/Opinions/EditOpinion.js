@@ -49,6 +49,7 @@ function NewOpinion(props) {
   let wasMyAuthRank = OpinionRes.wasMyAuthRank;
   let wasMyAuthLastName = OpinionRes.wasMyAuthLastName;
   let wasMyAuthFirstName = OpinionRes.wasMyAuthFirstName;
+  let wasMyAuthApped = OpinionRes.wasMyAuthApped;
 
   let wasC1 = OpinionRes.C1;
 
@@ -311,6 +312,17 @@ function NewOpinion(props) {
             firstn={wasMyAuthLastName}
             lastn={wasMyAuthFirstName}
           />
+          <br />
+          <h5
+            className="oh5"
+            style={{
+              color: wasMyAuthApped ? "green" : "red",
+              backgroundColor: "unset",
+              fontWeight: 70,
+            }}
+          >
+            {"המאשר " + (wasMyAuthApped ? "אישר" : "טרם אישר") + ' את החוו"ד'}
+          </h5>
           <br />
           <br /> <br />
         </>

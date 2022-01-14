@@ -54,6 +54,14 @@ export default function AUTHCO() {
           >
             הזנת חוו"דים
           </button>
+          <button
+            className={
+              navbar === "opinions" ? "naveachbuttonselected" : "naveachbutton"
+            }
+            onClick={() => setNavbar("opinionsa")}
+          >
+            אישור חוו"דים
+          </button>
 
           <button className="navlogout" onClick={logOut}>
             התנתק

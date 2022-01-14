@@ -100,6 +100,21 @@ function NewOpinion(props) {
 
   const [errorMessage, setErrorMessage] = useState(null);
 
+  const [authm, setauthm] = useState();
+  const [authfn, setauthfn] = useState();
+  const [authln, setauthln] = useState();
+  const [authr, setauthr] = useState();
+
+  useEffect(async () => {
+    const FUDRes = await Axios.get(
+      `${domain}/user/gethistfud/${wascrewm.MyAuth}`
+    );
+    setauthm(FUDRes.data.MA);
+    setauthfn(FUDRes.data.FirstName);
+    setauthln(FUDRes.data.LastName);
+    setauthr(FUDRes.data.Rank);
+  }, [wascrewm]);
+
   useEffect(() => {
     switch (newGrade[1]) {
       case "fi":
@@ -282,8 +297,6 @@ function NewOpinion(props) {
       />
       <br />
       <br /> <br />
-      <h4 className="oh4">פרטי המעריך - מפקד גף</h4>
-      <br />
       <h4 className="oh4">פרטי המעריך</h4>
       <br />
       <h5 className="oh5">
@@ -303,10 +316,10 @@ function NewOpinion(props) {
           <h4 className="oh4">פרטי המאשר - מפקד יחידה</h4>
           <br />
           <PersonDetails
-            ma={user.MA}
-            darga={user.Rank}
-            firstn={user.FirstName}
-            lastn={user.LastName}
+            ma={authm}
+            darga={authfn}
+            firstn={authln}
+            lastn={authr}
           />
           <br />
           <br /> <br />

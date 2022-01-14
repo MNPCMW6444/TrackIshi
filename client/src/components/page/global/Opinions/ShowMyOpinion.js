@@ -46,6 +46,7 @@ function ShowMyOpinion(props) {
   const [authrank, setauthrank] = useState();
   const [authlast, setauthlast] = useState();
   const [authfirst, setauthfirst] = useState();
+  const [wasMyAuthApped, setwasMyAuthApped] = useState();
 
   const [created, setCreated] = useState();
   const [modified, setModified] = useState();
@@ -322,6 +323,7 @@ function ShowMyOpinion(props) {
         setauthrank(OpinionRes.data.wasMyAuthRank);
         setauthlast(OpinionRes.data.wasMyAuthLastName);
         setauthfirst(OpinionRes.data.wasMyAuthFirstName);
+        setwasMyAuthApped(OpinionRes.data.wasMyAuthApped);
       } catch (err) {
         console.log(err);
       }
@@ -467,7 +469,18 @@ function ShowMyOpinion(props) {
             darga={authrank}
             firstn={authlast}
             lastn={authfirst}
-          />
+          />{" "}
+          <br />
+          <h5
+            className="oh5"
+            style={{
+              color: wasMyAuthApped ? "green" : "red",
+              backgroundColor: "unset",
+              fontWeight: 70,
+            }}
+          >
+            {"המאשר " + (wasMyAuthApped ? "אישר" : "טרם אישר") + ' את החוו"ד'}
+          </h5>
           <br />
           <br /> <br />{" "}
         </>
