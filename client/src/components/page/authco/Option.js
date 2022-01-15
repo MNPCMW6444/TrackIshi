@@ -4,6 +4,7 @@ import Fud from "../global/FUD/ShowFUD";
 import Opinions from "./Option/Opinions";
 import Opinionsa from "./Option/Opinionsa";
 import NACHSAL from "../global/nachsal/NACHSAL";
+import MyOpinions from "../screw/Option/SCREWALLOPINIONS";
 
 export default function Option(props) {
   switch (props.selected) {
@@ -23,6 +24,12 @@ export default function Option(props) {
       return (
         <div className="optionSwitcher">
           <Opinions />
+        </div>
+      );
+    case "myopinions":
+      return (
+        <div className="optionSwitcher">
+          <MyOpinions />
         </div>
       );
     case "opinionsa":

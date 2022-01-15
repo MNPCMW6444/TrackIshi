@@ -26,6 +26,7 @@ function App() {
           <UserContextProvider>
             <Router />
           </UserContextProvider>
+
           <Footer />
         </>
       )}

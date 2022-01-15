@@ -18,6 +18,33 @@ body {
   background-size: 100%;
 }
 
+.stha {
+  border: 1px solid rgba(19, 20, 97, 0.247);
+  text-align: "center";
+  font-weight: "bold";
+  text-align: center;
+  padding-right: 10px;
+  padding-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 1px;
+}
+
+.stda {
+  border: 1px solid rgba(19, 20, 97, 0.247);
+  text-align: "center";
+  font-weight: "bold";
+  text-align: center;
+  padding-right: 10px;
+  padding-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 1px;
+  font-weight: 999;
+}
+
 @media (min-width: 720px) {
   body {
     zoom: 55%;
