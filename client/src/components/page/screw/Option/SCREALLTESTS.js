@@ -29,7 +29,30 @@ export default function SCREALLTESTS() {
         }}
       >
         עמוד זה ייכנס לפעולה בגרסה הבאה שתושק ב1.1.22 :)
-      </p>
+      </p>{" "}
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   ) : (
     <div>

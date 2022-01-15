@@ -36,6 +36,21 @@ export default function Opinions(props) {
         </>
       ))}
       {!res[0] && <h3>-אין לי אנשים-</h3>}
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   ) : (
     <div>

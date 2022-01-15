@@ -26,6 +26,21 @@ export default function Opinionsa(props) {
         </>
       ))}
       {!res[0] && <h3>-אין לי חוו"דים הממתינים לאישור-</h3>}
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   ) : (
     <div>

@@ -604,6 +604,42 @@ textarea {
   padding-bottom: 10px;
 }
 
+.changepassbuttonOK {
+  font-size: 16pt;
+  padding-right: 50/2px;
+  padding-left: 50/2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(49, 99, 0);
+}
+
+.changepassbuttonCAN {
+  font-size: 8pt;
+  padding-right: 50/2px;
+  padding-left: 50/2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(134, 11, 11);
+}
+
+.changepass {
+  text-align: center;
+}
+
+.changepassm {
+  text-align: center;
+  border: 1px solid rgb(134, 11, 11);
+}
+
+.changepassbutton {
+  padding-right: 50/2px;
+  padding-left: 50/2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(226, 102, 102);
+  color: rgb(9, 0, 48);
+}
+
 .fudinput {
   font-size: 13pt;
   background-color: rgba(255, 255, 255, 0.7);

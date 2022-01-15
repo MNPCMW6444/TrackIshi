@@ -159,7 +159,30 @@ export default function Timeline(props) {
     for (let i = 0; i < props.cersarray.length; i++)
       if (neededcer === props.cersarray[i].Name) doneverified++;
   });
-  let percentage = (4 / needed) * 100;
+  // let deregCode = 1; // 0
+  // let deregCode = 15; // a
+  // let deregCode = 22; // b
+  // let deregCode = 30; // c
+  // let deregCode = 35; // d
+  let deregCode;
+  switch (props.crewmobject.Dereg) {
+    case "a":
+      deregCode = 15;
+      break;
+    case "b":
+      deregCode = 22;
+      break;
+    case "c":
+      deregCode = 30;
+      break;
+    case "d":
+      deregCode = 35;
+      break;
+    default:
+      deregCode = 1;
+      break;
+  }
+  let percentage = (deregCode / needed) * 100;
   let s1 = 0;
   let s2;
   for (let i = 0; i < relevant.length; i++)

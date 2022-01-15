@@ -25,6 +25,21 @@ export default function NACHSAL() {
         <br />
         <br />
         <NACHSALTB data={datas} />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </>
     )
   );

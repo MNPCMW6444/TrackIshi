@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import domain from "../../../../util/domain";
 import UpdateFUD from "./UpdateFUD";
 import SuccessMessage from "../../../messages/SuccessMessage";
+import ErrorMessage from "../../../messages/ErrorMessage";
 
 function ShowFUD(props) {
   let externalma;
@@ -25,8 +26,14 @@ function ShowFUD(props) {
   const [maslool, setMaslool] = useState();
   const [ready, setReady] = useState(false);
 
+  const [password, setPassword] = useState(false);
+  const [password2, setPassword2] = useState(false);
+
   const [edit, setEdit] = useState(false);
+  const [updatepass, setupdatepass] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [successMessage2, setSuccessMessage2] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     const getFUDI = setInterval(async () => {
@@ -229,6 +236,29 @@ function ShowFUD(props) {
     return () => clearInterval(getFUDI);
   }, []);
 
+  async function changePass() {
+    const newpass = {
+      pass: password,
+      pass2: password2,
+    };
+
+    try {
+      const res = await Axios.put(`${domain}/user/changemypass`, newpass);
+      if (res.data.SUC === "YES") setSuccessMessage2("הסיסמה שונתה בהצלחה");
+      debugger;
+      setupdatepass(false);
+      setPassword("");
+      setPassword2("");
+    } catch (err) {
+      if (err.response) {
+        if (err.response.data.errorMessage) {
+          setErrorMessage(err.response.data.errorMessage);
+        }
+      } else console.log(err);
+    }
+    return;
+  }
+
   return ready ? (
     <>
       {!edit && (
@@ -342,6 +372,85 @@ function ShowFUD(props) {
           )}
         </div>
       )}
+      <br />
+      <br />
+      <br />
+      <br />
+      {!updatepass && (
+        <div className="changepass">
+          {!externalma && (
+            <button
+              className="changepassbutton"
+              onClick={() => setupdatepass(true)}
+            >
+              שינוי סיסמה
+            </button>
+          )}
+        </div>
+      )}{" "}
+      <br />
+      <br />
+      {successMessage2 && (
+        <SuccessMessage
+          message={successMessage2}
+          clear={() => setSuccessMessage2(null)}
+        />
+      )}
+      {updatepass && (
+        <div className="changepassm">
+          <br />{" "}
+          {errorMessage && (
+            <ErrorMessage
+              message={errorMessage}
+              clear={() => setErrorMessage(null)}
+            />
+          )}
+          <br />
+          <labe>הזן סיסמה:</labe>
+          {"   "}
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          ></input>{" "}
+          <br /> <br />
+          <labe>הזן אותה סיסמה שוב:</labe>
+          <input
+            type="password"
+            value={password2}
+            onChange={(e) => setPassword2(e.target.value)}
+          ></input>
+          <br /> <br />
+          <br /> <br />
+          <button className="changepassbuttonOK" onClick={changePass}>
+            שנה סיסמה
+          </button>
+          <br /> <br />
+          <button
+            className="changepassbuttonCAN"
+            onClick={() => {
+              setPassword("");
+              setPassword2("");
+              setupdatepass(false);
+            }}
+          >
+            בטל
+          </button>
+          <br />
+          <br />
+        </div>
+      )}
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   ) : (
     <h2>
