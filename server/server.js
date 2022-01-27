@@ -35,3 +35,4 @@ app.use("/user", require("./routers/userRouter"));
 app.use("/opinion", require("./routers/opinionRouter"));
 app.use("/certification", require("./routers/certificationRouter"));
 app.use("/footer", require("./routers/footerRouter"));
+app.use("/mofa", require("./routers/mofaRouter"));

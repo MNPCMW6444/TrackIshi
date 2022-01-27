@@ -56,7 +56,14 @@ export default function SCREW() {
           >
             החוו"דים שלי
           </button>
-
+          <button
+            className={
+              navbar === "mofas" ? "naveachbuttonselected" : "naveachbutton"
+            }
+            onClick={() => setNavbar("mofas")}
+          >
+            מופעי הדרכה
+          </button>
           <button className="navlogout" onClick={logOut}>
             התנתק
           </button>
