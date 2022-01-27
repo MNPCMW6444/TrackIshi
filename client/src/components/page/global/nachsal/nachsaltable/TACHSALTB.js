@@ -5,6 +5,9 @@ import ShowFUD from "../../FUD/ShowFUD";
 
 export default function TACHSALTB(props) {
   const goten = props.data;
+  goten.sort(function (a, b) {
+    return b.CourseNo - a.CourseNo;
+  });
 
   const [externalMA, setExternalMA] = useState();
 
