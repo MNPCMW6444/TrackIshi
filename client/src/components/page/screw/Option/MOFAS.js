@@ -4,6 +4,7 @@ import Axios from "axios";
 import NEWMOFA from "./NEWMOFA";
 import VIEWMOFA from "./VIEWMOFA";
 import Modal from "react-modal";
+import SuccessMessage from "../../../messages/SuccessMessage";
 
 const customStyles = {
   content: {
@@ -21,6 +22,7 @@ const customStyles = {
 export default function MOFAS() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalData, setModalData] = useState();
+  const [successMessage, setSuccessMessage] = useState(null);
 
   function openModal() {
     setIsOpen(true);
@@ -60,6 +62,13 @@ export default function MOFAS() {
         הזן מופע הדרכה חדש
       </button>
       <br />
+      {successMessage && (
+        <SuccessMessage
+          message={successMessage}
+          clear={() => setSuccessMessage(null)}
+        />
+      )}{" "}
+      <br />
       <h2 style={{ fontSize: 45 }}>רשימת כל מופעי ההדרכה שלי:</h2>
       {res.map((mofa) => (
         <>
@@ -87,7 +96,7 @@ export default function MOFAS() {
         contentLabel="Example Modal"
       >
         {modalData === "new" ? (
-          <NEWMOFA />
+          <NEWMOFA setDidupdated={closeModal} suc={setSuccessMessage} />
         ) : (
           <VIEWMOFA data={modalData}></VIEWMOFA>
         )}

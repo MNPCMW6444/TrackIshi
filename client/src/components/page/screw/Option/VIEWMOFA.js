@@ -1,10 +1,33 @@
-import React from "react";
 import FgradeTable from "../../global/Opinions/ShowMy/FgradeTable";
 import GradesTable from "../../global/Opinions/ShowMy/GradesTable";
 import Paragraph from "../../global/usefull/Paragraph";
 import CheckBox from "./CheckBox";
+import domain from "../../../../util/domain";
+import Axios from "axios";
+import React, { useState } from "react";
 
 export default function VIEWMOFA(props) {
+  const [deletef, setDeletef] = useState(false);
+  const [mehak, setmehak] = useState("מחק מופע הדרכה זה");
+
+  function justdeleteon() {
+    setDeletef(true);
+  }
+  function justdeleteoff() {
+    setDeletef(false);
+  }
+
+  async function deleteit() {
+    setmehak("מוחק...");
+    let res;
+    try {
+      res = await Axios.delete(`${domain}/mofa/${props.data._id}`);
+    } catch (e) {}
+    setmehak("לא נמחק... נסה לרענן את הדף לנסות שנית");
+    if (res && res.data && res.data.res && res.data.res === "asd")
+      setmehak("נמחק... לא יופיע יותר לאחר רענון הדף");
+  }
+
   let date = "";
   try {
     let finil = "DIDNOTDOWANAD";
@@ -140,6 +163,56 @@ export default function VIEWMOFA(props) {
         <span className="lightero"> {created}</span>
       </h4>
       <br />
+      <br /> <br />
+      <br />{" "}
+      <div style={{ textAlign: "center" }}>
+        <button
+          onClick={() => justdeleteon()}
+          style={{ backgroundColor: "red" }}
+        >
+          {mehak}
+        </button>
+      </div>
+      <br />
+      {deletef && (
+        <div style={{ textAlign: "center" }}>
+          <button
+            style={{
+              fontSize: "20pt",
+              backgroundColor: "unset",
+              color: "black",
+              fontWeight: "900",
+            }}
+          >
+            בטוח?{" "}
+          </button>
+          <button
+            style={{ backgroundColor: "red" }}
+            onClick={async () => deleteit()}
+          >
+            כן
+          </button>
+          <button
+            style={{
+              backgroundColor: "unset",
+              color: "black",
+              fontWeight: "900",
+            }}
+          ></button>
+
+          <button
+            onClick={() => justdeleteoff()}
+            style={{
+              fontSize: "20pt",
+            }}
+          >
+            לא
+          </button>
+        </div>
+      )}
+      <br />
+      <br /> <br />
+      <br /> <br />
       <br />
     </div>
   );

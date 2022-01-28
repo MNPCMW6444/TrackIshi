@@ -10,14 +10,8 @@ export default function GradesTable(props) {
             <th className="oth" colSpan="2">
               משוב אישי (כהערכה כוללת)
             </th>
-            <th className="oth" colSpan="2">
-              נכשל
-            </th>
-            <th className="oth" colSpan="3">
-              ממוצע
-            </th>
-            <th className="oth" colSpan="2">
-              מצוין
+            <th className="oth" colSpan="7">
+              {"נכשל < - -  - > ממוצע < - -  - > מצוין"}
             </th>
           </tr>
           <tr className="rowWithHistory">

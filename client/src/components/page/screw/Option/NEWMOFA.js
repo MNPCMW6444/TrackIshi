@@ -134,7 +134,7 @@ export default function NEWMOFA(props) {
 
     try {
       await Axios.post(`${domain}/mofa/createmofa`, newData);
-      props.suc(" מופע ההדרכה נשמר בהצלחה! אם לא מופי יש לרענן את דף ");
+      props.suc(" מופע ההדרכה נשמר בהצלחה! אם לא מופע יש לרענן את דף ");
       const setDidupdated = props.setDidupdated;
       setDidupdated();
 
@@ -351,7 +351,7 @@ export default function NEWMOFA(props) {
       <br />
       <div className="opd">
         <textarea
-          className="opinionInputPara"
+          className="opinionInputPara2"
           type="text"
           placeholder={""}
           value={m11}
@@ -363,7 +363,7 @@ export default function NEWMOFA(props) {
       <br />
       <div className="opd">
         <textarea
-          className="opinionInputPara"
+          className="opinionInputPara2"
           type="text"
           placeholder={""}
           value={m21}
@@ -375,7 +375,7 @@ export default function NEWMOFA(props) {
       <br />
       <div className="opd">
         <textarea
-          className="opinionInputPara"
+          className="opinionInputPara2"
           type="text"
           placeholder={""}
           value={mf}
@@ -385,12 +385,31 @@ export default function NEWMOFA(props) {
       <br /> <br />
       <br /> <br />
       <br />
-      <button className="OpinionSendButton" onClick={send}>
-        שמור
-      </button>
-      <button className="OpinionSendButton" onClick={send2}>
-        שמור כמבחן
-      </button>
+      <div style={{ textAlign: "Center" }}>
+        <button className="OpinionSendButton" onClick={send}>
+          {" "}
+          שמור{" "}
+        </button>
+        <button
+          style={{
+            backgroundColor: "unset",
+            color: "black",
+            fontSize: "27pt",
+            fontWeight: "900",
+          }}
+        >
+          או
+        </button>
+        <button
+          className="OpinionSendButton"
+          style={{
+            fontSize: "20pt",
+          }}
+          onClick={send2}
+        >
+          שמור כמבחן
+        </button>
+      </div>
       <br /> <br />
       <br />
       {errorMessage && (
