@@ -26,6 +26,8 @@ export default function NEWMOFA(props) {
   const [x21, setx21] = useState(false);
   const [x22, setx22] = useState(false);
   const [x23, setx23] = useState(false);
+  const [test, settest] = useState(false);
+  const [pass, setpass] = useState(false);
   const [c1, setc1] = useState();
   const [c2, setc2] = useState();
   const [c3, setc3] = useState();
@@ -39,6 +41,7 @@ export default function NEWMOFA(props) {
   const [m11, setm11] = useState();
   const [m21, setm21] = useState();
   const [mf, setmf] = useState();
+  const [m, setm] = useState("");
 
   const [newGrade, setNewGrade] = useState([4, "nelson"]);
 
@@ -52,6 +55,24 @@ export default function NEWMOFA(props) {
 
   function handleCheck3() {
     setx23(!x23);
+  }
+
+  function handletest() {
+    if (test) setpass(false);
+    settest(!test);
+  }
+
+  function handlepass() {
+    if (pass) setpass(!pass);
+    else {
+      if (m1 && m1 > 6) {
+        setpass(!pass);
+        setm("");
+      } else {
+        setpass(false);
+        setm("לא ניתן להעביר מבחן עם ציון נמוך מממוצע (7)");
+      }
+    }
   }
 
   useEffect(() => {
@@ -94,6 +115,7 @@ export default function NEWMOFA(props) {
 
       case "final":
         setm1(newGrade[0]);
+        setpass(false);
         break;
 
       default:
@@ -271,6 +293,7 @@ export default function NEWMOFA(props) {
             <input
               style={{ textAlign: "center", width: "95%" }}
               type="checkbox"
+              checked={x21 ? "checked" : ""}
               onChange={() => {
                 handleCheck1();
               }}
@@ -293,6 +316,7 @@ export default function NEWMOFA(props) {
             <input
               style={{ textAlign: "center", width: "95%" }}
               type="checkbox"
+              checked={x22 ? "checked" : ""}
               onChange={() => {
                 handleCheck2();
               }}
@@ -315,6 +339,7 @@ export default function NEWMOFA(props) {
             <input
               style={{ textAlign: "center", width: "95%" }}
               type="checkbox"
+              checked={x23 ? "checked" : ""}
               onChange={() => {
                 handleCheck3();
               }}
@@ -345,6 +370,39 @@ export default function NEWMOFA(props) {
       <br />
       <FgradeTable grade={m1} setnewgrade={setNewGrade} />
       <br />
+      <br />
+      <br />
+      <h4 className="oh4">מבחן: </h4>
+      <br />
+      <table className="otable">
+        <tr>
+          <td className="otd">האם המופע מהווה מבחן?</td>
+          <td className="otd">
+            <input
+              type="checkbox"
+              checked={test ? "checked" : ""}
+              onChange={() => {
+                handletest();
+              }}
+            ></input>
+          </td>
+        </tr>{" "}
+        {test && (
+          <tr>
+            <td className="otd">האם המבחן עבר?</td>
+            <td className="otd">
+              <input
+                type="checkbox"
+                checked={pass ? "checked" : ""}
+                onChange={() => {
+                  handlepass();
+                }}
+              ></input>
+            </td>
+          </tr>
+        )}
+      </table>
+      <h3 style={{ textAlign: "center", color: "red" }}>{m}</h3>
       <br />
       <br />
       <h4 className="oh4">נקודות לשימור: </h4>
