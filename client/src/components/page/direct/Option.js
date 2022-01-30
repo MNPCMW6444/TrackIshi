@@ -3,6 +3,7 @@ import Gaf from "./Option/Gaf.js";
 import Fud from "../global/FUD/ShowFUD";
 import Opinions from "./Option/Opinions";
 import MyOpinions from "../screw/Option/SCREWALLOPINIONS";
+import Mofas from "../direct/Option/Mofas";
 
 import NACHSAL from "../global/nachsal/NACHSAL";
 
@@ -30,6 +31,13 @@ export default function Option(props) {
       return (
         <div className="optionSwitcher">
           <MyOpinions />
+        </div>
+      );
+
+    case "mofas":
+      return (
+        <div className="optionSwitcher">
+          <Mofas />
         </div>
       );
 

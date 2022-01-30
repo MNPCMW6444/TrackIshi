@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useTable, useFilters, useSortBy } from "react-table";
 import Modal from "react-modal";
-import ShowFUD from "../../FUD/ShowFUD";
+import UpdateFUD2 from "../../FUD/UpdateFUD2";
 
-export default function TACHSALTB(props) {
+export default function TACHSALTBKAHAD(props) {
   const goten = props.data;
 
   goten.sort(function (a, b) {
@@ -690,8 +690,8 @@ export default function TACHSALTB(props) {
   };
 
   function openFUD(ma) {
-    setIsOpen(true);
     setExternalMA(ma);
+    setIsOpen(true);
   }
 
   function openModal() {
@@ -907,7 +907,7 @@ export default function TACHSALTB(props) {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <ShowFUD ma={externalMA} />
+          <UpdateFUD2 ma={externalMA} />
         </Modal>
         <br />
         <br />
@@ -935,7 +935,7 @@ export default function TACHSALTB(props) {
         filterInput4 !== "" ||
         filterInput5 !== "") && (
         <div className="cleanFilters">
-          <button className="cleanFiltersBtn" onClick={() => cleanAll()}>
+          <button className="cleanFiltersBtn" onClick={cleanAll}>
             נקה את כל הסינונים
           </button>
           <br />
@@ -991,13 +991,21 @@ export default function TACHSALTB(props) {
                   })}
                   <th>
                     <button
-                      className="plus"
+                      className="plusrpencil"
                       onClick={() => {
                         openFUD(row.original.MA);
                       }}
                     >
-                      +
+                      ✏️
                     </button>
+                    {/*   <button
+                      className="plusr"
+                      onClick={() => {
+                        openFUD(row.original.MA);
+                      }}
+                    >
+                      עריכה
+                    </button> */}
                   </th>
                 </tr>
               );

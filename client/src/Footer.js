@@ -51,7 +51,7 @@ export default function Footer() {
         <br />
         <br />
         <br />
-        <div className="version">גרסה 0.5</div>
+        <div className="version">גרסת בטא</div>
         <br />
         <br />
         <div className="author">

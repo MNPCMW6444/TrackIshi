@@ -48,6 +48,9 @@ export default function VIEWMOFA(props) {
   let ctime = c.substring(11, 19);
   let created = cday + "/" + cmonth + "/" + cyear + " " + ctime;
 
+  let test = props.data.isTest;
+  let pass = props.data.isPass;
+
   return (
     <div className="odiv">
       {" "}
@@ -83,8 +86,14 @@ export default function VIEWMOFA(props) {
           <td className="otd" colSpan="3">
             {props.data.X11 ? props.data.X11 : "*** לא הוזן ***"}
           </td>
-          <td className="otd" colSpan="1">
-            <CheckBox is={props.data.X21} />
+          <td
+            className="otd"
+            colSpan="1"
+            style={{ backgroundColor: props.data.X21 ? "#A9E18E" : "#F39393" }}
+          >
+            {/*  <CheckBox is={props.data.X21} -
+           /> */}
+            {props.data.X21 ? "כן" : "לא"}
           </td>
         </tr>{" "}
         <tr>
@@ -95,8 +104,14 @@ export default function VIEWMOFA(props) {
           <td className="otd" colSpan="3">
             {props.data.X12 ? props.data.X12 : "*** לא הוזן ***"}
           </td>
-          <td className="otd" colSpan="1">
-            <CheckBox is={props.data.X22} />
+          <td
+            className="otd"
+            colSpan="1"
+            style={{ backgroundColor: props.data.X22 ? "#A9E18E" : "#F39393" }}
+          >
+            {/*             <CheckBox is={props.data.X22} />
+             */}{" "}
+            {props.data.X22 ? "כן" : "לא"}
           </td>
         </tr>{" "}
         <tr>
@@ -107,8 +122,14 @@ export default function VIEWMOFA(props) {
           <td className="otd" colSpan="3">
             {props.data.X13 ? props.data.X13 : "*** לא הוזן ***"}
           </td>
-          <td className="otd" colSpan="1">
-            <CheckBox is={props.data.X23} />
+          <td
+            className="otd"
+            colSpan="1"
+            style={{ backgroundColor: props.data.X23 ? "#A9E18E" : "#F39393" }}
+          >
+            {/*             <CheckBox is={props.data.X23} />
+             */}{" "}
+            {props.data.X23 ? "כן" : "לא"}
           </td>
         </tr>
       </table>
@@ -133,6 +154,39 @@ export default function VIEWMOFA(props) {
       <h4 className="oh4">ציון מסכם לרמת הבקרה: </h4>
       <br />
       <FgradeTable grade={props.data.M1} />
+      <br />
+      <br />
+      <br />
+      <h4 className="oh4">מבחן: </h4>
+      <br />
+      <table className="otable">
+        <tr>
+          <td className="otd">האם המופע מהווה מבחן?</td>
+          <td className="otd">
+            {/*             <input type="checkbox" checked={test ? "checked" : ""}></input>
+             */}{" "}
+            {test ? "כן" : "לא"}{" "}
+          </td>
+        </tr>{" "}
+        {test && (
+          <tr>
+            <td className="otd">האם המבחן עבר?</td>
+            <td
+              className="otd"
+              style={{
+                backgroundColor: pass ? "#A9E18E" : "#F39393",
+              }}
+            >
+              {/*  <input
+                type="checkbox"
+                checked={pass ? "checked" : ""}
+                onChange={() => {}}
+             ></input> */}{" "}
+              {pass ? "כן" : "לא"}
+            </td>
+          </tr>
+        )}
+      </table>
       <br />
       <br />
       <br />

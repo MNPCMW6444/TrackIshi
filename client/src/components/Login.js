@@ -47,25 +47,38 @@ function Login() {
         />
       )}
       <form className="form" onSubmit={login}>
-        <label htmlFor="form-ma">מספר אישי</label>
+        <label htmlFor="form-ma">מספר אישי:</label>
+        <button
+          style={{ color: "unset", backgroundColor: "unset", width: "15px" }}
+        ></button>
         <input
           id="form-ma"
           type="number"
           value={formMA}
           onChange={(e) => setFormMA(e.target.value)}
         />
-
-        <label htmlFor="form-password">סיסמה</label>
+        <button
+          style={{ color: "unset", backgroundColor: "unset", width: "15px" }}
+        ></button>{" "}
+        <br></br>
+        <br />
+        <label htmlFor="form-password">סיסמה: </label>
+        <button
+          style={{ color: "unset", backgroundColor: "unset", width: "40px" }}
+        ></button>
         <input
           id="form-password"
           type="password"
           value={formPassword}
           onChange={(e) => setFormPassword(e.target.value)}
-        />
-
+        />{" "}
+        <br></br> <br></br>
         <button className="btn-submit" type="submit">
           היכנס
-        </button>
+        </button>{" "}
+        <br></br>
+        <br /> <br /> <br></br>
+        <br /> <br />
       </form>
       <p>אינך קיים במערכת? בקש מהמפקד ליצור עבורך משתמש</p>
       <br />

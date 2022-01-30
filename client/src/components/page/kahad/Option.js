@@ -1,5 +1,5 @@
 import React from "react";
-import NACHSAL from "../global/nachsal/NACHSAL";
+import NACHSALKAHAD from "../global/nachsal/NACHSALKAHAD";
 
 export default function Option(props) {
   switch (props.selected) {
@@ -12,7 +12,7 @@ export default function Option(props) {
     default:
       return (
         <div className="optionSwitcher">
-          <NACHSAL />
+          <NACHSALKAHAD />
         </div>
       );
   }

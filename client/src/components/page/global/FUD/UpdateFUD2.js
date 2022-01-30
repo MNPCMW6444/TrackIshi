@@ -1,6 +1,5 @@
 import Axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import UserContext from "../../../../context/UserContext";
 import domain from "../../../../util/domain";
 import ErrorMessage from "../../../messages/ErrorMessage";
 
@@ -43,19 +42,13 @@ function UpdateFUD(props) {
   const [maslool, setMaslool] = useState();
   const [ready, setReady] = useState(false);
 
-  const { user } = useContext(UserContext);
-
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     const getFUD = async () => {
       debugger;
       let FUDRes;
-      if (externalma)
-        FUDRes = await Axios.get(
-          `${domain}/user/getFullDetailsE/${externalma}`
-        );
-      else FUDRes = await Axios.get(`${domain}/user/getFullDetails`);
+      FUDRes = await Axios.get(`${domain}/user/getFullDetailsE/${externalma}`);
       try {
         setMA(FUDRes.data.MA);
       } catch (err) {
@@ -537,8 +530,8 @@ function UpdateFUD(props) {
     </>
   ) : (
     <h2>
-      טוען את הפרטים האישיים הקיימים שלך מהשרת... (אם אתה מספיק לקרוא את ההודעה
-      הזאת אז ייתכן שיש תקלה בשרת או בתקשורת איתו)
+      טוען את הפרטים האישיים הקיימים מהשרת לעריכה... (אם אתה מספיק לקרוא את
+      ההודעה הזאת אז ייתכן שיש תקלה בשרת או בתקשורת איתו)
     </h2>
   );
 }

@@ -126,7 +126,8 @@ export default function NEWMOFA(props) {
 
   async function send() {
     const newData = {
-      isTest: false,
+      isTest: test,
+      isPass: pass,
       fillDatep: date,
       CrewM: user,
       name: user.NickName,
@@ -255,16 +256,31 @@ export default function NEWMOFA(props) {
             ></input>
           </td>
           <td className="otd" style={{ textAlign: "center", width: "90px" }}>
-            <input
-              style={{ textAlign: "center", width: "95%" }}
-              value={Emda}
+            <select
+              style={{ textAlign: "center", width: "90px" }}
               onChange={(e) => setEmda(e.target.value)}
-            ></input>
+            >
+              <option disabled selected value>
+                {" "}
+                -- בחר --{" "}
+              </option>
+
+              <option value={"ירוט"}>{"ירוט"}</option>
+              <option value={"אחר, פרט:"}>{"אחר, פרט:"}</option>
+            </select>
+            {Emda === "אחר, פרט:" && (
+              <input
+                style={{ textAlign: "center", width: "95%" }}
+                value={Emda}
+                onChange={(e) => setEmda(e.target.value)}
+              ></input>
+            )}
           </td>
           <td className="otd" style={{ textAlign: "center", width: "90px" }}>
             <input
               style={{ textAlign: "center", width: "95%" }}
               value={No}
+              type="number"
               onChange={(e) => setNo(e.target.value)}
             ></input>
           </td>
@@ -273,8 +289,11 @@ export default function NEWMOFA(props) {
       <br />
       <table className="otable" style={{ width: "60%" }}>
         <tr>
-          <th colSpan="5" className="oth">
+          <th colSpan="4" className="oth" style={{ width: "90%" }}>
             סטטוס עמידה ביעדים
+          </th>{" "}
+          <th colSpan="4" className="oth" style={{ width: "10%" }}>
+            כן/לא
           </th>
         </tr>
 
@@ -444,11 +463,11 @@ export default function NEWMOFA(props) {
       <br /> <br />
       <br />
       <div style={{ textAlign: "Center" }}>
-        <button className="OpinionSendButton" onClick={send}>
+        <button className="OpinionSendButton" onClick={() => send()}>
           {" "}
           שמור{" "}
         </button>
-        <button
+        {/*  <button
           style={{
             backgroundColor: "unset",
             color: "black",
@@ -459,14 +478,14 @@ export default function NEWMOFA(props) {
           או
         </button>
         <button
-          className="OpinionSendButton"
+          className="Opinion`Send`Button"
           style={{
             fontSize: "20pt",
           }}
-          onClick={send2}
+          onClick={`send`2}
         >
           שמור כמבחן
-        </button>
+        </button> */}
       </div>
       <br /> <br />
       <br />

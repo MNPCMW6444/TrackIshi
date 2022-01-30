@@ -36,7 +36,7 @@ export default function Direct() {
             }
             onClick={() => setNavbar("fud")}
           >
-            עדכון פרטים אישיים
+            פרטים אישיים
           </button>
           <button
             className={
@@ -63,6 +63,14 @@ export default function Direct() {
             onClick={() => setNavbar("opinions")}
           >
             הזנת חוו"דים
+          </button>
+          <button
+            className={
+              navbar === "mofas" ? "naveachbuttonselected" : "naveachbutton"
+            }
+            onClick={() => setNavbar("mofas")}
+          >
+            מופעי הדרכה
           </button>
           <button className="navlogout" onClick={logOut}>
             התנתק

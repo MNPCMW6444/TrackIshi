@@ -185,16 +185,16 @@ textarea {
   width: 190px;
   height: 40px;
   font-size: 27px;
+  font-weight: bolder;
 }
 
 .splashbutton:hover {
-  background-color: green;
   border-radius: 15px;
 }
 
 .splashbutton:active {
-  background-color: blue;
   border-radius: 15px;
+  background-color: unset;
 }
 
 /***************************************************************************/
@@ -335,10 +335,10 @@ textarea {
   text-align: center;
   text-decoration: none;
   font-size: 25pt;
-  border-color: #e1f5f5;
-  border-width: thin;
+  border-color: unset;
+  border-width: 0px;
   border-style: solid;
-  background-color: #e1f5f5;
+  background-color: unset;
   cursor: default;
   width: 20px;
   height: 32px;
@@ -351,10 +351,10 @@ textarea {
   text-align: center;
   text-decoration: none;
   font-size: 10pt;
-  border-color: #e1f5f5;
-  border-width: thin;
+  border-color: unset;
+  border-width: 0px;
   border-style: solid;
-  background-color: #e1f5f5;
+  background-color: unset;
   cursor: default;
   width: 50/2px;
   height: 32px;
@@ -367,19 +367,20 @@ textarea {
   text-align: center;
   text-decoration: none;
   font-size: 10pt;
-  border-color: #e1f5f5;
-  border-width: thin;
+  border-color: unset;
+  border-width: 0px;
   border-style: solid;
-  background-color: #e1f5f5;
+  background-color: unset;
   cursor: default;
   width: 15px;
   height: 32px;
 }
 
 .filterSpace:active,
-.filterbigSpace:active .filterSmallSpace:active {
-  background-color: #e1f5f5;
-  border-radius: 15px;
+.filterbigSpace:active,
+.filterSmallSpace:active {
+  background-color: unset;
+  border-radius: unset;
 }
 
 .filterHeader {
@@ -560,6 +561,27 @@ textarea {
 
 .plus {
   background-color: green;
+  color: white;
+  font-size: 13pt;
+  border-radius: 20px;
+}
+
+.plusr {
+  background-color: rgba(172, 155, 0, 0.767);
+  color: white;
+  font-size: 13pt;
+  border-radius: 20px;
+}
+
+.plusrpencil {
+  background-color: unset;
+  color: white;
+  font-size: 13pt;
+  border-radius: 20px;
+}
+
+.plusrpencil:active {
+  background-color: rgba(172, 155, 0, 0.767);
   color: white;
   font-size: 13pt;
   border-radius: 20px;

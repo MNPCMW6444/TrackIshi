@@ -58,8 +58,12 @@ export default function Page() {
     default:
       return (
         <div className="pageSwitcherThatisEmptybecuaseuser-is-balmaz">
-          <p> מי זה? </p>
-          <Link to="/login">הזדהה</Link>
+          {/*           <p> מי זה? </p>
+           */}{" "}
+          <div style={{ fontSize: "20pt" }}>
+            {" "}
+            <Link to="/login">לחץ כאן להתחברות</Link>
+          </div>
         </div>
       );
   }
