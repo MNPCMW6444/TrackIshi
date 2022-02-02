@@ -14,24 +14,113 @@ export default function SCREWALLOPINIONS() {
       sortingres = sortingres.sort((s1, s2) => {
         return s2.Tkufa - s1.Tkufa;
       });
+
       setRes(sortingres);
       setReady(true);
     };
     getAllOpinions();
   }, []);
 
+  let a;
+  if (res)
+    a = res.map((a) => {
+      return { ...a };
+    });
+
+  if (a && a[0] && a[0].CrewM)
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] && !a[i].מספר_אישי) {
+        a[i].מספר_אישי = a[i] && a[i].CrewM && a[i].CrewM.MA;
+      }
+      if (a[i] && !a[i].דרגה) {
+        a[i].דרגה = a[i] && a[i].CrewM && a[i].CrewM.Rank;
+      }
+      if (a[i] && !a[i].שם_משפחה) {
+        a[i].שם_משפחה = a[i] && a[i].CrewM && a[i].CrewM.LastName;
+      }
+      if (a[i] && !a[i].שם_פרטי) {
+        a[i].שם_פרטי = a[i] && a[i].CrewM && a[i].CrewM.FirstName;
+        delete a[i].CrewM;
+      }
+      if (a[i] && !a[i].נחתם) {
+        a[i].נחתם = a[i] && a[i].Signed ? "כן" : "לא";
+        delete a[i].Signed;
+      }
+      if (a[i] && !a[i].תקופה) {
+        let tkufaNum = a[i].Tkufa;
+        let TkufaYear = tkufaNum % 2 === 0 ? tkufaNum / 2 : tkufaNum / 2 + 0.5;
+        let tkufainYear = tkufaNum % 2 === 0 ? "2" : "1";
+        let yearString = TkufaYear.toString();
+        let countD = 0;
+        for (let i = 0; i < 4 - yearString.length; i++) countD++;
+        let addex = "";
+        for (let i = 0; i < countD; i++) addex = addex + "0";
+        let finilTkufa = tkufainYear + "." + addex + yearString;
+        a[i].תקופה = finilTkufa;
+        delete a[i].Tkufa;
+      }
+      if (a[i] && !a[i].תאריך_מילוי) {
+        let finil = "DIDNOTDOWANAD";
+        finil = a[i] && a[i].fillDate.substring(0, 10);
+        const month = finil.substring(5, 7);
+        const day = finil.substring(8, 10);
+        const year = finil.substring(0, 4);
+        finil = day + "/" + month + "/" + year;
+        a[i].תאריך_מילוי = finil;
+        delete a[i].fillDate;
+      }
+      if (a[i] && !a[i].למידה) {
+        a[i].למידה = a[i] && a[i].C1;
+        delete a[i].C1;
+      }
+      if (a[i] && !a[i].תכנון) {
+        a[i].תכנון = a[i] && a[i].C2;
+        delete a[i].C2;
+      }
+      if (a[i] && !a[i].תפיסה_מרחבית) {
+        a[i].תפיסה_מרחבית = a[i] && a[i].C3;
+        delete a[i].C3;
+      }
+      if (a[i] && !a[i].חלקש) {
+        a[i].חלקש = a[i] && a[i].C4;
+        delete a[i].C4;
+      }
+      if (a[i] && !a[i].תקשורת) {
+        a[i].תקשורת = a[i] && a[i].C5;
+        delete a[i].C5;
+      }
+      if (a[i] && !a[i].עומס) {
+        a[i].עומס = a[i] && a[i].C6;
+        delete a[i].C6;
+      }
+      if (a[i] && !a[i].קבלת_החלטות) {
+        a[i].קבלת_החלטות = a[i] && a[i].C7;
+        delete a[i].C7;
+      }
+      if (a[i] && !a[i].הפעלה) {
+        a[i].הפעלה = a[i] && a[i].C8;
+        delete a[i].C8;
+      }
+      if (a[i] && !a[i].תחקור) {
+        a[i].תחקור = a[i] && a[i].C9;
+        delete a[i].C9;
+      }
+    }
+
   return ready ? (
     <div className="col">
       <h2>רשימת כל החוודים ע"פ תקופות:</h2>
-      {res.map((opinion) => (
+      {res.map((opinion, i) => (
         <>
-          <OpinionSumu opinion={opinion} allDATA={res} />
+          <OpinionSumu opinion={opinion} i={i} allDATA={res} allDATA2={a} />
+
           <br />
         </>
       ))}
       {!res[0] && <h3>-אין לי חוו"דים-</h3>} <br />
       <br />
       <br />
+      {/* <CSVDownload data={csvData} target="_blank" /> */}
       <br />
       <br />
       <br />

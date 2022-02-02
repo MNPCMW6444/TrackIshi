@@ -18,6 +18,7 @@ export default function NEWMOFA(props) {
   const { user } = useContext(UserContext);
   const [date, setdate] = useState(today);
   const [MadName, setMadName] = useState();
+  const [Emdat, setEmdat] = useState();
   const [Emda, setEmda] = useState();
   const [No, setNo] = useState();
   const [x11, setx11] = useState();
@@ -44,6 +45,27 @@ export default function NEWMOFA(props) {
   const [m, setm] = useState("");
 
   const [newGrade, setNewGrade] = useState([4, "nelson"]);
+
+  function setma(value, who) {
+    let lines = 1;
+    if (value.substring(0, 3) != "1. ") value = "1. " + value;
+    for (let i = 0; i < value.length - 1 && lines < 8; i++) {
+      debugger;
+      if (value.substring(i, i + 1) === "\n") {
+        lines++;
+        if (value.substring(i + 1, i + 4) != lines + ". ") {
+          value =
+            value.substring(0, i + 1) +
+            lines +
+            ". " +
+            value.substring(i + 2, value.length);
+        }
+      }
+    }
+    if (who === "1") setm11(value);
+    if (who === "2") setm21(value);
+    if (who === "3") setmf(value);
+  }
 
   function handleCheck1() {
     setx21(!x21);
@@ -132,7 +154,7 @@ export default function NEWMOFA(props) {
       CrewM: user,
       name: user.NickName,
       MadName: MadName,
-      Emda: Emda,
+      Emda: !Emda && Emdat ? Emdat : Emda,
       No: No,
       X11: x11,
       X12: x12,
@@ -157,7 +179,9 @@ export default function NEWMOFA(props) {
 
     try {
       await Axios.post(`${domain}/mofa/createmofa`, newData);
-      props.suc(" מופע ההדרכה נשמר בהצלחה! אם לא מופע יש לרענן את דף ");
+      props.suc(
+        " מופע ההדרכה נשמר בהצלחה! על מנת לצפות בעדכון יש לפתוח את עמוד מופעי הדרכה מחדש"
+      );
       const setDidupdated = props.setDidupdated;
       setDidupdated();
 
@@ -167,12 +191,15 @@ export default function NEWMOFA(props) {
       if (err.response) {
         if (err.response.data.errorMessage) {
           setErrorMessage(err.response.data.errorMessage);
-        } else setErrorMessage("כנראה שהזנת משהו שגוי, נסה להזין מחדש");
+        } else
+          setErrorMessage(
+            "לא כל שדות החובה מלאים או שהוזן משהו שגוי, בדוק שוב"
+          );
       } else console.log(err);
     }
     return;
   }
-
+  /* 
   async function send2() {
     const newData = {
       isTest: true,
@@ -220,12 +247,15 @@ export default function NEWMOFA(props) {
     }
     return;
   }
-
+ */
   return (
     <div className="odiv">
       <br /> <br /> <br /> <br /> <br />
       <h3 className="oh3">מופע הדרכה: </h3> <br /> <br />
-      <h4 className="oh4">פרטים אישיים: </h4> <br />
+      <h4 className="oh4">
+        פרטים אישיים<sup className="must">*</sup>:{" "}
+      </h4>{" "}
+      <br />
       <table className="otable" style={{ width: "60" }}>
         <tr>
           <th className="oth">תאריך</th>
@@ -258,7 +288,7 @@ export default function NEWMOFA(props) {
           <td className="otd" style={{ textAlign: "center", width: "90px" }}>
             <select
               style={{ textAlign: "center", width: "90px" }}
-              onChange={(e) => setEmda(e.target.value)}
+              onChange={(e) => setEmdat(e.target.value)}
             >
               <option disabled selected value>
                 {" "}
@@ -266,9 +296,11 @@ export default function NEWMOFA(props) {
               </option>
 
               <option value={"ירוט"}>{"ירוט"}</option>
+              <option value={"ירוט2"}>{"ירוט2"}</option>
+              <option value={"ירוט3"}>{"ירוט3"}</option>
               <option value={"אחר, פרט:"}>{"אחר, פרט:"}</option>
             </select>
-            {Emda === "אחר, פרט:" && (
+            {Emdat === "אחר, פרט:" && (
               <input
                 style={{ textAlign: "center", width: "95%" }}
                 value={Emda}
@@ -281,7 +313,7 @@ export default function NEWMOFA(props) {
               style={{ textAlign: "center", width: "95%" }}
               value={No}
               type="number"
-              onChange={(e) => setNo(e.target.value)}
+              onChange={(e) => setNo(Math.abs(e.target.value))}
             ></input>
           </td>
         </tr>
@@ -290,7 +322,7 @@ export default function NEWMOFA(props) {
       <table className="otable" style={{ width: "60%" }}>
         <tr>
           <th colSpan="4" className="oth" style={{ width: "90%" }}>
-            סטטוס עמידה ביעדים
+            סטטוס עמידה ביעדים<sup className="must">*</sup>
           </th>{" "}
           <th colSpan="4" className="oth" style={{ width: "10%" }}>
             כן/לא
@@ -369,7 +401,9 @@ export default function NEWMOFA(props) {
       <br />
       <br />
       <br />
-      <h4 className="oh4">משוב אישי (כהערכה כוללת): </h4>
+      <h4 className="oh4">
+        משוב אישי (כהערכה כוללת)<sup className="must">*</sup>:{" "}
+      </h4>
       <br />
       <GradesTable
         c1={c1}
@@ -385,7 +419,9 @@ export default function NEWMOFA(props) {
       />
       <br />
       <br /> <br />
-      <h4 className="oh4">ציון מסכם לרמת הבקרה: </h4>
+      <h4 className="oh4">
+        ציון מסכם לרמת הבקרה<sup className="must">*</sup>:{" "}
+      </h4>
       <br />
       <FgradeTable grade={m1} setnewgrade={setNewGrade} />
       <br />
@@ -432,7 +468,7 @@ export default function NEWMOFA(props) {
           type="text"
           placeholder={""}
           value={m11}
-          onChange={(e) => setm11(e.target.value)}
+          onChange={(e) => setma(e.target.value, "1")}
         />
       </div>
       <br />
@@ -444,7 +480,7 @@ export default function NEWMOFA(props) {
           type="text"
           placeholder={""}
           value={m21}
-          onChange={(e) => setm21(e.target.value)}
+          onChange={(e) => setma(e.target.value, "2")}
         />
       </div>
       <br />

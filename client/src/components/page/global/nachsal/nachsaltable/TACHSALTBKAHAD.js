@@ -6,86 +6,90 @@ import UpdateFUD2 from "../../FUD/UpdateFUD2";
 export default function TACHSALTBKAHAD(props) {
   const goten = props.data;
 
-  goten.sort(function (a, b) {
-    if (b.FirstName > a.FirstName) return -1;
-    if (a.FirstName > btoa.FirstName) return 1;
+  if (goten)
+    goten.sort(function (a, b) {
+      if (b.FirstName > a.FirstName) return -1;
+      if (a.FirstName > btoa.FirstName) return 1;
 
-    return 0;
-  });
+      return 0;
+    });
 
-  goten.sort(function (a, b) {
-    return b.CourseNo - a.CourseNo;
-  });
+  if (goten)
+    goten.sort(function (a, b) {
+      return b.CourseNo - a.CourseNo;
+    });
 
   const [externalMA, setExternalMA] = useState();
 
-  for (let i = 0; i < goten.length; i++) {
-    const finil = goten[i].BirthDate.substring(0, 10);
-    const day = finil.substring(5, 7);
-    const monthf = finil.substring(8, 10);
-    const year = finil.substring(0, 4);
-    const finili = day + "/" + monthf + "/" + year;
-    goten[i].BirthDate = finili;
-    let hebrewMaslool = "לא ידוע";
-    switch (goten[i].Maslool) {
-      case "mesima":
-        hebrewMaslool = "משימה";
-        break;
-      case "taavura":
-        hebrewMaslool = "תעבורה";
-        break;
-      case "versatili":
-        hebrewMaslool = "ורסטילי";
-        break;
-      default:
-        break;
+  if (goten) {
+    for (let i = 0; i < goten.length; i++) {
+      const finil = goten[i].BirthDate.substring(0, 10);
+      const day = finil.substring(5, 7);
+      const monthf = finil.substring(8, 10);
+      const year = finil.substring(0, 4);
+      const finili = day + "/" + monthf + "/" + year;
+      goten[i].BirthDate = finili;
+      let hebrewMaslool = "לא ידוע";
+      switch (goten[i].Maslool) {
+        case "mesima":
+          hebrewMaslool = "משימה";
+          break;
+        case "taavura":
+          hebrewMaslool = "תעבורה";
+          break;
+        case "versatili":
+          hebrewMaslool = "ורסטילי";
+          break;
+        default:
+          break;
+      }
+      goten[i].Maslool = hebrewMaslool;
     }
-    goten[i].Maslool = hebrewMaslool;
-  }
 
-  for (let i = 0; i < goten.length; i++) {
-    goten[i].isMesima = goten[i].Maslool === "משימה" ? "כן" : "לא";
-    goten[i].isTaavura = goten[i].Maslool === "תעבורה" ? "כן" : "לא";
-    goten[i].isVersatili = goten[i].Maslool === "ורסטילי" ? "כן" : "לא";
-  }
+    for (let i = 0; i < goten.length; i++) {
+      goten[i].isMesima = goten[i].Maslool === "משימה" ? "כן" : "לא";
+      goten[i].isTaavura = goten[i].Maslool === "תעבורה" ? "כן" : "לא";
+      goten[i].isVersatili = goten[i].Maslool === "ורסטילי" ? "כן" : "לא";
+    }
 
-  for (let i = 0; i < goten.length; i++) {
-    goten[i].is506 = goten[i].Unit === "506" ? "כן" : "לא";
-    goten[i].is509 = goten[i].Unit === "509" ? "כן" : "לא";
-    goten[i].is528 = goten[i].Unit === "528" ? "כן" : "לא";
-  }
+    for (let i = 0; i < goten.length; i++) {
+      goten[i].is506 = goten[i].Unit === "506" ? "כן" : "לא";
+      goten[i].is509 = goten[i].Unit === "509" ? "כן" : "לא";
+      goten[i].is528 = goten[i].Unit === "528" ? "כן" : "לא";
+    }
 
-  for (let i = 0; i < goten.length; i++) {
-    goten[i].isSadir = goten[i].SoogHatsava === "sadir" ? "כן" : "לא";
-    goten[i].isHatsach = goten[i].SoogHatsava === "hatsach" ? "כן" : "לא";
-    goten[i].isMiluim = goten[i].SoogHatsava === "miluim" ? "כן" : "לא";
-  }
+    for (let i = 0; i < goten.length; i++) {
+      goten[i].isSadir = goten[i].SoogHatsava === "sadir" ? "כן" : "לא";
+      goten[i].isHatsach = goten[i].SoogHatsava === "hatsach" ? "כן" : "לא";
+      goten[i].isMiluim = goten[i].SoogHatsava === "miluim" ? "כן" : "לא";
+    }
 
-  for (let i = 0; i < goten.length; i++) {
-    goten[i].isA = goten[i].Dereg === "a" ? "כן" : "לא";
-    goten[i].isB = goten[i].Dereg === "b" ? "כן" : "לא";
-    goten[i].isC = goten[i].Dereg === "c" ? "כן" : "לא";
-    goten[i].isD = goten[i].Dereg === "d" ? "כן" : "לא";
-  }
+    for (let i = 0; i < goten.length; i++) {
+      goten[i].isA = goten[i].Dereg === "a" ? "כן" : "לא";
+      goten[i].isB = goten[i].Dereg === "b" ? "כן" : "לא";
+      goten[i].isC = goten[i].Dereg === "c" ? "כן" : "לא";
+      goten[i].isD = goten[i].Dereg === "d" ? "כן" : "לא";
+    }
 
-  for (let i = 0; i < goten.length; i++) {
-    goten[i].isSeren = goten[i].Rank === "סרן" ? "כן" : "לא";
-    goten[i].isRasan = goten[i].Rank === 'רס"ן' ? "כן" : "לא";
-    goten[i].isSaal = goten[i].Rank === 'סא"ל' ? "כן" : "לא";
-    goten[i].isOther =
-      goten[i].isSeren === "כן" ||
-      goten[i].isRasan === "כן" ||
-      goten[i].isSaal === "כן"
-        ? "לא"
-        : "כן";
-  }
-  for (let i = 0; i < goten.length; i++) {
-    goten[i].SoogHatsava =
-      goten[i].SoogHatsava === "sadir" ? "סדיר" : goten[i].SoogHatsava;
-    goten[i].SoogHatsava =
-      goten[i].SoogHatsava === "hatsach" ? 'הצ"ח' : goten[i].SoogHatsava;
-    goten[i].SoogHatsava =
-      goten[i].SoogHatsava === "miluim" ? "מילואים" : goten[i].SoogHatsava;
+    for (let i = 0; i < goten.length; i++) {
+      goten[i].isSeren = goten[i].Rank === "סרן" ? "כן" : "לא";
+      goten[i].isRasan = goten[i].Rank === 'רס"ן' ? "כן" : "לא";
+      goten[i].isSaal = goten[i].Rank === 'סא"ל' ? "כן" : "לא";
+      goten[i].isOther =
+        goten[i].isSeren === "כן" ||
+        goten[i].isRasan === "כן" ||
+        goten[i].isSaal === "כן"
+          ? "לא"
+          : "כן";
+    }
+    for (let i = 0; i < goten.length; i++) {
+      goten[i].SoogHatsava =
+        goten[i].SoogHatsava === "sadir" ? "סדיר" : goten[i].SoogHatsava;
+      goten[i].SoogHatsava =
+        goten[i].SoogHatsava === "hatsach" ? 'הצ"ח' : goten[i].SoogHatsava;
+      goten[i].SoogHatsava =
+        goten[i].SoogHatsava === "miluim" ? "מילואים" : goten[i].SoogHatsava;
+    }
   }
 
   const data = React.useMemo(() => goten, []);
@@ -705,300 +709,319 @@ export default function TACHSALTBKAHAD(props) {
   }
 
   return (
-    <div className="filtersAndTable" key={props.data} key={props.data}>
-      <div className="allfilters">
-        <table>
-          <tbody>
-            <tr className="filtersbigrow">
-              <td>
-                <div className="buttonfilters">
-                  <div className="filterHeaderROW">
-                    <button className="filterHeader">לפי יחידה:</button>
-                    <button className="filterbigSpace"></button>
-                    <button
-                      className={"filterBTNof3" + mas1clickedUNIT}
-                      onClick={handleFilterChange6506}
-                    >
-                      506
-                    </button>
-                    <button className="filterSpace"></button>
-                    <button
-                      className={"filterBTNof3" + mas2clickedUNIT}
-                      onClick={handleFilterChange6509}
-                    >
-                      509
-                    </button>
-                    <button className="filterSpace"></button>
-                    <button
-                      className={"filterBTNof3" + mas3clickedUNIT}
-                      onClick={handleFilterChange6528}
-                    >
-                      528
-                    </button>
+    goten && (
+      <div className="filtersAndTable" key={props.data} key={props.data}>
+        <div className="allfilters">
+          <table>
+            <tbody>
+              <tr className="filtersbigrow">
+                <td>
+                  <div className="buttonfilters">
+                    <div className="filterHeaderROW">
+                      <button className="filterHeader">לפי יחידה:</button>
+                      <button className="filterbigSpace" tabIndex={-1}></button>
+                      <button
+                        className={"filterBTNof3" + mas1clickedUNIT}
+                        onClick={handleFilterChange6506}
+                      >
+                        506
+                      </button>
+                      <button className="filterSpace" tabIndex={-1}></button>
+                      <button
+                        className={"filterBTNof3" + mas2clickedUNIT}
+                        onClick={handleFilterChange6509}
+                      >
+                        509
+                      </button>
+                      <button className="filterSpace" tabIndex={-1}></button>
+                      <button
+                        className={"filterBTNof3" + mas3clickedUNIT}
+                        onClick={handleFilterChange6528}
+                      >
+                        528
+                      </button>
+                    </div>
+                    <div className="filterHeaderROW">
+                      <button className="filterHeader">לפי מסלול:</button>
+                      <button className="filterbigSpace" tabIndex={-1}></button>
+                      <button
+                        className={"filterBTNof3" + mas1clicked}
+                        onClick={handleFilterChange6mesima}
+                      >
+                        משימה
+                      </button>
+                      <button className="filterSpace" tabIndex={-1}></button>
+                      <button
+                        className={"filterBTNof3" + mas2clicked}
+                        onClick={handleFilterChange6taavura}
+                      >
+                        תעבורה
+                      </button>
+                      <button className="filterSpace" tabIndex={-1}></button>
+                      <button
+                        className={"filterBTNof3" + mas3clicked}
+                        onClick={handleFilterChange6versatili}
+                      >
+                        ורסטילי
+                      </button>
+                    </div>
+                    <div className="filterHeaderROW">
+                      <button className="filterHeader">לפי הצבה:</button>
+                      <button className="filterbigSpace" tabIndex={-1}></button>
+                      <button
+                        className={"filterBTNof3" + mas1clickedHATSAVA}
+                        onClick={handleFilterChange6Sadir}
+                      >
+                        סדיר
+                      </button>
+                      <button className="filterSpace" tabIndex={-1}></button>
+                      <button
+                        className={"filterBTNof3" + mas2clickedHATSAVA}
+                        onClick={handleFilterChange6Hatsach}
+                      >
+                        הצ"ח
+                      </button>
+                      <button className="filterSpace" tabIndex={-1}></button>
+                      <button
+                        className={"filterBTNof3" + mas3clickedHATSAVA}
+                        onClick={handleFilterChange6Miluim}
+                      >
+                        מילואים
+                      </button>
+                    </div>
+                    <div className="filterHeaderROW">
+                      <button className="filterHeader">לפי דרג מקצועי:</button>
+                      <button className="filterbigSpace" tabIndex={-1}></button>
+                      <button
+                        className={"filterBTNof4" + mas1clickedDEREG}
+                        onClick={handleFilterChange6A}
+                      >
+                        א'
+                      </button>
+                      <button
+                        className="filterSmallSpace"
+                        tabIndex={-1}
+                      ></button>
+                      <button
+                        className={"filterBTNof4" + mas2clickedDEREG}
+                        onClick={handleFilterChange6B}
+                      >
+                        ב'
+                      </button>
+                      <button
+                        className="filterSmallSpace"
+                        tabIndex={-1}
+                      ></button>
+                      <button
+                        className={"filterBTNof4" + mas3clickedDEREG}
+                        onClick={handleFilterChange6C}
+                      >
+                        ג'
+                      </button>
+                      <button
+                        className="filterSmallSpace"
+                        tabIndex={-1}
+                      ></button>
+                      <button
+                        className={"filterBTNof4" + mas4clickedDEREG}
+                        onClick={handleFilterChange6D}
+                      >
+                        ד'
+                      </button>
+                    </div>
+                    <div className="filterHeaderROW">
+                      <button className="filterHeader">לפי דרגה:</button>
+                      <button className="filterbigSpace" tabIndex={-1}></button>
+                      <button
+                        className={"filterBTNof4" + mas1clickedRank}
+                        onClick={handleFilterChange6Seren}
+                      >
+                        סרן
+                      </button>
+                      <button
+                        className="filterSmallSpace"
+                        tabIndex={-1}
+                      ></button>
+                      <button
+                        className={"filterBTNof4" + mas2clickedRank}
+                        onClick={handleFilterChange6Rasan}
+                      >
+                        רס"ן
+                      </button>
+                      <button
+                        className="filterSmallSpace"
+                        tabIndex={-1}
+                      ></button>
+                      <button
+                        className={"filterBTNof4" + mas3clickedRank}
+                        onClick={handleFilterChange6Saal}
+                      >
+                        סא"ל
+                      </button>
+                      <button
+                        className="filterSmallSpace"
+                        tabIndex={-1}
+                      ></button>
+                      <button
+                        className={"filterBTNof4" + mas4clickedRank}
+                        onClick={handleFilterChange6Other}
+                      >
+                        אחר
+                      </button>
+                    </div>
                   </div>
-                  <div className="filterHeaderROW">
-                    <button className="filterHeader">לפי מסלול:</button>
-                    <button className="filterbigSpace"></button>
-                    <button
-                      className={"filterBTNof3" + mas1clicked}
-                      onClick={handleFilterChange6mesima}
-                    >
-                      משימה
-                    </button>
-                    <button className="filterSpace"></button>
-                    <button
-                      className={"filterBTNof3" + mas2clicked}
-                      onClick={handleFilterChange6taavura}
-                    >
-                      תעבורה
-                    </button>
-                    <button className="filterSpace"></button>
-                    <button
-                      className={"filterBTNof3" + mas3clicked}
-                      onClick={handleFilterChange6versatili}
-                    >
-                      ורסטילי
-                    </button>
+                </td>
+                <td>
+                  <div className="inputfilters">
+                    <button className="filterHeader">לפי קורס:</button>
+                    <button className="filterbigSpace" tabIndex={-1}></button>
+                    <input
+                      className="inputfilterINPUT"
+                      value={filterInput5}
+                      onChange={handleFilterChange5}
+                      placeholder={"הקלד קורס"}
+                    />
+                    <br />
+                    <button className="filterHeader">לפי שם פרטי:</button>
+                    <button className="filterbigSpace" tabIndex={-1}></button>
+                    <input
+                      className="inputfilterINPUT"
+                      value={filterInput2}
+                      onChange={handleFilterChange2}
+                      placeholder={"הקלד שם פרטי"}
+                    />
+                    <br />
+                    <button className="filterHeader">לפי שם משפחה:</button>
+                    <button className="filterbigSpace" tabIndex={-1}></button>
+                    <input
+                      className="inputfilterINPUT"
+                      value={filterInput3}
+                      onChange={handleFilterChange3}
+                      placeholder={"הקלד שם משפחה"}
+                    />
+                    <br />
+                    <button className="filterHeader">לפי כינוי:</button>
+                    <button className="filterbigSpace" tabIndex={-1}></button>
+                    <input
+                      className="inputfilterINPUT"
+                      value={filterInput4}
+                      onChange={handleFilterChange4}
+                      placeholder={"הקלד כינוי"}
+                    />
+                    <br />
+                    <button className="filterHeader">לפי מספר אישי:</button>
+                    <button className="filterbigSpace" tabIndex={-1}></button>
+                    <input
+                      className="inputfilterINPUT"
+                      value={filterInput}
+                      onChange={handleFilterChange}
+                      placeholder={"הקלד מספר אישי"}
+                    />
+                    <br />
                   </div>
-                  <div className="filterHeaderROW">
-                    <button className="filterHeader">לפי הצבה:</button>
-                    <button className="filterbigSpace"></button>
-                    <button
-                      className={"filterBTNof3" + mas1clickedHATSAVA}
-                      onClick={handleFilterChange6Sadir}
-                    >
-                      סדיר
-                    </button>
-                    <button className="filterSpace"></button>
-                    <button
-                      className={"filterBTNof3" + mas2clickedHATSAVA}
-                      onClick={handleFilterChange6Hatsach}
-                    >
-                      הצ"ח
-                    </button>
-                    <button className="filterSpace"></button>
-                    <button
-                      className={"filterBTNof3" + mas3clickedHATSAVA}
-                      onClick={handleFilterChange6Miluim}
-                    >
-                      מילואים
-                    </button>
-                  </div>
-                  <div className="filterHeaderROW">
-                    <button className="filterHeader">לפי דרג מקצועי:</button>
-                    <button className="filterbigSpace"></button>
-                    <button
-                      className={"filterBTNof4" + mas1clickedDEREG}
-                      onClick={handleFilterChange6A}
-                    >
-                      א'
-                    </button>
-                    <button className="filterSmallSpace"></button>
-                    <button
-                      className={"filterBTNof4" + mas2clickedDEREG}
-                      onClick={handleFilterChange6B}
-                    >
-                      ב'
-                    </button>
-                    <button className="filterSmallSpace"></button>
-                    <button
-                      className={"filterBTNof4" + mas3clickedDEREG}
-                      onClick={handleFilterChange6C}
-                    >
-                      ג'
-                    </button>
-                    <button className="filterSmallSpace"></button>
-                    <button
-                      className={"filterBTNof4" + mas4clickedDEREG}
-                      onClick={handleFilterChange6D}
-                    >
-                      ד'
-                    </button>
-                  </div>
-                  <div className="filterHeaderROW">
-                    <button className="filterHeader">לפי דרגה:</button>
-                    <button className="filterbigSpace"></button>
-                    <button
-                      className={"filterBTNof4" + mas1clickedRank}
-                      onClick={handleFilterChange6Seren}
-                    >
-                      סרן
-                    </button>
-                    <button className="filterSmallSpace"></button>
-                    <button
-                      className={"filterBTNof4" + mas2clickedRank}
-                      onClick={handleFilterChange6Rasan}
-                    >
-                      רס"ן
-                    </button>
-                    <button className="filterSmallSpace"></button>
-                    <button
-                      className={"filterBTNof4" + mas3clickedRank}
-                      onClick={handleFilterChange6Saal}
-                    >
-                      סא"ל
-                    </button>
-                    <button className="filterSmallSpace"></button>
-                    <button
-                      className={"filterBTNof4" + mas4clickedRank}
-                      onClick={handleFilterChange6Other}
-                    >
-                      אחר
-                    </button>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div className="inputfilters">
-                  <button className="filterHeader">לפי קורס:</button>
-                  <button className="filterbigSpace"></button>
-                  <input
-                    className="inputfilterINPUT"
-                    value={filterInput5}
-                    onChange={handleFilterChange5}
-                    placeholder={"הקלד קורס"}
-                  />
-                  <br />
-                  <button className="filterHeader">לפי שם פרטי:</button>
-                  <button className="filterbigSpace"></button>
-                  <input
-                    className="inputfilterINPUT"
-                    value={filterInput2}
-                    onChange={handleFilterChange2}
-                    placeholder={"הקלד שם פרטי"}
-                  />
-                  <br />
-                  <button className="filterHeader">לפי שם משפחה:</button>
-                  <button className="filterbigSpace"></button>
-                  <input
-                    className="inputfilterINPUT"
-                    value={filterInput3}
-                    onChange={handleFilterChange3}
-                    placeholder={"הקלד שם משפחה"}
-                  />
-                  <br />
-                  <button className="filterHeader">לפי כינוי:</button>
-                  <button className="filterbigSpace"></button>
-                  <input
-                    className="inputfilterINPUT"
-                    value={filterInput4}
-                    onChange={handleFilterChange4}
-                    placeholder={"הקלד כינוי"}
-                  />
-                  <br />
-                  <button className="filterHeader">לפי מספר אישי:</button>
-                  <button className="filterbigSpace"></button>
-                  <input
-                    className="inputfilterINPUT"
-                    value={filterInput}
-                    onChange={handleFilterChange}
-                    placeholder={"הקלד מספר אישי"}
-                  />
-                  <br />
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <Modal
-          isOpen={modalIsOpen}
-          onAfterOpen={afterOpenModal}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <UpdateFUD2 ma={externalMA} />
-        </Modal>
-        <br />
-        <br />
-      </div>
-      {(mas1clickedUNIT ||
-        mas2clickedUNIT ||
-        mas3clickedUNIT ||
-        mas1clicked ||
-        mas2clicked ||
-        mas3clicked ||
-        mas1clickedHATSAVA ||
-        mas2clickedHATSAVA ||
-        mas3clickedHATSAVA ||
-        mas1clickedDEREG ||
-        mas2clickedDEREG ||
-        mas3clickedDEREG ||
-        mas4clickedDEREG ||
-        mas1clickedRank ||
-        mas2clickedRank ||
-        mas3clickedRank ||
-        mas4clickedRank ||
-        filterInput !== "" ||
-        filterInput2 !== "" ||
-        filterInput3 !== "" ||
-        filterInput4 !== "" ||
-        filterInput5 !== "") && (
-        <div className="cleanFilters">
-          <button className="cleanFiltersBtn" onClick={cleanAll}>
-            נקה את כל הסינונים
-          </button>
-          <br />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <Modal
+            isOpen={modalIsOpen}
+            onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+          >
+            <UpdateFUD2 ma={externalMA} />
+          </Modal>
           <br />
           <br />
         </div>
-      )}{" "}
-      <br />
-      <br />
-      <div className="theTableDiv">
-        <table className="theTable" {...getTableProps()}>
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th
-                    className={"theTableTH" + column.Header}
-                    {...column.getHeaderProps()}
-                  >
-                    {column.render("Header")}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <colgroup>
-            <col span="1" style={{ width: "5%" }} />
-            <col span="1" style={{ width: "7%" }} />
-            <col span="1" style={{ width: "7%" }} />
-            <col span="1" style={{ width: "5%" }} />
-            <col span="1" style={{ width: "9%" }} />
-            <col span="1" style={{ width: "6%" }} />
-            <col span="1" style={{ width: "12%" }} />
-            <col span="1" style={{ width: "13%" }} />
-            <col span="1" style={{ width: "12%" }} />
-            <col span="1" style={{ width: "12%" }} />
-            <col span="1" style={{ width: "12%" }} />
-          </colgroup>
-          <tbody {...getTableBodyProps()}>
-            {rows.map((row) => {
-              prepareRow(row);
-              return (
-                <tr className="theTableTR" {...row.getRowProps()}>
-                  {row.cells.map((cell) => {
-                    return (
-                      <td
-                        className={"theTableTD" + (cell.value.length > 13)}
-                        {...cell.getCellProps()}
-                      >
-                        {cell.render("Cell")}
-                      </td>
-                    );
-                  })}
-                  <th>
-                    <button
-                      className="plusrpencil"
-                      onClick={() => {
-                        openFUD(row.original.MA);
-                      }}
+        {(mas1clickedUNIT ||
+          mas2clickedUNIT ||
+          mas3clickedUNIT ||
+          mas1clicked ||
+          mas2clicked ||
+          mas3clicked ||
+          mas1clickedHATSAVA ||
+          mas2clickedHATSAVA ||
+          mas3clickedHATSAVA ||
+          mas1clickedDEREG ||
+          mas2clickedDEREG ||
+          mas3clickedDEREG ||
+          mas4clickedDEREG ||
+          mas1clickedRank ||
+          mas2clickedRank ||
+          mas3clickedRank ||
+          mas4clickedRank ||
+          filterInput !== "" ||
+          filterInput2 !== "" ||
+          filterInput3 !== "" ||
+          filterInput4 !== "" ||
+          filterInput5 !== "") && (
+          <div className="cleanFilters">
+            <button className="cleanFiltersBtn" onClick={cleanAll}>
+              נקה את כל הסינונים
+            </button>
+            <br />
+            <br />
+            <br />
+          </div>
+        )}{" "}
+        <br />
+        <br />
+        <div className="theTableDiv">
+          <table className="theTable" {...getTableProps()}>
+            <thead>
+              {headerGroups.map((headerGroup) => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column) => (
+                    <th
+                      className={"theTableTH" + column.Header}
+                      {...column.getHeaderProps()}
                     >
-                      ✏️
-                    </button>
-                    {/*   <button
+                      {column.render("Header")}
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+            <colgroup>
+              <col span="1" style={{ width: "5%" }} />
+              <col span="1" style={{ width: "7%" }} />
+              <col span="1" style={{ width: "7%" }} />
+              <col span="1" style={{ width: "5%" }} />
+              <col span="1" style={{ width: "9%" }} />
+              <col span="1" style={{ width: "6%" }} />
+              <col span="1" style={{ width: "12%" }} />
+              <col span="1" style={{ width: "13%" }} />
+              <col span="1" style={{ width: "12%" }} />
+              <col span="1" style={{ width: "12%" }} />
+              <col span="1" style={{ width: "12%" }} />
+            </colgroup>
+            <tbody {...getTableBodyProps()}>
+              {rows.map((row) => {
+                prepareRow(row);
+                return (
+                  <tr className="theTableTR" {...row.getRowProps()}>
+                    {row.cells.map((cell) => {
+                      return (
+                        <td
+                          className={"theTableTD" + (cell.value.length > 13)}
+                          {...cell.getCellProps()}
+                        >
+                          {cell.render("Cell")}
+                        </td>
+                      );
+                    })}
+                    <th>
+                      <button
+                        className="plusrpencil"
+                        onClick={() => {
+                          openFUD(row.original.MA);
+                        }}
+                      >
+                        ✏️
+                      </button>
+                      {/*   <button
                       className="plusr"
                       onClick={() => {
                         openFUD(row.original.MA);
@@ -1006,13 +1029,14 @@ export default function TACHSALTBKAHAD(props) {
                     >
                       עריכה
                     </button> */}
-                  </th>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                    </th>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    )
   );
 }

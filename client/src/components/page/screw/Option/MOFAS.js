@@ -5,6 +5,7 @@ import NEWMOFA from "./NEWMOFA";
 import VIEWMOFA from "./VIEWMOFA";
 import Modal from "react-modal";
 import SuccessMessage from "../../../messages/SuccessMessage";
+import { CSVLink } from "react-csv";
 
 const customStyles = {
   content: {
@@ -49,12 +50,14 @@ export default function MOFAS(props) {
 
   const [ready, setReady] = useState(false);
   const [res, setRes] = useState();
+  const [res2, setRes2] = useState();
 
   useEffect(() => {
     const getAllmofas = async () => {
       const allmofasRes = await Axios.get(
         `${domain}/mofa/${props.shel ? "getallhis/" + props.shel : "getallmy"}`
       );
+      setRes2(allmofasRes.data);
       let sortingres = allmofasRes.data;
       let grouped = groupBy(sortingres, "Emda"); // => {orange:[...], banana:[...]}
       var result = Object.keys(grouped).map((key) => [
@@ -111,6 +114,7 @@ export default function MOFAS(props) {
   return ready ? (
     <div className="col">
       <br />
+      <CSVLink data={res2}>Download me</CSVLink>
       <br />
       <br />
       {!props.shel && (
@@ -157,18 +161,12 @@ export default function MOFAS(props) {
       <br />
       <br />
       <br />
-      <table
-        style={
-          {
-            /* marginLeft: "auto", marginRight: "auto" */
-          }
-        }
-      >
+      <table>
         <tr>
           <th
             style={{
               width: "350px",
-              border: "1px solid",
+              border: "1px solid gray",
               padding: "11px",
               backgroundColor: "unset",
             }}
@@ -178,7 +176,7 @@ export default function MOFAS(props) {
           <th
             style={{
               width: "700px",
-              border: "1px solid",
+              border: "1px solid gray",
               padding: "11px",
               backgroundColor: "unset",
             }}
@@ -188,7 +186,7 @@ export default function MOFAS(props) {
           <th
             style={{
               width: "80px",
-              border: "1px solid",
+              border: "1px solid gray",
               padding: "11px",
               backgroundColor: "unset",
             }}
@@ -196,20 +194,21 @@ export default function MOFAS(props) {
             ממוצע מסכם
           </th>
         </tr>
-        {res.map((onearray) => (
+        {res.map((onearray, i) => (
           <tr>
             <td
               style={{
-                border: "1px solid",
+                border: "1px solid gray",
                 padding: "11px",
                 backgroundColor: "unset",
+                textAlign: "center",
               }}
             >
               {onearray[1][0].Emda}
             </td>
             <td
               style={{
-                border: "1px solid",
+                border: "1px solid gray",
                 padding: "11px",
                 backgroundColor: "unset",
               }}
@@ -245,44 +244,244 @@ export default function MOFAS(props) {
             </td>
             <td
               onMouseOver={() => {
-                setShow(true);
+                setShow(
+                  [...Array(res.length).keys()].map((x) =>
+                    x === i ? true : false
+                  )
+                );
               }}
               onMouseLeave={() => {
                 setShow(false);
               }}
               style={{
-                border: "1px solid",
+                border: "1px solid gray",
                 padding: "11px",
                 backgroundColor: "unset",
+                textAlign: "center",
               }}
             >
               {onearray[1][0].avgm1}
-              {show && (
-                <table>
-                  <tr>
-                    <td>למידה</td>
-                    <td>תכנון</td>
-                    <td>תפיסה מרחבית</td>
-                    <td>חלק"ש</td>
-                    <td>תקשורת</td>
-                    <td>עומס</td>
-                    <td>קבלת החלטות</td>
-                    <td>הפעלה</td>
-                    <td>תחקור</td>
-                  </tr>
-                  <tr>
-                    <td>{onearray[1][0].avgc1}</td>
-                    <td>{onearray[1][0].avgc2}</td>
-                    <td>{onearray[1][0].avgc3}</td>
-                    <td>{onearray[1][0].avgc4}</td>
-                    <td>{onearray[1][0].avgc5}</td>
-                    <td>{onearray[1][0].avgc6}</td>
-                    <td>{onearray[1][0].avgc7}</td>
-                    <td>{onearray[1][0].avgc8}</td>
-                    <td>{onearray[1][0].avgc9}</td>
-                  </tr>
-                </table>
-              )}{" "}
+
+              <div
+                className={show[i] ? "mofavgsshow" : "mofavgs"}
+                style={{
+                  paddingTop: "15px",
+                  paddingRight: "15px",
+                  paddingBottom: "15px",
+                  paddingLeft: "15px",
+                  top: 630 + i * 69,
+                }}
+              >
+                <div
+                  style={{
+                    textAlign: "center",
+                    backgroundColor: "white",
+                    borderRadius: "30px",
+                  }}
+                >
+                  {"ממוצעים ב" + onearray[1][0].Emda + ":"}
+                </div>
+                <div
+                  style={{
+                    backgroundColor: "#EEEEEE",
+                    borderRadius: "30px",
+                    paddingTop: "10px",
+                    paddingRight: "10px",
+                    paddingBottom: "10px",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  <table
+                    style={{
+                      backgroundColor: "unset",
+                      textAlign: "center",
+                      border: "1px solid gray",
+                    }}
+                  >
+                    <tr
+                      style={{
+                        backgroundColor: "unset",
+                        textAlign: "center",
+                        border: "1px solid gray",
+                      }}
+                    >
+                      <th
+                        style={{
+                          border: "1px solid gray",
+                          padding: "5px",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        למידה
+                      </th>
+                      <th
+                        style={{
+                          border: "1px solid gray",
+                          padding: "5px",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        תכנון
+                      </th>
+                      <th
+                        style={{
+                          border: "1px solid gray",
+                          padding: "5px",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        תפיסה מרחבית
+                      </th>
+                      <th
+                        style={{
+                          border: "1px solid gray",
+                          padding: "5px",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        חלק"ש
+                      </th>
+                      <th
+                        style={{
+                          border: "1px solid gray",
+                          padding: "5px",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        תקשורת
+                      </th>
+                      <th
+                        style={{
+                          border: "1px solid gray",
+                          padding: "5px",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        עומס
+                      </th>
+                      <th
+                        style={{
+                          border: "1px solid gray",
+                          padding: "5px",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        קבלת החלטות
+                      </th>
+                      <th
+                        style={{
+                          border: "1px solid gray",
+                          padding: "5px",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        הפעלה
+                      </th>
+                      <th
+                        style={{
+                          border: "1px solid gray",
+                          padding: "5px",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        תחקור
+                      </th>
+                    </tr>
+                    <tr>
+                      <td
+                        style={{
+                          border: "1px solid gray",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        {onearray[1][0].avgc1}
+                      </td>
+                      <td
+                        style={{
+                          border: "1px solid gray",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        {onearray[1][0].avgc2}
+                      </td>
+                      <td
+                        style={{
+                          border: "1px solid gray",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        {onearray[1][0].avgc3}
+                      </td>
+                      <td
+                        style={{
+                          border: "1px solid gray",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        {onearray[1][0].avgc4}
+                      </td>
+                      <td
+                        style={{
+                          border: "1px solid gray",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        {onearray[1][0].avgc5}
+                      </td>
+                      <td
+                        style={{
+                          border: "1px solid gray",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        {onearray[1][0].avgc6}
+                      </td>
+                      <td
+                        style={{
+                          border: "1px solid gray",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        {onearray[1][0].avgc7}
+                      </td>
+                      <td
+                        style={{
+                          border: "1px solid gray",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        {onearray[1][0].avgc8}
+                      </td>
+                      <td
+                        style={{
+                          border: "1px solid gray",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        {onearray[1][0].avgc9}
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
             </td>
           </tr>
         ))}

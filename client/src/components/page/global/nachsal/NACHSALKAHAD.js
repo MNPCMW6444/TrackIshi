@@ -20,7 +20,6 @@ export default function NACHSALKAHAD() {
   return (
     ready && (
       <>
-        {" "}
         <br />
         <br />
         <br />

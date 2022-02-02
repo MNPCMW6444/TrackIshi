@@ -245,7 +245,6 @@ function ShowFUD(props) {
     try {
       const res = await Axios.put(`${domain}/user/changemypass`, newpass);
       if (res.data.SUC === "YES") setSuccessMessage2("הסיסמה שונתה בהצלחה");
-      debugger;
       setupdatepass(false);
       setPassword("");
       setPassword2("");

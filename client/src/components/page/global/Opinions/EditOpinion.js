@@ -321,7 +321,9 @@ function NewOpinion(props) {
               fontWeight: 70,
             }}
           >
-            {"המאשר " + (wasMyAuthApped ? "אישר" : "טרם אישר") + ' את החוו"ד'}
+            {"מפקד היחידה " +
+              (wasMyAuthApped ? "אישר" : "טרם אישר") +
+              ' את החוו"ד'}
           </h5>
           <br />
           <br /> <br />

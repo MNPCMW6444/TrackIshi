@@ -49,6 +49,7 @@ function Login() {
       <form className="form" onSubmit={login}>
         <label htmlFor="form-ma">מספר אישי:</label>
         <button
+          tabIndex={-4}
           style={{ color: "unset", backgroundColor: "unset", width: "15px" }}
         ></button>
         <input
@@ -58,12 +59,14 @@ function Login() {
           onChange={(e) => setFormMA(e.target.value)}
         />
         <button
+          tabIndex={-4}
           style={{ color: "unset", backgroundColor: "unset", width: "15px" }}
         ></button>{" "}
         <br></br>
         <br />
         <label htmlFor="form-password">סיסמה: </label>
         <button
+          tabIndex={-4}
           style={{ color: "unset", backgroundColor: "unset", width: "40px" }}
         ></button>
         <input

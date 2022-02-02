@@ -14,7 +14,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://keen-saha-4d5980.netlify.app"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:5000",
+      "https://keen-saha-4d5980.netlify.app",
+    ],
     credentials: true,
   })
 );

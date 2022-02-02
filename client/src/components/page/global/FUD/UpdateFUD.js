@@ -49,7 +49,6 @@ function UpdateFUD(props) {
 
   useEffect(() => {
     const getFUD = async () => {
-      debugger;
       let FUDRes;
       if (externalma)
         FUDRes = await Axios.get(

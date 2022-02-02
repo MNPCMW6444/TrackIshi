@@ -222,30 +222,51 @@ export default function VIEWMOFA(props) {
       <div style={{ textAlign: "center" }}>
         <button
           onClick={() => justdeleteon()}
-          style={{ backgroundColor: "red" }}
+          style={{
+            backgroundColor: "#E36363",
+            fontSize: deletef ? "20pt" : "",
+          }}
         >
           {mehak}
         </button>
       </div>
-      <br />
+      <br /> <br />
       {deletef && (
         <div style={{ textAlign: "center" }}>
           <button
             style={{
-              fontSize: "20pt",
+              fonמtSize: "20pt",
               backgroundColor: "unset",
               color: "black",
               fontWeight: "900",
+              fontSize: "20pt",
             }}
           >
             בטוח?{" "}
           </button>
           <button
-            style={{ backgroundColor: "red" }}
+            tabIndex={-5}
+            style={{ fontSize: "20pt", backgroundColor: "transparent" }}
+            onClick={async () => deleteit()}
+          ></button>
+          <button
+            style={{
+              fontSize: "20pt",
+              backgroundColor: "#E36363",
+              width: "55px",
+            }}
             onClick={async () => deleteit()}
           >
             כן
           </button>
+          <button
+            tabIndex={-5}
+            style={{
+              fontSize: "20pt",
+              backgroundColor: "transparent",
+            }}
+            onClick={async () => deleteit()}
+          ></button>
           <button
             style={{
               backgroundColor: "unset",
@@ -253,17 +274,20 @@ export default function VIEWMOFA(props) {
               fontWeight: "900",
             }}
           ></button>
-
           <button
             onClick={() => justdeleteoff()}
             style={{
               fontSize: "20pt",
+              backgroundColor: "#89c16E",
+              width: "55px",
             }}
           >
             לא
           </button>
         </div>
       )}
+      <br />
+      <br />
       <br />
       <br /> <br />
       <br /> <br />

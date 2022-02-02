@@ -714,21 +714,21 @@ export default function TACHSALTB(props) {
                 <div className="buttonfilters">
                   <div className="filterHeaderROW">
                     <button className="filterHeader">לפי יחידה:</button>
-                    <button className="filterbigSpace"></button>
+                    <button className="filterbigSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof3" + mas1clickedUNIT}
                       onClick={handleFilterChange6506}
                     >
                       506
                     </button>
-                    <button className="filterSpace"></button>
+                    <button className="filterSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof3" + mas2clickedUNIT}
                       onClick={handleFilterChange6509}
                     >
                       509
                     </button>
-                    <button className="filterSpace"></button>
+                    <button className="filterSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof3" + mas3clickedUNIT}
                       onClick={handleFilterChange6528}
@@ -738,21 +738,21 @@ export default function TACHSALTB(props) {
                   </div>
                   <div className="filterHeaderROW">
                     <button className="filterHeader">לפי מסלול:</button>
-                    <button className="filterbigSpace"></button>
+                    <button className="filterbigSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof3" + mas1clicked}
                       onClick={handleFilterChange6mesima}
                     >
                       משימה
                     </button>
-                    <button className="filterSpace"></button>
+                    <button className="filterSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof3" + mas2clicked}
                       onClick={handleFilterChange6taavura}
                     >
                       תעבורה
                     </button>
-                    <button className="filterSpace"></button>
+                    <button className="filterSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof3" + mas3clicked}
                       onClick={handleFilterChange6versatili}
@@ -762,21 +762,21 @@ export default function TACHSALTB(props) {
                   </div>
                   <div className="filterHeaderROW">
                     <button className="filterHeader">לפי הצבה:</button>
-                    <button className="filterbigSpace"></button>
+                    <button className="filterbigSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof3" + mas1clickedHATSAVA}
                       onClick={handleFilterChange6Sadir}
                     >
                       סדיר
                     </button>
-                    <button className="filterSpace"></button>
+                    <button className="filterSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof3" + mas2clickedHATSAVA}
                       onClick={handleFilterChange6Hatsach}
                     >
                       הצ"ח
                     </button>
-                    <button className="filterSpace"></button>
+                    <button className="filterSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof3" + mas3clickedHATSAVA}
                       onClick={handleFilterChange6Miluim}
@@ -786,28 +786,28 @@ export default function TACHSALTB(props) {
                   </div>
                   <div className="filterHeaderROW">
                     <button className="filterHeader">לפי דרג מקצועי:</button>
-                    <button className="filterbigSpace"></button>
+                    <button className="filterbigSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof4" + mas1clickedDEREG}
                       onClick={handleFilterChange6A}
                     >
                       א'
                     </button>
-                    <button className="filterSmallSpace"></button>
+                    <button className="filterSmallSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof4" + mas2clickedDEREG}
                       onClick={handleFilterChange6B}
                     >
                       ב'
                     </button>
-                    <button className="filterSmallSpace"></button>
+                    <button className="filterSmallSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof4" + mas3clickedDEREG}
                       onClick={handleFilterChange6C}
                     >
                       ג'
                     </button>
-                    <button className="filterSmallSpace"></button>
+                    <button className="filterSmallSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof4" + mas4clickedDEREG}
                       onClick={handleFilterChange6D}
@@ -817,28 +817,28 @@ export default function TACHSALTB(props) {
                   </div>
                   <div className="filterHeaderROW">
                     <button className="filterHeader">לפי דרגה:</button>
-                    <button className="filterbigSpace"></button>
+                    <button className="filterbigSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof4" + mas1clickedRank}
                       onClick={handleFilterChange6Seren}
                     >
                       סרן
                     </button>
-                    <button className="filterSmallSpace"></button>
+                    <button className="filterSmallSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof4" + mas2clickedRank}
                       onClick={handleFilterChange6Rasan}
                     >
                       רס"ן
                     </button>
-                    <button className="filterSmallSpace"></button>
+                    <button className="filterSmallSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof4" + mas3clickedRank}
                       onClick={handleFilterChange6Saal}
                     >
                       סא"ל
                     </button>
-                    <button className="filterSmallSpace"></button>
+                    <button className="filterSmallSpace" tabIndex={-1}></button>
                     <button
                       className={"filterBTNof4" + mas4clickedRank}
                       onClick={handleFilterChange6Other}
@@ -851,7 +851,7 @@ export default function TACHSALTB(props) {
               <td>
                 <div className="inputfilters">
                   <button className="filterHeader">לפי קורס:</button>
-                  <button className="filterbigSpace"></button>
+                  <button className="filterbigSpace" tabIndex={-1}></button>
                   <input
                     className="inputfilterINPUT"
                     value={filterInput5}
@@ -860,7 +860,7 @@ export default function TACHSALTB(props) {
                   />
                   <br />
                   <button className="filterHeader">לפי שם פרטי:</button>
-                  <button className="filterbigSpace"></button>
+                  <button className="filterbigSpace" tabIndex={-1}></button>
                   <input
                     className="inputfilterINPUT"
                     value={filterInput2}
@@ -869,7 +869,7 @@ export default function TACHSALTB(props) {
                   />
                   <br />
                   <button className="filterHeader">לפי שם משפחה:</button>
-                  <button className="filterbigSpace"></button>
+                  <button className="filterbigSpace" tabIndex={-1}></button>
                   <input
                     className="inputfilterINPUT"
                     value={filterInput3}
@@ -878,7 +878,7 @@ export default function TACHSALTB(props) {
                   />
                   <br />
                   <button className="filterHeader">לפי כינוי:</button>
-                  <button className="filterbigSpace"></button>
+                  <button className="filterbigSpace" tabIndex={-1}></button>
                   <input
                     className="inputfilterINPUT"
                     value={filterInput4}
@@ -887,7 +887,7 @@ export default function TACHSALTB(props) {
                   />
                   <br />
                   <button className="filterHeader">לפי מספר אישי:</button>
-                  <button className="filterbigSpace"></button>
+                  <button className="filterbigSpace" tabIndex={-1}></button>
                   <input
                     className="inputfilterINPUT"
                     value={filterInput}

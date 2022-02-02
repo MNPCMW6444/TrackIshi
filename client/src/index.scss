@@ -862,7 +862,47 @@ textarea {
   padding-right: 20px;
   padding-left: 0px;
   padding-top: 40px;
-  background-color: rgba(255, 255, 255, 0.966);
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 30px;
+}
+
+.mofavgs {
+  visibility: hidden;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  top: -400px;
+  right: -450px;
+  z-index: 104;
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: white;
+}
+
+a {
+  background-color: unset;
+  text-decoration: none;
+}
+
+.mofavgsshow {
+  visibility: visible;
+  display: inline-block;
+  cursor: unset;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  right: 435px;
+  z-index: 104;
+  padding-right: 20px;
+  padding-left: 0px;
+  padding-top: 40px;
+  background-color: rgba(255, 255, 255, 0.623);
   border-radius: 30px;
 }
 
@@ -992,4 +1032,8 @@ textarea {
 .author {
   text-align: center;
   opacity: 0.4;
+}
+
+.must {
+  color: red;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ShowMyOpinion from "./ShowMyOpinion";
 import Modal from "react-modal";
+import { CSVLink } from "react-csv";
 
 const customStyles = {
   content: {
@@ -44,6 +45,13 @@ export default function OpinionSumu(props) {
         <button className="OpinionOpen" onClick={openModal}>
           {finilTkuda}
         </button>
+        <CSVLink
+          data={new Array(props.allDATA2[props.i])}
+          className="OpinionOpen"
+        >
+          {" "}
+          ⬇️
+        </CSVLink>
       </div>
 
       <div>
