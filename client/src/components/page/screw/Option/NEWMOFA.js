@@ -147,12 +147,14 @@ export default function NEWMOFA(props) {
   }, [newGrade]);
 
   async function send() {
+    let user2 = user;
+    if (props.h) user2 = props.h;
     const newData = {
       isTest: test,
       isPass: pass,
       fillDatep: date,
-      CrewM: user,
-      name: user.NickName,
+      CrewM: user2,
+      name: user2.NickName,
       MadName: MadName,
       Emda: !Emda && Emdat ? Emdat : Emda,
       No: No,
@@ -275,7 +277,7 @@ export default function NEWMOFA(props) {
           <td className="otd" style={{ textAlign: "center", width: "90px" }}>
             <input
               style={{ textAlign: "center", width: "95%" }}
-              value={user.NickName}
+              value={props.h ? props.h.NickName : user.NickName}
             ></input>
           </td>
           <td className="otd" style={{ textAlign: "center", width: "90px" }}>

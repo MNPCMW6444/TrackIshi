@@ -4,11 +4,14 @@ import Paragraph from "../../global/usefull/Paragraph";
 import CheckBox from "./CheckBox";
 import domain from "../../../../util/domain";
 import Axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import UserContext from "../../../../context/UserContext";
 
 export default function VIEWMOFA(props) {
   const [deletef, setDeletef] = useState(false);
   const [mehak, setmehak] = useState("מחק מופע הדרכה זה");
+
+  const { user } = useContext(UserContext);
 
   function justdeleteon() {
     setDeletef(true);
@@ -51,6 +54,8 @@ export default function VIEWMOFA(props) {
   let test = props.data.isTest;
   let pass = props.data.isPass;
 
+  debugger;
+
   return (
     <div className="odiv">
       {" "}
@@ -67,7 +72,13 @@ export default function VIEWMOFA(props) {
         </tr>
         <tr>
           <td className="otd">{date}</td>
-          <td className="otd">{props.data.name}</td>
+          <td className="otd">
+            {props.data.name
+              ? props.data.name
+              : props.h
+              ? props.h.NickName
+              : user.NickName}
+          </td>
           <td className="otd">{props.data.MadName}</td>
           <td className="otd">{props.data.Emda}</td>
           <td className="otd">{props.data.No}</td>

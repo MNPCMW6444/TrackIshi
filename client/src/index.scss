@@ -735,6 +735,17 @@ textarea {
   font-size: 25pt;
 }
 
+.OpinionOpen2 {
+  font-size: 15pt;
+  background-color: unset;
+}
+.tdbutton {
+  background-color: rgba(23, 1, 148, 0.692);
+  border: 1px solid gray;
+  padding: 11px;
+  text-align: center;
+}
+
 .OpinionOpengray {
   font-size: 25pt;
   background-color: gray;
@@ -862,8 +873,12 @@ textarea {
   padding-right: 20px;
   padding-left: 0px;
   padding-top: 40px;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255, 255, 0.952);
   border-radius: 30px;
+}
+
+.mofastable {
+  background-color: rgba(255, 255, 255, 0.541);
 }
 
 .mofavgs {
@@ -897,13 +912,14 @@ a {
   -ms-user-select: none;
   user-select: none;
   position: absolute;
-  right: 435px;
+
   z-index: 104;
   padding-right: 20px;
   padding-left: 0px;
   padding-top: 40px;
   background-color: rgba(255, 255, 255, 0.623);
   border-radius: 30px;
+  border: 1px solid rgb(189, 189, 189);
 }
 
 .chart {
