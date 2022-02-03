@@ -3,6 +3,7 @@ import domain from "../../../../util/domain";
 import Axios from "axios";
 import Modal from "react-modal";
 import HisMOFAS from "../../screw/Option/MOFAS";
+import { CSVLink } from "react-csv";
 
 const customStyles = {
   content: {
@@ -31,6 +32,7 @@ function groupBy(sortingres, property) {
 export default function Mofas(props) {
   const [ready, setReady] = useState(false);
   const [res, setRes] = useState();
+  const [resexport, setresexport] = useState();
   const [sdarot, setsdarot] = useState();
   const [resall, setResall] = useState();
   const [shels, setshels] = useState();
@@ -56,6 +58,27 @@ export default function Mofas(props) {
       const allpeopleres = await Axios.get(`${domain}/user/getmypeople`);
       setRes(allpeopleres.data);
       const allrr = await Axios.get(`${domain}/mofa/getallmyn`);
+
+      let allrrexport = allrr.data;
+
+      for (let i = 0; i < allrrexport.length; i++) {
+        allrrexport[i].מספר_אישי = "allrrexport[i].sMA";
+        //delete allrrexport[i].sMA;
+
+        /*   if (a[i] && !a[i].תאריך_מילוי) {
+            let finil = "DIDNOTDOWANAD";
+            finil = a[i] && a[i].fillDate.substring(0, 10);
+            const month = finil.substring(5, 7);
+            const day = finil.substring(8, 10);
+            const year = finil.substring(0, 4);
+            finil = day + "/" + month + "/" + year;
+            a[i].תאריך_מילוי = finil;
+            delete a[i].fillDate;
+          } */
+      }
+
+      setresexport(allrrexport);
+
       /*  let grouped = groupBy(all, "Emda"); // => {orange:[...], banana:[...]}
       var result = Object.keys(grouped).map((key) => [
         Number(key),
@@ -181,11 +204,169 @@ export default function Mofas(props) {
   if (k) g = k[0][1][0];
   debugger; */
 
+  /* let resi;
+  let temp = 0;
+  if (sdarot)
+    for (let i = 0; i < sdarot.length; i++) {
+      for (let j = 0; j < resall.length; j++) {
+        if(resall[j] && resall[j] )
+      }
+    } */
+  /*  let resi = new Array();
+  if (res)
+    for (let k = 0; k < res.length; k++) {
+      if (sdarot)
+        for (let sidra = 0; sidra < sdarot.length; sidra++) {
+          let memofsid = 0;
+          let count = 0;
+          if (resall)
+            for (let i = 0; i < resall.length; i++) {
+              if (resall[k][i] && resall[k][i][1][0].Emda === sdarot[sidra]) {
+                memofsid += resall[k][i][1][0].avgm1;
+                count++;
+                debugger;
+              }
+            }
+          memofsid = memofsid / count;
+          resi.push(memofsid);
+        }
+    }
+  for (let i = 0; i < resi.length; i++) {
+    if (!(resi[i] > -1)) resi.splice(i);
+  } */
+
+  /* 
+  let resi;
+  if (res && resall && sdarot && k)
+    resi = res.map((screw, i) => (
+      <tr>
+        <td className="tdbutton">
+          <button
+            className={"OpinionOpen2"}
+            onClick={() => {
+              openModal();
+              setshelmi(screw.MA);
+              setshelmi2(screw);
+            }}
+          >
+            {screw.NickName}
+          </button>
+        </td>
+        {sdarot.map((sidra, j) => (
+          <td
+            onMouseOver={() => {
+              setShow(
+                [...Array(resall.length).keys()].map((x) =>
+                  x === j ? true : false
+                )
+              );
+            }}
+            onMouseLeave={() => {
+              setShow(false);
+            }}
+            style={{
+              border: "1px solid gray",
+              padding: "11px",
+              backgroundColor: "unset",
+              textAlign: "center",
+            }}
+          >
+            {resall[i].map((data) =>
+              data[1][0].Emda === sidra ? (
+                <span>
+                  {data[1][0].avgm1}
+                  {}
+                </span>
+              ) : (
+                ""
+              )
+            )}
+          </td>
+        ))}
+      </tr>
+    ));
+
+  let rs1 = new Array();
+
+  if (resi)
+    for (let rowsI = 0; rowsI < resi.length; rowsI++) {
+      let row =
+        resi[rowsI] &&
+        resi[rowsI].props &&
+        resi[rowsI].props.children &&
+        resi[rowsI].props.children[1];
+
+      let newRow = new Array();
+      if (row)
+        for (let column = 0; column < row.length; column++) {
+          let td;
+          td =
+            row[column] &&
+            row[column].props &&
+            row[column].props.children &&
+            row[column].props.children[0] &&
+            row[column].props.children[0].props &&
+            row[column].props.children[0].props.children;
+          newRow.push(td);
+        }
+      rs1.push(newRow);
+    } */
+
+  let resi;
+  if (res && resall && sdarot && k)
+    resi = res.map((screw, i) =>
+      sdarot.map((sidra, j) =>
+        resall[i].map((data) => data[1][0].Emda === sidra && data[1][0].avgm1)
+      )
+    );
+
+  let rs1 = new Array();
+
+  let flagsarrayB = new Array();
+
+  if (resi)
+    for (let i = 0; i < resi.length; i++) {
+      let flagsarray = new Array();
+
+      for (let j = 0; j < resi[i].length; j++) {
+        let flag = false;
+        for (let k = 0; k < resi[i][j].length; k++)
+          if (resi[i][j][k]) flag = true;
+        flagsarray.push(flag);
+        if (!flag) resi[i][j].splice(j, 2);
+      }
+      flagsarrayB.push(flagsarray);
+    }
+
+  let mewresi = new Array();
+  if (resi)
+    for (let i = 0; i < resi.length; i++) {
+      let arrw = new Array();
+      for (let j = 0; j < resi[i].length; j++)
+        if (flagsarrayB[i][j]) arrw.push(resi[i][j]);
+      mewresi.push(arrw);
+    }
+
+  if (mewresi)
+    for (let i = 0; i < mewresi.length; i++) {
+      let newArray = new Array();
+      for (let j = 0; j < mewresi[i].length; j++)
+        for (let k = 0; k < mewresi[i][j].length; k++)
+          if (mewresi[i][j][k]) newArray.push(mewresi[i][j][k]);
+      rs1.push(newArray);
+    }
+
+  if (mewresi) debugger;
+
   return ready ? (
     k ? (
       <div className="col">
         <br />
-        <br />
+        <br />{" "}
+        <CSVLink data={resexport}>
+          {" "}
+          ייצא את כל מופעי ההדרכה של האנשים שלי ⬇️
+        </CSVLink>
         <br />
         <br />
         {/*        <h2>רשימת האנשים שלי:</h2>
@@ -268,7 +449,7 @@ export default function Mofas(props) {
                       data[1][0].Emda === sidra ? (
                         <span>
                           {data[1][0].avgm1}
-                          <div
+                          {/*  <div
                             className={show[i] ? "mofavgsshow" : "mofavgs"}
                             style={{
                               paddingTop: "15px",
@@ -496,7 +677,7 @@ export default function Mofas(props) {
                                 </tr>
                               </table>
                             </div>
-                          </div>
+                          </div> */}
                         </span>
                       ) : (
                         ""
@@ -506,28 +687,64 @@ export default function Mofas(props) {
                 ))}
               </tr>
             ))}
-
-            <tr>
-              <th>ממוצע כולל:</th>
+            {/*  <tr>
+              <th>ממוצע פשוט:</th>
+              { {sdarot.map((sidra, j) => (
+                <td
+                  onMouseOver={() => {
+                    setShow(
+                      [...Array(resall.length).keys()].map((x) =>
+                        x === j ? true : false
+                      )
+                    );
+                  }}
+                  onMouseLeave={() => {
+                    setShow(false);
+                  }}
+                  style={{
+                    border: "1px solid gray",
+                    padding: "11px",
+                    backgroundColor: "unset",
+                    textAlign: "center",
+                  }}
+                >
+                  
+                </td>
+              ))}}
+              {resi.map((avg) => (
+                <td
+                  style={{
+                    border: "1px solid gray",
+                    padding: "11px",
+                    backgroundColor: "unset",
+                    textAlign: "center",
+                  }}
+                >
+                  {avg}
+                </td>
+              ))}
+            </tr> */}
+            {/*  <tr>
+              <th>ממוצע מעמיק:</th>
               <th>ממוצע...</th>
-            </tr>
+            </tr> */}
           </table>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-        </div>
+        </div>{" "}
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     ) : (
       <h3>-אין לי אנשים-</h3>

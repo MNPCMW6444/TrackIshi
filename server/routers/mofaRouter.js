@@ -244,7 +244,22 @@ router.post("/createmofa", async (req, res) => {
     );
     const IsDeleted = false;
 
+    const sMA = CrewM.MA;
+    const sFirstName = CrewM.FirstName;
+    const sLastName = CrewM.LastName;
+    const sNickName = CrewM.NickName;
+    const sCourseNo = CrewM.CourseNo;
+    const sMaslool = CrewM.Maslool;
+    const sUnit = CrewM.Unit;
+
     const newmofa = new Mofa({
+      sMA,
+      sFirstName,
+      sLastName,
+      sNickName,
+      sCourseNo,
+      sMaslool,
+      sUnit,
       isTest,
       isPass,
       fillDate,
