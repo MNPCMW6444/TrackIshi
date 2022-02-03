@@ -67,8 +67,8 @@ export default function VIEWMOFA(props) {
           <th className="oth">תאריך</th>
           <th className="oth">שם החניך/ה</th>
           <th className="oth">שם המדריך/ה</th>
-          <th className="oth">עמדה/סימולציה</th>
-          <th className="oth">מס'</th>
+          <th className="oth">סדרה</th>
+          <th className="oth">מספר</th>
         </tr>
         <tr>
           <td className="otd">{date}</td>

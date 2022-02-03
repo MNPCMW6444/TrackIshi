@@ -20,11 +20,15 @@ export default function TACHSALTB(props) {
   const [externalMA, setExternalMA] = useState();
 
   for (let i = 0; i < goten.length; i++) {
-    const finil = goten[i].BirthDate.substring(0, 10);
-    const day = finil.substring(5, 7);
-    const monthf = finil.substring(8, 10);
-    const year = finil.substring(0, 4);
-    const finili = day + "/" + monthf + "/" + year;
+    let finil;
+    finil = goten[i].BirthDate && goten[i].BirthDate.substring(0, 10);
+    let finili;
+    if (finil) {
+      const day = finil.substring(5, 7);
+      const monthf = finil.substring(8, 10);
+      const year = finil.substring(0, 4);
+      finili = day + "/" + monthf + "/" + year;
+    }
     goten[i].BirthDate = finili;
     let hebrewMaslool = "לא ידוע";
     switch (goten[i].Maslool) {
@@ -982,7 +986,9 @@ export default function TACHSALTB(props) {
                   {row.cells.map((cell) => {
                     return (
                       <td
-                        className={"theTableTD" + (cell.value.length > 13)}
+                        className={
+                          "theTableTD" + (cell.value && cell.value.length > 13)
+                        }
                         {...cell.getCellProps()}
                       >
                         {cell.render("Cell")}

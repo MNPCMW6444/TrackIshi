@@ -130,7 +130,7 @@ export default function Mofas(props) {
       //debugger;
       if (allr)
         for (let i = 0; i < allr.length; i++) {
-          sdarotw.push(allr[i].Emda);
+          if (!allr[i].IsDeleted) sdarotw.push(allr[i].Emda);
         }
       if (sdarotw) sdarotw = [...new Set(sdarotw)];
       setsdarot(sdarotw);
@@ -399,6 +399,7 @@ export default function Mofas(props) {
                     border: "1px solid gray",
                     padding: "11px",
                     backgroundColor: "unset",
+                    width: "10000px",
                   }}
                 >
                   {sidra}

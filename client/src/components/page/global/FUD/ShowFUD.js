@@ -26,8 +26,8 @@ function ShowFUD(props) {
   const [maslool, setMaslool] = useState();
   const [ready, setReady] = useState(false);
 
-  const [password, setPassword] = useState(false);
-  const [password2, setPassword2] = useState(false);
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
 
   const [edit, setEdit] = useState(false);
   const [updatepass, setupdatepass] = useState(false);

@@ -178,7 +178,7 @@ export default function MOFAS(props) {
                 backgroundColor: "unset",
               }}
             >
-              עמדה/סימולציה
+              סדרה
             </th>
             <th
               style={{

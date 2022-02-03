@@ -38,7 +38,7 @@ function OpinionDetails(props) {
         <tr className="otr">
           <th className="oth">תקופה</th>
           <th className="oth">תאריך מילוי</th>
-          <th className="oth">מס' חודשים תחת פיקודך</th>
+          <th className="oth">מספר חודשים תחת פיקודך</th>
           <th className="oth" colSpan="2">
             תפקיד / נע''ת
           </th>
