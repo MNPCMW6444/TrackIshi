@@ -23,12 +23,12 @@ export default function TACHSALTB(props) {
     let finil;
     finil = goten[i].BirthDate && goten[i].BirthDate.substring(0, 10);
     let finili;
-    if (finil) {
-      const day = finil.substring(5, 7);
-      const monthf = finil.substring(8, 10);
-      const year = finil.substring(0, 4);
-      finili = day + "/" + monthf + "/" + year;
-    }
+    if (finil){
+    const day = finil.substring(5, 7);
+    const monthf = finil.substring(8, 10);
+    const year = finil.substring(0, 4);
+    finili = day + "/" + monthf + "/" + year;
+  }
     goten[i].BirthDate = finili;
     let hebrewMaslool = "לא ידוע";
     switch (goten[i].Maslool) {

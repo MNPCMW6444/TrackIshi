@@ -26,6 +26,7 @@ function ShowFUD(props) {
   const [maslool, setMaslool] = useState();
   const [ready, setReady] = useState(false);
 
+  const [dereg, setdereg] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
@@ -74,7 +75,7 @@ function ShowFUD(props) {
         const day = finil.substring(5, 7);
         const month = finil.substring(8, 10);
         const year = finil.substring(0, 4);
-        finil = day + "/" + month + "/" + year;
+        finil = month + "/" + day + "/" + year; //נכתב הפוך בגלל שהמערכת בשביל באנגלית
         setBirthdate(finil);
       } catch (err) {
         console.log(err);
@@ -172,7 +173,7 @@ function ShowFUD(props) {
         const day = finil.substring(5, 7);
         const month = finil.substring(8, 10);
         const year = finil.substring(0, 4);
-        finil = day + "/" + month + "/" + year;
+        finil = month + "/" + day + "/" + year; //נכתב הפוך בגלל שהמערכת בשביל באנגלית
         setBirthdate(finil);
       } catch (err) {
         console.log(err);
@@ -237,14 +238,27 @@ function ShowFUD(props) {
   }, []);
 
   async function changePass() {
+    
+    //המרת דרג לאנגלית
+    let dereg2;
+    try {
+      dereg2 = dereg === "א'" ? "a" : dereg2;
+      dereg2 = dereg === "ב'" ? "b" : dereg2;
+      dereg2 = dereg === "ג'" ? "c" : dereg2;
+      dereg2 = dereg === "ד'" ? "d" : dereg2;
+    } catch (err) {
+      console.log(err);
+    }
+
     const newpass = {
+      dereg: dereg2,
       pass: password,
       pass2: password2,
     };
 
     try {
       const res = await Axios.put(`${domain}/user/changemypass`, newpass);
-      if (res.data.SUC === "YES") setSuccessMessage2("הסיסמה שונתה בהצלחה");
+      if (res.data.SUC === "YES") setSuccessMessage2("הפרטים עודכנו בהצלחה!");
       setupdatepass(false);
       setPassword("");
       setPassword2("");
@@ -382,7 +396,7 @@ function ShowFUD(props) {
               className="changepassbutton"
               onClick={() => setupdatepass(true)}
             >
-              שינוי סיסמה
+              שינוי סיסמה ודרג מקצועי
             </button>
           )}
         </div>
@@ -405,7 +419,33 @@ function ShowFUD(props) {
             />
           )}
           <br />
-          <labe>הזן סיסמה:</labe>
+          <label>עדכן דרג מקצועי (נדרש להזין סיסמה):    </label>
+
+        <select 
+        
+          onChange={(e) => setdereg(e.target.value)}
+        >
+            <option disabled selected value>
+            {" "}
+            -- בחר --{" "}
+          </option> <option >
+            {" "}
+            א'{" "}
+          </option>        
+          <option >
+            {" "}
+            ב'{" "}
+          </option>  
+          <option >
+            {" "}
+            ג'{" "}
+          </option>  
+          <option >
+            {" "}
+            ד'{" "}
+          </option>  
+</select>  <br /><br />
+          <label>הזן סיסמה:    </label>
           {"   "}
           <input
             type="password"
@@ -413,7 +453,7 @@ function ShowFUD(props) {
             onChange={(e) => setPassword(e.target.value)}
           ></input>{" "}
           <br /> <br />
-          <labe>הזן אותה סיסמה שוב:</labe>
+          <label>הזן אותה סיסמה שוב: </label>
           <input
             type="password"
             value={password2}
@@ -422,7 +462,7 @@ function ShowFUD(props) {
           <br /> <br />
           <br /> <br />
           <button className="changepassbuttonOK" onClick={changePass}>
-            שנה סיסמה
+            עדכון הפרטים
           </button>
           <br /> <br />
           <button
@@ -433,7 +473,7 @@ function ShowFUD(props) {
               setupdatepass(false);
             }}
           >
-            בטל
+            ביטול
           </button>
           <br />
           <br />

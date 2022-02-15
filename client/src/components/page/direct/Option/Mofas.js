@@ -58,23 +58,175 @@ export default function Mofas(props) {
       const allpeopleres = await Axios.get(`${domain}/user/getmypeople`);
       setRes(allpeopleres.data);
       const allrr = await Axios.get(`${domain}/mofa/getallmyn`);
+      const allrr2 = await Axios.get(`${domain}/mofa/getallmyn`);
 
-      let allrrexport = allrr.data;
+      let allrrexport = allrr2.data;
 
       for (let i = 0; i < allrrexport.length; i++) {
-        allrrexport[i].מספר_אישי = "allrrexport[i].sMA";
-        //delete allrrexport[i].sMA;
+        if(!allrrexport[i].IsDeleted){
+            if (allrrexport[i] && !allrrexport[i].מספר_אישי) {
+                allrrexport[i].מספר_אישי = allrrexport[i].sMA;
+ 
+            }
+            if (allrrexport[i] && !allrrexport[i].שם_פרטי) {
+                allrrexport[i].שם_פרטי = allrrexport[i].sFirstName;
+        
+            }
+            if (allrrexport[i] && !allrrexport[i].שם_משפחה) {
+                allrrexport[i].שם_משפחה = allrrexport[i].sLastName;
+       
+            }
+            if (allrrexport[i] && !allrrexport[i].קורס) {
+                allrrexport[i].קורס = allrrexport[i].sCourseNo;
+       
+            }
+            if (allrrexport[i] && !allrrexport[i].תאריך_מילוי) {
+              let finil = "DIDNOTDOWANAD";
+              finil = allrrexport[i] && allrrexport[i].fillDate.substring(0, 10);
+              const month = finil.substring(5, 7);
+              const day = finil.substring(8, 10);
+              const year = finil.substring(0, 4);
+              finil = day + "/" + month + "/" + year;
+              allrrexport[i].תאריך_מילוי = finil;
+    
+            } 
+            if (allrrexport[i] && !allrrexport[i].עמדה) {
+                allrrexport[i].עמדה = allrrexport[i].Emda;
+  
+            }
+            if (allrrexport[i] && !allrrexport[i].מספר) {
+              allrrexport[i].מספר = allrrexport[i].No;
+            }
+            if (allrrexport[i] && !allrrexport[i].מדריך) {
+                allrrexport[i].מדריך = allrrexport[i].MadName;
+     
+            }
+            if (allrrexport[i] && !allrrexport[i].יעד_1) {
+                allrrexport[i].יעד_1 = allrrexport[i].X11;
+ 
+            }
+            if (allrrexport[i] && !allrrexport[i].סטטוס_1) {
+                allrrexport[i].סטטוס_1 = allrrexport[i].X21 ? "כן" : "לא";
+ 
+            }
+            if (allrrexport[i] && !allrrexport[i].יעד_2) {
+              allrrexport[i].יעד_2 = allrrexport[i].X12;
+            }
+            if (allrrexport[i] && !allrrexport[i].סטטוס_2) {
+                allrrexport[i].סטטוס_2 = allrrexport[i].X22 ? "כן" : "לא";
+ 
+            }
+            if (allrrexport[i] && !allrrexport[i].יעד_3) {
+                allrrexport[i].יעד_3 = allrrexport[i].X13;
+ 
+            }
+            if (allrrexport[i] && !allrrexport[i].סטטוס_3) {
+                allrrexport[i].סטטוס_3 = allrrexport[i].X23 ? "כן" : "לא";
+ 
+            }
+            if (allrrexport[i] && !allrrexport[i].למידה) {
+                allrrexport[i].למידה = allrrexport[i] && allrrexport[i].C1;
 
-        /*   if (a[i] && !a[i].תאריך_מילוי) {
-            let finil = "DIDNOTDOWANAD";
-            finil = a[i] && a[i].fillDate.substring(0, 10);
-            const month = finil.substring(5, 7);
-            const day = finil.substring(8, 10);
-            const year = finil.substring(0, 4);
-            finil = day + "/" + month + "/" + year;
-            a[i].תאריך_מילוי = finil;
-            delete a[i].fillDate;
-          } */
+            }
+            if (allrrexport[i] && !allrrexport[i].תכנון) {
+                allrrexport[i].תכנון = allrrexport[i] && allrrexport[i].C2;
+
+            }
+            if (allrrexport[i] && !allrrexport[i].תפיסה_מרחבית) {
+                allrrexport[i].תפיסה_מרחבית = allrrexport[i] && allrrexport[i].C3;
+
+            }
+            if (allrrexport[i] && !allrrexport[i].חלקש) {
+                allrrexport[i].חלקש = allrrexport[i] && allrrexport[i].C4;
+
+            }
+            if (allrrexport[i] && !allrrexport[i].תקשורת) {
+                allrrexport[i].תקשורת = allrrexport[i] && allrrexport[i].C5;
+
+            }
+            if (allrrexport[i] && !allrrexport[i].עומס) {
+                allrrexport[i].עומס = allrrexport[i] && allrrexport[i].C6;
+
+            }
+            if (allrrexport[i] && !allrrexport[i].קבלת_החלטות) {
+                allrrexport[i].קבלת_החלטות = allrrexport[i] && allrrexport[i].C7;
+
+            }
+            if (allrrexport[i] && !allrrexport[i].הפעלה) {
+                allrrexport[i].הפעלה = allrrexport[i] && allrrexport[i].C8;
+
+            }
+            if (allrrexport[i] && !allrrexport[i].תחקור) {
+                allrrexport[i].תחקור = allrrexport[i] && allrrexport[i].C9;
+
+            }
+            if (allrrexport[i] && !allrrexport[i].ציון_מסכם) {
+                allrrexport[i].ציון_מסכם = allrrexport[i] && allrrexport[i].M1;
+
+            }
+            if (allrrexport[i] && !allrrexport[i].הוגדר_כמבחן) {
+                allrrexport[i].הוגדר_כמבחן = allrrexport[i].isTest ? "כן" : "לא";
+            }
+            if (allrrexport[i] && allrrexport[i].isTest){
+                if (allrrexport[i] && !allrrexport[i].מעבר_מבחן) {
+                  allrrexport[i].מעבר_מבחן = allrrexport[i].isPass ? "כן" : "לא";
+                }
+              }
+
+            if (allrrexport[i] && !allrrexport[i].שימור_גלישת_טקסט) {
+                allrrexport[i].שימור_גלישת_טקסט = allrrexport[i].M11;
+            }
+            if (allrrexport[i] && !allrrexport[i].שיפור_גלישת_טקסט) {
+                allrrexport[i].שיפור_גלישת_טקסט = allrrexport[i].M21;
+            }
+            if (allrrexport[i] && !allrrexport[i].סיכום) {
+                allrrexport[i].סיכום = allrrexport[i].Mf;
+            }
+          }
+          delete allrrexport[i].sMA;
+          delete allrrexport[i].sFirstName;
+          delete allrrexport[i].sLastName;
+          delete allrrexport[i].sCourseNo;
+          delete allrrexport[i].fillDate;
+          delete allrrexport[i].Emda;
+          delete allrrexport[i].No;
+          delete allrrexport[i].MadName;
+          delete allrrexport[i].X11;
+          delete allrrexport[i].X21;
+          delete allrrexport[i].X12;
+          delete allrrexport[i].X22;
+          delete allrrexport[i].X13;
+          delete allrrexport[i].X23;
+          delete allrrexport[i].C1;
+          delete allrrexport[i].C2;
+          delete allrrexport[i].C3;
+          delete allrrexport[i].C4;
+          delete allrrexport[i].C5;
+          delete allrrexport[i].C6;
+          delete allrrexport[i].C7;
+          delete allrrexport[i].C8;
+          delete allrrexport[i].C9;
+          delete allrrexport[i].M1;
+          delete allrrexport[i].isTest;
+          delete allrrexport[i].isPass;
+          delete allrrexport[i].M11;
+          delete allrrexport[i].M21;
+          delete allrrexport[i].Mf;
+          delete allrrexport[i]._id;
+          delete allrrexport[i].sNickName;
+          delete allrrexport[i].sMaslool;
+          delete allrrexport[i].sUnit;
+          delete allrrexport[i].CrewM;
+          delete allrrexport[i].name;
+          delete allrrexport[i].IsDeleted;
+          delete allrrexport[i].createdAt;
+          delete allrrexport[i].updatedAt;
+          delete allrrexport[i].__v;
+      }
+      
+      for (let i = 0; i < allrrexport.length; i++) {
+        if (Object.keys(allrrexport[i]).length < 10)
+          allrrexport.splice(i,1);
       }
 
       setresexport(allrrexport);
@@ -130,7 +282,7 @@ export default function Mofas(props) {
       //debugger;
       if (allr)
         for (let i = 0; i < allr.length; i++) {
-          if (!allr[i].IsDeleted) sdarotw.push(allr[i].Emda);
+          if(!allr[i].IsDeleted) sdarotw.push(allr[i].Emda);
         }
       if (sdarotw) sdarotw = [...new Set(sdarotw)];
       setsdarot(sdarotw);
@@ -355,8 +507,6 @@ export default function Mofas(props) {
           if (mewresi[i][j][k]) newArray.push(mewresi[i][j][k]);
       rs1.push(newArray);
     }
-
-  if (mewresi) debugger;
 
   return ready ? (
     k ? (

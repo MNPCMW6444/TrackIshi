@@ -289,7 +289,7 @@ export default function NEWMOFA(props) {
           </td>
           <td className="otd" style={{ textAlign: "center", width: "90px" }}>
             <select
-              style={{ textAlign: "center", width: "90px" }}
+              style={{ textAlign: "center", width: "150px" }}
               onChange={(e) => setEmdat(e.target.value)}
             >
               <option disabled selected value>
@@ -297,10 +297,46 @@ export default function NEWMOFA(props) {
                 -- בחר --{" "}
               </option>
 
-              <option value={"ירוט"}>{"ירוט"}</option>
-              <option value={"ירוט2"}>{"ירוט2"}</option>
-              <option value={"ירוט3"}>{"ירוט3"}</option>
+              <option value={"קק''צ - הגנ''א מבואות"}>{"קק''צ - הגנ''א מבואות"}</option>
+              <option value={"קק''צ - הגנ''א בסיסי"}>{"קק''צ - הגנ''א בסיסי"}</option>
+              <option value={"קק''צ - הגנ''א מתקדם"}>{"קק''צ - הגנ''א מתקדם"}</option>
+              <option value={"קק''צ - תעבורה מבואות"}>{"קק''צ - תעבורה מבואות"}</option>
+              <option value={"קק''צ - תעבורה בסיסי"}>{"קק''צ - תעבורה בסיסי"}</option>
+              <option value={"קק''צ - תעבורה מתקדם"}>{"קק''צ - תעבורה מתקדם"}</option>
+              <option value={"קק''צ - מענ''ש קרקעי"}>{"קק''צ - מענ''ש קרקעי"}</option>
+              <option value={"קק''צ - קרבות"}>{"קק''צ - קרבות"}</option>
+              <option value={"קא''מ - מענ''ש קרקעי"}>{"קא''מ - מענ''ש קרקעי"}</option>
+              <option value={"קא''מ - משימות עזר"}>{"קא''מ - משימות עזר"}</option>
+              <option value={"קא''מ - גילוי וקזת''א"}>{"קא''מ - גילוי וקזת''א"}</option>
+              <option value={"קא''מ - קמנ''ק"}>{"קא''מ - קמנ''ק"}</option>
+              <option value={"קא''מ - תובלייט"}>{"קא''מ - תובלייט"}</option>
+              <option value={"בט''ש - מתארים"}>{"בט''ש - מתארים"}</option>
+              <option value={"בט''ש - יירוט"}>{"בט''ש - יירוט"}</option>
+              <option value={"בט''ש - בת''ק"}>{"בט''ש - בת''ק"}</option>
+              <option value={"בט''ש - צילום"}>{"בט''ש - צילום"}</option>
+              <option value={"בט''ש - חילוץ"}>{"בט''ש - חילוץ"}</option>
+              <option value={"לחימה - הגנ''ש"}>{"לחימה - הגנ''ש"}</option>
+              <option value={"לחימה - בת''ק קרב"}>{"לחימה - בת''ק קרב"}</option>
+              <option value={"לחימה - בת''ק מסוקים"}>{"לחימה - בת''ק מסוקים"}</option>
+              <option value={"לחימה - חילוץ"}>{"לחימה - חילוץ"}</option>
+              <option value={"לחימה - איסוף"}>{"לחימה - איסוף"}</option>
+              <option value={"לחימה - אוצר"}>{"לחימה - אוצר"}</option>
+              <option value={"לחימה - משימות שוהות"}>{"לחימה - משימות שוהות"}</option>
+              <option value={"לחימה - תא שטח"}>{"לחימה - תא שטח"}</option>
+              <option value={"לחימה - תדלוק"}>{"לחימה - תדלוק"}</option>
+              <option value={"מ''ע/מתאם אימון"}>{"מ''ע/מתאם אימון"}</option>
+              <option value={"תובלות"}>{"תובלות"}</option>
+              <option value={"מחוברת"}>{"מחוברת"}</option>
+              <option value={"עפרוני"}>{"עפרוני"}</option>
+              <option value={"בק''צ"}>{"בק''צ"}</option>
+              <option value={"חמש''ס"}>{"חמש''ס"}</option>
+              <option value={"מרחבי"}>{"מרחבי"}</option>
+              <option value={"דרג ב' - מנהל תעבורה"}>{"דרג ב' - מנהל תעבורה"}</option>
+              <option value={"דרג ב' - מ''ע משולב"}>{"דרג ב' - מ''ע משולב"}</option>
+              <option value={"מובילים בט''ש"}>{"מובילים בט''ש"}</option>
+              <option value={"מובילים לחימה"}>{"מובילים לחימה"}</option>
               <option value={"אחר, פרט:"}>{"אחר, פרט:"}</option>
+            
             </select>
             {Emdat === "אחר, פרט:" && (
               <input

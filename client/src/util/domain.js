@@ -1,4 +1,4 @@
 export default process.env.NODE_ENV === "development"
-  ? "http://localhost:10004"
+  ? "http://180.212.224.167:10004"
   : process.env.NODE_ENV === "production" &&
-    "https://trackishi.herokuapp.com";
+    "http://180.212.224.167:3000";

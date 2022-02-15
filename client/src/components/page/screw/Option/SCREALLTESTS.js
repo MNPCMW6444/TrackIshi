@@ -16,6 +16,9 @@ export default function SCREALLTESTS() {
     getAllOpinions();
   }, []);
 
+
+
+
   return ready ? (
     <div className="col">
       <h2>רשימת כל ההסמכות:</h2>

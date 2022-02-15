@@ -35,16 +35,20 @@ export default function SCREWALLOPINIONS() {
       if (a[i] && !a[i].דרגה) {
         a[i].דרגה = a[i] && a[i].CrewM && a[i].CrewM.Rank;
       }
-      if (a[i] && !a[i].שם_משפחה) {
-        a[i].שם_משפחה = a[i] && a[i].CrewM && a[i].CrewM.LastName;
-      }
       if (a[i] && !a[i].שם_פרטי) {
         a[i].שם_פרטי = a[i] && a[i].CrewM && a[i].CrewM.FirstName;
+      }
+      if (a[i] && !a[i].שם_משפחה) {
+        a[i].שם_משפחה = a[i] && a[i].CrewM && a[i].CrewM.LastName;
         delete a[i].CrewM;
       }
       if (a[i] && !a[i].נחתם) {
         a[i].נחתם = a[i] && a[i].Signed ? "כן" : "לא";
         delete a[i].Signed;
+      }
+      if (a[i] && !a[i].אושר_מפקד_יחידה) {
+        a[i].אושר_מפקד_יחידה = a[i] && a[i].wasMyAuthApped ? "כן" : "לא";
+        delete a[i].wasMyAuthApped;
       }
       if (a[i] && !a[i].תקופה) {
         let tkufaNum = a[i].Tkufa;
@@ -105,7 +109,54 @@ export default function SCREWALLOPINIONS() {
         a[i].תחקור = a[i] && a[i].C9;
         delete a[i].C9;
       }
-    }
+      if (a[i] && !a[i].ציון_מסכם) {
+        a[i].ציון_מסכם = a[i] && a[i].M1;
+        delete a[i].M1;
+      }
+      if (a[i] && !a[i].יעדים) {
+        a[i].יעדים = a[i] && a[i].Tp;
+        delete a[i].Tp;
+      }
+      if (a[i] && !a[i].סיכום) {
+        a[i].סיכום = a[i] && a[i].Fp;
+        delete a[i].Fp;
+      }
+      if (a[i] && !a[i].ממשב_מספר_אישי) {
+        a[i].ממשב_מספר_אישי = a[i] && a[i].wasMyEvaMA;
+        delete a[i].wasMyEvaMA;
+      }
+      if (a[i] && !a[i].ממשב_דרגה) {
+        a[i].ממשב_דרגה = a[i] && a[i].wasMyEvaRank;
+        delete a[i].wasMyEvaRank;
+      }
+      if (a[i] && !a[i].ממשב_שם_פרטי) {
+        a[i].ממשב_שם_פרטי = a[i] && a[i].wasMyEvaFirstName;
+        delete a[i].wasMyEvaFirstName;
+      }
+      if (a[i] && !a[i].ממשב_שם_משפחה) {
+        a[i].ממשב_שם_משפחה = a[i] && a[i].wasMyEvaLastName;
+        delete a[i].wasMyEvaLastName;
+      }
+      delete a[i]._id;
+      delete a[i].MonthsNo;
+      delete a[i].Position;
+      delete a[i].wasRank;
+      delete a[i].wasDereg;
+      delete a[i].wasMaslool;
+      delete a[i].wasSoogHatsava;
+      delete a[i].wasUnit;
+      delete a[i].wasMyAuthMA;
+      delete a[i].wasMyAuthRank;
+      delete a[i].wasMyAuthLastName;
+      delete a[i].wasMyAuthFirstName;
+      delete a[i].M2;
+      delete a[i].createdAt;
+      delete a[i].updatedAt;
+      delete a[i].__v;
+      delete a[i].Commander;
+      delete a[i].Authorizer;
+
+}
 
   return ready ? (
     <div className="col">

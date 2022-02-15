@@ -17,6 +17,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost:5000",
+      "http://180.212.224.167:3000",
       "https://keen-saha-4d5980.netlify.app",
     ],
     credentials: true,

@@ -27,13 +27,11 @@ export default function Opinions(props) {
 
   return ready ? (
     <div className="col">
-      <br /> <br />
-      <div style={{ textAlign: "center" }}>
-        <NewOpinionButton shel={"general"} shels={shels} />{" "}
+      <br /><br />
+      <div style={{textAlign:"center"}}>
+              <NewOpinionButton shel={"general"} shels={shels} />
       </div>
-      <br />
-      <h2> רשימת האנשים שלי:</h2>
-      <br />
+      <h2>רשימת האנשים שלי:</h2>
       {res.map((screw) => (
         <>
           <OpenOpinions shel={screw} />

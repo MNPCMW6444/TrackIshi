@@ -1,0 +1,1211 @@
+webpackHotUpdate("main",{
+
+/***/ "./src/components/page/screw/Option/NEWMOFA.js":
+/*!*****************************************************!*\
+  !*** ./src/components/page/screw/Option/NEWMOFA.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(__react_refresh_utils__, __react_refresh_error_overlay__) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NEWMOFA; });
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _global_Opinions_Edit_FgradeTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../global/Opinions/Edit/FgradeTable */ "./src/components/page/global/Opinions/Edit/FgradeTable.js");
+/* harmony import */ var _global_Opinions_Edit_GradesTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../global/Opinions/Edit/GradesTable */ "./src/components/page/global/Opinions/Edit/GradesTable.js");
+/* harmony import */ var _context_UserContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../context/UserContext */ "./src/context/UserContext.js");
+/* harmony import */ var _messages_ErrorMessage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../messages/ErrorMessage */ "./src/components/messages/ErrorMessage.js");
+/* harmony import */ var _util_domain__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../util/domain */ "./src/util/domain.js");
+__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! react-refresh/runtime */ "./node_modules/react-refresh/runtime.js");
+__webpack_require__.$Refresh$.setup(module.i);
+
+
+
+var _jsxFileName = "C:\\Users\\mnpcm\\Documents\\GitHub\\TrackIshi\\client\\src\\components\\page\\screw\\Option\\NEWMOFA.js",
+    _s = __webpack_require__.$Refresh$.signature();
+
+
+
+
+
+
+
+
+function NEWMOFA(props) {
+  _s();
+
+  const [errorMessage, setErrorMessage] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(null);
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, "0");
+  let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+
+  let yyyy = today.getFullYear();
+  today = dd + "/" + mm + "/" + yyyy;
+  const {
+    user
+  } = Object(react__WEBPACK_IMPORTED_MODULE_2__["useContext"])(_context_UserContext__WEBPACK_IMPORTED_MODULE_5__["default"]);
+  const [date, setdate] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(today);
+  const [MadName, setMadName] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [Emdat, setEmdat] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [Emda, setEmda] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [No, setNo] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [x11, setx11] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [x12, setx12] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [x13, setx13] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [x21, setx21] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false);
+  const [x22, setx22] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false);
+  const [x23, setx23] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false);
+  const [test, settest] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false);
+  const [pass, setpass] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false);
+  const [c1, setc1] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [c2, setc2] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [c3, setc3] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [c4, setc4] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [c5, setc5] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [c6, setc6] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [c7, setc7] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [c8, setc8] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [c9, setc9] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [m1, setm1] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [m11, setm11] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [m21, setm21] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [mf, setmf] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])();
+  const [m, setm] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])("");
+  const [newGrade, setNewGrade] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([4, "nelson"]);
+
+  function setm11a(value) {
+    debugger;
+    let lines = 1;
+    if (value.substring(0, 3) != "1. ") value = "1. " + value;
+
+    for (let i = 0; i < value.length - 1; i++) {
+      if (value.substring(i, i + 1) === "\n") {
+        lines++;
+        if (value.substring(i + 2, i + 4) !== lines + ". ") value = value.substring(0, i + 1) + lines + ". " + value.substring(i + 2, value.length);
+      }
+    }
+
+    setm11(value);
+  }
+
+  function handleCheck1() {
+    setx21(!x21);
+  }
+
+  function handleCheck2() {
+    setx22(!x22);
+  }
+
+  function handleCheck3() {
+    setx23(!x23);
+  }
+
+  function handletest() {
+    if (test) setpass(false);
+    settest(!test);
+  }
+
+  function handlepass() {
+    if (pass) setpass(!pass);else {
+      if (m1 && m1 > 6) {
+        setpass(!pass);
+        setm("");
+      } else {
+        setpass(false);
+        setm("לא ניתן להעביר מבחן עם ציון נמוך מממוצע (7)");
+      }
+    }
+  }
+
+  Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(() => {
+    switch (newGrade[1]) {
+      case "C1":
+        setc1(newGrade[0]);
+        break;
+
+      case "C2":
+        setc2(newGrade[0]);
+        break;
+
+      case "C3":
+        setc3(newGrade[0]);
+        break;
+
+      case "C4":
+        setc4(newGrade[0]);
+        break;
+
+      case "C5":
+        setc5(newGrade[0]);
+        break;
+
+      case "C6":
+        setc6(newGrade[0]);
+        break;
+
+      case "C7":
+        setc7(newGrade[0]);
+        break;
+
+      case "C8":
+        setc8(newGrade[0]);
+        break;
+
+      case "C9":
+        setc9(newGrade[0]);
+        break;
+
+      case "final":
+        setm1(newGrade[0]);
+        setpass(false);
+        break;
+
+      default:
+        console.log("אתחול או שינוי לא מוכר");
+        break;
+    }
+  }, [newGrade]);
+
+  async function send() {
+    const newData = {
+      isTest: test,
+      isPass: pass,
+      fillDatep: date,
+      CrewM: user,
+      name: user.NickName,
+      MadName: MadName,
+      Emda: !Emda && Emdat ? Emdat : Emda,
+      No: No,
+      X11: x11,
+      X12: x12,
+      X13: x13,
+      X21: x21,
+      X22: x22,
+      X23: x23,
+      C1: c1,
+      C2: c2,
+      C3: c3,
+      C4: c4,
+      C5: c5,
+      C6: c6,
+      C7: c7,
+      C8: c8,
+      C9: c9,
+      M1: m1,
+      M11: m11,
+      M21: m21,
+      Mf: mf
+    };
+
+    try {
+      await axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(`${_util_domain__WEBPACK_IMPORTED_MODULE_7__["default"]}/mofa/createmofa`, newData);
+      props.suc(" מופע ההדרכה נשמר בהצלחה! על מנת לצפות בעדכון יש לפתוח את עמוד מופעי הדרכה מחדש");
+      const setDidupdated = props.setDidupdated;
+      setDidupdated();
+      const closeModal = props.forClosing;
+      closeModal();
+    } catch (err) {
+      if (err.response) {
+        if (err.response.data.errorMessage) {
+          setErrorMessage(err.response.data.errorMessage);
+        } else setErrorMessage("לא כל שדות החובה מלאים או שהוזן משהו שגוי, בדוק שוב");
+      } else console.log(err);
+    }
+
+    return;
+  }
+  /* 
+  async function send2() {
+    const newData = {
+      isTest: true,
+      fillDatep: date,
+      CrewM: user,
+      name: user.NickName,
+      MadName: MadName,
+      Emda: Emda,
+      No: No,
+      X11: x11,
+      X12: x12,
+      X13: x13,
+      X21: x21,
+      X22: x22,
+      X23: x23,
+      C1: c1,
+      C2: c2,
+      C3: c3,
+      C4: c4,
+      C5: c5,
+      C6: c6,
+      C7: c7,
+      C8: c8,
+      C9: c9,
+      M1: m1,
+      M11: m11,
+      M21: m21,
+      Mf: mf,
+    };
+      try {
+      await Axios.post(`${domain}/mofa/createmofa`, newData);
+      props.suc(" מופע ההדרכה נשמר בהצלחה! אם לא מופי יש לרענן את דף ");
+      const setDidupdated = props.setDidupdated;
+      setDidupdated();
+        const closeModal = props.forClosing;
+      closeModal();
+    } catch (err) {
+      if (err.response) {
+        if (err.response.data.errorMessage) {
+          setErrorMessage(err.response.data.errorMessage);
+        } else setErrorMessage("כנראה שהזנת משהו שגוי, נסה להזין מחדש");
+      } else console.log(err);
+    }
+    return;
+  }
+  */
+
+
+  return /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
+    className: "odiv",
+    children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 250,
+      columnNumber: 7
+    }, this), " ", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 250,
+      columnNumber: 14
+    }, this), " ", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 250,
+      columnNumber: 21
+    }, this), " ", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 250,
+      columnNumber: 28
+    }, this), " ", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 250,
+      columnNumber: 35
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("h3", {
+      className: "oh3",
+      children: "\u05DE\u05D5\u05E4\u05E2 \u05D4\u05D3\u05E8\u05DB\u05D4: "
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 251,
+      columnNumber: 7
+    }, this), " ", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 251,
+      columnNumber: 45
+    }, this), " ", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 251,
+      columnNumber: 52
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("h4", {
+      className: "oh4",
+      children: ["\u05E4\u05E8\u05D8\u05D9\u05DD \u05D0\u05D9\u05E9\u05D9\u05D9\u05DD", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("sup", {
+        className: "must",
+        children: "*"
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 253,
+        columnNumber: 21
+      }, this), ":", " "]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 252,
+      columnNumber: 7
+    }, this), " ", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 255,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("table", {
+      className: "otable",
+      style: {
+        width: "60"
+      },
+      children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("tr", {
+        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("th", {
+          className: "oth",
+          children: "\u05EA\u05D0\u05E8\u05D9\u05DA"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 258,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("th", {
+          className: "oth",
+          children: "\u05E9\u05DD \u05D4\u05D7\u05E0\u05D9\u05DA/\u05D4"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 259,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("th", {
+          className: "oth",
+          children: "\u05E9\u05DD \u05D4\u05DE\u05D3\u05E8\u05D9\u05DA/\u05D4"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 260,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("th", {
+          className: "oth",
+          children: "\u05E2\u05DE\u05D3\u05D4/\u05E1\u05D9\u05DE\u05D5\u05DC\u05E6\u05D9\u05D4"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 261,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("th", {
+          className: "oth",
+          children: "\u05DE\u05E1'"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 262,
+          columnNumber: 11
+        }, this)]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 257,
+        columnNumber: 9
+      }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("tr", {
+        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("td", {
+          className: "otd",
+          style: {
+            textAlign: "center",
+            width: "90px"
+          },
+          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("input", {
+            style: {
+              textAlign: "center",
+              width: "95%"
+            },
+            value: date,
+            onChange: e => setdate(e.target.value)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 266,
+            columnNumber: 13
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 265,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("td", {
+          className: "otd",
+          style: {
+            textAlign: "center",
+            width: "90px"
+          },
+          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("input", {
+            style: {
+              textAlign: "center",
+              width: "95%"
+            },
+            value: user.NickName
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 273,
+            columnNumber: 13
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 272,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("td", {
+          className: "otd",
+          style: {
+            textAlign: "center",
+            width: "90px"
+          },
+          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("input", {
+            style: {
+              textAlign: "center",
+              width: "95%"
+            },
+            value: MadName,
+            onChange: e => setMadName(e.target.value)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 279,
+            columnNumber: 13
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 278,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("td", {
+          className: "otd",
+          style: {
+            textAlign: "center",
+            width: "90px"
+          },
+          children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("select", {
+            style: {
+              textAlign: "center",
+              width: "90px"
+            },
+            onChange: e => setEmdat(e.target.value),
+            children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("option", {
+              disabled: true,
+              selected: true,
+              value: true,
+              children: [" ", "-- \u05D1\u05D7\u05E8 --", " "]
+            }, void 0, true, {
+              fileName: _jsxFileName,
+              lineNumber: 290,
+              columnNumber: 15
+            }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("option", {
+              value: "ירוט",
+              children: "ירוט"
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 295,
+              columnNumber: 15
+            }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("option", {
+              value: "ירוט2",
+              children: "ירוט2"
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 296,
+              columnNumber: 15
+            }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("option", {
+              value: "ירוט3",
+              children: "ירוט3"
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 297,
+              columnNumber: 15
+            }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("option", {
+              value: "אחר, פרט:",
+              children: "אחר, פרט:"
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 298,
+              columnNumber: 15
+            }, this)]
+          }, void 0, true, {
+            fileName: _jsxFileName,
+            lineNumber: 286,
+            columnNumber: 13
+          }, this), Emdat === "אחר, פרט:" && /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("input", {
+            style: {
+              textAlign: "center",
+              width: "95%"
+            },
+            value: Emda,
+            onChange: e => setEmda(e.target.value)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 301,
+            columnNumber: 15
+          }, this)]
+        }, void 0, true, {
+          fileName: _jsxFileName,
+          lineNumber: 285,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("td", {
+          className: "otd",
+          style: {
+            textAlign: "center",
+            width: "90px"
+          },
+          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("input", {
+            style: {
+              textAlign: "center",
+              width: "95%"
+            },
+            value: No,
+            type: "number",
+            onChange: e => setNo(Math.abs(e.target.value))
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 309,
+            columnNumber: 13
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 308,
+          columnNumber: 11
+        }, this)]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 264,
+        columnNumber: 9
+      }, this)]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 256,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 318,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("table", {
+      className: "otable",
+      style: {
+        width: "60%"
+      },
+      children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("tr", {
+        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("th", {
+          colSpan: "4",
+          className: "oth",
+          style: {
+            width: "90%"
+          },
+          children: ["\u05E1\u05D8\u05D8\u05D5\u05E1 \u05E2\u05DE\u05D9\u05D3\u05D4 \u05D1\u05D9\u05E2\u05D3\u05D9\u05DD", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("sup", {
+            className: "must",
+            children: "*"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 322,
+            columnNumber: 31
+          }, this)]
+        }, void 0, true, {
+          fileName: _jsxFileName,
+          lineNumber: 321,
+          columnNumber: 11
+        }, this), " ", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("th", {
+          colSpan: "4",
+          className: "oth",
+          style: {
+            width: "10%"
+          },
+          children: "\u05DB\u05DF/\u05DC\u05D0"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 324,
+          columnNumber: 11
+        }, this)]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 320,
+        columnNumber: 9
+      }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("tr", {
+        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("th", {
+          className: "oth",
+          colSpan: "1",
+          children: "\u05D9\u05E2\u05D3 1"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 330,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("td", {
+          className: "otd",
+          colSpan: "3",
+          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("input", {
+            style: {
+              textAlign: "center",
+              width: "95%"
+            },
+            value: x11,
+            onChange: e => setx11(e.target.value)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 334,
+            columnNumber: 13
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 333,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("td", {
+          className: "otd",
+          colSpan: "1",
+          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("input", {
+            style: {
+              textAlign: "center",
+              width: "95%"
+            },
+            type: "checkbox",
+            checked: x21 ? "checked" : "",
+            onChange: () => {
+              handleCheck1();
+            }
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 341,
+            columnNumber: 13
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 340,
+          columnNumber: 11
+        }, this)]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 329,
+        columnNumber: 9
+      }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("tr", {
+        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("th", {
+          className: "oth",
+          colSpan: "1",
+          children: "\u05D9\u05E2\u05D3 2"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 353,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("td", {
+          className: "otd",
+          colSpan: "3",
+          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("input", {
+            style: {
+              textAlign: "center",
+              width: "95%"
+            },
+            value: x12,
+            onChange: e => setx12(e.target.value)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 357,
+            columnNumber: 13
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 356,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("td", {
+          className: "otd",
+          colSpan: "1",
+          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("input", {
+            style: {
+              textAlign: "center",
+              width: "95%"
+            },
+            type: "checkbox",
+            checked: x22 ? "checked" : "",
+            onChange: () => {
+              handleCheck2();
+            }
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 364,
+            columnNumber: 13
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 363,
+          columnNumber: 11
+        }, this)]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 352,
+        columnNumber: 9
+      }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("tr", {
+        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("th", {
+          className: "oth",
+          colSpan: "1",
+          children: "\u05D9\u05E2\u05D3 3"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 376,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("td", {
+          className: "otd",
+          colSpan: "3",
+          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("input", {
+            style: {
+              textAlign: "center",
+              width: "95%"
+            },
+            value: x13,
+            onChange: e => setx13(e.target.value)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 380,
+            columnNumber: 13
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 379,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("td", {
+          className: "otd",
+          colSpan: "1",
+          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("input", {
+            style: {
+              textAlign: "center",
+              width: "95%"
+            },
+            type: "checkbox",
+            checked: x23 ? "checked" : "",
+            onChange: () => {
+              handleCheck3();
+            }
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 387,
+            columnNumber: 13
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 386,
+          columnNumber: 11
+        }, this)]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 375,
+        columnNumber: 9
+      }, this)]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 319,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 398,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 399,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 400,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("h4", {
+      className: "oh4",
+      children: ["\u05DE\u05E9\u05D5\u05D1 \u05D0\u05D9\u05E9\u05D9 (\u05DB\u05D4\u05E2\u05E8\u05DB\u05D4 \u05DB\u05D5\u05DC\u05DC\u05EA)", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("sup", {
+        className: "must",
+        children: "*"
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 402,
+        columnNumber: 33
+      }, this), ":", " "]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 401,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 404,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])(_global_Opinions_Edit_GradesTable__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      c1: c1,
+      c2: c2,
+      c3: c3,
+      c4: c4,
+      c5: c5,
+      c6: c6,
+      c7: c7,
+      c8: c8,
+      c9: c9,
+      setnewgrade: setNewGrade
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 405,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 417,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 418,
+      columnNumber: 7
+    }, this), " ", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 418,
+      columnNumber: 14
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("h4", {
+      className: "oh4",
+      children: ["\u05E6\u05D9\u05D5\u05DF \u05DE\u05E1\u05DB\u05DD \u05DC\u05E8\u05DE\u05EA \u05D4\u05D1\u05E7\u05E8\u05D4", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("sup", {
+        className: "must",
+        children: "*"
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 420,
+        columnNumber: 29
+      }, this), ":", " "]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 419,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 422,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])(_global_Opinions_Edit_FgradeTable__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      grade: m1,
+      setnewgrade: setNewGrade
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 423,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 424,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 425,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 426,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("h4", {
+      className: "oh4",
+      children: "\u05DE\u05D1\u05D7\u05DF: "
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 427,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 428,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("table", {
+      className: "otable",
+      children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("tr", {
+        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("td", {
+          className: "otd",
+          children: "\u05D4\u05D0\u05DD \u05D4\u05DE\u05D5\u05E4\u05E2 \u05DE\u05D4\u05D5\u05D5\u05D4 \u05DE\u05D1\u05D7\u05DF?"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 431,
+          columnNumber: 11
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("td", {
+          className: "otd",
+          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("input", {
+            type: "checkbox",
+            checked: test ? "checked" : "",
+            onChange: () => {
+              handletest();
+            }
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 433,
+            columnNumber: 13
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 432,
+          columnNumber: 11
+        }, this)]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 430,
+        columnNumber: 9
+      }, this), " ", test && /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("tr", {
+        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("td", {
+          className: "otd",
+          children: "\u05D4\u05D0\u05DD \u05D4\u05DE\u05D1\u05D7\u05DF \u05E2\u05D1\u05E8?"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 444,
+          columnNumber: 13
+        }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("td", {
+          className: "otd",
+          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("input", {
+            type: "checkbox",
+            checked: pass ? "checked" : "",
+            onChange: () => {
+              handlepass();
+            }
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 446,
+            columnNumber: 15
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 445,
+          columnNumber: 13
+        }, this)]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 443,
+        columnNumber: 11
+      }, this)]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 429,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("h3", {
+      style: {
+        textAlign: "center",
+        color: "red"
+      },
+      children: m
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 457,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 458,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 459,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("h4", {
+      className: "oh4",
+      children: "\u05E0\u05E7\u05D5\u05D3\u05D5\u05EA \u05DC\u05E9\u05D9\u05DE\u05D5\u05E8: "
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 460,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 461,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
+      className: "opd",
+      children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("textarea", {
+        className: "opinionInputPara2",
+        type: "text",
+        placeholder: "",
+        value: m11,
+        onChange: e => setm11a(e.target.value)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 463,
+        columnNumber: 9
+      }, this)
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 462,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 471,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("h4", {
+      className: "oh4",
+      children: "\u05E0\u05E7\u05D5\u05D3\u05D5\u05EA \u05DC\u05E9\u05D9\u05E4\u05D5\u05E8: "
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 472,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 473,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
+      className: "opd",
+      children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("textarea", {
+        className: "opinionInputPara2",
+        type: "text",
+        placeholder: "",
+        value: m21,
+        onChange: e => setm21(e.target.value)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 475,
+        columnNumber: 9
+      }, this)
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 474,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 483,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("h4", {
+      className: "oh4",
+      children: "\u05E1\u05D9\u05DB\u05D5\u05DD: "
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 484,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 485,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
+      className: "opd",
+      children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("textarea", {
+        className: "opinionInputPara2",
+        type: "text",
+        placeholder: "",
+        value: mf,
+        onChange: e => setmf(e.target.value)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 487,
+        columnNumber: 9
+      }, this), " "]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 486,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 495,
+      columnNumber: 7
+    }, this), " ", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 495,
+      columnNumber: 14
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 496,
+      columnNumber: 7
+    }, this), " ", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 496,
+      columnNumber: 14
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 497,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
+      style: {
+        textAlign: "Center"
+      },
+      children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("button", {
+        className: "OpinionSendButton",
+        onClick: () => send(),
+        children: [" ", "\u05E9\u05DE\u05D5\u05E8", " "]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 499,
+        columnNumber: 9
+      }, this)
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 498,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 523,
+      columnNumber: 7
+    }, this), " ", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 523,
+      columnNumber: 14
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 524,
+      columnNumber: 7
+    }, this), errorMessage && /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])(_messages_ErrorMessage__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      message: errorMessage,
+      clear: () => setErrorMessage(null)
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 526,
+      columnNumber: 9
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 531,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 532,
+      columnNumber: 7
+    }, this), " ", /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 532,
+      columnNumber: 14
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 533,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 534,
+      columnNumber: 7
+    }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 535,
+      columnNumber: 7
+    }, this)]
+  }, void 0, true, {
+    fileName: _jsxFileName,
+    lineNumber: 249,
+    columnNumber: 5
+  }, this);
+}
+
+_s(NEWMOFA, "fAfvRa97f96aOoBbu8sq6mIzf5c=");
+
+_c = NEWMOFA;
+
+var _c;
+
+__webpack_require__.$Refresh$.register(_c, "NEWMOFA");
+
+const currentExports = __react_refresh_utils__.getModuleExports(module.i);
+__react_refresh_utils__.registerExportsForReactRefresh(currentExports, module.i);
+
+if (true) {
+  const isHotUpdate = !!module.hot.data;
+  const prevExports = isHotUpdate ? module.hot.data.prevExports : null;
+
+  if (__react_refresh_utils__.isReactRefreshBoundary(currentExports)) {
+    module.hot.dispose(
+      /**
+       * A callback to performs a full refresh if React has unrecoverable errors,
+       * and also caches the to-be-disposed module.
+       * @param {*} data A hot module data object from Webpack HMR.
+       * @returns {void}
+       */
+      function hotDisposeCallback(data) {
+        // We have to mutate the data object to get data registered and cached
+        data.prevExports = currentExports;
+      }
+    );
+    module.hot.accept(
+      /**
+       * An error handler to allow self-recovering behaviours.
+       * @param {Error} error An error occurred during evaluation of a module.
+       * @returns {void}
+       */
+      function hotErrorHandler(error) {
+        if (
+          typeof __react_refresh_error_overlay__ !== 'undefined' &&
+          __react_refresh_error_overlay__
+        ) {
+          __react_refresh_error_overlay__.handleRuntimeError(error);
+        }
+
+        if (typeof __react_refresh_test__ !== 'undefined' && __react_refresh_test__) {
+          if (window.onHotAcceptError) {
+            window.onHotAcceptError(error.message);
+          }
+        }
+
+        __webpack_require__.c[module.i].hot.accept(hotErrorHandler);
+      }
+    );
+
+    if (isHotUpdate) {
+      if (
+        __react_refresh_utils__.isReactRefreshBoundary(prevExports) &&
+        __react_refresh_utils__.shouldInvalidateReactRefreshBoundary(prevExports, currentExports)
+      ) {
+        module.hot.invalidate();
+      } else {
+        __react_refresh_utils__.enqueueUpdate(
+          /**
+           * A function to dismiss the error overlay after performing React refresh.
+           * @returns {void}
+           */
+          function updateCallback() {
+            if (
+              typeof __react_refresh_error_overlay__ !== 'undefined' &&
+              __react_refresh_error_overlay__
+            ) {
+              __react_refresh_error_overlay__.clearRuntimeErrors();
+            }
+          }
+        );
+      }
+    }
+  } else {
+    if (isHotUpdate && __react_refresh_utils__.isReactRefreshBoundary(prevExports)) {
+      module.hot.invalidate();
+    }
+  }
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js"), __webpack_require__(/*! ./node_modules/react-dev-utils/refreshOverlayInterop.js */ "./node_modules/react-dev-utils/refreshOverlayInterop.js")))
+
+/***/ })
+
+})
+//# sourceMappingURL=main.ea8f03c27de46df396a6.hot-update.js.map

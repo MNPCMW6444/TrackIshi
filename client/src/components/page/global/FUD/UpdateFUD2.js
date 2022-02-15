@@ -41,7 +41,10 @@ function UpdateFUD(props) {
   const [soogHatsava, setSoogHatsava] = useState();
   const [maslool, setMaslool] = useState();
   const [ready, setReady] = useState(false);
-
+//תוספות לדרג
+  const [fdereg, fsetDereg] = useState(); //חיפוש
+  const [dereg, setDereg] = useState(); //הזנה
+  
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
@@ -205,14 +208,40 @@ function UpdateFUD(props) {
         fmsll = FUDRes.data.Maslool === "mesima" ? "משימה" : fmsll;
         fmsll = FUDRes.data.Maslool === "taavura" ? "תעבורה" : fmsll;
         fmsll = FUDRes.data.Maslool === "versatili" ? "ורסטילי" : fmsll;
-        fsetMaslool(msll);
+        fsetMaslool(fmsll);
       } catch (err) {
         console.log(err);
       }
+
+
+//חיפוש דרג
+      let derege;
+      try {
+        derege = FUDRes.data.Dereg === "a" ? "א'" : derege;
+        derege = FUDRes.data.Dereg === "b" ? "ב'" : derege;
+        derege = FUDRes.data.Dereg === "c" ? "ג'" : derege;
+        derege = FUDRes.data.Dereg === "d" ? "ד'" : derege;
+        setDereg(derege);
+      } catch (err) {
+        console.log(err);
+      }
+
+      let fderege;
+      try {
+        fderege = FUDRes.data.Dereg === "a" ? "א'" : fderege;
+        fderege = FUDRes.data.Dereg === "b" ? "ב'" : fderege;
+        fderege = FUDRes.data.Dereg === "c" ? "ג'" : fderege;
+        fderege = FUDRes.data.Dereg === "d" ? "ד'" : fderege;
+        fsetDereg(fderege);
+      } catch (err) {
+        console.log(err);
+      }
+
       setReady(true);
     };
     getFUD();
   }, []);
+
 
   async function updatefud(e) {
     e.preventDefault();
@@ -233,6 +262,17 @@ function UpdateFUD(props) {
       console.log(err);
     }
 
+//המרת דרג לאנגלית
+    let dereg2;
+    try {
+      dereg2 = fdereg === "א'" ? "a" : dereg2;
+      dereg2 = fdereg === "ב'" ? "b" : dereg2;
+      dereg2 = fdereg === "ג'" ? "c" : dereg2;
+      dereg2 = fdereg === "ד'" ? "d" : dereg2;
+    } catch (err) {
+      console.log(err);
+    }
+
     const updateFUDData = {
       firstname: ffirstname,
       lastname: flastname,
@@ -248,6 +288,10 @@ function UpdateFUD(props) {
       unit: funit,
       soogHatsava: hatsv2,
       maslool: msll2,
+//הזנת דרג
+      dereg: dereg2,
+
+
     };
 
     try {
@@ -450,15 +494,45 @@ function UpdateFUD(props) {
               <div className="fudunit">
                 <div className="fudTitle">דרגה: </div>
                 <div className="fudContent">
-                  <input
-                    className="fudinput"
-                    id="form-rank"
-                    type="text"
-                    placeholder="דרגה"
-                    defaultValue={rank}
+                <select className="fudinput" id="form-rank"  type="text" placeholder="דרגה"   defaultValue={frank}
                     value={frank}
-                    onChange={(e) => fsetRank(e.target.value)}
-                  />
+
+  onChange={(e) => fsetRank(e.target.value)}
+>
+<option disabled selected value>
+            {" "}
+            -- בחר --{" "}
+          </option>
+    <option >
+    {" "}
+    סג"מ{" "}
+  </option>        
+  <option >
+    {" "}
+    סגן{" "}
+  </option>  
+  <option >
+    {" "}
+    סרן{" "}
+  </option>  
+  <option >
+    {" "}
+    רס"ן{" "}
+  </option>  
+  <option >
+    {" "}
+    סא"ל{" "}
+  </option>  
+  <option >
+    {" "}
+    אל"מ{" "}
+  </option>  
+  <option >
+    {" "}
+    תא"ל{" "}
+  </option> 
+
+</select> 
                 </div>
               </div>
             </div>
@@ -466,47 +540,124 @@ function UpdateFUD(props) {
               <div className="fudunit">
                 <div className="fudTitle">יחידה: </div>
                 <div className="fudContent">
-                  <input
-                    className="fudinput"
-                    id="form-unit"
-                    type="text"
-                    placeholder="יחידה"
-                    defaultValue={unit}
+                <select className="fudinput" id="form-unit"  type="text" placeholder="יחידה"   defaultValue={funit}
                     value={funit}
-                    onChange={(e) => fsetUnit(e.target.value)}
-                  />
+
+  onChange={(e) => fsetUnit(e.target.value)}
+>
+<option disabled selected value>
+            {" "}
+            -- בחר --{" "}
+          </option>
+    <option >
+    {" "}
+    506{" "}
+  </option>        
+  <option >
+    {" "}
+    509{" "}
+  </option>  
+  <option >
+    {" "}
+    528{" "}
+  </option>  
+
+</select> 
                 </div>
               </div>
               <br />
               <div className="fudunit">
                 <div className="fudTitle">סוג הצבה: </div>
                 <div className="fudContent">
-                  <input
-                    className="fudinput"
-                    id="form-addressline"
-                    type="text"
-                    placeholder="סוג הצבה"
-                    defaultValue={soogHatsava}
+                <select className="fudinput" id="form-addressline"  type="text" placeholder="סוג הצבה"   defaultValue={fsoogHatsava}
                     value={fsoogHatsava}
-                    onChange={(e) => fsetSoogHatsava(e.target.value)}
-                  />
+
+  onChange={(e) => fsetSoogHatsava(e.target.value)}
+>
+<option disabled selected value>
+            {" "}
+            -- בחר --{" "}
+          </option>
+    <option >
+    {" "}
+    סדיר{" "}
+  </option>        
+  <option >
+    {" "}
+    הצ"ח{" "}
+  </option>  
+  <option >
+    {" "}
+    מילואים{" "}
+  </option>  
+
+</select> 
                 </div>
               </div>
               <br />
               <div className="fudunit">
                 <div className="fudTitle">מסלול: </div>
                 <div className="fudContent">
-                  <input
-                    className="fudinput"
-                    id="form-maslool"
-                    type="text"
-                    placeholder="מסלול"
-                    defaultValue={maslool}
+                <select className="fudinput" id="form-maslool"  type="text" placeholder="מסלול"   defaultValue={fmaslool}
                     value={fmaslool}
-                    onChange={(e) => fsetMaslool(e.target.value)}
-                  />
+
+  onChange={(e) => fsetMaslool(e.target.value)}
+>
+<option disabled selected value>
+            {" "}
+            -- בחר --{" "}
+          </option>
+    <option >
+    {" "}
+    משימה{" "}
+  </option>        
+  <option >
+    {" "}
+    תעבורה{" "}
+  </option>  
+  <option >
+    {" "}
+    ורסטילי{" "}
+  </option>  
+
+</select> 
                 </div>
-              </div>
+                </div>
+
+
+                <br />
+
+                <div className="fudunit">
+              <div className="fudTitle">דרג מקצועי: </div>
+              <div className="fudContent">
+              <select className="fudinput" id="form-dereg"  type="text" placeholder="דרג"   defaultValue={fdereg}
+                    value={fdereg}
+
+
+               onChange={(e) => fsetDereg(e.target.value)} >
+          <option disabled selected value>
+          {" "}
+          -- בחר --{" "}
+        </option> <option >
+          {" "}
+          א'{" "}
+        </option>        
+        <option >
+          {" "}
+          ב'{" "}
+        </option>  
+        <option >
+          {" "}
+          ג'{" "}
+        </option>  
+        <option >
+          {" "}
+          ד'{" "}
+        </option>  
+</select>  <br /><br />
+</div></div>
+
+
             </div>
           </div>
         </form>
