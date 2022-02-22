@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import domain from "../../../../util/domain";
 import ErrorMessage from "../../../messages/ErrorMessage";
 
-function UpdateFUD(props) {
+function UpdateFUD2(props) {
   let externalma;
   if (props.ma) externalma = props.ma;
 
@@ -41,10 +41,12 @@ function UpdateFUD(props) {
   const [soogHatsava, setSoogHatsava] = useState();
   const [maslool, setMaslool] = useState();
   const [ready, setReady] = useState(false);
-//תוספות לדרג
-  const [fdereg, fsetDereg] = useState(); //חיפוש
-  const [dereg, setDereg] = useState(); //הזנה
-  
+  //  תוספות לדרג
+  const [fdereg, fsetDereg] = useState();
+  //  חיפוש;
+  const [dereg, setDereg] = useState();
+  // הזנה;
+
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
@@ -213,8 +215,7 @@ function UpdateFUD(props) {
         console.log(err);
       }
 
-
-//חיפוש דרג
+      //חיפוש דרג
       let derege;
       try {
         derege = FUDRes.data.Dereg === "a" ? "א'" : derege;
@@ -242,7 +243,6 @@ function UpdateFUD(props) {
     getFUD();
   }, []);
 
-
   async function updatefud(e) {
     e.preventDefault();
     let hatsv2;
@@ -262,7 +262,7 @@ function UpdateFUD(props) {
       console.log(err);
     }
 
-//המרת דרג לאנגלית
+    // המרת דרג לאנגלית
     let dereg2;
     try {
       dereg2 = fdereg === "א'" ? "a" : dereg2;
@@ -288,10 +288,8 @@ function UpdateFUD(props) {
       unit: funit,
       soogHatsava: hatsv2,
       maslool: msll2,
-//הזנת דרג
+      // הזנת דרג
       dereg: dereg2,
-
-
     };
 
     try {
@@ -302,9 +300,12 @@ function UpdateFUD(props) {
           updateFUDData
         );
       else await Axios.put(`${domain}/user/updateFullDetails`, updateFUDData);
-      props.suc("הפרטים עודכנו בהצלחה!");
-      const done = props.whendone;
-      done(false);
+      //props.suc("הפרטים עודכנו בהצלחה!");
+      //const done = props.whendone;
+
+      //done(false);
+      const fun = props.fun;
+      fun(Math.random());
     } catch (err) {
       if (err.response) {
         if (err.response.data.errorMessage) {
@@ -344,7 +345,7 @@ function UpdateFUD(props) {
                     id="form-courseno"
                     type="number"
                     placeholder="מספר קורס"
-                    defaultValue={courseno}
+                    /* defaultValue={courseno} */
                     value={fcourseno}
                     onChange={(e) => fsetCourseno(e.target.value)}
                   />
@@ -359,7 +360,7 @@ function UpdateFUD(props) {
                     id="form-birthdate"
                     type="date"
                     placeholder="תאריך לידה"
-                    defaultValue={birthdate}
+                    /* defaultValue={birthdate} */
                     value={fbirthdate}
                     onChange={(e) => fsetBirthdate(e.target.value)}
                   />
@@ -375,7 +376,7 @@ function UpdateFUD(props) {
                     id="form-firstname"
                     type="text"
                     placeholder="שם פרטי"
-                    defaultValue={firstname}
+                    /* defaultValue={firstname} */
                     value={ffirstname}
                     onChange={(e) => fsetFirstname(e.target.value)}
                   />
@@ -390,7 +391,7 @@ function UpdateFUD(props) {
                     id="form-lastname"
                     type="text"
                     placeholder="שם משפחה"
-                    defaultValue={lastname}
+                    /* defaultValue={lastname} */
                     value={flastname}
                     onChange={(e) => fsetLastname(e.target.value)}
                   />
@@ -405,7 +406,7 @@ function UpdateFUD(props) {
                     id="form-nickname"
                     type="text"
                     placeholder="כינוי"
-                    defaultValue={nickname}
+                    /* defaultValue={nickname} */
                     value={fnickname}
                     onChange={(e) => fsetNickname(e.target.value)}
                   />
@@ -423,7 +424,7 @@ function UpdateFUD(props) {
                     id="form-mainphone"
                     type="text"
                     placeholder="מספר טלפון"
-                    defaultValue={mainphone}
+                    /* defaultValue={mainphone} */
                     value={fmainphone}
                     onChange={(e) => fsetMainphone(e.target.value)}
                   />
@@ -438,7 +439,7 @@ function UpdateFUD(props) {
                     id="form-emergencyphone"
                     type="text"
                     placeholder="מספר טלפון נוסף למקרה חירום"
-                    defaultValue={emergencyphone}
+                    /* defaultValue={emergencyphone} */
                     value={femergencyphone}
                     onChange={(e) => fsetEmergencyphone(e.target.value)}
                   />
@@ -453,7 +454,7 @@ function UpdateFUD(props) {
                     id="form-email"
                     type="email"
                     placeholder="כתובת דואר אלקטרוני (אזרחית)"
-                    defaultValue={email}
+                    /* defaultValue={email} */
                     value={femail}
                     onChange={(e) => fsetEmail(e.target.value)}
                   />
@@ -469,7 +470,7 @@ function UpdateFUD(props) {
                     id="form-addresscity"
                     type="text"
                     placeholder="עיר מגורים"
-                    defaultValue={addresscity}
+                    /* defaultValue={addresscity} */
                     value={faddresscity}
                     onChange={(e) => fsetAddresscity(e.target.value)}
                   />
@@ -484,7 +485,7 @@ function UpdateFUD(props) {
                     id="form-addressline"
                     type="text"
                     placeholder="כתובת מגורים"
-                    defaultValue={addressline}
+                    /* defaultValue={addressline} */
                     value={faddressline}
                     onChange={(e) => fsetAddressline(e.target.value)}
                   />
@@ -494,45 +495,27 @@ function UpdateFUD(props) {
               <div className="fudunit">
                 <div className="fudTitle">דרגה: </div>
                 <div className="fudContent">
-                <select className="fudinput" id="form-rank"  type="text" placeholder="דרגה"   defaultValue={frank}
+                  <select
+                    className="fudinput"
+                    id="form-rank"
+                    type="text"
+                    placeholder="דרגה"
+                    /* defaultValue={frank} */
                     value={frank}
-
-  onChange={(e) => fsetRank(e.target.value)}
->
-<option disabled selected value>
-            {" "}
-            -- בחר --{" "}
-          </option>
-    <option >
-    {" "}
-    סג"מ{" "}
-  </option>        
-  <option >
-    {" "}
-    סגן{" "}
-  </option>  
-  <option >
-    {" "}
-    סרן{" "}
-  </option>  
-  <option >
-    {" "}
-    רס"ן{" "}
-  </option>  
-  <option >
-    {" "}
-    סא"ל{" "}
-  </option>  
-  <option >
-    {" "}
-    אל"מ{" "}
-  </option>  
-  <option >
-    {" "}
-    תא"ל{" "}
-  </option> 
-
-</select> 
+                    onChange={(e) => fsetRank(e.target.value)}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      -- בחר --{" "}
+                    </option>
+                    <option> סג"מ </option>
+                    <option> סגן </option>
+                    <option> סרן </option>
+                    <option> רס"ן </option>
+                    <option> סא"ל </option>
+                    <option> אל"מ </option>
+                    <option> תא"ל </option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -540,124 +523,99 @@ function UpdateFUD(props) {
               <div className="fudunit">
                 <div className="fudTitle">יחידה: </div>
                 <div className="fudContent">
-                <select className="fudinput" id="form-unit"  type="text" placeholder="יחידה"   defaultValue={funit}
+                  <select
+                    className="fudinput"
+                    id="form-unit"
+                    type="text"
+                    placeholder="יחידה"
+                    /* defaultValue={funit} */
                     value={funit}
-
-  onChange={(e) => fsetUnit(e.target.value)}
->
-<option disabled selected value>
-            {" "}
-            -- בחר --{" "}
-          </option>
-    <option >
-    {" "}
-    506{" "}
-  </option>        
-  <option >
-    {" "}
-    509{" "}
-  </option>  
-  <option >
-    {" "}
-    528{" "}
-  </option>  
-
-</select> 
+                    onChange={(e) => fsetUnit(e.target.value)}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      -- בחר --{" "}
+                    </option>
+                    <option> 506 </option>
+                    <option> 509 </option>
+                    <option> 528 </option>
+                  </select>
                 </div>
               </div>
               <br />
               <div className="fudunit">
                 <div className="fudTitle">סוג הצבה: </div>
                 <div className="fudContent">
-                <select className="fudinput" id="form-addressline"  type="text" placeholder="סוג הצבה"   defaultValue={fsoogHatsava}
+                  <select
+                    className="fudinput"
+                    id="form-addressline"
+                    type="text"
+                    placeholder="סוג הצבה"
+                    /* defaultValue={fsoogHatsava} */
                     value={fsoogHatsava}
-
-  onChange={(e) => fsetSoogHatsava(e.target.value)}
->
-<option disabled selected value>
-            {" "}
-            -- בחר --{" "}
-          </option>
-    <option >
-    {" "}
-    סדיר{" "}
-  </option>        
-  <option >
-    {" "}
-    הצ"ח{" "}
-  </option>  
-  <option >
-    {" "}
-    מילואים{" "}
-  </option>  
-
-</select> 
+                    onChange={(e) => fsetSoogHatsava(e.target.value)}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      -- בחר --{" "}
+                    </option>
+                    <option> סדיר </option>
+                    <option> הצ"ח </option>
+                    <option> מילואים </option>
+                  </select>
                 </div>
               </div>
               <br />
               <div className="fudunit">
                 <div className="fudTitle">מסלול: </div>
                 <div className="fudContent">
-                <select className="fudinput" id="form-maslool"  type="text" placeholder="מסלול"   defaultValue={fmaslool}
+                  <select
+                    className="fudinput"
+                    id="form-maslool"
+                    type="text"
+                    placeholder="מסלול"
+                    /* defaultValue={fmaslool} */
                     value={fmaslool}
-
-  onChange={(e) => fsetMaslool(e.target.value)}
->
-<option disabled selected value>
-            {" "}
-            -- בחר --{" "}
-          </option>
-    <option >
-    {" "}
-    משימה{" "}
-  </option>        
-  <option >
-    {" "}
-    תעבורה{" "}
-  </option>  
-  <option >
-    {" "}
-    ורסטילי{" "}
-  </option>  
-
-</select> 
+                    onChange={(e) => fsetMaslool(e.target.value)}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      -- בחר --{" "}
+                    </option>
+                    <option> משימה </option>
+                    <option> תעבורה </option>
+                    <option> ורסטילי </option>
+                  </select>
                 </div>
-                </div>
+              </div>
 
+              <br />
 
-                <br />
-
-                <div className="fudunit">
-              <div className="fudTitle">דרג מקצועי: </div>
-              <div className="fudContent">
-              <select className="fudinput" id="form-dereg"  type="text" placeholder="דרג"   defaultValue={fdereg}
+              <div className="fudunit">
+                <div className="fudTitle">דרג מקצועי: </div>
+                <div className="fudContent">
+                  <select
+                    className="fudinput"
+                    id="form-dereg"
+                    type="text"
+                    placeholder="דרג"
+                    /* defaultValue={fdereg} */
                     value={fdereg}
-
-
-               onChange={(e) => fsetDereg(e.target.value)} >
-          <option disabled selected value>
-          {" "}
-          -- בחר --{" "}
-        </option> <option >
-          {" "}
-          א'{" "}
-        </option>        
-        <option >
-          {" "}
-          ב'{" "}
-        </option>  
-        <option >
-          {" "}
-          ג'{" "}
-        </option>  
-        <option >
-          {" "}
-          ד'{" "}
-        </option>  
-</select>  <br /><br />
-</div></div>
-
-
+                    onChange={(e) => fsetDereg(e.target.value)}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      -- בחר --{" "}
+                    </option>{" "}
+                    <option> א' </option>
+                    <option> ב' </option>
+                    <option> ג' </option>
+                    <option> ד' </option>
+                  </select>{" "}
+                  <br />
+                  <br />
+                </div>
+              </div>
             </div>
           </div>
         </form>
@@ -669,11 +627,7 @@ function UpdateFUD(props) {
           </button>
         </div>
       </div>
-      {externalma && falg && (
-        <h2 style={{ textAlign: "center" }}>
-          עודכן, יש לרענן את הדף כדי לצפות בספר המעודכן
-        </h2>
-      )}
+      {externalma && falg && <h2 style={{ textAlign: "center" }}>עודכן!</h2>}
       <br />
       <br />
       <br />
@@ -686,4 +640,4 @@ function UpdateFUD(props) {
   );
 }
 
-export default UpdateFUD;
+export default UpdateFUD2;

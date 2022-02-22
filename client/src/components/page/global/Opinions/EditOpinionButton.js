@@ -18,6 +18,8 @@ const customStyles = {
 };
 
 export default function EditOpinionButton(props) {
+  Modal.setAppElement(document.getElementById("root"));
+
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const [successMessage, setSuccessMessage] = useState(null);
@@ -62,8 +64,8 @@ export default function EditOpinionButton(props) {
               id={props.allDATA._id}
               allDATA={props.allDATA}
               forClosing={closeModal}
-              suc={setSuccessMessage}
-              setDidupdated={props.setDidupdated}
+              /* suc={setSuccessMessage}
+              setDidupdated={props.setDidupdated} */
               isGray={props.isGray}
             />
           ) : (

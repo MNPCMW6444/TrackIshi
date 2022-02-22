@@ -9,6 +9,8 @@ function ShowFUD(props) {
   let externalma;
   if (props.ma) externalma = props.ma;
 
+  const [asd, rand] = useState("yet");
+
   const [ma, setMa] = useState();
   const [firstname, setFirstname] = useState();
   const [lastname, setLastname] = useState();
@@ -37,7 +39,7 @@ function ShowFUD(props) {
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
-    const getFUDI = setInterval(async () => {
+    /* const getFUDI = setInterval(async () => {
       let FUDRes;
       if (externalma)
         FUDRes = await Axios.get(
@@ -134,7 +136,7 @@ function ShowFUD(props) {
         console.log(err);
       }
       setReady(true);
-    }, 3000);
+    }, 3000); */
     const getFUD = async () => {
       let FUDRes;
       if (externalma)
@@ -232,13 +234,11 @@ function ShowFUD(props) {
         console.log(err);
       }
       setReady(true);
-    };
+    }; /* return () => clearInterval(getFUDI); */
     getFUD();
-    return () => clearInterval(getFUDI);
-  }, []);
+  }, [asd]);
 
   async function changePass() {
-    
     //המרת דרג לאנגלית
     let dereg2;
     try {
@@ -281,7 +281,9 @@ function ShowFUD(props) {
           </h3>
         </div>
       )}
-      {edit && <UpdateFUD suc={setSuccessMessage} whendone={setEdit} />}
+      {edit && (
+        <UpdateFUD done={rand} suc={setSuccessMessage} whendone={setEdit} />
+      )}
       {successMessage && (
         <SuccessMessage
           message={successMessage}
@@ -419,33 +421,20 @@ function ShowFUD(props) {
             />
           )}
           <br />
-          <label>עדכן דרג מקצועי (נדרש להזין סיסמה):    </label>
-
-        <select 
-        
-          onChange={(e) => setdereg(e.target.value)}
-        >
+          <label>עדכן דרג מקצועי (נדרש להזין סיסמה): </label>
+          <select onChange={(e) => setdereg(e.target.value)}>
             <option disabled selected value>
-            {" "}
-            -- בחר --{" "}
-          </option> <option >
-            {" "}
-            א'{" "}
-          </option>        
-          <option >
-            {" "}
-            ב'{" "}
-          </option>  
-          <option >
-            {" "}
-            ג'{" "}
-          </option>  
-          <option >
-            {" "}
-            ד'{" "}
-          </option>  
-</select>  <br /><br />
-          <label>הזן סיסמה:    </label>
+              {" "}
+              -- בחר --{" "}
+            </option>{" "}
+            <option> א' </option>
+            <option> ב' </option>
+            <option> ג' </option>
+            <option> ד' </option>
+          </select>{" "}
+          <br />
+          <br />
+          <label>הזן סיסמה: </label>
           {"   "}
           <input
             type="password"

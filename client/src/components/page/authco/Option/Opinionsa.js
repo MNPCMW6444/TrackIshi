@@ -20,9 +20,9 @@ export default function Opinionsa(props) {
   return ready ? (
     <div className="col">
       <h2>רשימת החוו"דים הממתינים לאישור שלי:</h2>
-      {res.map((opinion) => (
+      {res.map((opinion, i) => (
         <>
-          <Apopb is={opinion} />
+          <Apopb is={opinion} key={i} />
         </>
       ))}
       {!res[0] && <h3>-אין לי חוו"דים הממתינים לאישור-</h3>}

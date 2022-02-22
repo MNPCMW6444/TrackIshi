@@ -47,7 +47,7 @@ function OpinionDetails(props) {
           <td className="otd">
             <input
               className="opinionInput"
-              defaultValue={props.wasTkufa}
+              /* defaultValue={props.wasTkufa} */
               placeholder="בפורמט  X.XXXX"
               value={props.tkufa}
               onChange={(e) => props.ftkufa(e.target.value)}
@@ -57,7 +57,7 @@ function OpinionDetails(props) {
             <input
               /* type="date" */
               className="opinionInput"
-              defaultValue={props.wasfilldate}
+              /* defaultValue={props.wasfilldate} */
               value={props.filldate}
               placeholder="בפורמט  DD/MM/YYYY"
               onChange={(e) => props.ffilldate(e.target.value)}
@@ -67,7 +67,7 @@ function OpinionDetails(props) {
             {" "}
             <input
               className="opinionInput"
-              defaultValue={props.wasmonthsno}
+              /* defaultValue={props.wasmonthsno} */
               value={props.monthsno}
               placeholder="לדוגמא: 11"
               onChange={(e) => props.fmonthsno(e.target.value)}
@@ -76,7 +76,7 @@ function OpinionDetails(props) {
           <td className="otd" colSpan="2">
             <input
               className="opinionInput"
-              defaultValue={props.wasposition}
+              /* defaultValue={props.wasposition} */
               value={props.position}
               placeholder='לדוגמא רש"צ מערכות'
               onChange={(e) => props.fposition(e.target.value)}

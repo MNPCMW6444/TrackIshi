@@ -19,9 +19,9 @@ export default function Opinions(props) {
   return ready ? (
     <div className="col">
       <h2>רשימת האנשים שלי:</h2>
-      {res.map((screw) => (
+      {res.map((screw, i) => (
         <>
-          <OpenOpinions shel={screw} />
+          <OpenOpinions shel={screw} key={i} />
           <br />
         </>
       ))}

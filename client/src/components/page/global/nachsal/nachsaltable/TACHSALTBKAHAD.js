@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import UpdateFUD2 from "../../FUD/UpdateFUD2";
 
 export default function TACHSALTBKAHAD(props) {
+  Modal.setAppElement(document.getElementById("root"));
   const goten = props.data;
 
   if (goten)
@@ -930,7 +931,7 @@ export default function TACHSALTBKAHAD(props) {
             style={customStyles}
             contentLabel="Example Modal"
           >
-            <UpdateFUD2 ma={externalMA} />
+            <UpdateFUD2 ma={externalMA} fun={props.fun} />
           </Modal>
           <br />
           <br />

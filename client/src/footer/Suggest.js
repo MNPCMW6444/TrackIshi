@@ -81,7 +81,7 @@ function Suggest(props) {
                 id="form-name"
                 type="text"
                 placeholder="שם המציע"
-                defaultValue={ready ? name : "התחבר למילוי שם אוטומטי"}
+                /* defaultValue={ready ? name : "התחבר למילוי שם אוטומטי"} */
                 value={fname}
                 onChange={(e) => setfName(e.target.value)}
               />{" "}
@@ -93,7 +93,7 @@ function Suggest(props) {
                 id="form-name"
                 type="text"
                 placeholder="שם המציע"
-                defaultValue={ready ? name : "התחבר למילוי שם אוטומטי"}
+                /* defaultValue={ready ? name : "התחבר למילוי שם אוטומטי"} */
                 value={fname}
                 onChange={(e) => setfName(e.target.value)}
               />{" "}

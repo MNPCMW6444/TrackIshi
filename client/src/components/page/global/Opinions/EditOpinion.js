@@ -14,7 +14,6 @@ function NewOpinion(props) {
   const OpinionRes = props.allOpinion;
   let wascrewm = OpinionRes.CrewM;
   let wassigned = OpinionRes.Signed ? "כן" : "לא";
-
   //TKUFA
   let tkufaNum = OpinionRes.Tkufa;
   let TkufaYear = tkufaNum % 2 === 0 ? tkufaNum / 2 : tkufaNum / 2 + 0.5;
@@ -222,14 +221,10 @@ function NewOpinion(props) {
         `${domain}/opinion/editOpinion/${OpinionRes._id}`,
         newData
       );
-      props.suc(
-        'חוו"ד ' +
-          finilTkufa +
-          " נשמר בהצלחה! כדי לראות את השינוי יש לצאת ולבחור איש צוות מחדש"
-      );
+      props.suc('חוו"ד ' + finilTkufa + " נשמר בהצלחה!");
 
       const setDidupdated = props.setDidupdated;
-      setDidupdated();
+      setDidupdated(Math.random());
 
       const closeModal = props.forClosing;
       closeModal();

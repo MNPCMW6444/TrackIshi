@@ -6,16 +6,18 @@ import NACHSALTBKAHAD from "./nachsaltable/TACHSALTBKAHAD";
 export default function NACHSALKAHAD() {
   const [datas, setData] = useState();
 
+  const [be, fun] = useState("yetto");
+
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const getQ = async () => {
       const res = await Axios.get(`${domain}/user/getNachsal`);
       setData(res.data);
-      setReady(true);
+      setReady(Math.random());
     };
     getQ();
-  }, []);
+  }, [be]);
 
   return (
     ready && (
@@ -23,7 +25,7 @@ export default function NACHSALKAHAD() {
         <br />
         <br />
         <br />
-        <NACHSALTBKAHAD data={datas} />
+        <NACHSALTBKAHAD data={datas} fun={fun} key={ready} />
         <br />
         <br />
         <br />

@@ -18,6 +18,8 @@ const customStyles = {
 };
 
 export default function NewOpinionButton(props) {
+  Modal.setAppElement(document.getElementById("root"));
+
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const [successMessage, setSuccessMessage] = useState(null);
