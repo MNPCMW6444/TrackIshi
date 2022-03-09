@@ -210,14 +210,14 @@ export default function VIEWMOFA(props) {
       <br />
       <div className="opd">
         <Paragraph
-          text={props.data.M11 ? props.data.M11 : "*** לא הוזנו ***"}
+          text={props.data.M21 ? props.data.M21 : "*** לא הוזנו ***"}
         />
       </div>
       <br />
       <h4 className="oh4">סיכום: </h4>
       <br />
       <div className="opd">
-        <Paragraph text={props.data.M21 ? props.data.M21 : "*** לא הוזן ***"} />
+        <Paragraph text={props.data.Mf ? props.data.Mf : "*** לא הוזן ***"} />
       </div>
       <br />
       <h4 className="opinionH4" style={{ textAlign: "center" }}>
