@@ -38,6 +38,9 @@ export default function TACHSALTBKAHAD(props) {
         case "taavura":
           hebrewMaslool = "תעבורה";
           break;
+        case "ha":
+          hebrewMaslool = "הכשרה";
+          break;
         case "versatili":
           hebrewMaslool = "ורסטילי";
           break;

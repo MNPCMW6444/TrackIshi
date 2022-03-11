@@ -229,6 +229,7 @@ function ShowFUD(props) {
         msll = FUDRes.data.Maslool === "mesima" ? "משימה" : msll;
         msll = FUDRes.data.Maslool === "taavura" ? "תעבורה" : msll;
         msll = FUDRes.data.Maslool === "versatili" ? "ורסטילי" : msll;
+        msll = FUDRes.data.Maslool === "ha" ? "הכשרה" : msll;
         setMaslool(msll);
       } catch (err) {
         console.log(err);

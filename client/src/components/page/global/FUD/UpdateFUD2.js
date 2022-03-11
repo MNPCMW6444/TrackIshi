@@ -132,6 +132,7 @@ function UpdateFUD2(props) {
         msll = FUDRes.data.Maslool === "mesima" ? "משימה" : msll;
         msll = FUDRes.data.Maslool === "taavura" ? "תעבורה" : msll;
         msll = FUDRes.data.Maslool === "versatili" ? "ורסטילי" : msll;
+        msll = FUDRes.data.Maslool === "ha" ? "הכשרה" : msll;
         setMaslool(msll);
       } catch (err) {
         console.log(err);
@@ -210,6 +211,7 @@ function UpdateFUD2(props) {
         fmsll = FUDRes.data.Maslool === "mesima" ? "משימה" : fmsll;
         fmsll = FUDRes.data.Maslool === "taavura" ? "תעבורה" : fmsll;
         fmsll = FUDRes.data.Maslool === "versatili" ? "ורסטילי" : fmsll;
+        fmsll = FUDRes.data.Maslool === "ha" ? "הכשרה" : fmsll;
         fsetMaslool(fmsll);
       } catch (err) {
         console.log(err);
@@ -258,6 +260,7 @@ function UpdateFUD2(props) {
       msll2 = fmaslool === "משימה" ? "mesima" : msll2;
       msll2 = fmaslool === "תעבורה" ? "taavura" : msll2;
       msll2 = fmaslool === "ורסטילי" ? "versatili" : msll2;
+      msll2 = fmaslool === "הכשרה" ? "ha" : msll2;
     } catch (err) {
       console.log(err);
     }
@@ -585,6 +588,7 @@ function UpdateFUD2(props) {
                     <option> משימה </option>
                     <option> תעבורה </option>
                     <option> ורסטילי </option>
+                    <option> הכשרה </option>
                   </select>
                 </div>
               </div>
