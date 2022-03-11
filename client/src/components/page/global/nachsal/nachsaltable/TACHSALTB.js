@@ -56,6 +56,7 @@ export default function TACHSALTB(props) {
     goten[i].isMesima = goten[i].Maslool === "משימה" ? "כן" : "לא";
     goten[i].isTaavura = goten[i].Maslool === "תעבורה" ? "כן" : "לא";
     goten[i].isVersatili = goten[i].Maslool === "ורסטילי" ? "כן" : "לא";
+    goten[i].isHa = goten[i].Maslool === "הכשרה" ? "כן" : "לא";
   }
 
   for (let i = 0; i < goten.length; i++) {
@@ -173,6 +174,11 @@ export default function TACHSALTB(props) {
       {
         Header: "האם תעבורתי",
         accessor: "isTaavura",
+        show: false,
+      },
+      {
+        Header: "האם הכשרה",
+        accessor: "isHa",
         show: false,
       },
       {
