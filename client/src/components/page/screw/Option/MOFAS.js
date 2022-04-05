@@ -154,15 +154,22 @@ export default function MOFAS(props) {
               allrrexport[i].מעבר_מבחן = allrrexport[i].isPass ? "כן" : "לא";
             }
           }
+          let long1 = allrrexport[i].M11.split("\n").join("  ");
 
           if (allrrexport[i] && !allrrexport[i].שימור_גלישת_טקסט) {
-            allrrexport[i].שימור_גלישת_טקסט = allrrexport[i].M11;
+            allrrexport[i].שימור_גלישת_טקסט = long1;
           }
+
+          let long2 = allrrexport[i].M21.split("\n").join("  ");
+
           if (allrrexport[i] && !allrrexport[i].שיפור_גלישת_טקסט) {
-            allrrexport[i].שיפור_גלישת_טקסט = allrrexport[i].M21;
+            allrrexport[i].שיפור_גלישת_טקסט = long2;
           }
+
+          let long3 = allrrexport[i].Mf.split("\n").join("  ");
+
           if (allrrexport[i] && !allrrexport[i].סיכום) {
-            allrrexport[i].סיכום = allrrexport[i].Mf;
+            allrrexport[i].סיכום = long3;
           }
         }
         delete allrrexport[i].sMA;
