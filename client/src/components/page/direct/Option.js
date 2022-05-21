@@ -5,14 +5,14 @@ import Opinions from "./Option/Opinions";
 import MyOpinions from "../screw/Option/SCREWALLOPINIONS";
 import Mofas from "../direct/Option/Mofas";
 
-import NACHSAL from "../global/nachsal/NACHSAL";
+import NACHSALKAHAD from "../global/nachsal/NACHSALKAHAD";
 
 export default function Option(props) {
   switch (props.selected) {
     case "nachsal":
       return (
         <div className="optionSwitcher">
-          <NACHSAL />
+          <NACHSALKAHAD />
         </div>
       );
     case "fud":

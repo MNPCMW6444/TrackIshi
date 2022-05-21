@@ -40,13 +40,13 @@ router.post("/addnewCrewmByComm", async (req, res) => {
       const passwordHash = await bcrypt.hash(password, salt);
       const Role = "SCREW";
       const MA = iMA;
-      const MyComm = user._id;
+      const MyComm = userr._id;
 
       const newUser = new User({ MA, passwordHash, Role, MyComm });
 
       const saveduserr = await newUser.save();
 
-      res.json(saveduserr);
+      res.json({ res: true });
     } else {
       return res.status(401).json({
         errorMessage: "ניסית להוסיף איש צוות תחת פיקודך אך אינך מחובר כמפקד גף",
@@ -128,9 +128,8 @@ router.put("/changemypass", async (req, res) => {
     const ph = await bcrypt.hash(pass, salt);
 
     userr.passwordHash = ph;
-    
-    if (dereg)
-    userr.Dereg = dereg;
+
+    if (dereg) userr.Dereg = dereg;
 
     const saveduserr = await userr.save();
 
@@ -696,7 +695,7 @@ router.put("/updateFullDetails2/:ma", async (req, res) => {
     if (!maslool)
       return res.status(400).json({ errorMessage: "נא לבחור מסלול" });
 
-      if (!dereg)
+    if (!dereg)
       return res.status(400).json({ errorMessage: "נא לבחור דרג מקצועי" });
 
     const token = req.cookies.token;
@@ -725,7 +724,6 @@ router.put("/updateFullDetails2/:ma", async (req, res) => {
       userrr.SoogHatsava = soogHatsava;
       userrr.Maslool = maslool;
       userrr.Dereg = dereg;
-
 
       const saveduserr = await userrr.save();
 
