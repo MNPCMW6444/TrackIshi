@@ -1,7 +1,7 @@
 ############################## SERVER and docs folder ##################################################################
 
 #TOTHISWHENPUBLIC
-/server/.env
+#/server/.env
 
 #TOTHISWHENPUBLIC
 /server/node_modules
