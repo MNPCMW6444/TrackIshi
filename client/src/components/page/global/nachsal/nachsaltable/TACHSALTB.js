@@ -4,8 +4,6 @@ import Modal from "react-modal";
 import ShowFUD from "../../FUD/ShowFUD";
 
 export default function TACHSALTB(props) {
-  Modal.setAppElement(document.getElementById("root"));
-
   const goten = props.data;
 
   goten.sort(function (a, b) {
@@ -25,12 +23,12 @@ export default function TACHSALTB(props) {
     let finil;
     finil = goten[i].BirthDate && goten[i].BirthDate.substring(0, 10);
     let finili;
-    if (finil) {
-      const day = finil.substring(5, 7);
-      const monthf = finil.substring(8, 10);
-      const year = finil.substring(0, 4);
-      finili = day + "/" + monthf + "/" + year;
-    }
+    if (finil){
+    const day = finil.substring(5, 7);
+    const monthf = finil.substring(8, 10);
+    const year = finil.substring(0, 4);
+    finili = day + "/" + monthf + "/" + year;
+  }
     goten[i].BirthDate = finili;
     let hebrewMaslool = "לא ידוע";
     switch (goten[i].Maslool) {
@@ -40,12 +38,12 @@ export default function TACHSALTB(props) {
       case "taavura":
         hebrewMaslool = "תעבורה";
         break;
-      case "ha":
-        hebrewMaslool = "הכשרה";
-        break;
       case "versatili":
         hebrewMaslool = "ורסטילי";
         break;
+        case "ha":
+          hebrewMaslool = "הכשרה";
+          break;
       default:
         break;
     }
@@ -56,7 +54,6 @@ export default function TACHSALTB(props) {
     goten[i].isMesima = goten[i].Maslool === "משימה" ? "כן" : "לא";
     goten[i].isTaavura = goten[i].Maslool === "תעבורה" ? "כן" : "לא";
     goten[i].isVersatili = goten[i].Maslool === "ורסטילי" ? "כן" : "לא";
-    goten[i].isHa = goten[i].Maslool === "הכשרה" ? "כן" : "לא";
   }
 
   for (let i = 0; i < goten.length; i++) {
@@ -174,11 +171,6 @@ export default function TACHSALTB(props) {
       {
         Header: "האם תעבורתי",
         accessor: "isTaavura",
-        show: false,
-      },
-      {
-        Header: "האם הכשרה",
-        accessor: "isHa",
         show: false,
       },
       {

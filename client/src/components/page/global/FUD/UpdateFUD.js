@@ -45,9 +45,9 @@ function UpdateFUD(props) {
 
   const { user } = useContext(UserContext);
 
-  /*תוספות לדרג
-const [fdereg, fsetDereg] = useState(); חיפוש
-const [dereg, setDereg] = useState(); הזנה
+/*תוספות לדרג
+const [fdereg, fsetDereg] = useState(); //חיפוש
+const [dereg, setDereg] = useState(); //הזנה
 */
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -139,7 +139,6 @@ const [dereg, setDereg] = useState(); הזנה
         msll = FUDRes.data.Maslool === "taavura" ? "תעבורה" : msll;
         msll = FUDRes.data.Maslool === "versatili" ? "ורסטילי" : msll;
         msll = FUDRes.data.Maslool === "ha" ? "הכשרה" : msll;
-
         setMaslool(msll);
       } catch (err) {
         console.log(err);
@@ -298,7 +297,7 @@ const [dereg, setDereg] = useState(); הזנה
       unit: funit,
       soogHatsava: hatsv2,
       maslool: msll2,
-      /*הזנת דרג
+/*הזנת דרג
       dereg: dereg2,
 */
     };
@@ -314,8 +313,6 @@ const [dereg, setDereg] = useState(); הזנה
       props.suc("הפרטים עודכנו בהצלחה!");
       const done = props.whendone;
       done(false);
-      const r = props.done;
-      r(Math.random());
     } catch (err) {
       if (err.response) {
         if (err.response.data.errorMessage) {
@@ -355,7 +352,7 @@ const [dereg, setDereg] = useState(); הזנה
                     id="form-courseno"
                     type="number"
                     placeholder="מספר קורס"
-                    /* defaultValue={courseno} */
+                    defaultValue={courseno}
                     value={fcourseno}
                     onChange={(e) => fsetCourseno(e.target.value)}
                   />
@@ -370,7 +367,7 @@ const [dereg, setDereg] = useState(); הזנה
                     id="form-birthdate"
                     type="date"
                     placeholder="תאריך לידה"
-                    /* defaultValue={birthdate} */
+                    defaultValue={birthdate}
                     value={fbirthdate}
                     onChange={(e) => fsetBirthdate(e.target.value)}
                   />
@@ -386,7 +383,7 @@ const [dereg, setDereg] = useState(); הזנה
                     id="form-firstname"
                     type="text"
                     placeholder="שם פרטי"
-                    /* defaultValue={firstname} */
+                    defaultValue={firstname}
                     value={ffirstname}
                     onChange={(e) => fsetFirstname(e.target.value)}
                   />
@@ -401,7 +398,7 @@ const [dereg, setDereg] = useState(); הזנה
                     id="form-lastname"
                     type="text"
                     placeholder="שם משפחה"
-                    /* defaultValue={lastname} */
+                    defaultValue={lastname}
                     value={flastname}
                     onChange={(e) => fsetLastname(e.target.value)}
                   />
@@ -416,7 +413,7 @@ const [dereg, setDereg] = useState(); הזנה
                     id="form-nickname"
                     type="text"
                     placeholder="כינוי"
-                    /* defaultValue={nickname} */
+                    defaultValue={nickname}
                     value={fnickname}
                     onChange={(e) => fsetNickname(e.target.value)}
                   />
@@ -434,7 +431,7 @@ const [dereg, setDereg] = useState(); הזנה
                     id="form-mainphone"
                     type="text"
                     placeholder="מספר טלפון"
-                    /* defaultValue={mainphone} */
+                    defaultValue={mainphone}
                     value={fmainphone}
                     onChange={(e) => fsetMainphone(e.target.value)}
                   />
@@ -449,7 +446,7 @@ const [dereg, setDereg] = useState(); הזנה
                     id="form-emergencyphone"
                     type="text"
                     placeholder="מספר טלפון נוסף למקרה חירום"
-                    /* defaultValue={emergencyphone} */
+                    defaultValue={emergencyphone}
                     value={femergencyphone}
                     onChange={(e) => fsetEmergencyphone(e.target.value)}
                   />
@@ -464,7 +461,7 @@ const [dereg, setDereg] = useState(); הזנה
                     id="form-email"
                     type="email"
                     placeholder="כתובת דואר אלקטרוני (אזרחית)"
-                    /* defaultValue={email} */
+                    defaultValue={email}
                     value={femail}
                     onChange={(e) => fsetEmail(e.target.value)}
                   />
@@ -480,7 +477,7 @@ const [dereg, setDereg] = useState(); הזנה
                     id="form-addresscity"
                     type="text"
                     placeholder="עיר מגורים"
-                    /* defaultValue={addresscity} */
+                    defaultValue={addresscity}
                     value={faddresscity}
                     onChange={(e) => fsetAddresscity(e.target.value)}
                   />
@@ -495,7 +492,7 @@ const [dereg, setDereg] = useState(); הזנה
                     id="form-addressline"
                     type="text"
                     placeholder="כתובת מגורים"
-                    /* defaultValue={addressline} */
+                    defaultValue={addressline}
                     value={faddressline}
                     onChange={(e) => fsetAddressline(e.target.value)}
                   />
@@ -505,27 +502,50 @@ const [dereg, setDereg] = useState(); הזנה
               <div className="fudunit">
                 <div className="fudTitle">דרגה: </div>
                 <div className="fudContent">
-                  <select
-                    className="fudinput"
-                    id="form-rank"
-                    type="text"
-                    placeholder="דרגה"
-                    /* defaultValue={frank} */
+
+                <select className="fudinput" id="form-rank"  type="text" placeholder="דרגה"   defaultValue={frank}
                     value={frank}
-                    onChange={(e) => fsetRank(e.target.value)}
-                  >
-                    <option disabled selected value>
-                      {" "}
-                      -- בחר --{" "}
-                    </option>
-                    <option> סג"מ </option>
-                    <option> סגן </option>
-                    <option> סרן </option>
-                    <option> רס"ן </option>
-                    <option> סא"ל </option>
-                    <option> אל"מ </option>
-                    <option> תא"ל </option>
-                  </select>
+
+  onChange={(e) => fsetRank(e.target.value)}
+>
+<option disabled selected value>
+            {" "}
+            -- בחר --{" "}
+          </option>
+    <option >
+    {" "}
+    סג"מ{" "}
+  </option>        
+  <option >
+    {" "}
+    סגן{" "}
+  </option>  
+  <option >
+    {" "}
+    סרן{" "}
+  </option>  
+  <option >
+    {" "}
+    רס"ן{" "}
+  </option>  
+  <option >
+    {" "}
+    סא"ל{" "}
+  </option>  
+  <option >
+    {" "}
+    אל"מ{" "}
+  </option>  
+  <option >
+    {" "}
+    תא"ל{" "}
+  </option> 
+    <option >
+    {" "}
+    צוער{" "}
+  </option> 
+  
+</select> 
                 </div>
               </div>
             </div>
@@ -533,74 +553,99 @@ const [dereg, setDereg] = useState(); הזנה
               <div className="fudunit">
                 <div className="fudTitle">יחידה: </div>
                 <div className="fudContent">
-                  <select
-                    className="fudinput"
-                    id="form-unit"
-                    type="text"
-                    placeholder="יחידה"
-                    /* defaultValue={funit} */
+                 
+                <select className="fudinput" id="form-unit"  type="text" placeholder="יחידה"   defaultValue={funit}
                     value={funit}
-                    onChange={(e) => fsetUnit(e.target.value)}
-                  >
-                    <option disabled selected value>
-                      {" "}
-                      -- בחר --{" "}
-                    </option>
-                    <option> 506 </option>
-                    <option> 509 </option>
-                    <option> 528 </option>
-                  </select>
+
+  onChange={(e) => fsetUnit(e.target.value)}
+>
+<option disabled selected value>
+            {" "}
+            -- בחר --{" "}
+          </option>
+    <option >
+    {" "}
+    506{" "}
+  </option>        
+  <option >
+    {" "}
+    509{" "}
+  </option>  
+  <option >
+    {" "}
+    528{" "}
+  </option>  
+
+</select> 
                 </div>
               </div>
               <br />
               <div className="fudunit">
                 <div className="fudTitle">סוג הצבה: </div>
                 <div className="fudContent">
-                  <select
-                    className="fudinput"
-                    id="form-addressline"
-                    type="text"
-                    placeholder="סוג הצבה"
-                    /* defaultValue={fsoogHatsava} */
+                 
+                <select className="fudinput" id="form-addressline"  type="text" placeholder="סוג הצבה"   defaultValue={fsoogHatsava}
                     value={fsoogHatsava}
-                    onChange={(e) => fsetSoogHatsava(e.target.value)}
-                  >
-                    <option disabled selected value>
-                      {" "}
-                      -- בחר --{" "}
-                    </option>
-                    <option> סדיר </option>
-                    <option> הצ"ח </option>
-                    <option> מילואים </option>
-                  </select>
+
+  onChange={(e) => fsetSoogHatsava(e.target.value)}
+>
+<option disabled selected value>
+            {" "}
+            -- בחר --{" "}
+          </option>
+    <option >
+    {" "}
+    סדיר{" "}
+  </option>        
+  <option >
+    {" "}
+    הצ"ח{" "}
+  </option>  
+  <option >
+    {" "}
+    מילואים{" "}
+  </option>  
+
+</select> 
                 </div>
               </div>
               <br />
               <div className="fudunit">
                 <div className="fudTitle">מסלול: </div>
                 <div className="fudContent">
-                  <select
-                    className="fudinput"
-                    id="form-maslool"
-                    type="text"
-                    placeholder="מסלול"
-                    /* defaultValue={fmaslool} */
+                 
+                <select className="fudinput" id="form-maslool"  type="text" placeholder="מסלול"   defaultValue={fmaslool}
                     value={fmaslool}
-                    onChange={(e) => fsetMaslool(e.target.value)}
-                  >
-                    <option disabled selected value>
-                      {" "}
-                      -- בחר --{" "}
-                    </option>
-                    <option> משימה </option>
-                    <option> תעבורה </option>
-                    <option> ורסטילי </option>
-                    <option> הכשרה </option>
-                  </select>
+
+  onChange={(e) => fsetMaslool(e.target.value)}
+>
+<option disabled selected value>
+            {" "}
+            -- בחר --{" "}
+          </option>
+    <option >
+    {" "}
+    משימה{" "}
+  </option>        
+  <option >
+    {" "}
+    תעבורה{" "}
+  </option>  
+  <option >
+    {" "}
+    ורסטילי{" "}
+  </option>  
+  <option >
+    {" "}
+    הכשרה{" "}
+  </option>  
+  
+</select> 
                 </div>
               </div>
             </div>
           </div>
+
         </form>
         <br />
         <br />
@@ -610,7 +655,11 @@ const [dereg, setDereg] = useState(); הזנה
           </button>
         </div>
       </div>
-      {externalma && falg && <h2 style={{ textAlign: "center" }}>עודכן</h2>}
+      {externalma && falg && (
+        <h2 style={{ textAlign: "center" }}>
+          עודכן, יש לרענן את הדף כדי לצפות בספר המעודכן
+        </h2>
+      )}
       <br />
       <br />
       <br />

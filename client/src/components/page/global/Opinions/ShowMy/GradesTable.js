@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GradeRow from "./GradesTable/GradeRow";
 
 export default function GradesTable(props) {
+
+
+
   return (
     <>
       <table className="otable">

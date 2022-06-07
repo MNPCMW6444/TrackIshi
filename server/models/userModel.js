@@ -25,9 +25,9 @@ const userSchema = new mongoose.Schema(
     passwordHash: { type: String, required: true },
     Role: { type: String, required: true },
     // || "SCREW" || "DIRECT" || "AUTHCO" || "KAHAD" || "PAKMATS" || "SCHOOL"
-    // => || איש צוות || מפקד גף || מפקד יחידה || מנהל כח אדם || מבצעים || מפקד הכשרה
+    // => || איש צוות || מפקד גף || מפקד יחידה || מנהל כח אדם || מבצעים || מפקד הכשרה 
     MyComm: mongoose.Schema.Types.ObjectId,
-    MyTutort: mongoose.Schema.Types.ObjectId,
+    MyTutor: mongoose.Schema.Types.ObjectId,
     MyAuth: mongoose.Schema.Types.ObjectId,
   },
   {

@@ -44,12 +44,16 @@ export default function NEWMOFA(props) {
   const [mf, setmf] = useState();
   const [m, setm] = useState("");
 
+  const [autonum, setautonum] = useState(0);
+
+
   const [newGrade, setNewGrade] = useState([4, "nelson"]);
 
   function setma(value, who) {
     let lines = 1;
     if (value.substring(0, 3) != "1. ") value = "1. " + value;
-    for (let i = 0; i < value.length - 1 && lines < 8; i++) {
+    for (let i = 0; i < value.length - 1 && lines < 9; i++) {
+      debugger;
       if (value.substring(i, i + 1) === "\n") {
         lines++;
         if (value.substring(i + 1, i + 4) != lines + ". ") {
@@ -57,7 +61,7 @@ export default function NEWMOFA(props) {
             value.substring(0, i + 1) +
             lines +
             ". " +
-            value.substring(i + 2, value.length);
+            value.substring(i + 1, value.length); // was value.substring(i + 1, value.length); in 2022Q1 and dropped first letter of typing!!!
         }
       }
     }
@@ -145,6 +149,19 @@ export default function NEWMOFA(props) {
     }
   }, [newGrade]);
 
+
+  
+  useEffect(() => {
+   async function cautonum(u){
+const res = await Axios.get(`${domain}/mofa/checknum/:${u}`);
+
+
+setautonum(res.data.a);
+
+   }
+   cautonum(Emdat);
+  }, [Emdat]);
+
   async function send() {
     let user2 = user;
     if (props.h) user2 = props.h;
@@ -180,14 +197,14 @@ export default function NEWMOFA(props) {
 
     try {
       await Axios.post(`${domain}/mofa/createmofa`, newData);
-      props.suc(" מופע ההדרכה נשמר בהצלחה!");
-      const ref = props.asdasd2;
-      ref(Math.random());
-      const ref2 = props.asdasd;
-      ref2(Math.random());
-
+      props.suc(
+        " מופע ההדרכה נשמר בהצלחה! על מנת לצפות בעדכון יש לפתוח את עמוד מופעי הדרכה מחדש"
+      );
       const setDidupdated = props.setDidupdated;
       setDidupdated();
+
+      const closeModal = props.forClosing;
+      closeModal();
     } catch (err) {
       if (err.response) {
         if (err.response.data.errorMessage) {
@@ -200,62 +217,14 @@ export default function NEWMOFA(props) {
     }
     return;
   }
-  /* 
-  async function send2() {
-    const newData = {
-      isTest: true,
-      fillDatep: date,
-      CrewM: user,
-      name: user.NickName,
-      MadName: MadName,
-      Emda: Emda,
-      No: No,
-      X11: x11,
-      X12: x12,
-      X13: x13,
-      X21: x21,
-      X22: x22,
-      X23: x23,
-      C1: c1,
-      C2: c2,
-      C3: c3,
-      C4: c4,
-      C5: c5,
-      C6: c6,
-      C7: c7,
-      C8: c8,
-      C9: c9,
-      M1: m1,
-      M11: m11,
-      M21: m21,
-      Mf: mf,
-    };
-
-    try {
-      await Axios.post(`${domain}/mofa/createmofa`, newData);
-      props.suc(" מופע ההדרכה נשמר בהצלחה! אם לא מופי יש לרענן את דף ");
-      const setDidupdated = props.setDidupdated;
-      setDidupdated();
-
-      const closeModal = props.forClosing;
-      closeModal();
-    } catch (err) {
-      if (err.response) {
-        if (err.response.data.errorMessage) {
-          setErrorMessage(err.response.data.errorMessage);
-        } else setErrorMessage("כנראה שהזנת משהו שגוי, נסה להזין מחדש");
-      } else console.log(err);
-    }
-    return;
-  }
- */
+ 
   return (
     <div className="odiv">
       <br /> <br /> <br /> <br /> <br />
       <h3 className="oh3">מופע הדרכה: </h3> <br /> <br />
       <h4 className="oh4">
-        פרטים אישיים<sup className="must">*</sup>:
-      </h4>
+        פרטים אישיים<sup className="must">*</sup>:{" "}
+      </h4>{" "}
       <br />
       <table className="otable" style={{ width: "60" }}>
         <tr>
@@ -292,40 +261,25 @@ export default function NEWMOFA(props) {
               onChange={(e) => setEmdat(e.target.value)}
             >
               <option disabled selected value>
-                -- בחר --
+                {" "}
+                -- בחר --{" "}
               </option>
 
-              <option value={"קק''צ - הגנ''א מבואות"}>
-                {"קק''צ - הגנ''א מבואות"}
-              </option>
-              <option value={"קק''צ - הגנ''א בסיסי"}>
-                {"קק''צ - הגנ''א בסיסי"}
-              </option>
-              <option value={"קק''צ - הגנ''א מתקדם"}>
-                {"קק''צ - הגנ''א מתקדם"}
-              </option>
-              <option value={"קק''צ - תעבורה מבואות"}>
-                {"קק''צ - תעבורה מבואות"}
-              </option>
-              <option value={"קק''צ - תעבורה בסיסי"}>
-                {"קק''צ - תעבורה בסיסי"}
-              </option>
-              <option value={"קק''צ - תעבורה מתקדם"}>
-                {"קק''צ - תעבורה מתקדם"}
-              </option>
-              <option value={"קק''צ - מענ''ש קרקעי"}>
-                {"קק''צ - מענ''ש קרקעי"}
-              </option>
+              <option value={"קק''צ - יהלום"}>{"קק''צ - יהלום"}</option>
+              <option value={"קק''צ - כיפת ברזל"}>{"קק''צ - כיפת ברזל"}</option>
+              <option value={"קק''צ - קלע דוד"}>{"קק''צ - קלע דוד"}</option>
+              <option value={"קק''צ - הגנ''א מבואות"}>{"קק''צ - הגנ''א מבואות"}</option>
+              <option value={"קק''צ - הגנ''א בסיסי"}>{"קק''צ - הגנ''א בסיסי"}</option>
+              <option value={"קק''צ - הגנ''א מתקדם"}>{"קק''צ - הגנ''א מתקדם"}</option>
+              <option value={"קק''צ - תעבורה מבואות"}>{"קק''צ - תעבורה מבואות"}</option>
+              <option value={"קק''צ - תעבורה בסיסי"}>{"קק''צ - תעבורה בסיסי"}</option>
+              <option value={"קק''צ - תעבורה מתקדם"}>{"קק''צ - תעבורה מתקדם"}</option>
               <option value={"קק''צ - קרבות"}>{"קק''צ - קרבות"}</option>
-              <option value={"קא''מ - מענ''ש קרקעי"}>
-                {"קא''מ - מענ''ש קרקעי"}
-              </option>
-              <option value={"קא''מ - משימות עזר"}>
-                {"קא''מ - משימות עזר"}
-              </option>
-              <option value={"קא''מ - גילוי וקזת''א"}>
-                {"קא''מ - גילוי וקזת''א"}
-              </option>
+              <option value={"קא''מ - יהלום"}>{"קא''מ - יהלום"}</option>
+              <option value={"קא''מ - כיפת ברזל"}>{"קא''מ - כיפת ברזל"}</option>
+              <option value={"קא''מ - קלע דוד"}>{"קא''מ - קלע דוד"}</option>
+              <option value={"קא''מ - משימות עזר"}>{"קא''מ - משימות עזר"}</option>
+              <option value={"קא''מ - גילוי וקזת''א"}>{"קא''מ - גילוי וקזת''א"}</option>
               <option value={"קא''מ - קמנ''ק"}>{"קא''מ - קמנ''ק"}</option>
               <option value={"קא''מ - תובלייט"}>{"קא''מ - תובלייט"}</option>
               <option value={"בט''ש - מתארים"}>{"בט''ש - מתארים"}</option>
@@ -335,15 +289,11 @@ export default function NEWMOFA(props) {
               <option value={"בט''ש - חילוץ"}>{"בט''ש - חילוץ"}</option>
               <option value={"לחימה - הגנ''ש"}>{"לחימה - הגנ''ש"}</option>
               <option value={"לחימה - בת''ק קרב"}>{"לחימה - בת''ק קרב"}</option>
-              <option value={"לחימה - בת''ק מסוקים"}>
-                {"לחימה - בת''ק מסוקים"}
-              </option>
+              <option value={"לחימה - בת''ק מסוקים"}>{"לחימה - בת''ק מסוקים"}</option>
               <option value={"לחימה - חילוץ"}>{"לחימה - חילוץ"}</option>
               <option value={"לחימה - איסוף"}>{"לחימה - איסוף"}</option>
               <option value={"לחימה - אוצר"}>{"לחימה - אוצר"}</option>
-              <option value={"לחימה - משימות שוהות"}>
-                {"לחימה - משימות שוהות"}
-              </option>
+              <option value={"לחימה - משימות שוהות"}>{"לחימה - משימות שוהות"}</option>
               <option value={"לחימה - תא שטח"}>{"לחימה - תא שטח"}</option>
               <option value={"לחימה - תדלוק"}>{"לחימה - תדלוק"}</option>
               <option value={"מ''ע/מתאם אימון"}>{"מ''ע/מתאם אימון"}</option>
@@ -353,15 +303,18 @@ export default function NEWMOFA(props) {
               <option value={"בק''צ"}>{"בק''צ"}</option>
               <option value={"חמש''ס"}>{"חמש''ס"}</option>
               <option value={"מרחבי"}>{"מרחבי"}</option>
-              <option value={"דרג ב' - מנהל תעבורה"}>
-                {"דרג ב' - מנהל תעבורה"}
-              </option>
-              <option value={"דרג ב' - מ''ע משולב"}>
-                {"דרג ב' - מ''ע משולב"}
-              </option>
+              <option value={"דרג ב' - מנהל תעבורה"}>{"דרג ב' - מנהל תעבורה"}</option>
+              <option value={"דרג ב' - מ''ע משולב"}>{"דרג ב' - מ''ע משולב"}</option>
               <option value={"מובילים בט''ש"}>{"מובילים בט''ש"}</option>
               <option value={"מובילים לחימה"}>{"מובילים לחימה"}</option>
+              <option value={"מלא''מ - הגנ''ש"}>{"מלא''מ - הגנ''ש"}</option>
+              <option value={"מלא''מ - תקיפה בחזית"}>{"מלא''מ - תקיפה בחזית"}</option>
+              <option value={"מלא''מ - מתאר עומק"}>{"מלא''מ - מתאר עומק"}</option>
+              <option value={"שמ''כ - מתארים"}>{"שמ''כ - מתארים"}</option>
+              <option value={"שמ''כ - יירוט"}>{"שמ''כ - יירוט"}</option>
+              <option value={"שמ''כ - בת''ק"}>{"שמ''כ - בת''ק"}</option>
               <option value={"אחר, פרט:"}>{"אחר, פרט:"}</option>
+            
             </select>
             {Emdat === "אחר, פרט:" && (
               <input
@@ -375,6 +328,7 @@ export default function NEWMOFA(props) {
             <input
               style={{ textAlign: "center", width: "95%" }}
               value={No}
+              defaultValue={autonum}
               type="number"
               onChange={(e) => setNo(Math.abs(e.target.value))}
             ></input>
@@ -386,7 +340,7 @@ export default function NEWMOFA(props) {
         <tr>
           <th colSpan="4" className="oth" style={{ width: "90%" }}>
             סטטוס עמידה ביעדים<sup className="must">*</sup>
-          </th>
+          </th>{" "}
           <th colSpan="4" className="oth" style={{ width: "10%" }}>
             כן/לא
           </th>
@@ -465,7 +419,7 @@ export default function NEWMOFA(props) {
       <br />
       <br />
       <h4 className="oh4">
-        משוב אישי (כהערכה כוללת)<sup className="must">*</sup>:
+        משוב אישי (כהערכה כוללת)<sup className="must">*</sup>:{" "}
       </h4>
       <br />
       <GradesTable
@@ -483,7 +437,7 @@ export default function NEWMOFA(props) {
       <br />
       <br /> <br />
       <h4 className="oh4">
-        ציון מסכם לרמת הבקרה<sup className="must">*</sup>:
+        ציון מסכם לרמת הבקרה<sup className="must">*</sup>:{" "}
       </h4>
       <br />
       <FgradeTable grade={m1} setnewgrade={setNewGrade} />
@@ -504,7 +458,7 @@ export default function NEWMOFA(props) {
               }}
             ></input>
           </td>
-        </tr>
+        </tr>{" "}
         {test && (
           <tr>
             <td className="otd">האם המבחן עבר?</td>
@@ -556,14 +510,15 @@ export default function NEWMOFA(props) {
           placeholder={""}
           value={mf}
           onChange={(e) => setmf(e.target.value)}
-        />
+        />{" "}
       </div>
       <br /> <br />
       <br /> <br />
       <br />
       <div style={{ textAlign: "Center" }}>
         <button className="OpinionSendButton" onClick={() => send()}>
-          שמור
+          {" "}
+          שמור{" "}
         </button>
         {/*  <button
           style={{

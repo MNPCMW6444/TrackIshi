@@ -596,12 +596,12 @@ textarea {
 }
 
 .FUDcolumn {
-  flex: 25%;
-  padding-right: 20px;
+  width: 18%;
+  padding-right: 2%;
 }
 
 .FUDcolumnFirst {
-  flex: 25%;
+  width: 18%;
   padding-right: 0px;
 }
 
@@ -615,6 +615,7 @@ textarea {
 
 .fudunit {
   border: 1px solid rgba(23, 25, 53, 0.445);
+;
 }
 
 .fudTitle {
@@ -630,6 +631,20 @@ textarea {
   color: white;
 }
 
+
+.fudTitles {
+  text-align: center;
+  font-family: my;
+  font-size: 15pt;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: my;
+  background-color: rgba(23, 1, 148, 0.692);
+  font-weight: "bolder";
+  border: 2px solid rgb(255, 0, 0);
+  color: white;
+}
+
 .fudContent {
   text-align: center;
   font-family: my;
@@ -639,6 +654,7 @@ textarea {
   font-family: my;
   background-color: rgba(255, 255, 255, 0.795);
   font-weight: bold;
+  height: 25px;
 }
 
 .fudupdatebuttondiv {
@@ -691,6 +707,7 @@ textarea {
 
 .fudinput {
   font-size: 13pt;
+  width: 90%;
   background-color: rgba(255, 255, 255, 0.7);
   text-align: center;
   font-family: my;
@@ -867,8 +884,8 @@ textarea {
   -ms-user-select: none;
   user-select: none;
   position: absolute;
-  top: -280px;
-  right: -470px;
+  top: MouseX;
+  right: MouseY;
   z-index: 104;
   padding-right: 20px;
   padding-left: 0px;
@@ -876,6 +893,7 @@ textarea {
   background-color: rgba(255, 255, 255, 0.952);
   border-radius: 30px;
 }
+
 
 .mofastable {
   background-color: rgba(255, 255, 255, 0.541);
@@ -1052,4 +1070,12 @@ a {
 
 .must {
   color: red;
+  font-weight: 900;
 }
+
+.must2 {
+  color: rgba(23, 1, 148, 0);
+  font-weight: 900;
+
+}
+

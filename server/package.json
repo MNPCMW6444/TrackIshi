@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "start": "nodemon server",
-    "prod": "node server",
+    "start": "node server",
+    "dev": "nodemon server",
     "fat": "git commit -am \"make it bettera\" && git push heroku master"
   },
   "dependencies": {

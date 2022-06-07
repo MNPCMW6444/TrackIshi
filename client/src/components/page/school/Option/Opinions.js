@@ -14,11 +14,12 @@ export default function Opinions(props) {
       const allpeopleres = await Axios.get(`${domain}/user/getmypeople`);
       setRes(allpeopleres.data);
       let shelst = new Array(...allpeopleres.data);
-      for (let i = 0; i < shelst.length; i++)
-        if (shelst[i].Dereg === "c" || shelst[i].Dereg === "d") {
+      for (let i = 0; i < shelst.length; i++) {
+        if (shelst[i].Dereg === "a" || shelst[i].Dereg === "b") {
           shelst.splice(i, 1);
           i--;
         }
+      }
       setshels(shelst);
       if (!ready) setReady(true);
     };
@@ -27,34 +28,14 @@ export default function Opinions(props) {
 
   return ready ? (
     <div className="col">
-      <br />
-      <br />
-      <div style={{ textAlign: "center" }}>
-        <NewOpinionButton key={-1} shel={"general"} shels={shels} />
-      </div>
       <h2>רשימת האנשים שלי:</h2>
-      {res.map((screw, i) => (
+      {res.map((screw) => (
         <>
-          <OpenOpinions key={i} shel={screw} />
+          <OpenOpinions shel={screw} />
           <br />
         </>
       ))}
       {!res[0] && <h3>-אין לי אנשים-</h3>}
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </div>
   ) : (
     <div>

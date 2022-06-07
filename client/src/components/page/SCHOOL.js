@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 
 export default function SCHOOL() {
   const [navbar, setNavbar] = useState("gaf");
-  const { getUser } = useContext(UserContext);
+  const {  getUser } = useContext(UserContext);
   const history = useHistory();
 
   async function logOut() {
@@ -20,7 +20,7 @@ export default function SCHOOL() {
     <>
       <br />
       <br />
-      <div className="Directpage">
+      <div className="Schoolpage">
         <div className="navButtons">
           <button
             className={
@@ -40,14 +40,12 @@ export default function SCHOOL() {
           </button>
           <button
             className={
-              navbar === "myopinions"
-                ? "naveachbuttonselected"
-                : "naveachbutton"
+              navbar === "myopinions" ? "naveachbuttonselected" : "naveachbutton"
             }
             onClick={() => setNavbar("myopinions")}
           >
             החוו"דים שלי
-          </button>{" "}
+          </button>
           <button
             className={
               navbar === "mofas" ? "naveachbuttonselected" : "naveachbutton"

@@ -40,21 +40,13 @@ export default function Direct() {
           </button>
           <button
             className={
-              navbar === "gaf" ? "naveachbuttonselected" : "naveachbutton"
-            }
-            onClick={() => setNavbar("gaf")}
-          >
-            תמונת מצב גפית
-          </button>
-          <button
-            className={
               navbar === "myopinions"
                 ? "naveachbuttonselected"
                 : "naveachbutton"
             }
             onClick={() => setNavbar("myopinions")}
           >
-            החוו"דים שלי
+            חוו"דים מקצועיים
           </button>{" "}
           <button
             className={
@@ -62,7 +54,7 @@ export default function Direct() {
             }
             onClick={() => setNavbar("opinions")}
           >
-            הזנת חוו"דים
+            הזנת חוו"ד
           </button>
           <button
             className={
@@ -72,6 +64,14 @@ export default function Direct() {
           >
             מופעי הדרכה
           </button>
+         {/*  <button
+            className={
+              navbar === "arc" ? "naveachbuttonselected" : "naveachbutton"
+            }
+            onClick={() => setNavbar("arc")}
+          >
+            ניהול משתמשים
+          </button> */}
           <button className="navlogout" onClick={logOut}>
             התנתק
           </button>

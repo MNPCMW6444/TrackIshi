@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import UserContext from "../context/UserContext";
 import { Link } from "react-router-dom";
 
+import Logo100 from "../logos and fonts/Logo100";
+
 export default function Loggingbar() {
   const { user } = useContext(UserContext);
   let role = "לא מוגדר";
@@ -46,9 +48,11 @@ export default function Loggingbar() {
     setHelpt(false);
   }
 
+
   return (
     <div className="loggingbar">
-      <h1 className="mainHeader">טרק אישי {/*user?(user.MA):("ריק")*/}</h1>
+      <h1 className="mainHeader"> <Logo100 resize={0.4} /> </h1>
+         {/* <h1 className="mainHeader">טרק אישי {//NOTRELEVANT user?(user.MA):("ריק") NOTRELEVANT//} </h1>*/} 
       {user === null ? (
         <>
           <p>אינך מחובר למערכת, נא להתחבר</p>

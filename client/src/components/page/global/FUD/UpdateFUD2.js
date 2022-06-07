@@ -2,11 +2,31 @@ import Axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import domain from "../../../../util/domain";
 import ErrorMessage from "../../../messages/ErrorMessage";
+import UserContext from "../../../../context/UserContext";
 
-function UpdateFUD2(props) {
+
+function UpdateFUD(props) {
   let externalma;
   if (props.ma) externalma = props.ma;
 
+  const { user } = useContext(UserContext);
+
+  const [auths, setauths] = useState();
+  const [directs, setdirects] = useState();
+  const [schlls, setschlls] = useState();
+
+  const [hischll, sethischll] = useState("ללא");
+  const [hisdirect, sethisdirect] = useState();
+  const [hisauth, sethisauth] = useState();
+  const [role, setrole] = useState();
+ 
+  
+  const [nn, setnn] = useState();
+
+  
+  
+
+  
   const [ma, setMA] = useState();
 
   const [falg, setfalg] = useState(false);
@@ -41,18 +61,58 @@ function UpdateFUD2(props) {
   const [soogHatsava, setSoogHatsava] = useState();
   const [maslool, setMaslool] = useState();
   const [ready, setReady] = useState(false);
-  //  תוספות לדרג
-  const [fdereg, fsetDereg] = useState();
-  //  חיפוש;
-  const [dereg, setDereg] = useState();
-  // הזנה;
-
+//תוספות לדרג
+  const [fdereg, fsetDereg] = useState(); //חיפוש
+  const [dereg, setDereg] = useState(); //הזנה
+  
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     const getFUD = async () => {
       let FUDRes;
       FUDRes = await Axios.get(`${domain}/user/getFullDetailsE/${externalma}`);
+
+
+      try {
+        
+        let nno=await getnn(FUDRes.data.MyAuth);
+        
+        sethisauth(nno);
+        
+        
+      } catch (err) {
+        console.log(err);
+      }
+      try {
+        let nno=await getnn(FUDRes.data.MyComm);
+        sethisdirect(nno);
+        
+      } catch (err) {
+        console.log(err);
+      }
+      try {
+        let nno=await getnn(FUDRes.data.MyTutor);
+        sethischll(nno);
+        
+      } catch (err) {
+        console.log(err);
+      }
+      try {
+        
+        if(FUDRes.data.Role === "SCREW") setrole("איש צוות");
+        if(FUDRes.data.Role === "DIRECT") setrole("מפקד גף");
+        if(FUDRes.data.Role === "AUTHCO") setrole("מפקד יחידה");
+        if(FUDRes.data.Role === "KAHAD") setrole("מנהל כח אדם");
+        if(FUDRes.data.Role === "PAKMATS") setrole("מבצעים");
+        if(FUDRes.data.Role === "SCHOOL") setrole("מפקד הכשרה");
+         
+            
+      
+      } catch (err) {
+        console.log(err);
+      }
+
+
       try {
         setMA(FUDRes.data.MA);
       } catch (err) {
@@ -217,7 +277,8 @@ function UpdateFUD2(props) {
         console.log(err);
       }
 
-      //חיפוש דרג
+
+//חיפוש דרג
       let derege;
       try {
         derege = FUDRes.data.Dereg === "a" ? "א'" : derege;
@@ -242,8 +303,33 @@ function UpdateFUD2(props) {
 
       setReady(true);
     };
+    const getall = async () => {
+      let FUDRes;
+      FUDRes = await Axios.get(`${domain}/user/getdirects`);
+      setdirects(FUDRes && FUDRes.data );
+
+
+      FUDRes = await Axios.get(`${domain}/user/getschlls`);      setschlls(FUDRes && FUDRes.data );
+
+      FUDRes = await Axios.get(`${domain}/user/getauths`);
+      setauths(FUDRes && FUDRes.data );
+
+      
+
+    };
     getFUD();
+    getall();
+   
   }, []);
+
+  async function getnn  (id) {
+    
+    let FUDRes;
+    FUDRes = await Axios.get(`${domain}/user/getnn/${id}`);
+    return FUDRes && FUDRes.data  && FUDRes.data.nn;
+    
+  };
+
 
   async function updatefud(e) {
     e.preventDefault();
@@ -265,7 +351,7 @@ function UpdateFUD2(props) {
       console.log(err);
     }
 
-    // המרת דרג לאנגלית
+//המרת דרג לאנגלית
     let dereg2;
     try {
       dereg2 = fdereg === "א'" ? "a" : dereg2;
@@ -276,7 +362,20 @@ function UpdateFUD2(props) {
       console.log(err);
     }
 
+    let authx;
+     if(user.Role==="DIRECT" || user.Role==="AUTHCO")authx=hisauth;
+    let commx;
+     if(user.Role==="DIRECT" || user.Role==="AUTHCO")commx=hisdirect ;
+    let schlx;
+     if(user.Role==="DIRECT" || user.Role==="AUTHCO")schlx=hischll;
+    let rolex;
+     if(user.Role==="DIRECT" || user.Role==="AUTHCO")rolex= role;
+
     const updateFUDData = {
+      authx:authx,
+      commx:commx,
+      schlx:schlx,
+      rolex:rolex,
       firstname: ffirstname,
       lastname: flastname,
       nickname: fnickname,
@@ -291,8 +390,10 @@ function UpdateFUD2(props) {
       unit: funit,
       soogHatsava: hatsv2,
       maslool: msll2,
-      // הזנת דרג
+//הזנת דרג
       dereg: dereg2,
+
+
     };
 
     try {
@@ -302,13 +403,13 @@ function UpdateFUD2(props) {
           `${domain}/user/updateFullDetails2/${externalma}`,
           updateFUDData
         );
+        
       else await Axios.put(`${domain}/user/updateFullDetails`, updateFUDData);
-      //props.suc("הפרטים עודכנו בהצלחה!");
-      //const done = props.whendone;
+      debugger;
 
-      //done(false);
-      const fun = props.fun;
-      fun(Math.random());
+      props.suc("הפרטים עודכנו בהצלחה!");
+      const done = props.whendone;
+      done(false);
     } catch (err) {
       if (err.response) {
         if (err.response.data.errorMessage) {
@@ -348,7 +449,7 @@ function UpdateFUD2(props) {
                     id="form-courseno"
                     type="number"
                     placeholder="מספר קורס"
-                    /* defaultValue={courseno} */
+                    defaultValue={courseno}
                     value={fcourseno}
                     onChange={(e) => fsetCourseno(e.target.value)}
                   />
@@ -363,12 +464,44 @@ function UpdateFUD2(props) {
                     id="form-birthdate"
                     type="date"
                     placeholder="תאריך לידה"
-                    /* defaultValue={birthdate} */
+                    defaultValue={birthdate}
                     value={fbirthdate}
                     onChange={(e) => fsetBirthdate(e.target.value)}
                   />
                 </div>
               </div>
+            
+              <br />
+              {user && (user.Role==="DIRECT" || user.Role==="AUTHCO") && 
+<div className="fudunit">
+              <div className="fudTitles">תפקיד: </div>
+              <div className="fudContent">
+              <select className="fudinput" id="form-role"  type="text" placeholder="תפקיד"   defaultValue={role}
+                    value={role}
+
+
+               onChange={(e) => setrole(e.target.value)} >
+          <option disabled selected value>
+          {" "}
+          -- בחר --{" "}
+        </option>
+
+        
+        <option>איש צוות</option>
+        <option>מפקד גף</option>
+        <option>מפקד יחידה</option>
+        <option>מנהל כח אדם</option>
+        <option>מבצעים</option>
+        <option>מפקד הכשרה</option>
+        
+         
+          
+           
+            
+              
+</select>
+</div></div>
+}
             </div>
             <div className="FUDcolumn">
               <div className="fudunit">
@@ -379,7 +512,7 @@ function UpdateFUD2(props) {
                     id="form-firstname"
                     type="text"
                     placeholder="שם פרטי"
-                    /* defaultValue={firstname} */
+                    defaultValue={firstname}
                     value={ffirstname}
                     onChange={(e) => fsetFirstname(e.target.value)}
                   />
@@ -394,7 +527,7 @@ function UpdateFUD2(props) {
                     id="form-lastname"
                     type="text"
                     placeholder="שם משפחה"
-                    /* defaultValue={lastname} */
+                    defaultValue={lastname}
                     value={flastname}
                     onChange={(e) => fsetLastname(e.target.value)}
                   />
@@ -409,13 +542,40 @@ function UpdateFUD2(props) {
                     id="form-nickname"
                     type="text"
                     placeholder="כינוי"
-                    /* defaultValue={nickname} */
+                    defaultValue={nickname}
                     value={fnickname}
                     onChange={(e) => fsetNickname(e.target.value)}
                   />
                 </div>
               </div>
               <br />
+              {user && (user.Role==="DIRECT" || user.Role==="AUTHCO") && 
+<div className="fudunit">
+              <div className="fudTitles">מפקד הכשרה: </div>
+              <div className="fudContent">
+              <select className="fudinput" id="form-hischll"  type="text" placeholder="מפקד הכשרה"   defaultValue={hischll}
+                    value={hischll}
+
+
+               onChange={(e) => sethischll(e.target.value)} >
+          <option disabled selected value>
+          {" "}
+          -- בחר --{" "}
+        </option>
+        
+        {
+          schlls && schlls.map((schll)=>  <option>{schll.NickName}</option>)
+        }
+
+<option >
+          {" "}
+          ללא{" "}
+        </option>
+
+
+</select>
+</div></div>
+}  <br />
               <br />
             </div>
             <div className="FUDcolumn">
@@ -427,7 +587,7 @@ function UpdateFUD2(props) {
                     id="form-mainphone"
                     type="text"
                     placeholder="מספר טלפון"
-                    /* defaultValue={mainphone} */
+                    defaultValue={mainphone}
                     value={fmainphone}
                     onChange={(e) => fsetMainphone(e.target.value)}
                   />
@@ -442,7 +602,7 @@ function UpdateFUD2(props) {
                     id="form-emergencyphone"
                     type="text"
                     placeholder="מספר טלפון נוסף למקרה חירום"
-                    /* defaultValue={emergencyphone} */
+                    defaultValue={emergencyphone}
                     value={femergencyphone}
                     onChange={(e) => fsetEmergencyphone(e.target.value)}
                   />
@@ -457,12 +617,32 @@ function UpdateFUD2(props) {
                     id="form-email"
                     type="email"
                     placeholder="כתובת דואר אלקטרוני (אזרחית)"
-                    /* defaultValue={email} */
+                    defaultValue={email}
                     value={femail}
                     onChange={(e) => fsetEmail(e.target.value)}
                   />
                 </div>
-              </div>
+              </div><br />
+              {user && (user.Role==="DIRECT" || user.Role==="AUTHCO") && 
+<div className="fudunit">
+              <div className="fudTitles">מפקד גף: </div>
+              <div className="fudContent">
+              <select className="fudinput" id="form-hischll"  type="text" placeholder="מפקד גף"   defaultValue={hisdirect}
+                    value={hisdirect}
+
+
+               onChange={(e) => sethisdirect(e.target.value)} >
+          <option disabled selected value>
+          {" "}
+          -- בחר --{" "}
+        </option>
+
+        {
+          directs && directs.map((direct)=>  <option>{direct.NickName}</option>)
+        }
+</select>
+</div></div>
+}
             </div>
             <div className="FUDcolumn">
               <div className="fudunit">
@@ -473,7 +653,7 @@ function UpdateFUD2(props) {
                     id="form-addresscity"
                     type="text"
                     placeholder="עיר מגורים"
-                    /* defaultValue={addresscity} */
+                    defaultValue={addresscity}
                     value={faddresscity}
                     onChange={(e) => fsetAddresscity(e.target.value)}
                   />
@@ -488,7 +668,7 @@ function UpdateFUD2(props) {
                     id="form-addressline"
                     type="text"
                     placeholder="כתובת מגורים"
-                    /* defaultValue={addressline} */
+                    defaultValue={addressline}
                     value={faddressline}
                     onChange={(e) => fsetAddressline(e.target.value)}
                   />
@@ -498,140 +678,246 @@ function UpdateFUD2(props) {
               <div className="fudunit">
                 <div className="fudTitle">דרגה: </div>
                 <div className="fudContent">
-                  <select
-                    className="fudinput"
-                    id="form-rank"
-                    type="text"
-                    placeholder="דרגה"
-                    /* defaultValue={frank} */
+                <select className="fudinput" id="form-rank"  type="text" placeholder="דרגה"   defaultValue={frank}
                     value={frank}
-                    onChange={(e) => fsetRank(e.target.value)}
-                  >
-                    <option disabled selected value>
-                      {" "}
-                      -- בחר --{" "}
-                    </option>
-                    <option> סג"מ </option>
-                    <option> סגן </option>
-                    <option> סרן </option>
-                    <option> רס"ן </option>
-                    <option> סא"ל </option>
-                    <option> אל"מ </option>
-                    <option> תא"ל </option>
-                  </select>
+
+  onChange={(e) => fsetRank(e.target.value)}
+>
+<option disabled selected value>
+            {" "}
+            -- בחר --{" "}
+          </option>
+    <option >
+    {" "}
+    סג"מ{" "}
+  </option>        
+  <option >
+    {" "}
+    סגן{" "}
+  </option>  
+  <option >
+    {" "}
+    סרן{" "}
+  </option>  
+  <option >
+    {" "}
+    רס"ן{" "}
+  </option>  
+  <option >
+    {" "}
+    סא"ל{" "}
+  </option>  
+  <option >
+    {" "}
+    אל"מ{" "}
+  </option>  
+  <option >
+    {" "}
+    תא"ל{" "}
+  </option> 
+    <option >
+    {" "}
+    צוער{" "}
+  </option>  
+
+</select> 
                 </div>
-              </div>
+              </div>              <br />
+
+              {user && (user.Role==="DIRECT" || user.Role==="AUTHCO") && 
+<div className="fudunit">
+              <div className="fudTitles">מפקד יחידה: </div>
+              <div className="fudContent">
+              <select className="fudinput" id="form-hisauth"  type="text" placeholder="מפקד יחידה"   defaultValue={hisauth}
+                    value={hisauth}
+
+
+               onChange={(e) => sethisauth(e.target.value)} >
+          <option disabled selected value>
+          {" "}
+          -- בחר --{" "}
+        </option>
+        
+        {
+          auths && auths.map((auth)=>  <option>{auth.NickName}</option>)
+        }
+</select>
+</div></div>
+}
             </div>
+
+
+
             <div className="FUDcolumn">
               <div className="fudunit">
                 <div className="fudTitle">יחידה: </div>
                 <div className="fudContent">
-                  <select
-                    className="fudinput"
-                    id="form-unit"
-                    type="text"
-                    placeholder="יחידה"
-                    /* defaultValue={funit} */
+                <select className="fudinput" id="form-unit"  type="text" placeholder="יחידה"   defaultValue={funit}
                     value={funit}
-                    onChange={(e) => fsetUnit(e.target.value)}
-                  >
-                    <option disabled selected value>
-                      {" "}
-                      -- בחר --{" "}
-                    </option>
-                    <option> 506 </option>
-                    <option> 509 </option>
-                    <option> 528 </option>
-                  </select>
+
+  onChange={(e) => fsetUnit(e.target.value)}
+>
+<option disabled selected value>
+            {" "}
+            -- בחר --{" "}
+          </option>
+    <option >
+    {" "}
+    506{" "}
+  </option>        
+  <option >
+    {" "}
+    509{" "}
+  </option>  
+  <option >
+    {" "}
+    528{" "}
+  </option>  
+
+</select> 
                 </div>
               </div>
               <br />
               <div className="fudunit">
                 <div className="fudTitle">סוג הצבה: </div>
                 <div className="fudContent">
-                  <select
-                    className="fudinput"
-                    id="form-addressline"
-                    type="text"
-                    placeholder="סוג הצבה"
-                    /* defaultValue={fsoogHatsava} */
+                <select className="fudinput" id="form-addressline"  type="text" placeholder="סוג הצבה"   defaultValue={fsoogHatsava}
                     value={fsoogHatsava}
-                    onChange={(e) => fsetSoogHatsava(e.target.value)}
-                  >
-                    <option disabled selected value>
-                      {" "}
-                      -- בחר --{" "}
-                    </option>
-                    <option> סדיר </option>
-                    <option> הצ"ח </option>
-                    <option> מילואים </option>
-                  </select>
+
+  onChange={(e) => fsetSoogHatsava(e.target.value)}
+>
+<option disabled selected value>
+            {" "}
+            -- בחר --{" "}
+          </option>
+    <option >
+    {" "}
+    סדיר{" "}
+  </option>        
+  <option >
+    {" "}
+    הצ"ח{" "}
+  </option>  
+  <option >
+    {" "}
+    מילואים{" "}
+  </option>  
+
+</select> 
                 </div>
               </div>
               <br />
               <div className="fudunit">
                 <div className="fudTitle">מסלול: </div>
                 <div className="fudContent">
-                  <select
-                    className="fudinput"
-                    id="form-maslool"
-                    type="text"
-                    placeholder="מסלול"
-                    /* defaultValue={fmaslool} */
+                <select className="fudinput" id="form-maslool"  type="text" placeholder="מסלול"   defaultValue={fmaslool}
                     value={fmaslool}
-                    onChange={(e) => fsetMaslool(e.target.value)}
-                  >
-                    <option disabled selected value>
-                      {" "}
-                      -- בחר --{" "}
-                    </option>
-                    <option> משימה </option>
-                    <option> תעבורה </option>
-                    <option> ורסטילי </option>
-                    <option> הכשרה </option>
-                  </select>
+
+  onChange={(e) => fsetMaslool(e.target.value)}
+>
+<option disabled selected value>
+            {" "}
+            -- בחר --{" "}
+          </option>
+    <option >
+    {" "}
+    משימה{" "}
+  </option>        
+  <option >
+    {" "}
+    תעבורה{" "}
+  </option>  
+  <option >
+    {" "}
+    ורסטילי{" "}
+  </option>  
+  <option >
+    {" "}
+    הכשרה{" "}
+  </option>  
+
+</select> 
                 </div>
-              </div>
+                </div>
 
-              <br />
 
-              <div className="fudunit">
-                <div className="fudTitle">דרג מקצועי: </div>
-                <div className="fudContent">
-                  <select
-                    className="fudinput"
-                    id="form-dereg"
-                    type="text"
-                    placeholder="דרג"
-                    /* defaultValue={fdereg} */
+                <br />
+
+              
+               <div className="fudunit">
+              <div className="fudTitle">דרג מקצועי: </div>
+              <div className="fudContent">
+              <select className="fudinput" id="form-dereg"  type="text" placeholder="דרג"   defaultValue={fdereg}
                     value={fdereg}
-                    onChange={(e) => fsetDereg(e.target.value)}
-                  >
-                    <option disabled selected value>
-                      {" "}
-                      -- בחר --{" "}
-                    </option>{" "}
-                    <option> א' </option>
-                    <option> ב' </option>
-                    <option> ג' </option>
-                    <option> ד' </option>
-                  </select>{" "}
-                  <br />
-                  <br />
-                </div>
-              </div>
+
+
+               onChange={(e) => fsetDereg(e.target.value)} >
+          <option disabled selected value>
+          {" "}
+          -- בחר --{" "}
+        </option> <option >
+          {" "}
+          א'{" "}
+        </option>        
+        <option >
+          {" "}
+          ב'{" "}
+        </option>  
+        <option >
+          {" "}
+          ג'{" "}
+        </option>  
+        <option >
+          {" "}
+          ד'{" "}
+        </option>  
+</select>  
+</div></div>
+
+
+            
             </div>
+
+            
+
+
+
+
+
+
+
+
+
+
+
+            
           </div>
         </form>
-        <br />
-        <br />
+        {user && (user.Role==="DIRECT" || user.Role==="AUTHCO") && <div style={{border:"1px dashed red", paddingRight:"15px", paddingBottom:"14px"}}><h2 style={{ color: "red" , fontSize: "15pt" }}>
+          שים לב!!!
+        </h2>
+        <h2 style={{ fontSize: "10pt", fontWeight:350 }}>
+          בשינוי <span style={{fontWeight:900}}>"תפקיד"</span> למשתמש, הינך משנה את כלל הרשאות הצפייה והעריכה שלו. יש לנהוג במשנה זהירות!
+        </h2>
+        <h2 style={{ fontSize: "10pt", fontWeight:350 }}>
+          בשינוי <span style={{fontWeight:900}}>"מפקד הכשרה"</span> למשתמש, הינך מאפשר למפקד ההכשרה המוגדר לצפות בכלל משובי ההדרכה (בלבד) של אותו משתמש (היסטוריה מלאה).
+        </h2>
+        <h2 style={{ fontSize: "10pt", fontWeight:350 }}>
+          בשינוי <span style={{fontWeight:900}}>"מפקד גף"</span> או <span style={{fontWeight:900}}>"מפקד יחידה"</span>, הינך מאפשר למפקד הגף/יחידה המוגדר לצפות בכלל משובי ההדרכה והחוו"דים המקצועיים המוזנים על אותו משתמש.
+        </h2>
+        </div>
+        }<br />
         <div className="fudupdatebuttondiv">
           <button className="fudupdatebutton" onClick={updatefud}>
             עדכן פרטים
           </button>
         </div>
       </div>
-      {externalma && falg && <h2 style={{ textAlign: "center" }}>עודכן!</h2>}
+      {externalma && falg && (
+        <h2 style={{ textAlign: "center" }}>
+          הפרטים עודכנו, ניתן לסגור חלונית זו
+        </h2>
+      )}
       <br />
       <br />
       <br />
@@ -644,4 +930,4 @@ function UpdateFUD2(props) {
   );
 }
 
-export default UpdateFUD2;
+export default UpdateFUD;

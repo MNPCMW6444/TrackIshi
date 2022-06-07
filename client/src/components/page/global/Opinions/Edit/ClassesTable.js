@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 function ClassesTable(props) {
-  const [isHa, setIsHa] = useState("");
   const [isMesima, setIsMesima] = useState("");
   const [isTaavura, setIsTaavura] = useState("");
   const [isVersatili, setIsVersatili] = useState("");
@@ -55,7 +54,6 @@ function ClassesTable(props) {
       <tbody>
         <tr className="otr">
           <th className="oth">מסלול</th>
-          <td className={"otd" + isHa}>הכשרה</td>
           <td className={"otd" + isMesima}>משימה</td>
           <td className={"otd" + isTaavura}>תעבורה</td>
           <td className={"otd" + isVersatili}>ורסטילי</td>

@@ -54,7 +54,7 @@ export default function SCREW() {
             }
             onClick={() => setNavbar("allopinions")}
           >
-            החוו"דים שלי
+            חוו"דים מקצועיים
           </button>
           <button
             className={

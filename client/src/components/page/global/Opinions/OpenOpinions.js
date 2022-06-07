@@ -16,8 +16,6 @@ const customStyles = {
 };
 
 export default function OpenOpinion(props) {
-  Modal.setAppElement(document.getElementById("root"));
-
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {

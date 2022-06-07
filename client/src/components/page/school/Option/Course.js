@@ -1,42 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import domain from "../../../../util/domain";
+import Axios from "axios";
+import Modal from "react-modal";
+import HisMOFAS from "../../screw/Option/MOFAS";
+import { CSVLink } from "react-csv";
 
-export default function Course() {
-  return (
-    <div>
-      <p
-        style={{
-          textAlign: "center",
-          fontSize: "20pt",
-          color: "red",
-          backgroundColor: "white",
-          fontWeight: "bolder",
-        }}
-      >
-        עמוד זה ייכנס לפעולה בגרסה הבאה
-      </p>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+
+export default function Mofas(props) {
+  
+    
+
+  return 
+      <div className="col">
+      
+  
     </div>
-  );
+  ;
 }

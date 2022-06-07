@@ -160,7 +160,7 @@ export default function SCREWALLOPINIONS() {
 
   return ready ? (
     <div className="col">
-      <h2>רשימת כל החוודים ע"פ תקופות:</h2>
+      <h2>רשימת כל חוות הדעת המקצועיות על פי תקופות:</h2>
       {res.map((opinion, i) => (
         <>
           <OpinionSumu opinion={opinion} i={i} allDATA={res} allDATA2={a} />

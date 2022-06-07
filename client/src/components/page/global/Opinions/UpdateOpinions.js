@@ -29,19 +29,18 @@ export default function UpdateOpinions(props) {
 
   return ready ? (
     <div className="col">
-      <h2>רשימת כל החוודים ע"פ תקופות:</h2>
+      <h2>רשימת כל חוות הדעת המקצועיות על פי תקופות:</h2>
       <div>
         {props.isGray !== "gray" && (
           <NewOpinionButton shel={props.shel} setDidupdated={setDidupdated} />
         )}
       </div>
-      {res.map((opinion, i) => (
+      {res.map((opinion) => (
         <>
           <div>
             {
               <EditOpinionButton
                 oid={opinion._id}
-                key={i}
                 allDATA={opinion}
                 shel={props.shel}
                 setDidupdated={setDidupdated}

@@ -4,7 +4,6 @@ import Modal from "react-modal";
 import UpdateFUD2 from "../../FUD/UpdateFUD2";
 
 export default function TACHSALTBKAHAD(props) {
-  Modal.setAppElement(document.getElementById("root"));
   const goten = props.data;
 
   if (goten)
@@ -24,7 +23,11 @@ export default function TACHSALTBKAHAD(props) {
 
   if (goten) {
     for (let i = 0; i < goten.length; i++) {
-      const finil = goten[i].BirthDate.substring(0, 10);
+      let finil = "";
+      if (goten[i] && goten[i].BirthDate && goten[i].BirthDate.substring(0, 10))
+        finil =goten[i].BirthDate.substring(0, 10);
+      else
+        finil = "00/00/0000";
       const day = finil.substring(5, 7);
       const monthf = finil.substring(8, 10);
       const year = finil.substring(0, 4);
@@ -38,14 +41,14 @@ export default function TACHSALTBKAHAD(props) {
         case "taavura":
           hebrewMaslool = "תעבורה";
           break;
-        case "ha":
-          hebrewMaslool = "הכשרה";
-          break;
         case "versatili":
           hebrewMaslool = "ורסטילי";
           break;
-        default:
+        case "ha":
+          hebrewMaslool = "הכשרה";
           break;
+        default:
+        break;
       }
       goten[i].Maslool = hebrewMaslool;
     }
@@ -934,7 +937,7 @@ export default function TACHSALTBKAHAD(props) {
             style={customStyles}
             contentLabel="Example Modal"
           >
-            <UpdateFUD2 ma={externalMA} fun={props.fun} />
+            <UpdateFUD2 ma={externalMA} />
           </Modal>
           <br />
           <br />
@@ -1009,7 +1012,7 @@ export default function TACHSALTBKAHAD(props) {
                     {row.cells.map((cell) => {
                       return (
                         <td
-                          className={"theTableTD" + (cell.value.length > 13)}
+                          className={"theTableTD" + (cell.value && cell.value.length > 13)}
                           {...cell.getCellProps()}
                         >
                           {cell.render("Cell")}

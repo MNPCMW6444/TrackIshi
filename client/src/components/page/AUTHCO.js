@@ -36,15 +36,7 @@ export default function AUTHCO() {
             }
             onClick={() => setNavbar("fud")}
           >
-            עדכון פרטים אישיים
-          </button>
-          <button
-            className={
-              navbar === "unit" ? "naveachbuttonselected" : "naveachbutton"
-            }
-            onClick={() => setNavbar("unit")}
-          >
-            תמונת מצב יחידתית
+            פרטים אישיים
           </button>
           <button
             className={
@@ -54,7 +46,7 @@ export default function AUTHCO() {
             }
             onClick={() => setNavbar("myopinions")}
           >
-            החוו"דים שלי
+            חוו"דים מקצועיים
           </button>{" "}
           <button
             className={
@@ -62,7 +54,7 @@ export default function AUTHCO() {
             }
             onClick={() => setNavbar("opinions")}
           >
-            הזנת חוו"דים
+            הזנת חוו"ד
           </button>
           <button
             className={
@@ -70,7 +62,7 @@ export default function AUTHCO() {
             }
             onClick={() => setNavbar("opinionsa")}
           >
-            אישור חוו"דים
+            אישור חוו"ד
           </button>
           <button className="navlogout" onClick={logOut}>
             התנתק

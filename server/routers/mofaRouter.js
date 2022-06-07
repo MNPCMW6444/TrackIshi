@@ -23,6 +23,27 @@ router.get("/getallmy", async (req, res) => {
   }
 });
 
+
+router.get("/checknum/:u", async (req, res) => {
+  try {
+    const token = req.cookies.token;
+
+    if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
+
+    const validatedUser = jwt.verify(token, process.env.JWTSECRET);
+
+    const userr = await User.findById(validatedUser.user);
+
+    const mofas = await Mofa.find({ CrewM: userr, Emda:req.params.u });
+
+
+    res.json({a:mofas.length});
+  } catch (err) {
+    res.status(500).send();
+  }
+});
+
+
 router.get("/getallhis/:ma", async (req, res) => {
   try {
     const token = req.cookies.token;

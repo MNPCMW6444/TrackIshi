@@ -17,8 +17,6 @@ const customStyles = {
 };
 
 export default function OpinionSumu(props) {
-  Modal.setAppElement(document.getElementById("root"));
-
   let tkufaNum = props.opinion.Tkufa;
   let TkufaYear = tkufaNum % 2 === 0 ? tkufaNum / 2 : tkufaNum / 2 + 0.5;
   let tkufainYear = tkufaNum % 2 === 0 ? "2" : "1";

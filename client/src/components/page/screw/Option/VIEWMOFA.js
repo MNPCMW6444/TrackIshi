@@ -54,8 +54,11 @@ export default function VIEWMOFA(props) {
   let test = props.data.isTest;
   let pass = props.data.isPass;
 
+  debugger;
+
   return (
     <div className="odiv">
+      {" "}
       <br /> <br /> <br /> <br /> <br />
       <h3 className="oh3">מופע הדרכה: </h3> <br /> <br />
       <h4 className="oh4">פרטים אישיים: </h4> <br />
@@ -88,7 +91,7 @@ export default function VIEWMOFA(props) {
         </tr>
         <tr>
           <th className="oth" colSpan="1">
-            יעד 1
+            יעד 1{" "}
           </th>
 
           <td className="otd" colSpan="3">
@@ -103,10 +106,10 @@ export default function VIEWMOFA(props) {
            /> */}
             {props.data.X21 ? "כן" : "לא"}
           </td>
-        </tr>
+        </tr>{" "}
         <tr>
           <th className="oth" colSpan="1">
-            יעד 2
+            יעד 2{" "}
           </th>
 
           <td className="otd" colSpan="3">
@@ -118,13 +121,13 @@ export default function VIEWMOFA(props) {
             style={{ backgroundColor: props.data.X22 ? "#A9E18E" : "#F39393" }}
           >
             {/*             <CheckBox is={props.data.X22} />
-             */}
+             */}{" "}
             {props.data.X22 ? "כן" : "לא"}
           </td>
-        </tr>
+        </tr>{" "}
         <tr>
           <th className="oth" colSpan="1">
-            יעד 3
+            יעד 3{" "}
           </th>
 
           <td className="otd" colSpan="3">
@@ -136,7 +139,7 @@ export default function VIEWMOFA(props) {
             style={{ backgroundColor: props.data.X23 ? "#A9E18E" : "#F39393" }}
           >
             {/*             <CheckBox is={props.data.X23} />
-             */}
+             */}{" "}
             {props.data.X23 ? "כן" : "לא"}
           </td>
         </tr>
@@ -172,10 +175,10 @@ export default function VIEWMOFA(props) {
           <td className="otd">האם המופע מהווה מבחן?</td>
           <td className="otd">
             {/*             <input type="checkbox" checked={test ? "checked" : ""}></input>
-             */}
-            {test ? "כן" : "לא"}
+             */}{" "}
+            {test ? "כן" : "לא"}{" "}
           </td>
-        </tr>
+        </tr>{" "}
         {test && (
           <tr>
             <td className="otd">האם המבחן עבר?</td>
@@ -189,7 +192,7 @@ export default function VIEWMOFA(props) {
                 type="checkbox"
                 checked={pass ? "checked" : ""}
                 onChange={() => {}}
-             ></input> */}
+             ></input> */}{" "}
               {pass ? "כן" : "לא"}
             </td>
           </tr>
@@ -226,7 +229,7 @@ export default function VIEWMOFA(props) {
       </h4>
       <br />
       <br /> <br />
-      <br />
+      <br />{" "}
       <div style={{ textAlign: "center" }}>
         <button
           onClick={() => justdeleteon()}
@@ -250,7 +253,7 @@ export default function VIEWMOFA(props) {
               fontSize: "20pt",
             }}
           >
-            בטוח?
+            בטוח?{" "}
           </button>
           <button
             tabIndex={-5}

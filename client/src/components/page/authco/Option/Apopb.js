@@ -20,8 +20,6 @@ const customStyles = {
 };
 
 export default function Apopb(props) {
-  Modal.setAppElement(document.getElementById("root"));
-
   const [successMessage, setSuccessMessage] = useState(null);
 
   let tkufaNum = props.is.Tkufa;
