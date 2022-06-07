@@ -1,8 +1,9 @@
 import React from "react";
-import Gaf from "./Option/Gaf.js";
+import Course from "./Option/Course.js";
 import Fud from "../global/FUD/ShowFUD";
-import Opinions from "./Option/Opinions";
-import Tests from "./Option/Tests";
+import MyOpinions from "../screw/Option/SCREWALLOPINIONS";
+import Mofas from "../direct/Option/Mofas";
+
 import NACHSAL from "../global/nachsal/NACHSAL";
 
 export default function Option(props) {
@@ -19,22 +20,24 @@ export default function Option(props) {
           <Fud />
         </div>
       );
-    case "opinions":
+    case "myopinions":
       return (
         <div className="optionSwitcher">
-          <Opinions />
+          <MyOpinions />
         </div>
       );
-    case "tests":
+
+    case "mofas":
       return (
         <div className="optionSwitcher">
-          <Tests />
+          <Mofas />
         </div>
       );
+
     default:
       return (
         <div className="optionSwitcher">
-          <Gaf />
+          <Course />
         </div>
       );
   }
