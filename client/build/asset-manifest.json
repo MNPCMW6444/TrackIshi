@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2b1d6f8f.css",
+    "main.js": "/static/js/main.5b65db5f.js",
+    "static/media/logo993Blue.png": "/static/media/logo993Blue.7aafdfa352bd96af0ed0.png",
+    "static/media/logo993BlueBackg.png": "/static/media/logo993BlueBackg.2f3b4268eecee060beea.png",
+    "static/media/VarelaRound-Regular.ttf": "/static/media/VarelaRound-Regular.3b7ffe17ffd5b4e3c72f.ttf",
+    "static/media/varela-round-all-400-normal.woff": "/static/media/varela-round-all-400-normal.f27f1327d32a06ffbb6c.woff",
+    "static/media/varela-round-latin-400-normal.woff2": "/static/media/varela-round-latin-400-normal.067448747398cd6b3d4b.woff2",
+    "static/media/varela-round-latin-ext-400-normal.woff2": "/static/media/varela-round-latin-ext-400-normal.d6d1a443c92ce9926ebf.woff2",
+    "static/media/varela-round-vietnamese-400-normal.woff2": "/static/media/varela-round-vietnamese-400-normal.6dd28d8aab75e7993d3e.woff2",
+    "static/media/varela-round-hebrew-400-normal.woff2": "/static/media/varela-round-hebrew-400-normal.0df0c991d49e533fb7d1.woff2",
+    "index.html": "/index.html",
+    "main.2b1d6f8f.css.map": "/static/css/main.2b1d6f8f.css.map",
+    "main.5b65db5f.js.map": "/static/js/main.5b65db5f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2b1d6f8f.css",
+    "static/js/main.5b65db5f.js"
+  ]
+}
