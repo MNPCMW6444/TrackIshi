@@ -29,6 +29,9 @@ export default function Loggingbar() {
     case "SCHOOL":
       role = "מפקד הכשרה";
       break;
+    case "S420":
+      role = "מפקד הכשרה 420";
+      break;
     case "???":
       role = "???";
       break;
@@ -48,11 +51,13 @@ export default function Loggingbar() {
     setHelpt(false);
   }
 
-
   return (
     <div className="loggingbar">
-      <h1 className="mainHeader"> <Logo100 resize={0.4} /> </h1>
-         {/* <h1 className="mainHeader">טרק אישי {//NOTRELEVANT user?(user.MA):("ריק") NOTRELEVANT//} </h1>*/} 
+      <h1 className="mainHeader">
+        {" "}
+        <Logo100 resize={0.4} />{" "}
+      </h1>
+      {/* <h1 className="mainHeader">טרק אישי {//NOTRELEVANT user?(user.MA):("ריק") NOTRELEVANT//} </h1>*/}
       {user === null ? (
         <>
           <p>אינך מחובר למערכת, נא להתחבר</p>

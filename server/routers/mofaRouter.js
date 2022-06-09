@@ -352,404 +352,44 @@ router.get("/getallmyn", async (req, res) => {
 
     const validatedUser = jwt.verify(token, process.env.JWTSECRET);
 
-    const comm = await User.findById(validatedUser.user);
+    const mander = await User.findById(validatedUser.user);
 
     const allmofas = await Mofa.find();
 
-    let allmynmofas = new Array();
-    let co2;
+    let allresmofas = new Array();
+    let manded;
 
     for (let i = 0; i < allmofas.length; i++) {
-      co2 = await User.findById(allmofas[i].CrewM);
-      if (co2 && co2.MyComm && co2.MyComm.toString() === comm._id.toString())
-        allmynmofas.push(allmofas[i]);
+      manded = await User.findById(allmofas[i].CrewM);
+      if (mander.Role === "SCREW")
+        if (
+          manded &&
+          manded.MyComm &&
+          manded.MyComm.toString() === mander._id.toString()
+        )
+          allresmofas.push(allmofas[i]);
+      if (mander.Role === "SCHOOL")
+        if (
+          manded &&
+          manded.MyTutor &&
+          manded.MyTutor.toString() === mander._id.toString()
+        )
+          allresmofas.push(allmofas[i]);
+      if (mander.Role === "S420")
+        if (
+          mander.Emda === "מלא''מ - הגנ''ש" ||
+          mander.Emda === "שמ''כ - מתארים" ||
+          mander.Emda === "שמ''כ - יירוט" ||
+          mander.Emda === "שמ''כ - בת''ק"
+        )
+          allresmofas.push(allmofas[i]);
     }
 
-    /* 
-    const mofans = await Mofa.find({ CrewM: screww });
-
-    if (
-      comm.Role === "DIRECT" ||
-      (comm.Role === "SCHOOL" &&
-        comm._id.toString() === screww[0].MyComm.toString())
-    ) {
-      for (let i = 0; i < mofans.length; i++)
-        mofans[i] = await addFudsTomofan(mofans[i]);
-      res.json(mofans);
-    } else {
-      try {
-        if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
-
-        if (comm._id.toString() === screww[0].MyAuth.toString()) {
-          for (let i = 0; i < mofans.length; i++)
-            mofans[i] = await addFudsTomofan(mofans[i]);
-          res.json(mofans);
-        } else {
-          return res.status(401).json({
-            errorMessage:
-              'ניסית לקבל את כל החוו"דים של איש צוות אך אינך מפקד יחידה שלו',
-          });
-        }
-      } catch (err) {
-        console.error(err);
-        res.status(500).send();
-      }
-    }
-  } catch (err) {
-    try {
-      const token = req.cookies.token;
-
-      if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
-
-      const validatedUser = jwt.verify(token, process.env.JWTSECRET);
-
-      const userr = await User.findById(validatedUser.user);
-
-      const screww = await User.find({ MA: req.params.ma });
-
-      const mofans = await mofan.find({ CrewM: screww });
-
-      if (userr._id.toString() === screww[0].MyAuth.toString()) {
-        for (let i = 0; i < mofans.length; i++)
-          mofans[i] = await addFudsTomofan(mofans[i]);
-        res.json(mofans);
-      } else {
-        return res.status(401).json({
-          errorMessage:
-            'ניסית לקבל את כל החוו"דים של איש צוות אך אינך מפקד יחידה שלו',
-        });
-      } */
-
-    res.json(allmynmofas);
+    res.json(allresmofas);
   } catch (err) {
     console.error(err);
     res.status(500).send();
   }
 });
-
-/* 
-router.get("/getallmyn/:ma", async (req, res) => {
-  try {
-    const token = req.cookies.token;
-
-    if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
-
-    const validatedUser = jwt.verify(token, process.env.JWTSECRET);
-
-    const comm = await User.findById(validatedUser.user);
-
-    const screww = await User.find({ MA: req.params.ma });
-
-    const mofans = await mofan.find({ CrewM: screww });
-
-    if (
-      comm.Role === "DIRECT" ||
-      (comm.Role === "SCHOOL" &&
-        comm._id.toString() === screww[0].MyComm.toString())
-    ) {
-      for (let i = 0; i < mofans.length; i++)
-        mofans[i] = await addFudsTomofan(mofans[i]);
-      res.json(mofans);
-    } else {
-      try {
-        if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
-
-        if (comm._id.toString() === screww[0].MyAuth.toString()) {
-          for (let i = 0; i < mofans.length; i++)
-            mofans[i] = await addFudsTomofan(mofans[i]);
-          res.json(mofans);
-        } else {
-          return res.status(401).json({
-            errorMessage:
-              'ניסית לקבל את כל החוו"דים של איש צוות אך אינך מפקד יחידה שלו',
-          });
-        }
-      } catch (err) {
-        console.error(err);
-        res.status(500).send();
-      }
-    }
-  } catch (err) {
-    try {
-      const token = req.cookies.token;
-
-      if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
-
-      const validatedUser = jwt.verify(token, process.env.JWTSECRET);
-
-      const userr = await User.findById(validatedUser.user);
-
-      const screww = await User.find({ MA: req.params.ma });
-
-      const mofans = await mofan.find({ CrewM: screww });
-
-      if (userr._id.toString() === screww[0].MyAuth.toString()) {
-        for (let i = 0; i < mofans.length; i++)
-          mofans[i] = await addFudsTomofan(mofans[i]);
-        res.json(mofans);
-      } else {
-        return res.status(401).json({
-          errorMessage:
-            'ניסית לקבל את כל החוו"דים של איש צוות אך אינך מפקד יחידה שלו',
-        });
-      }
-    } catch (err) {
-      console.error(err);
-      res.status(500).send();
-    }
-  }
-});
-
-router.get("/getmyavgs/", async (req, res) => {
-  try {
-    const token = req.cookies.token;
-
-    if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
-
-    const validatedUser = jwt.verify(token, process.env.JWTSECRET);
-
-    const userr = await User.findById(validatedUser.user);
-
-    const gafusers = await User.find({
-      Unit: userr.Unit,
-      Maslool: userr.Maslool,
-    });
-    const courseusers = await User.find({ CourseNo: userr.CourseNo });
-
-    let gafmofans = [];
-    let coursemofans = [];
-
-    //  let resses = [];
-    //  let ress;
-    //  let emptyres;
-
-    // for (
-    //  let j = 4000;
-    //  j < 6000;
-    //  j++ // כי אלף שנים בעיניך כיום אתמול כי יעבר ואשמורה בלילה
-    // ) {
-    for (let i = 0; i < gafusers.length; i++)
-      gafmofans.push(
-        await mofan.find({
-          CrewM: gafusers[i]._id,
-        })
-      );
-
-    for (let i = 0; i < courseusers.length; i++)
-      coursemofans.push(
-        await mofan.find({
-          CrewM: courseusers[i]._id,
-        })
-      );
-
-    //gafmofans = gafmofans.filter((val) => val !== null && val !== []);
-    //coursemofans = coursemofans.filter((val) => val !== null && val !== []);
-
-    let gafbytkufa = [];
-    let coursebytkufa = [];
-    let ttkufa = 0;
-    let temp = 0;
-    while (gafmofans.length > 0) {
-      ttkufa = gafmofans[0][0] && gafmofans[0][0].Tkufa;
-      for (let i = 0; i < gafmofans.length; i++) {
-        for (let j = 0; j < gafmofans.length; j++) {
-          if (
-            gafmofans[i] &&
-            gafmofans[i][j] &&
-            gafmofans[i][j].Tkufa === ttkufa
-          ) {
-            temp = gafmofans[i][j];
-            gafmofans[i].splice(j, 1);
-            gafbytkufa.push({ tkufa: ttkufa, mofan: temp });
-          }
-        }
-      }
-      if (gafmofans[0].length === 0) gafmofans.splice(0, 1);
-    }
-
-    while (coursemofans.length > 0) {
-      ttkufa = coursemofans[0][0] && coursemofans[0][0].Tkufa;
-      for (let i = 0; i < coursemofans.length; i++) {
-        for (let j = 0; j < coursemofans.length; j++) {
-          if (
-            coursemofans[i] &&
-            coursemofans[i][j] &&
-            coursemofans[i][j].Tkufa === ttkufa
-          ) {
-            temp = coursemofans[i][j];
-            coursemofans[i].splice(j, 1);
-            coursebytkufa.push({ tkufa: ttkufa, mofan: temp });
-          }
-        }
-      }
-      if (coursemofans[0].length === 0) coursemofans.splice(0, 1);
-    }
-
-    let bettergaf = [];
-    let inner;
-
-    let currentt = 0;
-    while (gafbytkufa.length > 0) {
-      inner = [];
-      currentt = gafbytkufa[0].tkufa;
-      while (gafbytkufa[0] && currentt === gafbytkufa[0].tkufa) {
-        inner.push(gafbytkufa[0].mofan);
-        gafbytkufa.splice(0, 1);
-      }
-      bettergaf.push({ Tkufa: currentt, mofanArray: inner });
-    }
-
-    let bettercourse = [];
-
-    currentt = 0;
-    while (coursebytkufa.length > 0) {
-      inner = [];
-      currentt = coursebytkufa[0].tkufa;
-      while (coursebytkufa[0] && currentt === coursebytkufa[0].tkufa) {
-        inner.push(coursebytkufa[0].mofan);
-        coursebytkufa.splice(0, 1);
-      }
-      bettercourse.push({ Tkufa: currentt, mofanArray: inner });
-    }
-
-    let gafmofanscsonly;
-    let gapi;
-    let gafavgsbytkufot = [];
-
-    for (let k = 0; k < bettergaf.length; k++) {
-      gafmofanscsonly = [];
-
-      for (let i = 0; i < bettergaf[k].mofanArray.length; i++)
-        gafmofanscsonly.push({
-          c1: bettergaf[k].mofanArray[i].C1,
-          c2: bettergaf[k].mofanArray[i].C2,
-          c3: bettergaf[k].mofanArray[i].C3,
-          c4: bettergaf[k].mofanArray[i].C4,
-          c5: bettergaf[k].mofanArray[i].C5,
-          c6: bettergaf[k].mofanArray[i].C6,
-          c7: bettergaf[k].mofanArray[i].C7,
-          c8: bettergaf[k].mofanArray[i].C8,
-          c9: bettergaf[k].mofanArray[i].C9,
-          c10: bettergaf[k].mofanArray[i].M1,
-        });
-
-      gapi = {
-        c1: 0,
-        c2: 0,
-        c3: 0,
-        c4: 0,
-        c5: 0,
-        c6: 0,
-        c7: 0,
-        c8: 0,
-        c9: 0,
-        c10: 0,
-      };
-
-      for (let i = 0; i < gafmofanscsonly.length; i++)
-        gapi = {
-          c1: gapi.c1 + gafmofanscsonly[i].c1,
-          c2: gapi.c2 + gafmofanscsonly[i].c2,
-          c3: gapi.c3 + gafmofanscsonly[i].c3,
-          c4: gapi.c4 + gafmofanscsonly[i].c4,
-          c5: gapi.c5 + gafmofanscsonly[i].c5,
-          c6: gapi.c6 + gafmofanscsonly[i].c6,
-          c7: gapi.c7 + gafmofanscsonly[i].c7,
-          c8: gapi.c8 + gafmofanscsonly[i].c8,
-          c9: gapi.c9 + gafmofanscsonly[i].c9,
-          c10: gapi.c10 + gafmofanscsonly[i].c10,
-        };
-
-      gapi = {
-        c1: gapi.c1 / gafmofanscsonly.length,
-        c2: gapi.c2 / gafmofanscsonly.length,
-        c3: gapi.c3 / gafmofanscsonly.length,
-        c4: gapi.c4 / gafmofanscsonly.length,
-        c5: gapi.c5 / gafmofanscsonly.length,
-        c6: gapi.c6 / gafmofanscsonly.length,
-        c7: gapi.c7 / gafmofanscsonly.length,
-        c8: gapi.c8 / gafmofanscsonly.length,
-        c9: gapi.c9 / gafmofanscsonly.length,
-        c10: gapi.c10 / gafmofanscsonly.length,
-      };
-
-      gafavgsbytkufot.push({ Tkufa: bettergaf[k].Tkufa, avg: gapi });
-    }
-
-    let coursemofanscsonly;
-    let cursi;
-    let courseavgsbytkufot = [];
-
-    for (let k = 0; k < bettercourse.length; k++) {
-      coursemofanscsonly = [];
-
-      for (let i = 0; i < bettercourse[k].mofanArray.length; i++)
-        coursemofanscsonly.push({
-          c1: bettercourse[k].mofanArray[i].C1,
-          c2: bettercourse[k].mofanArray[i].C2,
-          c3: bettercourse[k].mofanArray[i].C3,
-          c4: bettercourse[k].mofanArray[i].C4,
-          c5: bettercourse[k].mofanArray[i].C5,
-          c6: bettercourse[k].mofanArray[i].C6,
-          c7: bettercourse[k].mofanArray[i].C7,
-          c8: bettercourse[k].mofanArray[i].C8,
-          c9: bettercourse[k].mofanArray[i].C9,
-          c10: bettercourse[k].mofanArray[i].M1,
-        });
-
-      cursi = {
-        c1: 0,
-        c2: 0,
-        c3: 0,
-        c4: 0,
-        c5: 0,
-        c6: 0,
-        c7: 0,
-        c8: 0,
-        c9: 0,
-        c10: 0,
-      };
-
-      for (let i = 0; i < coursemofanscsonly.length; i++)
-        cursi = {
-          c1: cursi.c1 + coursemofanscsonly[i].c1,
-          c2: cursi.c2 + coursemofanscsonly[i].c2,
-          c3: cursi.c3 + coursemofanscsonly[i].c3,
-          c4: cursi.c4 + coursemofanscsonly[i].c4,
-          c5: cursi.c5 + coursemofanscsonly[i].c5,
-          c6: cursi.c6 + coursemofanscsonly[i].c6,
-          c7: cursi.c7 + coursemofanscsonly[i].c7,
-          c8: cursi.c8 + coursemofanscsonly[i].c8,
-          c9: cursi.c9 + coursemofanscsonly[i].c9,
-          c10: cursi.c10 + coursemofanscsonly[i].c10,
-        };
-      cursi = {
-        c1: cursi.c1 / coursemofanscsonly.length,
-        c2: cursi.c2 / coursemofanscsonly.length,
-        c3: cursi.c3 / coursemofanscsonly.length,
-        c4: cursi.c4 / coursemofanscsonly.length,
-        c5: cursi.c5 / coursemofanscsonly.length,
-        c6: cursi.c6 / coursemofanscsonly.length,
-        c7: cursi.c7 / coursemofanscsonly.length,
-        c8: cursi.c8 / coursemofanscsonly.length,
-        c9: cursi.c9 / coursemofanscsonly.length,
-        c10: cursi.c10 / coursemofanscsonly.length,
-      };
-
-      courseavgsbytkufot.push({ Tkufa: bettercourse[k].Tkufa, avg: cursi });
-    }
-
-    // if (j === 2000) {
-    //   emptyres = ress;
-    //    resses.push(ress);
-    //  } else if (ress !== emptyres) resses.push(ress);
-    //   }
-
-    res.json({ gapi: gafavgsbytkufot, cursi: courseavgsbytkufot });
-  } catch (err) {
-    res.status(500).send();
-    console.log(err);
-  }
-}); */
 
 module.exports = router;

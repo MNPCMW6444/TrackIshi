@@ -6,6 +6,7 @@ import AUTHCO from "./page/AUTHCO";
 import ADMIN from "./page/ADMIN";
 import PAKMATS from "./page/PAKMATS";
 import SCHOOL from "./page/SCHOOL";
+import S420 from "./page/S420";
 import KAHAD from "./page/KAHAD";
 import { Link } from "react-router-dom";
 
@@ -35,6 +36,12 @@ export default function Page() {
       return (
         <div className="pageSwitcher">
           <PAKMATS />
+        </div>
+      );
+    case "S420":
+      return (
+        <div className="pageSwitcher">
+          <S420 />
         </div>
       );
     case "SCHOOL":

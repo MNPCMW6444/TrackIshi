@@ -32,12 +32,31 @@ function groupBy(sortingres, property) {
 }
 
 export default function Mofas(props) {
-  let rararry=new Array();
+  let rararry = new Array();
   for (let i = 0; i < emdalist.length; i++) {
-    rararry.push({lablel:emdalist[i], value:emdalist[i]});
-    
+    rararry.push({ label: emdalist[i], value: emdalist[i] });
   }
+
+  let rararryu = new Array(
+    { value: "506", label: "506" },
+    { value: "509", label: "509" },
+    { value: "528", label: "528" }
+  );
+  let rararrym = new Array(
+    { value: "mesima", label: "משימה" },
+    { value: "taavura", label: "תעבורה" },
+    { value: "versatili", label: "ורסטילי" },
+    { value: "ha", label: "הכשרה" }
+  );
+  let rararryc = new Array();
+  for (let i = 0; i < 1000; i++) {
+    rararryc.push({ value: i, label: "" + i });
+  }
+
   const [selected, setSelected] = useState(rararry);
+  const [selectedunit, setSelectedunit] = useState(rararryu);
+  const [selectedcourse, setSelectedcourse] = useState(rararryc);
+  const [selectedmaslool, setSelectedmaslool] = useState(rararrym);
 
   const [ready, setReady] = useState(false);
   const [res, setRes] = useState();
@@ -52,9 +71,10 @@ export default function Mofas(props) {
   const [show, setShow] = useState(false);
 
   const [slist, setslist] = useState(new Array());
-  const [slist2, setslist2] = useState(new Array(
-
-  ));
+  const [slist2, setslist2] = useState(new Array());
+  const [slistunit, setslistunit] = useState(rararryu);
+  const [slistmaslool, setslistmaslool] = useState(rararrym);
+  const [slistcourse, setslistcourse] = useState(rararryc);
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -62,36 +82,113 @@ export default function Mofas(props) {
     setIsOpen(true);
   }
 
-  function isinselected(emda) {
-    for (let i = 0; i < selected.length; i++) 
-   {  if(selected[i].value===emda)
-      return true;}
+  function isinselected(emdaolo, selectedk) {
+    if (selectedk)
+      for (let i = 0; i < selectedk.length; i++) {
+        if (selectedk[i].value === emdaolo) return true;
+      }
     return false;
   }
 
   function afterOpenModal() {}
-
-  
 
   function closeModal() {
     setIsOpen(false);
   }
 
   useEffect(() => {
-    let resbeforefilter=resallo;
-    let resafterfilter=resbeforefilter &&resbeforefilter.filter(mofa => isinselected(mofa.Emda));
-    if(resbeforefilter&&resafterfilter)setResall(resafterfilter);
-  },[selected]);
+    let resbeforefilter = resallo;
+    let resafterfilter =
+      resbeforefilter &&
+      resbeforefilter.filter((mofa) => isinselected(mofa.Emda, selected));
+    if (resbeforefilter && resafterfilter) setResall(resafterfilter);
+    if (resallo) {
+      let allr = resallo.filter((mofa) => isinselected(mofa.Emda, selected));
+      let sdarotw = new Array();
+      if (allr)
+        for (let i = 0; i < allr.length; i++) {
+          if (!allr[i].IsDeleted) sdarotw.push(allr[i].Emda);
+        }
+      if (sdarotw) sdarotw = [...new Set(sdarotw)];
+      setsdarot(sdarotw);
+    }
+  }, [selected]);
+
+  useEffect(() => {
+    let resbeforefilter = res;
+    let resafterfilter =
+      resbeforefilter &&
+      resbeforefilter.filter((person) =>
+        isinselected(person.CourseNo, selectedcourse)
+      );
+    if (resbeforefilter && resafterfilter) setRes(resafterfilter);
+    if (resallo) {
+      let allr = resallo.filter((person) =>
+        isinselected(person.CourseNo, selectedcourse)
+      );
+      let sdarotw = new Array();
+      if (allr)
+        for (let i = 0; i < allr.length; i++) {
+          if (!allr[i].IsDeleted) sdarotw.push(allr[i].Emda);
+        }
+      if (sdarotw) sdarotw = [...new Set(sdarotw)];
+      setsdarot(sdarotw);
+    }
+  }, [selectedcourse]);
+
+  useEffect(() => {
+    let resbeforefilter = res;
+    let resafterfilter =
+      resbeforefilter &&
+      resbeforefilter.filter((person) =>
+        isinselected(person.Maslool, selectedmaslool)
+      );
+    if (resbeforefilter && resafterfilter) setRes(resafterfilter);
+    if (resallo) {
+      let allr = resallo.filter((person) =>
+        isinselected(person.Maslool, selectedmaslool)
+      );
+      let sdarotw = new Array();
+      if (allr)
+        for (let i = 0; i < allr.length; i++) {
+          if (!allr[i].IsDeleted) sdarotw.push(allr[i].Emda);
+        }
+      if (sdarotw) sdarotw = [...new Set(sdarotw)];
+      setsdarot(sdarotw);
+    }
+  }, [selectedmaslool]);
+
+  useEffect(() => {
+    let resbeforefilter = res;
+    let resafterfilter =
+      resbeforefilter &&
+      resbeforefilter.filter((person) =>
+        isinselected(person.Unit, selectedunit)
+      );
+    if (resbeforefilter && resafterfilter) setRes(resafterfilter);
+    if (resallo) {
+      let allr = resallo.filter((person) =>
+        isinselected(person.Unit, selectedunit)
+      );
+      let sdarotw = new Array();
+      if (allr)
+        for (let i = 0; i < allr.length; i++) {
+          if (!allr[i].IsDeleted) sdarotw.push(allr[i].Emda);
+        }
+      if (sdarotw) sdarotw = [...new Set(sdarotw)];
+      setsdarot(sdarotw);
+    }
+  }, [selectedunit]);
 
   useEffect(() => {
     const getMyPeople = async () => {
       const allpeopleres = await Axios.get(`${domain}/user/getmypeopleM`);
-     setRes(allpeopleres.data);
+      setRes(allpeopleres.data);
       const allrr = await Axios.get(`${domain}/mofa/getallmyn`);
       const allrr2 = await Axios.get(`${domain}/mofa/getallmyn`);
-      let resbeforefilter=allrr.data;
+      let resbeforefilter = allrr.data;
       setResallo(allrr.data);
-      setResall(resbeforefilter.filter(mofa => isinselected(mofa.Emda)));
+      setResall(resbeforefilter.filter((mofa) => isinselected(mofa.Emda)));
       let allrrexport = allrr2.data;
 
       for (let i = 0; i < allrrexport.length; i++) {
@@ -184,14 +281,12 @@ export default function Mofas(props) {
           }
 
           if (allrrexport[i] && !allrrexport[i].שימור_גלישת_טקסט) {
-            //    allrrexport[i].שימור_גלישת_טקסט = allrrexport[i].M11;
             allrrexport[i].שימור_גלישת_טקסט =
               allrrexport[i] &&
               allrrexport[i].M11 &&
               allrrexport[i].M11.split("\n").join(" ");
           }
           if (allrrexport[i] && !allrrexport[i].שיפור_גלישת_טקסט) {
-            //    allrrexport[i].שיפור_גלישת_טקסט = allrrexport[i].M21;
             allrrexport[i].שיפור_גלישת_טקסט =
               allrrexport[i] &&
               allrrexport[i].M21 &&
@@ -248,61 +343,6 @@ export default function Mofas(props) {
 
       setresexport(allrrexport);
 
-      /*  let grouped = groupBy(all, "Emda"); // => {orange:[...], banana:[...]}
-      var result = Object.keys(grouped).map((key) => [
-        Number(key),
-        grouped[key],
-      ]);
-      for (let i = 0; i < result.length; i++) {
-        {
-          let array = result[i][1];
-          array.sort(function (a, b) {
-            return a.No - b.No;
-          });
-          let summ1 = 0;
-          let sumc1 = 0;
-          let sumc2 = 0;
-          let sumc3 = 0;
-          let sumc4 = 0;
-          let sumc5 = 0;
-          let sumc6 = 0;
-          let sumc7 = 0;
-          let sumc8 = 0;
-          let sumc9 = 0;
-          for (let j = 0; j < array.length; j++) {
-            summ1 = summ1 + array[j].M1;
-            sumc1 = sumc1 + array[j].C1;
-            sumc2 = sumc2 + array[j].C2;
-            sumc3 = sumc3 + array[j].C3;
-            sumc4 = sumc4 + array[j].C4;
-            sumc5 = sumc5 + array[j].C5;
-            sumc6 = sumc6 + array[j].C6;
-            sumc7 = sumc7 + array[j].C7;
-            sumc8 = sumc8 + array[j].C8;
-            sumc9 = sumc9 + array[j].C9;
-            array[0].avgm1 = Math.round((summ1 / array.length) * 100) / 100;
-            array[0].avgc1 = Math.round((sumc1 / array.length) * 100) / 100;
-            array[0].avgc2 = Math.round((sumc2 / array.length) * 100) / 100;
-            array[0].avgc3 = Math.round((sumc3 / array.length) * 100) / 100;
-            array[0].avgc4 = Math.round((sumc4 / array.length) * 100) / 100;
-            array[0].avgc5 = Math.round((sumc5 / array.length) * 100) / 100;
-            array[0].avgc6 = Math.round((sumc6 / array.length) * 100) / 100;
-            array[0].avgc7 = Math.round((sumc7 / array.length) * 100) / 100;
-            array[0].avgc8 = Math.round((sumc8 / array.length) * 100) / 100;
-            array[0].avgc9 = Math.round((sumc9 / array.length) * 100) / 100;
-          }
-          result[i][1] = array;
-        }
-      } */
-      debugger;
-      let allr = resbeforefilter.filter(mofa => isinselected(mofa.Emda));
-      let sdarotw = new Array();
-      if (allr)
-        for (let i = 0; i < allr.length; i++) {
-          if (!allr[i].IsDeleted) sdarotw.push(allr[i].Emda);
-        }
-      if (sdarotw) sdarotw = [...new Set(sdarotw)];
-      setsdarot(sdarotw);
       setResall(allrr);
       let array = slist;
       let all = new Array();
@@ -324,7 +364,7 @@ export default function Mofas(props) {
           }
 
           setslist(array);
-          let newarray=new Array();
+          let newarray = new Array();
           for (let i = 0; i < emdalist.length; i++) {
             newarray.push({
               label: emdalist[i],
@@ -389,125 +429,18 @@ export default function Mofas(props) {
     };
     if (!ready) getMyPeople();
   }, []);
+
   let k;
   if (resallo) if (resallo[0]) k = resallo[0];
-  /* let g;
-  if (k) g = k[0][1][0];
-  debugger; */
-
-  /* let resi;
-  let temp = 0;
-  if (sdarot)
-    for (let i = 0; i < sdarot.length; i++) {
-      for (let j = 0; j < resall.length; j++) {
-        if(resall[j] && resall[j] )
-      }
-    } */
-  /*  let resi = new Array();
-  if (res)
-    for (let k = 0; k < res.length; k++) {
-      if (sdarot)
-        for (let sidra = 0; sidra < sdarot.length; sidra++) {
-          let memofsid = 0;
-          let count = 0;
-          if (resall)
-            for (let i = 0; i < resall.length; i++) {
-              if (resall[k][i] && resall[k][i][1][0].Emda === sdarot[sidra]) {
-                memofsid += resall[k][i][1][0].avgm1;
-                count++;
-                debugger;
-              }
-            }
-          memofsid = memofsid / count;
-          resi.push(memofsid);
-        }
-    }
-  for (let i = 0; i < resi.length; i++) {
-    if (!(resi[i] > -1)) resi.splice(i);
-  } */
-
-  /* 
-  let resi;
-  if (res && resall && sdarot && k)
-    resi = res.map((screw, i) => (
-      <tr>
-        <td className="tdbutton">
-          <button
-            className={"OpinionOpen2"}
-            onClick={() => {
-              openModal();
-              setshelmi(screw.MA);
-              setshelmi2(screw);
-            }}
-          >
-            {screw.NickName}
-          </button>
-        </td>
-        {sdarot.map((sidra, j) => (
-          <td
-            onMouseOver={() => {
-              setShow(
-                [...Array(resall.length).keys()].map((x) =>
-                  x === j ? true : false
-                )
-              );
-            }}
-            onMouseLeave={() => {
-              setShow(false);
-            }}
-            style={{
-              border: "1px solid gray",
-              padding: "11px",
-              backgroundColor: "unset",
-              textAlign: "center",
-            }}
-          >
-            {resall[i].map((data) =>
-              data[1][0].Emda === sidra ? (
-                <span>
-                  {data[1][0].avgm1}
-                  {}
-                </span>
-              ) : (
-                ""
-              )
-            )}
-          </td>
-        ))}
-      </tr>
-    ));
-
-  let rs1 = new Array();
-
-  if (resi)
-    for (let rowsI = 0; rowsI < resi.length; rowsI++) {
-      let row =
-        resi[rowsI] &&
-        resi[rowsI].props &&
-        resi[rowsI].props.children &&
-        resi[rowsI].props.children[1];
-
-      let newRow = new Array();
-      if (row)
-        for (let column = 0; column < row.length; column++) {
-          let td;
-          td =
-            row[column] &&
-            row[column].props &&
-            row[column].props.children &&
-            row[column].props.children[0] &&
-            row[column].props.children[0].props &&
-            row[column].props.children[0].props.children;
-          newRow.push(td);
-        }
-      rs1.push(newRow);
-    } */
 
   let resi;
-  if (res && resall && resall.length>0 && sdarot && k)
+  if (res && resall && resall.length > 0 && sdarot && k)
     resi = res.map((screw, i) =>
-      sdarot.map((sidra, j) =>
-      resall[i]&& resall[i].length && resall[i].map((data) => data[1][0].Emda === sidra && data[1][0].avgm1)
+      sdarot.map(
+        (sidra, j) =>
+          resall[i] &&
+          resall[i].length &&
+          resall[i].map((data) => data[1][0].Emda === sidra && data[1][0].avgm1)
       )
     );
 
@@ -521,8 +454,9 @@ export default function Mofas(props) {
 
       for (let j = 0; j < resi[i].length; j++) {
         let flag = false;
-        if(resi[i][j]) for (let k = 0; k < resi[i][j].length; k++)
-          if (resi[i][j][k]) flag = true;
+        if (resi[i][j])
+          for (let k = 0; k < resi[i][j].length; k++)
+            if (resi[i][j][k]) flag = true;
         flagsarray.push(flag);
         if (!flag) resi[i][j] && resi[i][j].splice(j, 2);
       }
@@ -559,7 +493,10 @@ export default function Mofas(props) {
         <br />
         <br />
         <br />
-        <div>סינון לפי סדרה:</div> <br />
+        <div style={{ textAlign: "center", fontWeight: "bold" }}>
+          סינון לפי סדרה:
+        </div>{" "}
+        <br />
         <div>
           <MultiSelect
             options={slist2}
@@ -569,9 +506,57 @@ export default function Mofas(props) {
           />
         </div>
         <br />
-        <br /> <br />
-        {/*        <h2>רשימת האנשים שלי:</h2>
-         */}{" "}
+        <div style={{}}>
+          <div style={{ display: "inline-block", width: "30%" }}>
+            <div style={{ textAlign: "center", fontWeight: "bold" }}>
+              סינון לפי קורס:
+            </div>{" "}
+            <br />
+            <div>
+              <MultiSelect
+                options={slistcourse}
+                value={selectedcourse}
+                onChange={setSelectedcourse}
+                labelledBy="Select"
+              />
+            </div>
+          </div>
+          <div style={{ display: "inline-block", width: "5%" }}></div>
+
+          <div style={{ display: "inline-block", width: "30%" }}>
+            <div style={{ textAlign: "center", fontWeight: "bold" }}>
+              סינון לפי מסלול:
+            </div>{" "}
+            <br />
+            <div>
+              <MultiSelect
+                options={slistmaslool}
+                value={selectedmaslool}
+                onChange={setSelectedmaslool}
+                labelledBy="Select"
+              />
+            </div>
+          </div>
+          <div style={{ display: "inline-block", width: "5%" }}></div>
+
+          <div style={{ display: "inline-block", width: "30%" }}>
+            <div style={{ textAlign: "center", fontWeight: "bold" }}>
+              סינון לפי יחידה:
+            </div>{" "}
+            <br />
+            <div>
+              <MultiSelect
+                options={slistunit}
+                value={selectedunit}
+                onChange={setSelectedunit}
+                labelledBy="Select"
+              />
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
         <Modal
           isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}
@@ -584,312 +569,79 @@ export default function Mofas(props) {
         <div className="mofastable">
           {" "}
           <table>
-            <tr>
-              <th
-                style={{
-                  border: "1px solid gray",
-                  padding: "11px",
-                  backgroundColor: "unset",
-                }}
-              >
-                רשימת האנשים שלי
-              </th>
-              {sdarot.map((sidra) => (
+            <tbody>
+              <tr>
                 <th
                   style={{
                     border: "1px solid gray",
                     padding: "11px",
                     backgroundColor: "unset",
-                    width: "10000px",
                   }}
                 >
-                  {sidra}
+                  רשימת האנשים שלי
                 </th>
-              ))}
-              {/*  {k.map((data) => (
-                <th>
-                  {/*  {data.length > 0 && data[0].length > 0 && data[0][1].length > 0
-                ? data[0][1][0].Emda
-                : "-"} }
-                </th> */}
-              {/*  ))} */}
-            </tr>
-            {res.map((screw, i) => (
-              <tr>
-                <td className="tdbutton">
-                  <button
-                    className={"OpinionOpen2"}
-                    onClick={() => {
-                      openModal();
-                      setshelmi(screw.MA);
-                      setshelmi2(screw);
-                    }}
-                  >
-                    {screw.NickName}
-                  </button>
-                </td>
-                {sdarot && sdarot.lengtn>0 && sdarot.map((sidra, j) => (
-                  <td
-                    onMouseOver={() => {
-                      setShow(
-                        [...Array(resall.length).keys()].map((x) =>
-                          x === j ? true : false
-                        )
-                      );
-                    }}
-                    onMouseLeave={() => {
-                      setShow(false);
-                    }}
-                    style={{
-                      border: "1px solid gray",
-                      padding: "11px",
-                      backgroundColor: "unset",
-                      textAlign: "center",
-                    }}
-                  >
-                    {resall[i].map((data) =>
-                      data[1][0].Emda === sidra ? (
-                        <span>
-                          {data[1][0].avgm1}
-                          {/*  <div
-                            className={show[i] ? "mofavgsshow" : "mofavgs"}
-                            style={{
-                              paddingTop: "15px",
-                              paddingRight: "15px",
-                              paddingBottom: "15px",
-                              paddingLeft: "15px",
-                              top: 640 + i * 69,
-                            }}
-                          >
-                            <div
-                              style={{
-                                textAlign: "center",
-                                backgroundColor: "white",
-                                borderRadius: "30px",
-                                fontSize: "15pt",
-                              }}
-                            >
-                              {"ממוצעים ב"}
-                              <span
-                                style={{
-                                  fontWeight: "900",
-                                }}
-                              >
-                                {data[1][0].Emda}
-                              </span>
-                              {", לפי הפרמטרים הבאים:"}
-                            </div>
-                            <div
-                              style={{
-                                backgroundColor: "#EEEEEE",
-                                borderRadius: "30px",
-                                paddingTop: "10px",
-                                paddingRight: "10px",
-                                paddingBottom: "10px",
-                                paddingLeft: "10px",
-                              }}
-                            >
-                              <table
-                                style={{
-                                  backgroundColor: "unset",
-                                  textAlign: "center",
-                                  border: "1px solid gray",
-                                }}
-                              >
-                                <tr
-                                  style={{
-                                    backgroundColor: "unset",
-                                    textAlign: "center",
-                                    border: "1px solid gray",
-                                  }}
-                                >
-                                  <th
-                                    style={{
-                                      border: "1px solid gray",
-                                      padding: "5px",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    למידה
-                                  </th>
-                                  <th
-                                    style={{
-                                      border: "1px solid gray",
-                                      padding: "5px",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    תכנון
-                                  </th>
-                                  <th
-                                    style={{
-                                      border: "1px solid gray",
-                                      padding: "5px",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    תפיסה מרחבית
-                                  </th>
-                                  <th
-                                    style={{
-                                      border: "1px solid gray",
-                                      padding: "5px",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    חלק"ש
-                                  </th>
-                                  <th
-                                    style={{
-                                      border: "1px solid gray",
-                                      padding: "5px",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    תקשורת
-                                  </th>
-                                  <th
-                                    style={{
-                                      border: "1px solid gray",
-                                      padding: "5px",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    עומס
-                                  </th>
-                                  <th
-                                    style={{
-                                      border: "1px solid gray",
-                                      padding: "5px",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    קבלת החלטות
-                                  </th>
-                                  <th
-                                    style={{
-                                      border: "1px solid gray",
-                                      padding: "5px",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    הפעלה
-                                  </th>
-                                  <th
-                                    style={{
-                                      border: "1px solid gray",
-                                      padding: "5px",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    תחקור
-                                  </th>
-                                </tr>
-                                <tr>
-                                  <td
-                                    style={{
-                                      border: "1px solid gray",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    {data[1][0].avgc1}
-                                  </td>
-                                  <td
-                                    style={{
-                                      border: "1px solid gray",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    {data[1][0].avgc2}
-                                  </td>
-                                  <td
-                                    style={{
-                                      border: "1px solid gray",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    {data[1][0].avgc3}
-                                  </td>
-                                  <td
-                                    style={{
-                                      border: "1px solid gray",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    {data[1][0].avgc4}
-                                  </td>
-                                  <td
-                                    style={{
-                                      border: "1px solid gray",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    {data[1][0].avgc5}
-                                  </td>
-                                  <td
-                                    style={{
-                                      border: "1px solid gray",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    {data[1][0].avgc6}
-                                  </td>
-                                  <td
-                                    style={{
-                                      border: "1px solid gray",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    {data[1][0].avgc7}
-                                  </td>
-                                  <td
-                                    style={{
-                                      border: "1px solid gray",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    {data[1][0].avgc8}
-                                  </td>
-                                  <td
-                                    style={{
-                                      border: "1px solid gray",
-                                      backgroundColor: "unset",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    {data[1][0].avgc9}
-                                  </td>
-                                </tr>
-                              </table>
-                            </div>
-                          </div> */}
-                        </span>
-                      ) : (
-                        ""
-                      )
-                    )}
-                  </td>
-                ))}
+                {sdarot &&
+                  sdarot.length > 0 &&
+                  sdarot.map((sidra) => (
+                    <th
+                      style={{
+                        border: "1px solid gray",
+                        padding: "11px",
+                        backgroundColor: "unset",
+                        width: "10000px",
+                      }}
+                    >
+                      {sidra}
+                    </th>
+                  ))}
               </tr>
-            ))}
-            {/*  <tr>
+              {res.map((screw, i) => (
+                <tr>
+                  <td className="tdbutton">
+                    <button
+                      className={"OpinionOpen2"}
+                      onClick={() => {
+                        openModal();
+                        setshelmi(screw.MA);
+                        setshelmi2(screw);
+                      }}
+                    >
+                      {screw.NickName}
+                    </button>
+                  </td>
+                  {sdarot &&
+                    sdarot.lengtn > 0 &&
+                    sdarot.map((sidra, j) => (
+                      <td
+                        onMouseOver={() => {
+                          setShow(
+                            [...Array(resall.length).keys()].map((x) =>
+                              x === j ? true : false
+                            )
+                          );
+                        }}
+                        onMouseLeave={() => {
+                          setShow(false);
+                        }}
+                        style={{
+                          border: "1px solid gray",
+                          padding: "11px",
+                          backgroundColor: "unset",
+                          textAlign: "center",
+                        }}
+                      >
+                        {resall[i].map((data) =>
+                          data[1][0].Emda === sidra ? (
+                            <span>{data[1][0].avgm1}</span>
+                          ) : (
+                            ""
+                          )
+                        )}
+                      </td>
+                    ))}
+                </tr>
+              ))}
+              {/*  <tr>
               <th>ממוצע פשוט:</th>
               { {sdarot.map((sidra, j) => (
                 <td
@@ -926,10 +678,11 @@ export default function Mofas(props) {
                 </td>
               ))}
             </tr> */}
-            {/*  <tr>
+              {/*  <tr>
               <th>ממוצע מעמיק:</th>
               <th>ממוצע...</th>
             </tr> */}
+            </tbody>
           </table>
         </div>{" "}
         <br />

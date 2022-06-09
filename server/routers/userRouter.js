@@ -429,6 +429,7 @@ router.get("/getmypeopleM", async (req, res) => {
     if (
       userr.Role === "DIRECT" ||
       userr.Role === "SCHOOL" ||
+      userr.Role === "S420" ||
       userr.Role === "AUTHCO"
     ) {
       allusers = await User.find();
@@ -454,6 +455,11 @@ router.get("/getmypeopleM", async (req, res) => {
             !allusers[i].MyTutor ||
             allusers[i].MyTutor.toString() != userr._id
           ) {
+            allusers.splice(i, 1);
+            i--;
+          }
+        if (userr.Role === "S420")
+          if (true) {
             allusers.splice(i, 1);
             i--;
           }
