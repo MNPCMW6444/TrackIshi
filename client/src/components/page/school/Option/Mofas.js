@@ -4,6 +4,8 @@ import Axios from "axios";
 import Modal from "react-modal";
 import HisMOFAS from "../../screw/Option/MOFAS";
 import { CSVLink } from "react-csv";
+import { MultiSelect } from "react-multi-select-component";
+import emdalist from "../../../../util/emdalist";
 
 const customStyles = {
   content: {
@@ -30,11 +32,19 @@ function groupBy(sortingres, property) {
 }
 
 export default function Mofas(props) {
+  let rararry=new Array();
+  for (let i = 0; i < emdalist.length; i++) {
+    rararry.push({lablel:emdalist[i], value:emdalist[i]});
+    
+  }
+  const [selected, setSelected] = useState(rararry);
+
   const [ready, setReady] = useState(false);
   const [res, setRes] = useState();
   const [resexport, setresexport] = useState();
   const [sdarot, setsdarot] = useState();
   const [resall, setResall] = useState();
+  const [resallo, setResallo] = useState();
   const [shels, setshels] = useState();
   const [shelmi, setshelmi] = useState();
   const [shelmi2, setshelmi2] = useState();
@@ -42,6 +52,9 @@ export default function Mofas(props) {
   const [show, setShow] = useState(false);
 
   const [slist, setslist] = useState(new Array());
+  const [slist2, setslist2] = useState(new Array(
+
+  ));
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -49,189 +62,188 @@ export default function Mofas(props) {
     setIsOpen(true);
   }
 
+  function isinselected(emda) {
+    for (let i = 0; i < selected.length; i++) 
+   {  if(selected[i].value===emda)
+      return true;}
+    return false;
+  }
+
   function afterOpenModal() {}
+
+  
 
   function closeModal() {
     setIsOpen(false);
   }
 
   useEffect(() => {
+    let resbeforefilter=resallo;
+    let resafterfilter=resbeforefilter &&resbeforefilter.filter(mofa => isinselected(mofa.Emda));
+    if(resbeforefilter&&resafterfilter)setResall(resafterfilter);
+  },[selected]);
+
+  useEffect(() => {
     const getMyPeople = async () => {
       const allpeopleres = await Axios.get(`${domain}/user/getmypeopleM`);
-      setRes(allpeopleres.data);
+     setRes(allpeopleres.data);
       const allrr = await Axios.get(`${domain}/mofa/getallmyn`);
       const allrr2 = await Axios.get(`${domain}/mofa/getallmyn`);
-
+      let resbeforefilter=allrr.data;
+      setResallo(allrr.data);
+      setResall(resbeforefilter.filter(mofa => isinselected(mofa.Emda)));
       let allrrexport = allrr2.data;
 
       for (let i = 0; i < allrrexport.length; i++) {
-        if(!allrrexport[i].IsDeleted){
-            if (allrrexport[i] && !allrrexport[i].מספר_אישי) {
-                allrrexport[i].מספר_אישי = allrrexport[i].sMA;
- 
-            }
-            if (allrrexport[i] && !allrrexport[i].שם_פרטי) {
-                allrrexport[i].שם_פרטי = allrrexport[i].sFirstName;
-        
-            }
-            if (allrrexport[i] && !allrrexport[i].שם_משפחה) {
-                allrrexport[i].שם_משפחה = allrrexport[i].sLastName;
-       
-            }
-            if (allrrexport[i] && !allrrexport[i].קורס) {
-                allrrexport[i].קורס = allrrexport[i].sCourseNo;
-       
-            }
-            if (allrrexport[i] && !allrrexport[i].תאריך_מילוי) {
-              let finil = "DIDNOTDOWANAD";
-              finil = allrrexport[i] && allrrexport[i].fillDate.substring(0, 10);
-              const month = finil.substring(5, 7);
-              const day = finil.substring(8, 10);
-              const year = finil.substring(0, 4);
-              finil = day + "/" + month + "/" + year;
-              allrrexport[i].תאריך_מילוי = finil;
-    
-            } 
-            if (allrrexport[i] && !allrrexport[i].עמדה) {
-                allrrexport[i].עמדה = allrrexport[i].Emda;
-  
-            }
-            if (allrrexport[i] && !allrrexport[i].מספר) {
-              allrrexport[i].מספר = allrrexport[i].No;
-            }
-            if (allrrexport[i] && !allrrexport[i].מדריך) {
-                allrrexport[i].מדריך = allrrexport[i].MadName;
-     
-            }
-            if (allrrexport[i] && !allrrexport[i].יעד_1) {
-                allrrexport[i].יעד_1 = allrrexport[i].X11;
- 
-            }
-            if (allrrexport[i] && !allrrexport[i].סטטוס_1) {
-                allrrexport[i].סטטוס_1 = allrrexport[i].X21 ? "כן" : "לא";
- 
-            }
-            if (allrrexport[i] && !allrrexport[i].יעד_2) {
-              allrrexport[i].יעד_2 = allrrexport[i].X12;
-            }
-            if (allrrexport[i] && !allrrexport[i].סטטוס_2) {
-                allrrexport[i].סטטוס_2 = allrrexport[i].X22 ? "כן" : "לא";
- 
-            }
-            if (allrrexport[i] && !allrrexport[i].יעד_3) {
-                allrrexport[i].יעד_3 = allrrexport[i].X13;
- 
-            }
-            if (allrrexport[i] && !allrrexport[i].סטטוס_3) {
-                allrrexport[i].סטטוס_3 = allrrexport[i].X23 ? "כן" : "לא";
- 
-            }
-            if (allrrexport[i] && !allrrexport[i].למידה) {
-                allrrexport[i].למידה = allrrexport[i] && allrrexport[i].C1;
-
-            }
-            if (allrrexport[i] && !allrrexport[i].תכנון) {
-                allrrexport[i].תכנון = allrrexport[i] && allrrexport[i].C2;
-
-            }
-            if (allrrexport[i] && !allrrexport[i].תפיסה_מרחבית) {
-                allrrexport[i].תפיסה_מרחבית = allrrexport[i] && allrrexport[i].C3;
-
-            }
-            if (allrrexport[i] && !allrrexport[i].חלקש) {
-                allrrexport[i].חלקש = allrrexport[i] && allrrexport[i].C4;
-
-            }
-            if (allrrexport[i] && !allrrexport[i].תקשורת) {
-                allrrexport[i].תקשורת = allrrexport[i] && allrrexport[i].C5;
-
-            }
-            if (allrrexport[i] && !allrrexport[i].עומס) {
-                allrrexport[i].עומס = allrrexport[i] && allrrexport[i].C6;
-
-            }
-            if (allrrexport[i] && !allrrexport[i].קבלת_החלטות) {
-                allrrexport[i].קבלת_החלטות = allrrexport[i] && allrrexport[i].C7;
-
-            }
-            if (allrrexport[i] && !allrrexport[i].הפעלה) {
-                allrrexport[i].הפעלה = allrrexport[i] && allrrexport[i].C8;
-
-            }
-            if (allrrexport[i] && !allrrexport[i].תחקור) {
-                allrrexport[i].תחקור = allrrexport[i] && allrrexport[i].C9;
-
-            }
-            if (allrrexport[i] && !allrrexport[i].ציון_מסכם) {
-                allrrexport[i].ציון_מסכם = allrrexport[i] && allrrexport[i].M1;
-
-            }
-            if (allrrexport[i] && !allrrexport[i].הוגדר_כמבחן) {
-                allrrexport[i].הוגדר_כמבחן = allrrexport[i].isTest ? "כן" : "לא";
-            }
-            if (allrrexport[i] && allrrexport[i].isTest){
-                if (allrrexport[i] && !allrrexport[i].מעבר_מבחן) {
-                  allrrexport[i].מעבר_מבחן = allrrexport[i].isPass ? "כן" : "לא";
-                }
-              }
-            
-            if (allrrexport[i] && !allrrexport[i].שימור_גלישת_טקסט) {
-            //    allrrexport[i].שימור_גלישת_טקסט = allrrexport[i].M11;
-                allrrexport[i].שימור_גלישת_טקסט = allrrexport[i] && allrrexport[i].M11 && allrrexport[i].M11.split("\n").join(" ");
-
-            }
-            if (allrrexport[i] && !allrrexport[i].שיפור_גלישת_טקסט) {
-            //    allrrexport[i].שיפור_גלישת_טקסט = allrrexport[i].M21;
-                 allrrexport[i].שיפור_גלישת_טקסט = allrrexport[i] && allrrexport[i].M21 && allrrexport[i].M21.split("\n").join(" ");
-            }
-            if (allrrexport[i] && !allrrexport[i].סיכום) {
-                allrrexport[i].סיכום = allrrexport[i].Mf;
+        if (!allrrexport[i].IsDeleted) {
+          if (allrrexport[i] && !allrrexport[i].מספר_אישי) {
+            allrrexport[i].מספר_אישי = allrrexport[i].sMA;
+          }
+          if (allrrexport[i] && !allrrexport[i].שם_פרטי) {
+            allrrexport[i].שם_פרטי = allrrexport[i].sFirstName;
+          }
+          if (allrrexport[i] && !allrrexport[i].שם_משפחה) {
+            allrrexport[i].שם_משפחה = allrrexport[i].sLastName;
+          }
+          if (allrrexport[i] && !allrrexport[i].קורס) {
+            allrrexport[i].קורס = allrrexport[i].sCourseNo;
+          }
+          if (allrrexport[i] && !allrrexport[i].תאריך_מילוי) {
+            let finil = "DIDNOTDOWANAD";
+            finil = allrrexport[i] && allrrexport[i].fillDate.substring(0, 10);
+            const month = finil.substring(5, 7);
+            const day = finil.substring(8, 10);
+            const year = finil.substring(0, 4);
+            finil = day + "/" + month + "/" + year;
+            allrrexport[i].תאריך_מילוי = finil;
+          }
+          if (allrrexport[i] && !allrrexport[i].עמדה) {
+            allrrexport[i].עמדה = allrrexport[i].Emda;
+          }
+          if (allrrexport[i] && !allrrexport[i].מספר) {
+            allrrexport[i].מספר = allrrexport[i].No;
+          }
+          if (allrrexport[i] && !allrrexport[i].מדריך) {
+            allrrexport[i].מדריך = allrrexport[i].MadName;
+          }
+          if (allrrexport[i] && !allrrexport[i].יעד_1) {
+            allrrexport[i].יעד_1 = allrrexport[i].X11;
+          }
+          if (allrrexport[i] && !allrrexport[i].סטטוס_1) {
+            allrrexport[i].סטטוס_1 = allrrexport[i].X21 ? "כן" : "לא";
+          }
+          if (allrrexport[i] && !allrrexport[i].יעד_2) {
+            allrrexport[i].יעד_2 = allrrexport[i].X12;
+          }
+          if (allrrexport[i] && !allrrexport[i].סטטוס_2) {
+            allrrexport[i].סטטוס_2 = allrrexport[i].X22 ? "כן" : "לא";
+          }
+          if (allrrexport[i] && !allrrexport[i].יעד_3) {
+            allrrexport[i].יעד_3 = allrrexport[i].X13;
+          }
+          if (allrrexport[i] && !allrrexport[i].סטטוס_3) {
+            allrrexport[i].סטטוס_3 = allrrexport[i].X23 ? "כן" : "לא";
+          }
+          if (allrrexport[i] && !allrrexport[i].למידה) {
+            allrrexport[i].למידה = allrrexport[i] && allrrexport[i].C1;
+          }
+          if (allrrexport[i] && !allrrexport[i].תכנון) {
+            allrrexport[i].תכנון = allrrexport[i] && allrrexport[i].C2;
+          }
+          if (allrrexport[i] && !allrrexport[i].תפיסה_מרחבית) {
+            allrrexport[i].תפיסה_מרחבית = allrrexport[i] && allrrexport[i].C3;
+          }
+          if (allrrexport[i] && !allrrexport[i].חלקש) {
+            allrrexport[i].חלקש = allrrexport[i] && allrrexport[i].C4;
+          }
+          if (allrrexport[i] && !allrrexport[i].תקשורת) {
+            allrrexport[i].תקשורת = allrrexport[i] && allrrexport[i].C5;
+          }
+          if (allrrexport[i] && !allrrexport[i].עומס) {
+            allrrexport[i].עומס = allrrexport[i] && allrrexport[i].C6;
+          }
+          if (allrrexport[i] && !allrrexport[i].קבלת_החלטות) {
+            allrrexport[i].קבלת_החלטות = allrrexport[i] && allrrexport[i].C7;
+          }
+          if (allrrexport[i] && !allrrexport[i].הפעלה) {
+            allrrexport[i].הפעלה = allrrexport[i] && allrrexport[i].C8;
+          }
+          if (allrrexport[i] && !allrrexport[i].תחקור) {
+            allrrexport[i].תחקור = allrrexport[i] && allrrexport[i].C9;
+          }
+          if (allrrexport[i] && !allrrexport[i].ציון_מסכם) {
+            allrrexport[i].ציון_מסכם = allrrexport[i] && allrrexport[i].M1;
+          }
+          if (allrrexport[i] && !allrrexport[i].הוגדר_כמבחן) {
+            allrrexport[i].הוגדר_כמבחן = allrrexport[i].isTest ? "כן" : "לא";
+          }
+          if (allrrexport[i] && allrrexport[i].isTest) {
+            if (allrrexport[i] && !allrrexport[i].מעבר_מבחן) {
+              allrrexport[i].מעבר_מבחן = allrrexport[i].isPass ? "כן" : "לא";
             }
           }
-          delete allrrexport[i].sMA;
-          delete allrrexport[i].sFirstName;
-          delete allrrexport[i].sLastName;
-          delete allrrexport[i].sCourseNo;
-          delete allrrexport[i].fillDate;
-          delete allrrexport[i].Emda;
-          delete allrrexport[i].No;
-          delete allrrexport[i].MadName;
-          delete allrrexport[i].X11;
-          delete allrrexport[i].X21;
-          delete allrrexport[i].X12;
-          delete allrrexport[i].X22;
-          delete allrrexport[i].X13;
-          delete allrrexport[i].X23;
-          delete allrrexport[i].C1;
-          delete allrrexport[i].C2;
-          delete allrrexport[i].C3;
-          delete allrrexport[i].C4;
-          delete allrrexport[i].C5;
-          delete allrrexport[i].C6;
-          delete allrrexport[i].C7;
-          delete allrrexport[i].C8;
-          delete allrrexport[i].C9;
-          delete allrrexport[i].M1;
-          delete allrrexport[i].isTest;
-          delete allrrexport[i].isPass;
-          delete allrrexport[i].M11;
-          delete allrrexport[i].M21;
-          delete allrrexport[i].Mf;
-          delete allrrexport[i]._id;
-          delete allrrexport[i].sNickName;
-          delete allrrexport[i].sMaslool;
-          delete allrrexport[i].sUnit;
-          delete allrrexport[i].CrewM;
-          delete allrrexport[i].name;
-          delete allrrexport[i].IsDeleted;
-          delete allrrexport[i].createdAt;
-          delete allrrexport[i].updatedAt;
-          delete allrrexport[i].__v;
+
+          if (allrrexport[i] && !allrrexport[i].שימור_גלישת_טקסט) {
+            //    allrrexport[i].שימור_גלישת_טקסט = allrrexport[i].M11;
+            allrrexport[i].שימור_גלישת_טקסט =
+              allrrexport[i] &&
+              allrrexport[i].M11 &&
+              allrrexport[i].M11.split("\n").join(" ");
+          }
+          if (allrrexport[i] && !allrrexport[i].שיפור_גלישת_טקסט) {
+            //    allrrexport[i].שיפור_גלישת_טקסט = allrrexport[i].M21;
+            allrrexport[i].שיפור_גלישת_טקסט =
+              allrrexport[i] &&
+              allrrexport[i].M21 &&
+              allrrexport[i].M21.split("\n").join(" ");
+          }
+          if (allrrexport[i] && !allrrexport[i].סיכום) {
+            allrrexport[i].סיכום = allrrexport[i].Mf;
+          }
+        }
+        delete allrrexport[i].sMA;
+        delete allrrexport[i].sFirstName;
+        delete allrrexport[i].sLastName;
+        delete allrrexport[i].sCourseNo;
+        delete allrrexport[i].fillDate;
+        delete allrrexport[i].Emda;
+        delete allrrexport[i].No;
+        delete allrrexport[i].MadName;
+        delete allrrexport[i].X11;
+        delete allrrexport[i].X21;
+        delete allrrexport[i].X12;
+        delete allrrexport[i].X22;
+        delete allrrexport[i].X13;
+        delete allrrexport[i].X23;
+        delete allrrexport[i].C1;
+        delete allrrexport[i].C2;
+        delete allrrexport[i].C3;
+        delete allrrexport[i].C4;
+        delete allrrexport[i].C5;
+        delete allrrexport[i].C6;
+        delete allrrexport[i].C7;
+        delete allrrexport[i].C8;
+        delete allrrexport[i].C9;
+        delete allrrexport[i].M1;
+        delete allrrexport[i].isTest;
+        delete allrrexport[i].isPass;
+        delete allrrexport[i].M11;
+        delete allrrexport[i].M21;
+        delete allrrexport[i].Mf;
+        delete allrrexport[i]._id;
+        delete allrrexport[i].sNickName;
+        delete allrrexport[i].sMaslool;
+        delete allrrexport[i].sUnit;
+        delete allrrexport[i].CrewM;
+        delete allrrexport[i].name;
+        delete allrrexport[i].IsDeleted;
+        delete allrrexport[i].createdAt;
+        delete allrrexport[i].updatedAt;
+        delete allrrexport[i].__v;
       }
-      
+
       for (let i = 0; i < allrrexport.length; i++) {
-        if (Object.keys(allrrexport[i]).length < 10)
-          allrrexport.splice(i,1);
+        if (Object.keys(allrrexport[i]).length < 10) allrrexport.splice(i, 1);
       }
 
       setresexport(allrrexport);
@@ -282,36 +294,46 @@ export default function Mofas(props) {
           result[i][1] = array;
         }
       } */
-      let allr = allrr.data;
+      debugger;
+      let allr = resbeforefilter.filter(mofa => isinselected(mofa.Emda));
       let sdarotw = new Array();
       if (allr)
         for (let i = 0; i < allr.length; i++) {
-          if(!allr[i].IsDeleted) sdarotw.push(allr[i].Emda);
+          if (!allr[i].IsDeleted) sdarotw.push(allr[i].Emda);
         }
       if (sdarotw) sdarotw = [...new Set(sdarotw)];
       setsdarot(sdarotw);
       setResall(allrr);
-      let array=slist;
+      let array = slist;
       let all = new Array();
       for (let i = 0; i < allpeopleres.data.length; i++) {
         const o = await Axios.get(
           `${domain}/mofa/getallhis/${allpeopleres.data[i].MA}`
         );
         let sortingres = o.data;
-     
+
         for (let i = 0; i < sortingres.length; i++) {
-          let exists=false;
-          for (let j = 0; j < slist.length; j++) 
-            if(slist[j]===sortingres[i].Emda)
-            exists = true;
-          if(!exists){
-            
-            array.push(sortingres[i].Emda);
-           
+          let exists = false;
+          for (let j = 0; j < slist.length; j++)
+            if (slist[j].value === sortingres[i].Emda) exists = true;
+          if (!exists) {
+            array.push({
+              label: sortingres[i].Emda,
+              value: sortingres[i].Emda,
+            });
           }
-          setslist(array); 
-          
+
+          setslist(array);
+          let newarray=new Array();
+          for (let i = 0; i < emdalist.length; i++) {
+            newarray.push({
+              label: emdalist[i],
+              value: emdalist[i],
+            });
+          }
+          setslist2(newarray);
         }
+
         let grouped = groupBy(sortingres, "Emda"); // => {orange:[...], banana:[...]}
         var result = Object.keys(grouped).map((key) => [
           Number(key),
@@ -367,9 +389,8 @@ export default function Mofas(props) {
     };
     if (!ready) getMyPeople();
   }, []);
-
   let k;
-  if (resall) if (resall[0]) k = resall[0];
+  if (resallo) if (resallo[0]) k = resallo[0];
   /* let g;
   if (k) g = k[0][1][0];
   debugger; */
@@ -483,10 +504,10 @@ export default function Mofas(props) {
     } */
 
   let resi;
-  if (res && resall && sdarot && k)
+  if (res && resall && resall.length>0 && sdarot && k)
     resi = res.map((screw, i) =>
       sdarot.map((sidra, j) =>
-        resall[i].map((data) => data[1][0].Emda === sidra && data[1][0].avgm1)
+      resall[i]&& resall[i].length && resall[i].map((data) => data[1][0].Emda === sidra && data[1][0].avgm1)
       )
     );
 
@@ -500,10 +521,10 @@ export default function Mofas(props) {
 
       for (let j = 0; j < resi[i].length; j++) {
         let flag = false;
-        for (let k = 0; k < resi[i][j].length; k++)
+        if(resi[i][j]) for (let k = 0; k < resi[i][j].length; k++)
           if (resi[i][j][k]) flag = true;
         flagsarray.push(flag);
-        if (!flag) resi[i][j].splice(j, 2);
+        if (!flag) resi[i][j] && resi[i][j].splice(j, 2);
       }
       flagsarrayB.push(flagsarray);
     }
@@ -534,18 +555,20 @@ export default function Mofas(props) {
         <CSVLink data={resexport}>
           {" "}
           ייצא את כל מופעי ההדרכה של האנשים שלי ⬇️
-        </CSVLink> <br />
+        </CSVLink>{" "}
+        <br />
         <br />
         <br />
         <div>סינון לפי סדרה:</div> <br />
-        <select>
-          
-    {slist && slist.map((s) => <option>{s}</option>)}
-          
-          
-          
-          </select>        <br />
-
+        <div>
+          <MultiSelect
+            options={slist2}
+            value={selected}
+            onChange={setSelected}
+            labelledBy="Select"
+          />
+        </div>
+        <br />
         <br /> <br />
         {/*        <h2>רשימת האנשים שלי:</h2>
          */}{" "}
@@ -605,7 +628,7 @@ export default function Mofas(props) {
                     {screw.NickName}
                   </button>
                 </td>
-                {sdarot.map((sidra, j) => (
+                {sdarot && sdarot.lengtn>0 && sdarot.map((sidra, j) => (
                   <td
                     onMouseOver={() => {
                       setShow(
@@ -926,7 +949,7 @@ export default function Mofas(props) {
         <br />
       </div>
     ) : (
-      <h3>-אין לי אנשים-</h3>
+      <h3>-אין לאנשיי מופעי הדרכה-</h3>
     )
   ) : (
     <div>

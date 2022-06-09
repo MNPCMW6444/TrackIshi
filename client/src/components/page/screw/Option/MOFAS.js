@@ -37,6 +37,7 @@ export default function MOFAS(props) {
   const [successMessage, setSuccessMessage] = useState(null);
 
   const [show, setShow] = useState(false);
+  const [ssss, setssss] = useState(false);
 
   function openModal() {
     setIsOpen(true);
@@ -293,7 +294,7 @@ export default function MOFAS(props) {
       setReady(true);
     };
     getAllmofas();
-  }, []);
+  }, [ssss]);
 
   return ready ? (
     <div className="col">
@@ -712,6 +713,7 @@ export default function MOFAS(props) {
             h={props.h}
             setDidupdated={closeModal}
             suc={setSuccessMessage}
+            afterfinish={setssss}
           />
         ) : (
           <VIEWMOFA h={props.h} data={modalData}></VIEWMOFA>

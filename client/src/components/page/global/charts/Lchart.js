@@ -97,7 +97,7 @@ export default function Lchart(props) {
     }
 
     return (
-      <div className={"chartdiv" + (props.isShown ? "show" : "")}>
+      <div className={"c2hartdiv" + (props.isShown ? "show" : "")}>
         <span className="chart">
           <LineChart width={730} height={250} data={data}>
             <CartesianGrid

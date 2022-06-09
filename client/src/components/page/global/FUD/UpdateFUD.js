@@ -311,6 +311,8 @@ const [dereg, setDereg] = useState(); //הזנה
         );
       else await Axios.put(`${domain}/user/updateFullDetails`, updateFUDData);
       props.suc("הפרטים עודכנו בהצלחה!");
+      const aaa=props.finish;
+      aaa(Math.random());
       const done = props.whendone;
       done(false);
     } catch (err) {
@@ -439,7 +441,7 @@ const [dereg, setDereg] = useState(); //הזנה
               </div>
               <br />
               <div className="fudunit">
-                <div className="fudTitle">טלפון למקרה חירום: </div>
+                <div className="fudTitle">טל' למקרה חירום: </div>
                 <div className="fudContent">
                   <input
                     className="fudinput"
@@ -454,7 +456,7 @@ const [dereg, setDereg] = useState(); //הזנה
               </div>
               <br />
               <div className="fudunit">
-                <div className="fudTitle">כתובת דוא"ל אזרחי:</div>
+                <div className="fudTitle">דוא"ל אזרחי:</div>
                 <div className="fudContent">
                   <input
                     className="fudinput"

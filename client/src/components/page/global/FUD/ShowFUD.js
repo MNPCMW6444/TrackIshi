@@ -9,6 +9,7 @@ function ShowFUD(props) {
   let externalma;
   if (props.ma) externalma = props.ma;
 
+  const [sss, setsss] = useState();
   const [ma, setMa] = useState();
   const [firstname, setFirstname] = useState();
   const [lastname, setLastname] = useState();
@@ -37,105 +38,7 @@ function ShowFUD(props) {
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
-    const getFUDI = setInterval(async () => {
-      let FUDRes;
-      if (externalma)
-        FUDRes = await Axios.get(
-          `${domain}/user/getFullDetailsE/${externalma}`
-        );
-      else FUDRes = await Axios.get(`${domain}/user/getFullDetails`);
-      try {
-        setFirstname(FUDRes.data.FirstName);
-      } catch (err) {
-        console.log(err);
-      }
-      try {
-        setMa(FUDRes.data.MA);
-      } catch (err) {
-        console.log(err);
-      }
-      try {
-        setLastname(FUDRes.data.LastName);
-      } catch (err) {
-        console.log(err);
-      }
-      try {
-        setNickname(FUDRes.data.NickName);
-      } catch (err) {
-        console.log(err);
-      }
-      try {
-        setCourseno(FUDRes.data.CourseNo);
-      } catch (err) {
-        console.log(err);
-      }
-      try {
-        let finil = "DIDNOTDOWANAD";
-        finil = FUDRes.data.BirthDate.substring(0, 10);
-        const day = finil.substring(5, 7);
-        const month = finil.substring(8, 10);
-        const year = finil.substring(0, 4);
-        finil = month + "/" + day + "/" + year; //נכתב הפוך בגלל שהמערכת בשביל באנגלית
-        setBirthdate(finil);
-      } catch (err) {
-        console.log(err);
-      }
-      try {
-        setEmail(FUDRes.data.Email);
-      } catch (err) {
-        console.log(err);
-      }
-      try {
-        setMainphone(FUDRes.data.MainPhone);
-      } catch (err) {
-        console.log(err);
-      }
-      try {
-        setEmergencyphone(FUDRes.data.EmergencyPhone);
-      } catch (err) {
-        console.log(err);
-      }
-      try {
-        setAddresscity(FUDRes.data.AddressCity);
-      } catch (err) {
-        console.log(err);
-      }
-      try {
-        setAddressline(FUDRes.data.AddressLine);
-      } catch (err) {
-        console.log(err);
-      }
-      try {
-        setRank(FUDRes.data.Rank);
-      } catch (err) {
-        console.log(err);
-      }
-      try {
-        setUnit(FUDRes.data.Unit);
-      } catch (err) {
-        console.log(err);
-      }
-      let hatsv;
-      try {
-        hatsv = FUDRes.data.SoogHatsava === "sadir" ? "סדיר" : hatsv;
-        hatsv = FUDRes.data.SoogHatsava === "hatsach" ? 'הצ"ח' : hatsv;
-        hatsv = FUDRes.data.SoogHatsava === "miluim" ? "מילואים" : hatsv;
-        setSoogHatsava(hatsv);
-      } catch (err) {
-        console.log(err);
-      }
-      let msll;
-      try {
-        msll = FUDRes.data.Maslool === "mesima" ? "משימה" : msll;
-        msll = FUDRes.data.Maslool === "taavura" ? "תעבורה" : msll;
-        msll = FUDRes.data.Maslool === "versatili" ? "ורסטילי" : msll;
-        msll = FUDRes.data.Maslool === "ha" ? "הכשרה" : msll;
-        setMaslool(msll);
-      } catch (err) {
-        console.log(err);
-      }
-      setReady(true);
-    }, 3000);
+    
     const getFUD = async () => {
       let FUDRes;
       if (externalma)
@@ -236,8 +139,7 @@ function ShowFUD(props) {
       setReady(true);
     };
     getFUD();
-    return () => clearInterval(getFUDI);
-  }, []);
+  }, [sss]);
 
   async function changePass() {
     
@@ -283,7 +185,7 @@ function ShowFUD(props) {
           </h3>
         </div>
       )}
-      {edit && <UpdateFUD suc={setSuccessMessage} whendone={setEdit} />}
+      {edit && <UpdateFUD suc={setSuccessMessage} whendone={setEdit} finish={setsss} />}
       {successMessage && (
         <SuccessMessage
           message={successMessage}
@@ -331,12 +233,12 @@ function ShowFUD(props) {
             </div>
             <br />
             <div className="fudunit">
-              <div className="fudTitle">טלפון למקרה חירום: </div>
+              <div className="fudTitle">טל' למקרה חירום: </div>
               <div className="fudContent">{emergencyphone}</div>
             </div>
             <br />
             <div className="fudunit">
-              <div className="fudTitle">כתובת דוא"ל אזרחי: </div>
+              <div className="fudTitle">דוא"ל אזרחי: </div>
               <div className="fudContent">{email}</div>
             </div>
           </div>

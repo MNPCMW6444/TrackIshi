@@ -450,7 +450,7 @@ Dereg:fdereg
               </div>
               <br />
               <div className="fudunit">
-                <div className="fudTitle">טלפון למקרה חירום:<sup className="must2">*</sup></div>
+                <div className="fudTitle">טל' למקרה חירום:<sup className="must2">*</sup></div>
                 <div className="fudContent">
                   <input
                     className="fudinput"
@@ -464,7 +464,7 @@ Dereg:fdereg
               </div>
               <br />
               <div className="fudunit">
-                <div className="fudTitle">כתובת דוא"ל אזרחי:<sup className="must2">*</sup></div>
+                <div className="fudTitle">דוא"ל אזרחי:<sup className="must2">*</sup></div>
                 <div className="fudContent">
                   <input
                     className="fudinput"

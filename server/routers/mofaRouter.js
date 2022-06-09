@@ -23,8 +23,7 @@ router.get("/getallmy", async (req, res) => {
   }
 });
 
-
-router.get("/checknum/:u", async (req, res) => {
+router.get("/checknum/:u/:ma", async (req, res) => {
   try {
     const token = req.cookies.token;
 
@@ -33,16 +32,17 @@ router.get("/checknum/:u", async (req, res) => {
     const validatedUser = jwt.verify(token, process.env.JWTSECRET);
 
     const userr = await User.findById(validatedUser.user);
+    const userr2 = await User.find({ MA: req.params.ma });
 
-    const mofas = await Mofa.find({ CrewM: userr, Emda:req.params.u });
+    const mofas = await Mofa.find({ CrewM: userr2[0]._id, Emda: req.params.u });
 
+    console.log(mofas.length);
 
-    res.json({a:mofas.length});
+    res.json({ a: mofas.length });
   } catch (err) {
     res.status(500).send();
   }
 });
-
 
 router.get("/getallhis/:ma", async (req, res) => {
   try {

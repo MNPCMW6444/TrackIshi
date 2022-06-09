@@ -5,6 +5,7 @@ import GradesTable from "../../global/Opinions/Edit/GradesTable";
 import UserContext from "../../../../context/UserContext";
 import ErrorMessage from "../../../messages/ErrorMessage";
 import domain from "../../../../util/domain";
+import emdalist from "../../../../util/emdalist";
 
 export default function NEWMOFA(props) {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -20,7 +21,7 @@ export default function NEWMOFA(props) {
   const [MadName, setMadName] = useState();
   const [Emdat, setEmdat] = useState();
   const [Emda, setEmda] = useState();
-  const [No, setNo] = useState();
+  const [No, setNo] = useState(1);
   const [x11, setx11] = useState();
   const [x12, setx12] = useState();
   const [x13, setx13] = useState();
@@ -46,14 +47,12 @@ export default function NEWMOFA(props) {
 
   const [autonum, setautonum] = useState(0);
 
-
   const [newGrade, setNewGrade] = useState([4, "nelson"]);
 
   function setma(value, who) {
     let lines = 1;
     if (value.substring(0, 3) != "1. ") value = "1. " + value;
     for (let i = 0; i < value.length - 1 && lines < 9; i++) {
-      debugger;
       if (value.substring(i, i + 1) === "\n") {
         lines++;
         if (value.substring(i + 1, i + 4) != lines + ". ") {
@@ -149,17 +148,14 @@ export default function NEWMOFA(props) {
     }
   }, [newGrade]);
 
-
-  
   useEffect(() => {
-   async function cautonum(u){
-const res = await Axios.get(`${domain}/mofa/checknum/:${u}`);
+    async function cautonum(u) {
+      const res = await Axios.get(`${domain}/mofa/checknum/${u}/${props&&props.h&&props.h.MA || user.MA}`);
 
-
-setautonum(res.data.a);
-
-   }
-   cautonum(Emdat);
+      setautonum(res.data.a + 1);
+      setNo(res.data.a + 1);
+    }
+    cautonum(Emdat);
   }, [Emdat]);
 
   async function send() {
@@ -198,10 +194,13 @@ setautonum(res.data.a);
     try {
       await Axios.post(`${domain}/mofa/createmofa`, newData);
       props.suc(
-        " מופע ההדרכה נשמר בהצלחה! על מנת לצפות בעדכון יש לפתוח את עמוד מופעי הדרכה מחדש"
+        " מופע ההדרכה נשמר בהצלחה!"
       );
       const setDidupdated = props.setDidupdated;
       setDidupdated();
+
+      const aa=props.afterfinish;
+      aa(Math.random());
 
       const closeModal = props.forClosing;
       closeModal();
@@ -217,7 +216,7 @@ setautonum(res.data.a);
     }
     return;
   }
- 
+
   return (
     <div className="odiv">
       <br /> <br /> <br /> <br /> <br />
@@ -265,56 +264,9 @@ setautonum(res.data.a);
                 -- בחר --{" "}
               </option>
 
-              <option value={"קק''צ - יהלום"}>{"קק''צ - יהלום"}</option>
-              <option value={"קק''צ - כיפת ברזל"}>{"קק''צ - כיפת ברזל"}</option>
-              <option value={"קק''צ - קלע דוד"}>{"קק''צ - קלע דוד"}</option>
-              <option value={"קק''צ - הגנ''א מבואות"}>{"קק''צ - הגנ''א מבואות"}</option>
-              <option value={"קק''צ - הגנ''א בסיסי"}>{"קק''צ - הגנ''א בסיסי"}</option>
-              <option value={"קק''צ - הגנ''א מתקדם"}>{"קק''צ - הגנ''א מתקדם"}</option>
-              <option value={"קק''צ - תעבורה מבואות"}>{"קק''צ - תעבורה מבואות"}</option>
-              <option value={"קק''צ - תעבורה בסיסי"}>{"קק''צ - תעבורה בסיסי"}</option>
-              <option value={"קק''צ - תעבורה מתקדם"}>{"קק''צ - תעבורה מתקדם"}</option>
-              <option value={"קק''צ - קרבות"}>{"קק''צ - קרבות"}</option>
-              <option value={"קא''מ - יהלום"}>{"קא''מ - יהלום"}</option>
-              <option value={"קא''מ - כיפת ברזל"}>{"קא''מ - כיפת ברזל"}</option>
-              <option value={"קא''מ - קלע דוד"}>{"קא''מ - קלע דוד"}</option>
-              <option value={"קא''מ - משימות עזר"}>{"קא''מ - משימות עזר"}</option>
-              <option value={"קא''מ - גילוי וקזת''א"}>{"קא''מ - גילוי וקזת''א"}</option>
-              <option value={"קא''מ - קמנ''ק"}>{"קא''מ - קמנ''ק"}</option>
-              <option value={"קא''מ - תובלייט"}>{"קא''מ - תובלייט"}</option>
-              <option value={"בט''ש - מתארים"}>{"בט''ש - מתארים"}</option>
-              <option value={"בט''ש - יירוט"}>{"בט''ש - יירוט"}</option>
-              <option value={"בט''ש - בת''ק"}>{"בט''ש - בת''ק"}</option>
-              <option value={"בט''ש - צילום"}>{"בט''ש - צילום"}</option>
-              <option value={"בט''ש - חילוץ"}>{"בט''ש - חילוץ"}</option>
-              <option value={"לחימה - הגנ''ש"}>{"לחימה - הגנ''ש"}</option>
-              <option value={"לחימה - בת''ק קרב"}>{"לחימה - בת''ק קרב"}</option>
-              <option value={"לחימה - בת''ק מסוקים"}>{"לחימה - בת''ק מסוקים"}</option>
-              <option value={"לחימה - חילוץ"}>{"לחימה - חילוץ"}</option>
-              <option value={"לחימה - איסוף"}>{"לחימה - איסוף"}</option>
-              <option value={"לחימה - אוצר"}>{"לחימה - אוצר"}</option>
-              <option value={"לחימה - משימות שוהות"}>{"לחימה - משימות שוהות"}</option>
-              <option value={"לחימה - תא שטח"}>{"לחימה - תא שטח"}</option>
-              <option value={"לחימה - תדלוק"}>{"לחימה - תדלוק"}</option>
-              <option value={"מ''ע/מתאם אימון"}>{"מ''ע/מתאם אימון"}</option>
-              <option value={"תובלות"}>{"תובלות"}</option>
-              <option value={"מחוברת"}>{"מחוברת"}</option>
-              <option value={"עפרוני"}>{"עפרוני"}</option>
-              <option value={"בק''צ"}>{"בק''צ"}</option>
-              <option value={"חמש''ס"}>{"חמש''ס"}</option>
-              <option value={"מרחבי"}>{"מרחבי"}</option>
-              <option value={"דרג ב' - מנהל תעבורה"}>{"דרג ב' - מנהל תעבורה"}</option>
-              <option value={"דרג ב' - מ''ע משולב"}>{"דרג ב' - מ''ע משולב"}</option>
-              <option value={"מובילים בט''ש"}>{"מובילים בט''ש"}</option>
-              <option value={"מובילים לחימה"}>{"מובילים לחימה"}</option>
-              <option value={"מלא''מ - הגנ''ש"}>{"מלא''מ - הגנ''ש"}</option>
-              <option value={"מלא''מ - תקיפה בחזית"}>{"מלא''מ - תקיפה בחזית"}</option>
-              <option value={"מלא''מ - מתאר עומק"}>{"מלא''מ - מתאר עומק"}</option>
-              <option value={"שמ''כ - מתארים"}>{"שמ''כ - מתארים"}</option>
-              <option value={"שמ''כ - יירוט"}>{"שמ''כ - יירוט"}</option>
-              <option value={"שמ''כ - בת''ק"}>{"שמ''כ - בת''ק"}</option>
-              <option value={"אחר, פרט:"}>{"אחר, פרט:"}</option>
-            
+{emdalist.map((x)=><option value={x}>{x}</option>)}
+             
+              {/* <option value={"אחר, פרט:"}>{"אחר, פרט:"}</option> */}
             </select>
             {Emdat === "אחר, פרט:" && (
               <input
@@ -327,8 +279,8 @@ setautonum(res.data.a);
           <td className="otd" style={{ textAlign: "center", width: "90px" }}>
             <input
               style={{ textAlign: "center", width: "95%" }}
-              value={No}
-              defaultValue={autonum}
+              value={Emdat ? No : 0}
+              defaultValue={Emdat ? autonum : 0}
               type="number"
               onChange={(e) => setNo(Math.abs(e.target.value))}
             ></input>

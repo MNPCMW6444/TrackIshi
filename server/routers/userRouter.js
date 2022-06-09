@@ -5,8 +5,11 @@ const jwt = require("jsonwebtoken");
 
 router.post("/addnewCrewmByComm", async (req, res) => {
   try {
-    const { iMA, password, passwordVerify,
-       FirstName,
+    const {
+      iMA,
+      password,
+      passwordVerify,
+      FirstName,
       LastName,
       NickName,
       CourseNo,
@@ -21,8 +24,7 @@ router.post("/addnewCrewmByComm", async (req, res) => {
       SoogHatsava,
       Maslool,
       Dereg,
- } = req.body;
-  
+    } = req.body;
 
     const token = req.cookies.token;
 
@@ -32,9 +34,20 @@ router.post("/addnewCrewmByComm", async (req, res) => {
 
     const userr = await User.findById(validatedUser.user);
 
-    if (userr.Role === "DIRECT" || userr.Role === "KAHAD" ) {
-      if (!iMA || !password || !passwordVerify || !Dereg||!FirstName||!Unit||!CourseNo||!LastName||!SoogHatsava||!Rank||!Maslool)
-     
+    if (userr.Role === "DIRECT" || userr.Role === "KAHAD") {
+      if (
+        !iMA ||
+        !password ||
+        !passwordVerify ||
+        !Dereg ||
+        !FirstName ||
+        !Unit ||
+        !CourseNo ||
+        !LastName ||
+        !SoogHatsava ||
+        !Rank ||
+        !Maslool
+      )
         return res
           .status(400)
           .json({ errorMessage: "אחד או יותר משדות החובה לא התקבלו" });
@@ -61,84 +74,49 @@ router.post("/addnewCrewmByComm", async (req, res) => {
       const MyComm = userr._id;
 
       let Deregg;
-      if(
-        Dereg==="א'"
-      )
-      Deregg="a";
-      if(
-        Dereg==="ב'"
-      )
-      Deregg="b";
-      if(
-        Dereg==="ג'"
-      )
-      Deregg="c";
-      if(
-        Dereg==="ד'"
-      )
-      Deregg="d";
-
+      if (Dereg === "א'") Deregg = "a";
+      if (Dereg === "ב'") Deregg = "b";
+      if (Dereg === "ג'") Deregg = "c";
+      if (Dereg === "ד'") Deregg = "d";
 
       let Maslooll;
-      if(
-        Maslool==="תעבורה"
-      )
-      Maslooll="taavura";
-      if(
-        Maslool==="משימה"
-      )
-      Maslooll="mesima";
-      if(
-        Maslool==="ורסטילי"
-      )
-      Maslooll="versatili";
-      if(
-        Maslool==="הכשרה"
-      )
-      Maslooll="ha";
+      if (Maslool === "תעבורה") Maslooll = "taavura";
+      if (Maslool === "משימה") Maslooll = "mesima";
+      if (Maslool === "ורסטילי") Maslooll = "versatili";
+      if (Maslool === "הכשרה") Maslooll = "ha";
 
       let Hatsavaa;
-      if(
-        SoogHatsava==='הצ"ח'
-      )
-      Hatsavaa="hatsach";
-      if(
-        SoogHatsava==="מילואים"
-      )
-      Hatsavaa="miluim";
-      if(
-        SoogHatsava==="סדיר"
-      )
-      Hatsavaa="sadir";
-     
+      if (SoogHatsava === 'הצ"ח') Hatsavaa = "hatsach";
+      if (SoogHatsava === "מילואים") Hatsavaa = "miluim";
+      if (SoogHatsava === "סדיר") Hatsavaa = "sadir";
 
-
-      const newUser = new User({ MA, passwordHash, Role, MyComm,
-        FirstName:FirstName,
-        LastName:LastName,
-        NickName:NickName,
-        CourseNo:CourseNo,
-        BirthDate:BirthDate,
-        Email:Email,
-        MainPhone:MainPhone,
-        EmergencyPhone:EmergencyPhone,
-        AddressCity:AddressCity,
-        AddressLine:AddressLine,
-        Rank:Rank,
-        Unit:Unit,
-        SoogHatsava:Hatsavaa,
-        Maslool:Maslooll,
-        Dereg:Deregg,
-
-    
+      const newUser = new User({
+        MA,
+        passwordHash,
+        Role,
+        MyComm,
+        FirstName: FirstName,
+        LastName: LastName,
+        NickName: NickName,
+        CourseNo: CourseNo,
+        BirthDate: BirthDate,
+        Email: Email,
+        MainPhone: MainPhone,
+        EmergencyPhone: EmergencyPhone,
+        AddressCity: AddressCity,
+        AddressLine: AddressLine,
+        Rank: Rank,
+        Unit: Unit,
+        SoogHatsava: Hatsavaa,
+        Maslool: Maslooll,
+        Dereg: Deregg,
       });
 
-      console.log("NM "+newUser.NickName);
+      console.log("NM " + newUser.NickName);
 
       const saveduserr = await newUser.save();
       res.json(saveduserr);
     } else {
-
       return res.status(401).json({
         errorMessage: "ניסית להוסיף איש צוות תחת פיקודך אך אינך מחובר כמפקד גף",
       });
@@ -219,9 +197,8 @@ router.put("/changemypass", async (req, res) => {
     const ph = await bcrypt.hash(pass, salt);
 
     userr.passwordHash = ph;
-    
-    if (dereg)
-    userr.Dereg = dereg;
+
+    if (dereg) userr.Dereg = dereg;
 
     const saveduserr = await userr.save();
 
@@ -419,7 +396,7 @@ router.get("/getmypeople", async (req, res) => {
 
     const userr = await User.findById(validatedUser.user);
 
-    if (userr.Role === "DIRECT" ) {
+    if (userr.Role === "DIRECT") {
       allusers = await User.find();
       for (let i = 0; i < allusers.length; i++) {
         if (!allusers[i].MyComm || allusers[i].MyComm.toString() != userr._id) {
@@ -439,7 +416,6 @@ router.get("/getmypeople", async (req, res) => {
   }
 });
 
-
 router.get("/getmypeopleM", async (req, res) => {
   try {
     const token = req.cookies.token;
@@ -450,21 +426,37 @@ router.get("/getmypeopleM", async (req, res) => {
 
     const userr = await User.findById(validatedUser.user);
 
-    if (userr.Role === "DIRECT" || userr.Role === "SCHOOL"  || userr.Role === "AUTHCO") {
+    if (
+      userr.Role === "DIRECT" ||
+      userr.Role === "SCHOOL" ||
+      userr.Role === "AUTHCO"
+    ) {
       allusers = await User.find();
       for (let i = 0; i < allusers.length; i++) {
-        if( userr.Role === "DIRECT") if (!allusers[i].MyComm || allusers[i].MyComm.toString() != userr._id) {
-          allusers.splice(i, 1);
-          i--;
-        }
-        if( userr.Role === "AUTCO") if (!allusers[i].MyAuth || allusers[i].MyAuth.toString() != userr._id) {
-          allusers.splice(i, 1);
-          i--;
-        }
-        if( userr.Role === "SCHOOL") if (!allusers[i].MyTutor || allusers[i].MyTutor.toString() != userr._id) {
-          allusers.splice(i, 1);
-          i--;
-        }
+        if (userr.Role === "DIRECT")
+          if (
+            !allusers[i].MyComm ||
+            allusers[i].MyComm.toString() != userr._id
+          ) {
+            allusers.splice(i, 1);
+            i--;
+          }
+        if (userr.Role === "AUTCO")
+          if (
+            !allusers[i].MyAuth ||
+            allusers[i].MyAuth.toString() != userr._id
+          ) {
+            allusers.splice(i, 1);
+            i--;
+          }
+        if (userr.Role === "SCHOOL")
+          if (
+            !allusers[i].MyTutor ||
+            allusers[i].MyTutor.toString() != userr._id
+          ) {
+            allusers.splice(i, 1);
+            i--;
+          }
       }
       res.json(allusers);
     } else {
@@ -583,6 +575,7 @@ router.post("/login", async (req, res) => {
       })
       .send();
   } catch (err) {
+    console.log(err);
     res.status(500).send();
   }
 });
@@ -636,8 +629,6 @@ router.get("/getFullDetails", async (req, res) => {
   }
 });
 
-
-
 router.get("/getFullDetailsE/:ma", async (req, res) => {
   try {
     const token = req.cookies.token;
@@ -654,7 +645,6 @@ router.get("/getFullDetailsE/:ma", async (req, res) => {
   }
 });
 
-
 router.get("/getnn/:id", async (req, res) => {
   try {
     const token = req.cookies.token;
@@ -665,7 +655,7 @@ router.get("/getnn/:id", async (req, res) => {
 
     const userr = await User.findOne({ _id: req.params.id });
 
-    res.json({nn:userr.NickName});
+    res.json({ nn: userr.NickName });
   } catch (err) {
     res.status(401).send();
   }
@@ -792,9 +782,9 @@ router.put("/updateFullDetails2/:ma", async (req, res) => {
   try {
     const {
       authx,
-commx,
-schlx,
-rolex,
+      commx,
+      schlx,
+      rolex,
       firstname,
       lastname,
       nickname,
@@ -811,7 +801,6 @@ rolex,
       maslool,
       dereg,
     } = req.body;
-
 
     if (!firstname)
       return res.status(400).json({ errorMessage: "נא למלא שם פרטי" });
@@ -850,7 +839,7 @@ rolex,
     if (!maslool)
       return res.status(400).json({ errorMessage: "נא לבחור מסלול" });
 
-      if (!dereg)
+    if (!dereg)
       return res.status(400).json({ errorMessage: "נא לבחור דרג מקצועי" });
 
     const token = req.cookies.token;
@@ -863,17 +852,22 @@ rolex,
 
     let caneditextra = false;
 
-    if((authx||
-      commx||
-      schlx||
-      rolex )&& (userr.Role === "DIRECT" || userr.Role === "AUTHCO"))
-        caneditextra = true;
-        else return res.status(400).json({ errorMessage: "אינך מורשה לשנות היררכיה או תפקיד, נא לרענן את הדף או לדוווח על תקלה" });
+    if (
+      (authx || commx || schlx || rolex) &&
+      (userr.Role === "DIRECT" || userr.Role === "AUTHCO")
+    )
+      caneditextra = true;
+    else
+      return res.status(400).json({
+        errorMessage:
+          "אינך מורשה לשנות היררכיה או תפקיד, נא לרענן את הדף או לדוווח על תקלה",
+      });
 
-
-      
-
-    if (userr.Role === "KAHAD" || userr.Role === "DIRECT" || userr.Role === "AUTHCO") {
+    if (
+      userr.Role === "KAHAD" ||
+      userr.Role === "DIRECT" ||
+      userr.Role === "AUTHCO"
+    ) {
       const userrr = await User.findOne({ MA: req.params.ma });
 
       userrr.FirstName = firstname;
@@ -892,36 +886,36 @@ rolex,
       userrr.Maslool = maslool;
       userrr.Dereg = dereg;
 
-      if(caneditextra)
-      {
-        userrr.MyAuth = await getid(authx/* .split("").reverse().join("") */);
-        userrr.MyComm = await getid(commx/* .split("").reverse().join("") */);
-        userrr.MyTutor = await getid(schlx/* .split("").reverse().join("") */);
+      if (caneditextra) {
+        userrr.MyAuth = await getid(authx /* .split("").reverse().join("") */);
+        userrr.MyComm = await getid(commx /* .split("").reverse().join("") */);
+        userrr.MyTutor = await getid(schlx /* .split("").reverse().join("") */);
 
-        if(rolex==="איש צוות") userrr.Role = "SCREW";
-        if(rolex==="מפקד גף") userrr.Role = "DIRECT";
-        if(rolex==="מפקד יחידה") userrr.Role = "AUTHCO";
-        if(rolex==="מנהל כח אדם") userrr.Role = "KAHAD";
-        if(rolex==="מבצעים") userrr.Role = "PAKMATS";
-        if(rolex==="מפקד הכשרה") userrr.Role = "SCHOOL";
+        if (rolex === "איש צוות") userrr.Role = "SCREW";
+        if (rolex === "מפקד גף") userrr.Role = "DIRECT";
+        if (rolex === "מפקד יחידה") userrr.Role = "AUTHCO";
+        if (rolex === "מנהל כח אדם") userrr.Role = "KAHAD";
+        if (rolex === "מבצעים") userrr.Role = "PAKMATS";
+        if (rolex === "מפקד הכשרה") userrr.Role = "SCHOOL";
       }
 
-      async function  getid(nn){
-if(nn!=="ללא"){
-        const res = await User.find({NickName:nn});
-      
-        let s=res[0]._id.toString();
+      async function getid(nn) {
+        if (nn !== "ללא") {
+          const res = await User.find({ NickName: nn });
 
-return s; }
-else return null;
+          let s = res[0]._id.toString();
 
+          return s;
+        } else return null;
       }
-
 
       const saveduserr = await userrr.save();
 
       res.json(saveduserr);
-    } else return res.status(400).json({ errorMessage: "אינך מנהל כח אדם או מפקד גף/יחידה" });
+    } else
+      return res
+        .status(400)
+        .json({ errorMessage: "אינך מנהל כח אדם או מפקד גף/יחידה" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ errorMessage: "נתונים לא תקינים" });
@@ -941,7 +935,7 @@ router.get("/getauths", async (req, res) => {
     if (userr.Role === "DIRECT" || userr.Role === "AUTHCO") {
       allusers = await User.find();
       for (let i = 0; i < allusers.length; i++) {
-        if (allusers[i].Role !=="AUTHCO" ) {
+        if (allusers[i].Role !== "AUTHCO") {
           allusers.splice(i, 1);
           i--;
         }
@@ -971,7 +965,7 @@ router.get("/getdirects", async (req, res) => {
     if (userr.Role === "DIRECT" || userr.Role === "AUTHCO") {
       allusers = await User.find();
       for (let i = 0; i < allusers.length; i++) {
-        if (allusers[i].Role !=="DIRECT" ) {
+        if (allusers[i].Role !== "DIRECT") {
           allusers.splice(i, 1);
           i--;
         }
@@ -988,7 +982,6 @@ router.get("/getdirects", async (req, res) => {
   }
 });
 
-
 router.get("/getschlls", async (req, res) => {
   try {
     const token = req.cookies.token;
@@ -1002,7 +995,7 @@ router.get("/getschlls", async (req, res) => {
     if (userr.Role === "DIRECT" || userr.Role === "AUTHCO") {
       allusers = await User.find();
       for (let i = 0; i < allusers.length; i++) {
-        if (allusers[i].Role !=="SCHOOL" ) {
+        if (allusers[i].Role !== "SCHOOL") {
           allusers.splice(i, 1);
           i--;
         }

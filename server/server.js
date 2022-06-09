@@ -25,7 +25,7 @@ app.use(
 );
 
 mongoose.connect(
-  process.env.MONGOURI,
+  process.env.MONGO,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

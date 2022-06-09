@@ -595,7 +595,7 @@ function UpdateFUD(props) {
               </div>
               <br />
               <div className="fudunit">
-                <div className="fudTitle">טלפון למקרה חירום: </div>
+                <div className="fudTitle">טל' למקרה חירום: </div>
                 <div className="fudContent">
                   <input
                     className="fudinput"
@@ -610,7 +610,7 @@ function UpdateFUD(props) {
               </div>
               <br />
               <div className="fudunit">
-                <div className="fudTitle">כתובת דוא"ל אזרחי:</div>
+                <div className="fudTitle">דוא"ל אזרחי:</div>
                 <div className="fudContent">
                   <input
                     className="fudinput"
