@@ -23,12 +23,12 @@ export default function TACHSALTB(props) {
     let finil;
     finil = goten[i].BirthDate && goten[i].BirthDate.substring(0, 10);
     let finili;
-    if (finil){
-    const day = finil.substring(5, 7);
-    const monthf = finil.substring(8, 10);
-    const year = finil.substring(0, 4);
-    finili = day + "/" + monthf + "/" + year;
-  }
+    if (finil) {
+      const day = finil.substring(5, 7);
+      const monthf = finil.substring(8, 10);
+      const year = finil.substring(0, 4);
+      finili = day + "/" + monthf + "/" + year;
+    }
     goten[i].BirthDate = finili;
     let hebrewMaslool = "לא ידוע";
     switch (goten[i].Maslool) {
@@ -41,9 +41,9 @@ export default function TACHSALTB(props) {
       case "versatili":
         hebrewMaslool = "ורסטילי";
         break;
-        case "ha":
-          hebrewMaslool = "הכשרה";
-          break;
+      case "ha":
+        hebrewMaslool = "הכשרה";
+        break;
       default:
         break;
     }
@@ -60,6 +60,16 @@ export default function TACHSALTB(props) {
     goten[i].is506 = goten[i].Unit === "506" ? "כן" : "לא";
     goten[i].is509 = goten[i].Unit === "509" ? "כן" : "לא";
     goten[i].is528 = goten[i].Unit === "528" ? "כן" : "לא";
+  }
+
+  for (let i = 0; i < goten.length; i++) {
+    goten[i].isBakara = goten[i].Isb ? "כן" : "לא";
+    goten[i].isPikuach = !goten[i].Isb ? "כן" : "לא";
+  }
+
+  for (let i = 0; i < goten.length; i++) {
+    goten[i].isKatsin = goten[i].Isk ? "כן" : "לא";
+    goten[i].isOger = !goten[i].Isk ? "כן" : "לא";
   }
 
   for (let i = 0; i < goten.length; i++) {
@@ -186,6 +196,26 @@ export default function TACHSALTB(props) {
       {
         Header: "האם 509",
         accessor: "is509",
+        show: false,
+      },
+      {
+        Header: "האם בקרה",
+        accessor: "isBakara",
+        show: false,
+      },
+      {
+        Header: "האם פיקוח",
+        accessor: "isPikuach",
+        show: false,
+      },
+      {
+        Header: "האם קצין",
+        accessor: "isKatsin",
+        show: false,
+      },
+      {
+        Header: "האם אוגר",
+        accessor: "isOger",
         show: false,
       },
       {
@@ -330,6 +360,15 @@ export default function TACHSALTB(props) {
     if (status[0] && status[1] && status[2]) return ["", "", ""];
   }
 
+  function checkLogic2(status) {
+    if (!status[0] && !status[1]) return ["", ""];
+
+    if (status[0] && !status[1]) return ["כן", ""];
+    if (!status[0] && status[1]) return ["", "כן"];
+
+    if (status[0] && status[1]) return ["", ""];
+  }
+
   const handleFilterChange6mesima = (e) => {
     const res = checkLogic([!mas1clicked, mas2clicked, mas3clicked]);
     setFilter("isMesima", res[0]);
@@ -398,6 +437,46 @@ export default function TACHSALTB(props) {
     setFilter("is528", res[2]);
     if (!mas3clickedUNIT) setMas3clickedUNIT(true);
     else setMas3clickedUNIT(false);
+  };
+
+  const [bakara, setbakara] = useState(false);
+  const [pikuach, setpikuach] = useState(false);
+  const [ktsinim, setktsinim] = useState(false);
+  const [ogrim, setogrim] = useState(false);
+
+  const handlebakara = (e) => {
+    const res = checkLogic2([!bakara, pikuach]);
+    setFilter("isBakara", res[0]);
+    setFilter("isPikuach", res[1]);
+
+    if (!bakara) setbakara(true);
+    else setbakara(false);
+  };
+
+  const handlepikuach = (e) => {
+    const res = checkLogic2([bakara, !pikuach]);
+    setFilter("isBakara", res[0]);
+    setFilter("isPikuach", res[1]);
+    if (!pikuach) setpikuach(true);
+    else setpikuach(false);
+  };
+
+  const handlektsinim = (e) => {
+    const res = checkLogic2([!ktsinim, ogrim]);
+    setFilter("isKatsin", res[0]);
+    setFilter("isOger", res[1]);
+
+    if (!ktsinim) setktsinim(true);
+    else setktsinim(false);
+  };
+
+  const handleogrim = (e) => {
+    const res = checkLogic2([ktsinim, !ogrim]);
+    setFilter("isKatsin", res[0]);
+    setFilter("isOger", res[1]);
+
+    if (!ogrim) setogrim(true);
+    else setogrim(false);
   };
 
   const [mas1clickedHATSAVA, setMas1clickedHATSAVA] = useState(false);
@@ -665,6 +744,10 @@ export default function TACHSALTB(props) {
     if (mas1clickedUNIT) handleFilterChange6506();
     if (mas2clickedUNIT) handleFilterChange6509();
     if (mas3clickedUNIT) handleFilterChange6528();
+    if (bakara) handlebakara();
+    if (pikuach) handlepikuach();
+    if (ktsinim) handlektsinim();
+    if (ogrim) handleogrim();
     if (mas1clicked) handleFilterChange6mesima();
     if (mas2clicked) handleFilterChange6taavura();
     if (mas3clicked) handleFilterChange6versatili();
@@ -853,6 +936,37 @@ export default function TACHSALTB(props) {
                       אחר
                     </button>
                   </div>
+                  <div className="filterHeaderROW">
+                    <button className="filterHeader">לפי אוכלוסייה:</button>
+                    <button className="filterbigSpace" tabIndex={-1}></button>
+                    <button
+                      className={"filterBTNof4" + bakara}
+                      onClick={handlebakara}
+                    >
+                      בקרה
+                    </button>
+                    <button className="filterSmallSpace" tabIndex={-1}></button>
+                    <button
+                      className={"filterBTNof4" + pikuach}
+                      onClick={handlepikuach}
+                    >
+                      פיקוח
+                    </button>
+                    <button className="filterSmallSpace" tabIndex={-1}></button>
+                    <button
+                      className={"filterBTNof4" + ktsinim}
+                      onClick={handlektsinim}
+                    >
+                      קצינים
+                    </button>
+                    <button className="filterSmallSpace" tabIndex={-1}></button>
+                    <button
+                      className={"filterBTNof4" + ogrim}
+                      onClick={handleogrim}
+                    >
+                      חוגרים
+                    </button>
+                  </div>
                 </div>
               </td>
               <td>
@@ -922,6 +1036,10 @@ export default function TACHSALTB(props) {
       {(mas1clickedUNIT ||
         mas2clickedUNIT ||
         mas3clickedUNIT ||
+        bakara ||
+        pikuach ||
+        ktsinim ||
+        ogrim ||
         mas1clicked ||
         mas2clicked ||
         mas3clicked ||

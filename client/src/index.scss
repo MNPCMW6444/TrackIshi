@@ -600,6 +600,11 @@ textarea {
   padding-right: 2%;
 }
 
+.FUDcolumn30 {
+  width: 25%;
+  padding-right: 5%;
+}
+
 .FUDcolumnFirst {
   width: 18%;
   padding-right: 0px;
@@ -615,7 +620,6 @@ textarea {
 
 .fudunit {
   border: 1px solid rgba(23, 25, 53, 0.445);
-;
 }
 
 .fudTitle {
@@ -630,7 +634,6 @@ textarea {
   border: 2px solid rgb(23, 0, 107);
   color: white;
 }
-
 
 .fudTitles {
   text-align: center;
@@ -659,8 +662,6 @@ textarea {
 
   text-overflow: ellipsis;
 }
-
-
 
 .fudupdatebuttondiv {
   text-align: center;
@@ -916,7 +917,6 @@ textarea {
   border-radius: 30px;
 }
 
-
 .mofastable {
   background-color: rgba(255, 255, 255, 0.541);
 }
@@ -1098,6 +1098,4 @@ a {
 .must2 {
   color: rgba(23, 1, 148, 0);
   font-weight: 900;
-
 }
-

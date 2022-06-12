@@ -25,9 +25,8 @@ export default function TACHSALTBKAHAD(props) {
     for (let i = 0; i < goten.length; i++) {
       let finil = "";
       if (goten[i] && goten[i].BirthDate && goten[i].BirthDate.substring(0, 10))
-        finil =goten[i].BirthDate.substring(0, 10);
-      else
-        finil = "00/00/0000";
+        finil = goten[i].BirthDate.substring(0, 10);
+      else finil = "00/00/0000";
       const day = finil.substring(5, 7);
       const monthf = finil.substring(8, 10);
       const year = finil.substring(0, 4);
@@ -48,7 +47,7 @@ export default function TACHSALTBKAHAD(props) {
           hebrewMaslool = "הכשרה";
           break;
         default:
-        break;
+          break;
       }
       goten[i].Maslool = hebrewMaslool;
     }
@@ -79,6 +78,16 @@ export default function TACHSALTBKAHAD(props) {
     }
 
     for (let i = 0; i < goten.length; i++) {
+      goten[i].isBakara = goten[i].Isb ? "כן" : "לא";
+      goten[i].isPikuach = !goten[i].Isb ? "כן" : "לא";
+    }
+
+    for (let i = 0; i < goten.length; i++) {
+      goten[i].isKatsin = goten[i].Isk ? "כן" : "לא";
+      goten[i].isOger = !goten[i].Isk ? "כן" : "לא";
+    }
+
+    for (let i = 0; i < goten.length; i++) {
       goten[i].isSeren = goten[i].Rank === "סרן" ? "כן" : "לא";
       goten[i].isRasan = goten[i].Rank === 'רס"ן' ? "כן" : "לא";
       goten[i].isSaal = goten[i].Rank === 'סא"ל' ? "כן" : "לא";
@@ -106,6 +115,26 @@ export default function TACHSALTBKAHAD(props) {
       {
         Header: "יחידה",
         accessor: "Unit",
+      },
+      {
+        Header: "האם בקרה",
+        accessor: "isBakara",
+        show: false,
+      },
+      {
+        Header: "האם פיקוח",
+        accessor: "isPikuach",
+        show: false,
+      },
+      {
+        Header: "האם קצין",
+        accessor: "isKatsin",
+        show: false,
+      },
+      {
+        Header: "האם אוגר",
+        accessor: "isOger",
+        show: false,
       },
       {
         Header: "מסלול",
@@ -284,6 +313,15 @@ export default function TACHSALTBKAHAD(props) {
     setFilterInput(value);
   };
 
+  function checkLogic2(status) {
+    if (!status[0] && !status[1]) return ["", ""];
+
+    if (status[0] && !status[1]) return ["כן", ""];
+    if (!status[0] && status[1]) return ["", "כן"];
+
+    if (status[0] && status[1]) return ["", ""];
+  }
+
   const [filterInput2, setFilterInput2] = useState("");
 
   const handleFilterChange2 = (e) => {
@@ -445,6 +483,46 @@ export default function TACHSALTBKAHAD(props) {
     setFilter("isMiluim", res[2]);
     if (!mas3clickedHATSAVA) setMas3clickedHATSAVA(true);
     else setMas3clickedHATSAVA(false);
+  };
+
+  const [bakara, setbakara] = useState(false);
+  const [pikuach, setpikuach] = useState(false);
+  const [ktsinim, setktsinim] = useState(false);
+  const [ogrim, setogrim] = useState(false);
+
+  const handlebakara = (e) => {
+    const res = checkLogic2([!bakara, pikuach]);
+    setFilter("isBakara", res[0]);
+    setFilter("isPikuach", res[1]);
+
+    if (!bakara) setbakara(true);
+    else setbakara(false);
+  };
+
+  const handlepikuach = (e) => {
+    const res = checkLogic2([bakara, !pikuach]);
+    setFilter("isBakara", res[0]);
+    setFilter("isPikuach", res[1]);
+    if (!pikuach) setpikuach(true);
+    else setpikuach(false);
+  };
+
+  const handlektsinim = (e) => {
+    const res = checkLogic2([!ktsinim, ogrim]);
+    setFilter("isKatsin", res[0]);
+    setFilter("isOger", res[1]);
+
+    if (!ktsinim) setktsinim(true);
+    else setktsinim(false);
+  };
+
+  const handleogrim = (e) => {
+    const res = checkLogic2([ktsinim, !ogrim]);
+    setFilter("isKatsin", res[0]);
+    setFilter("isOger", res[1]);
+
+    if (!ogrim) setogrim(true);
+    else setogrim(false);
   };
 
   const [mas1clickedDEREG, setMas1clickedDEREG] = useState(false);
@@ -672,6 +750,10 @@ export default function TACHSALTBKAHAD(props) {
     if (mas1clicked) handleFilterChange6mesima();
     if (mas2clicked) handleFilterChange6taavura();
     if (mas3clicked) handleFilterChange6versatili();
+    if (bakara) handlebakara();
+    if (pikuach) handlepikuach();
+    if (ktsinim) handlektsinim();
+    if (ogrim) handleogrim();
     if (mas1clickedHATSAVA) handleFilterChange6Sadir();
     if (mas2clickedHATSAVA) handleFilterChange6Hatsach();
     if (mas3clickedHATSAVA) handleFilterChange6Miluim();
@@ -876,6 +958,46 @@ export default function TACHSALTBKAHAD(props) {
                         אחר
                       </button>
                     </div>
+                    <div className="filterHeaderROW">
+                      <button className="filterHeader">לפי אוכלוסייה:</button>
+                      <button className="filterbigSpace" tabIndex={-1}></button>
+                      <button
+                        className={"filterBTNof4" + bakara}
+                        onClick={handlebakara}
+                      >
+                        בקרה
+                      </button>
+                      <button
+                        className="filterSmallSpace"
+                        tabIndex={-1}
+                      ></button>
+                      <button
+                        className={"filterBTNof4" + pikuach}
+                        onClick={handlepikuach}
+                      >
+                        פיקוח
+                      </button>
+                      <button
+                        className="filterSmallSpace"
+                        tabIndex={-1}
+                      ></button>
+                      <button
+                        className={"filterBTNof4" + ktsinim}
+                        onClick={handlektsinim}
+                      >
+                        קצינים
+                      </button>
+                      <button
+                        className="filterSmallSpace"
+                        tabIndex={-1}
+                      ></button>
+                      <button
+                        className={"filterBTNof4" + ogrim}
+                        onClick={handleogrim}
+                      >
+                        חוגרים
+                      </button>
+                    </div>
                   </div>
                 </td>
                 <td>
@@ -953,6 +1075,10 @@ export default function TACHSALTBKAHAD(props) {
           mas3clickedHATSAVA ||
           mas1clickedDEREG ||
           mas2clickedDEREG ||
+          bakara ||
+          pikuach ||
+          ktsinim ||
+          ogrim ||
           mas3clickedDEREG ||
           mas4clickedDEREG ||
           mas1clickedRank ||
@@ -1012,7 +1138,10 @@ export default function TACHSALTBKAHAD(props) {
                     {row.cells.map((cell) => {
                       return (
                         <td
-                          className={"theTableTD" + (cell.value && cell.value.length > 13)}
+                          className={
+                            "theTableTD" +
+                            (cell.value && cell.value.length > 13)
+                          }
                           {...cell.getCellProps()}
                         >
                           {cell.render("Cell")}

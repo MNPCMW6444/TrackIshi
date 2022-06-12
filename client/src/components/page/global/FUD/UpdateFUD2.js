@@ -4,7 +4,6 @@ import domain from "../../../../util/domain";
 import ErrorMessage from "../../../messages/ErrorMessage";
 import UserContext from "../../../../context/UserContext";
 
-
 function UpdateFUD(props) {
   let externalma;
   if (props.ma) externalma = props.ma;
@@ -19,14 +18,11 @@ function UpdateFUD(props) {
   const [hisdirect, sethisdirect] = useState();
   const [hisauth, sethisauth] = useState();
   const [role, setrole] = useState();
- 
-  
+  const [prof, setprof] = useState();
+  const [u, setu] = useState();
+
   const [nn, setnn] = useState();
 
-  
-  
-
-  
   const [ma, setMA] = useState();
 
   const [falg, setfalg] = useState(false);
@@ -61,10 +57,10 @@ function UpdateFUD(props) {
   const [soogHatsava, setSoogHatsava] = useState();
   const [maslool, setMaslool] = useState();
   const [ready, setReady] = useState(false);
-//תוספות לדרג
+  //תוספות לדרג
   const [fdereg, fsetDereg] = useState(); //חיפוש
   const [dereg, setDereg] = useState(); //הזנה
-  
+
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
@@ -72,49 +68,53 @@ function UpdateFUD(props) {
       let FUDRes;
       FUDRes = await Axios.get(`${domain}/user/getFullDetailsE/${externalma}`);
 
-
       try {
-        
-        let nno=await getnn(FUDRes.data.MyAuth);
-        
+        let nno = await getnn(FUDRes.data.MyAuth);
+
         sethisauth(nno);
-        
-        
       } catch (err) {
         console.log(err);
       }
       try {
-        let nno=await getnn(FUDRes.data.MyComm);
+        let nno = await getnn(FUDRes.data.MyComm);
         sethisdirect(nno);
-        
       } catch (err) {
         console.log(err);
       }
       try {
-        let nno=await getnn(FUDRes.data.MyTutor);
+        let nno = await getnn(FUDRes.data.MyTutor);
         sethischll(nno);
-        
       } catch (err) {
         console.log(err);
       }
       try {
-        
-        if(FUDRes.data.Role === "SCREW") setrole("איש צוות");
-        if(FUDRes.data.Role === "DIRECT") setrole("מפקד גף");
-        if(FUDRes.data.Role === "AUTHCO") setrole("מפקד יחידה");
-        if(FUDRes.data.Role === "KAHAD") setrole("מנהל כח אדם");
-        if(FUDRes.data.Role === "PAKMATS") setrole("מבצעים");
-        if(FUDRes.data.Role === "SCHOOL") setrole("מפקד הכשרה");
-         
-            
-      
+        if (FUDRes.data.Role === "SCREW") setrole("איש צוות");
+        if (FUDRes.data.Role === "DIRECT") setrole("מפקד גף");
+        if (FUDRes.data.Role === "AUTHCO") setrole("מפקד יחידה");
+        if (FUDRes.data.Role === "KAHAD") setrole("מנהל כח אדם");
+        if (FUDRes.data.Role === "PAKMATS") setrole("מבצעים");
+        if (FUDRes.data.Role === "SCHOOL") setrole("מפקד הכשרה");
+        if (FUDRes.data.Role === "S420") setrole("מפקד הכשרה 420");
       } catch (err) {
         console.log(err);
       }
-
 
       try {
         setMA(FUDRes.data.MA);
+      } catch (err) {
+        console.log(err);
+      }
+
+      try {
+        if (FUDRes.data.Isb) setprof("בקרה");
+        if (!FUDRes.data.Isb) setprof("פיקוח");
+      } catch (err) {
+        console.log(err);
+      }
+
+      try {
+        if (FUDRes.data.Isk) setu("קצינים");
+        if (!FUDRes.data.Isk) setu("חוגרים");
       } catch (err) {
         console.log(err);
       }
@@ -277,8 +277,7 @@ function UpdateFUD(props) {
         console.log(err);
       }
 
-
-//חיפוש דרג
+      //חיפוש דרג
       let derege;
       try {
         derege = FUDRes.data.Dereg === "a" ? "א'" : derege;
@@ -306,30 +305,23 @@ function UpdateFUD(props) {
     const getall = async () => {
       let FUDRes;
       FUDRes = await Axios.get(`${domain}/user/getdirects`);
-      setdirects(FUDRes && FUDRes.data );
+      setdirects(FUDRes && FUDRes.data);
 
-
-      FUDRes = await Axios.get(`${domain}/user/getschlls`);      setschlls(FUDRes && FUDRes.data );
+      FUDRes = await Axios.get(`${domain}/user/getschlls`);
+      setschlls(FUDRes && FUDRes.data);
 
       FUDRes = await Axios.get(`${domain}/user/getauths`);
-      setauths(FUDRes && FUDRes.data );
-
-      
-
+      setauths(FUDRes && FUDRes.data);
     };
     getFUD();
     getall();
-   
   }, []);
 
-  async function getnn  (id) {
-    
+  async function getnn(id) {
     let FUDRes;
     FUDRes = await Axios.get(`${domain}/user/getnn/${id}`);
-    return FUDRes && FUDRes.data  && FUDRes.data.nn;
-    
-  };
-
+    return FUDRes && FUDRes.data && FUDRes.data.nn;
+  }
 
   async function updatefud(e) {
     e.preventDefault();
@@ -351,7 +343,7 @@ function UpdateFUD(props) {
       console.log(err);
     }
 
-//המרת דרג לאנגלית
+    //המרת דרג לאנגלית
     let dereg2;
     try {
       dereg2 = fdereg === "א'" ? "a" : dereg2;
@@ -363,19 +355,21 @@ function UpdateFUD(props) {
     }
 
     let authx;
-     if(user.Role==="DIRECT" || user.Role==="AUTHCO")authx=hisauth;
+    if (user.Role === "DIRECT" || user.Role === "AUTHCO") authx = hisauth;
     let commx;
-     if(user.Role==="DIRECT" || user.Role==="AUTHCO")commx=hisdirect ;
+    if (user.Role === "DIRECT" || user.Role === "AUTHCO") commx = hisdirect;
     let schlx;
-     if(user.Role==="DIRECT" || user.Role==="AUTHCO")schlx=hischll;
+    if (user.Role === "DIRECT" || user.Role === "AUTHCO") schlx = hischll;
     let rolex;
-     if(user.Role==="DIRECT" || user.Role==="AUTHCO")rolex= role;
+    if (user.Role === "DIRECT" || user.Role === "AUTHCO") rolex = role;
 
     const updateFUDData = {
-      authx:authx,
-      commx:commx,
-      schlx:schlx,
-      rolex:rolex,
+      Isb: prof === "בקרה",
+      Isk: u === "קצינים",
+      authx: authx,
+      commx: commx,
+      schlx: schlx,
+      rolex: rolex,
       firstname: ffirstname,
       lastname: flastname,
       nickname: fnickname,
@@ -390,10 +384,8 @@ function UpdateFUD(props) {
       unit: funit,
       soogHatsava: hatsv2,
       maslool: msll2,
-//הזנת דרג
+      //הזנת דרג
       dereg: dereg2,
-
-
     };
 
     try {
@@ -403,9 +395,7 @@ function UpdateFUD(props) {
           `${domain}/user/updateFullDetails2/${externalma}`,
           updateFUDData
         );
-        
       else await Axios.put(`${domain}/user/updateFullDetails`, updateFUDData);
-      debugger;
 
       props.suc("הפרטים עודכנו בהצלחה!");
       const done = props.whendone;
@@ -470,38 +460,37 @@ function UpdateFUD(props) {
                   />
                 </div>
               </div>
-            
+
               <br />
-              {user && (user.Role==="DIRECT" || user.Role==="AUTHCO") && 
-<div className="fudunit">
-              <div className="fudTitles">תפקיד: </div>
-              <div className="fudContent">
-              <select className="fudinput" id="form-role"  type="text" placeholder="תפקיד"   defaultValue={role}
-                    value={role}
+              {user && (user.Role === "DIRECT" || user.Role === "AUTHCO") && (
+                <div className="fudunit">
+                  <div className="fudTitles">תפקיד: </div>
+                  <div className="fudContent">
+                    <select
+                      className="fudinput"
+                      id="form-role"
+                      type="text"
+                      placeholder="תפקיד"
+                      defaultValue={role}
+                      value={role}
+                      onChange={(e) => setrole(e.target.value)}
+                    >
+                      <option disabled selected value>
+                        {" "}
+                        -- בחר --{" "}
+                      </option>
 
-
-               onChange={(e) => setrole(e.target.value)} >
-          <option disabled selected value>
-          {" "}
-          -- בחר --{" "}
-        </option>
-
-        
-        <option>איש צוות</option>
-        <option>מפקד גף</option>
-        <option>מפקד יחידה</option>
-        <option>מנהל כח אדם</option>
-        <option>מבצעים</option>
-        <option>מפקד הכשרה</option>
-        
-         
-          
-           
-            
-              
-</select>
-</div></div>
-}
+                      <option>איש צוות</option>
+                      <option>מפקד גף</option>
+                      <option>מפקד יחידה</option>
+                      <option>מנהל כח אדם</option>
+                      <option>מבצעים</option>
+                      <option>מפקד הכשרה</option>
+                      <option>מפקד הכשרה 420</option>
+                    </select>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="FUDcolumn">
               <div className="fudunit">
@@ -549,34 +538,34 @@ function UpdateFUD(props) {
                 </div>
               </div>
               <br />
-              {user && (user.Role==="DIRECT" || user.Role==="AUTHCO") && 
-<div className="fudunit">
-              <div className="fudTitles">מפקד הכשרה: </div>
-              <div className="fudContent">
-              <select className="fudinput" id="form-hischll"  type="text" placeholder="מפקד הכשרה"   defaultValue={hischll}
-                    value={hischll}
+              {user && (user.Role === "DIRECT" || user.Role === "AUTHCO") && (
+                <div className="fudunit">
+                  <div className="fudTitles">מפקד הכשרה: </div>
+                  <div className="fudContent">
+                    <select
+                      className="fudinput"
+                      id="form-hischll"
+                      type="text"
+                      placeholder="מפקד הכשרה"
+                      defaultValue={hischll}
+                      value={hischll}
+                      onChange={(e) => sethischll(e.target.value)}
+                    >
+                      <option disabled selected value>
+                        {" "}
+                        -- בחר --{" "}
+                      </option>
 
+                      {schlls &&
+                        schlls.map((schll) => (
+                          <option>{schll.NickName}</option>
+                        ))}
 
-               onChange={(e) => sethischll(e.target.value)} >
-          <option disabled selected value>
-          {" "}
-          -- בחר --{" "}
-        </option>
-        
-        {
-          schlls && schlls.map((schll)=>  <option>{schll.NickName}</option>)
-        }
-
-<option >
-          {" "}
-          ללא{" "}
-        </option>
-
-
-</select>
-</div></div>
-}  <br />
-              <br />
+                      <option> ללא </option>
+                    </select>
+                  </div>
+                </div>
+              )}{" "}
             </div>
             <div className="FUDcolumn">
               <div className="fudunit">
@@ -622,27 +611,34 @@ function UpdateFUD(props) {
                     onChange={(e) => fsetEmail(e.target.value)}
                   />
                 </div>
-              </div><br />
-              {user && (user.Role==="DIRECT" || user.Role==="AUTHCO") && 
-<div className="fudunit">
-              <div className="fudTitles">מפקד גף: </div>
-              <div className="fudContent">
-              <select className="fudinput" id="form-hischll"  type="text" placeholder="מפקד גף"   defaultValue={hisdirect}
-                    value={hisdirect}
+              </div>
+              <br />
+              {user && (user.Role === "DIRECT" || user.Role === "AUTHCO") && (
+                <div className="fudunit">
+                  <div className="fudTitles">מפקד גף: </div>
+                  <div className="fudContent">
+                    <select
+                      className="fudinput"
+                      id="form-hischll"
+                      type="text"
+                      placeholder="מפקד גף"
+                      defaultValue={hisdirect}
+                      value={hisdirect}
+                      onChange={(e) => sethisdirect(e.target.value)}
+                    >
+                      <option disabled selected value>
+                        {" "}
+                        -- בחר --{" "}
+                      </option>
 
-
-               onChange={(e) => sethisdirect(e.target.value)} >
-          <option disabled selected value>
-          {" "}
-          -- בחר --{" "}
-        </option>
-
-        {
-          directs && directs.map((direct)=>  <option>{direct.NickName}</option>)
-        }
-</select>
-</div></div>
-}
+                      {directs &&
+                        directs.map((direct) => (
+                          <option>{direct.NickName}</option>
+                        ))}
+                    </select>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="FUDcolumn">
               <div className="fudunit">
@@ -678,235 +674,239 @@ function UpdateFUD(props) {
               <div className="fudunit">
                 <div className="fudTitle">דרגה: </div>
                 <div className="fudContent">
-                <select className="fudinput" id="form-rank"  type="text" placeholder="דרגה"   defaultValue={frank}
+                  <select
+                    className="fudinput"
+                    id="form-rank"
+                    type="text"
+                    placeholder="דרגה"
+                    defaultValue={frank}
                     value={frank}
-
-  onChange={(e) => fsetRank(e.target.value)}
->
-<option disabled selected value>
-            {" "}
-            -- בחר --{" "}
-          </option>
-    <option >
-    {" "}
-    סג"מ{" "}
-  </option>        
-  <option >
-    {" "}
-    סגן{" "}
-  </option>  
-  <option >
-    {" "}
-    סרן{" "}
-  </option>  
-  <option >
-    {" "}
-    רס"ן{" "}
-  </option>  
-  <option >
-    {" "}
-    סא"ל{" "}
-  </option>  
-  <option >
-    {" "}
-    אל"מ{" "}
-  </option>  
-  <option >
-    {" "}
-    תא"ל{" "}
-  </option> 
-    <option >
-    {" "}
-    צוער{" "}
-  </option>  
-
-</select> 
+                    onChange={(e) => fsetRank(e.target.value)}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      -- בחר --{" "}
+                    </option>
+                    <option> סג"מ </option>
+                    <option> סגן </option>
+                    <option> סרן </option>
+                    <option> רס"ן </option>
+                    <option> סא"ל </option>
+                    <option> אל"מ </option>
+                    <option> תא"ל </option>
+                    <option> צוער </option>
+                  </select>
                 </div>
-              </div>              <br />
+              </div>{" "}
+              <br />
+              {user && (user.Role === "DIRECT" || user.Role === "AUTHCO") && (
+                <div className="fudunit">
+                  <div className="fudTitles">מפקד יחידה: </div>
+                  <div className="fudContent">
+                    <select
+                      className="fudinput"
+                      id="form-hisauth"
+                      type="text"
+                      placeholder="מפקד יחידה"
+                      defaultValue={hisauth}
+                      value={hisauth}
+                      onChange={(e) => sethisauth(e.target.value)}
+                    >
+                      <option disabled selected value>
+                        {" "}
+                        -- בחר --{" "}
+                      </option>
 
-              {user && (user.Role==="DIRECT" || user.Role==="AUTHCO") && 
-<div className="fudunit">
-              <div className="fudTitles">מפקד יחידה: </div>
-              <div className="fudContent">
-              <select className="fudinput" id="form-hisauth"  type="text" placeholder="מפקד יחידה"   defaultValue={hisauth}
-                    value={hisauth}
-
-
-               onChange={(e) => sethisauth(e.target.value)} >
-          <option disabled selected value>
-          {" "}
-          -- בחר --{" "}
-        </option>
-        
-        {
-          auths && auths.map((auth)=>  <option>{auth.NickName}</option>)
-        }
-</select>
-</div></div>
-}
+                      {auths &&
+                        auths.map((auth) => <option>{auth.NickName}</option>)}
+                    </select>
+                  </div>
+                </div>
+              )}
             </div>
-
-
-
             <div className="FUDcolumn">
               <div className="fudunit">
                 <div className="fudTitle">יחידה: </div>
                 <div className="fudContent">
-                <select className="fudinput" id="form-unit"  type="text" placeholder="יחידה"   defaultValue={funit}
+                  <select
+                    className="fudinput"
+                    id="form-unit"
+                    type="text"
+                    placeholder="יחידה"
+                    defaultValue={funit}
                     value={funit}
-
-  onChange={(e) => fsetUnit(e.target.value)}
->
-<option disabled selected value>
-            {" "}
-            -- בחר --{" "}
-          </option>
-    <option >
-    {" "}
-    506{" "}
-  </option>        
-  <option >
-    {" "}
-    509{" "}
-  </option>  
-  <option >
-    {" "}
-    528{" "}
-  </option>  
-
-</select> 
+                    onChange={(e) => fsetUnit(e.target.value)}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      -- בחר --{" "}
+                    </option>
+                    <option> 506 </option>
+                    <option> 509 </option>
+                    <option> 528 </option>
+                  </select>
                 </div>
               </div>
               <br />
               <div className="fudunit">
                 <div className="fudTitle">סוג הצבה: </div>
                 <div className="fudContent">
-                <select className="fudinput" id="form-addressline"  type="text" placeholder="סוג הצבה"   defaultValue={fsoogHatsava}
+                  <select
+                    className="fudinput"
+                    id="form-addressline"
+                    type="text"
+                    placeholder="סוג הצבה"
+                    defaultValue={fsoogHatsava}
                     value={fsoogHatsava}
-
-  onChange={(e) => fsetSoogHatsava(e.target.value)}
->
-<option disabled selected value>
-            {" "}
-            -- בחר --{" "}
-          </option>
-    <option >
-    {" "}
-    סדיר{" "}
-  </option>        
-  <option >
-    {" "}
-    הצ"ח{" "}
-  </option>  
-  <option >
-    {" "}
-    מילואים{" "}
-  </option>  
-
-</select> 
+                    onChange={(e) => fsetSoogHatsava(e.target.value)}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      -- בחר --{" "}
+                    </option>
+                    <option> סדיר </option>
+                    <option> הצ"ח </option>
+                    <option> מילואים </option>
+                  </select>
                 </div>
               </div>
               <br />
               <div className="fudunit">
                 <div className="fudTitle">מסלול: </div>
                 <div className="fudContent">
-                <select className="fudinput" id="form-maslool"  type="text" placeholder="מסלול"   defaultValue={fmaslool}
+                  <select
+                    className="fudinput"
+                    id="form-maslool"
+                    type="text"
+                    placeholder="מסלול"
+                    defaultValue={fmaslool}
                     value={fmaslool}
-
-  onChange={(e) => fsetMaslool(e.target.value)}
->
-<option disabled selected value>
-            {" "}
-            -- בחר --{" "}
-          </option>
-    <option >
-    {" "}
-    משימה{" "}
-  </option>        
-  <option >
-    {" "}
-    תעבורה{" "}
-  </option>  
-  <option >
-    {" "}
-    ורסטילי{" "}
-  </option>  
-  <option >
-    {" "}
-    הכשרה{" "}
-  </option>  
-
-</select> 
+                    onChange={(e) => fsetMaslool(e.target.value)}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      -- בחר --{" "}
+                    </option>
+                    <option> משימה </option>
+                    <option> תעבורה </option>
+                    <option> ורסטילי </option>
+                    <option> הכשרה </option>
+                  </select>
                 </div>
-                </div>
+              </div>
 
+              <br />
 
-                <br />
-
-              
-               <div className="fudunit">
-              <div className="fudTitle">דרג מקצועי: </div>
-              <div className="fudContent">
-              <select className="fudinput" id="form-dereg"  type="text" placeholder="דרג"   defaultValue={fdereg}
+              <div className="fudunit">
+                <div className="fudTitle">דרג מקצועי: </div>
+                <div className="fudContent">
+                  <select
+                    className="fudinput"
+                    id="form-dereg"
+                    type="text"
+                    placeholder="דרג"
+                    defaultValue={fdereg}
                     value={fdereg}
-
-
-               onChange={(e) => fsetDereg(e.target.value)} >
-          <option disabled selected value>
-          {" "}
-          -- בחר --{" "}
-        </option> <option >
-          {" "}
-          א'{" "}
-        </option>        
-        <option >
-          {" "}
-          ב'{" "}
-        </option>  
-        <option >
-          {" "}
-          ג'{" "}
-        </option>  
-        <option >
-          {" "}
-          ד'{" "}
-        </option>  
-</select>  
-</div></div>
-
-
-            
+                    onChange={(e) => fsetDereg(e.target.value)}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      -- בחר --{" "}
+                    </option>{" "}
+                    <option> א' </option>
+                    <option> ב' </option>
+                    <option> ג' </option>
+                    <option> ד' </option>
+                  </select>
+                </div>
+              </div>
             </div>
+          </div>
+          <div className="FUD" style={{ paddingRight: "20%" }}>
+            {user && (user.Role === "DIRECT" || user.Role === "AUTHCO") && (
+              <div className="FUDcolumn30">
+                <br />
+                <div className="fudunit">
+                  <div className="fudTitles">מקצוע: </div>
+                  <div className="fudContent">
+                    <select
+                      className="fudinput"
+                      id="form-prof"
+                      type="text"
+                      placeholder="מקצוע"
+                      defaultValue={prof}
+                      value={prof}
+                      onChange={(e) => setprof(e.target.value)}
+                    >
+                      <option disabled selected value>
+                        {" "}
+                        -- בחר --{" "}
+                      </option>
 
-            
+                      <option>בקרה</option>
+                      <option>פיקוח</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            )}
+            {user && (user.Role === "DIRECT" || user.Role === "AUTHCO") && (
+              <div className="FUDcolumn30">
+                <br />
+                <div className="fudunit">
+                  <div className="fudTitles">אוכלוסייה: </div>
+                  <div className="fudContent">
+                    <select
+                      className="fudinput"
+                      id="form-u"
+                      type="text"
+                      placeholder="אוכלוסייה"
+                      defaultValue={u}
+                      value={u}
+                      onChange={(e) => setu(e.target.value)}
+                    >
+                      <option disabled selected value>
+                        {" "}
+                        -- בחר --{" "}
+                      </option>
 
-
-
-
-
-
-
-
-
-
-
-            
+                      <option>קצינים</option>
+                      <option>חוגרים</option>
+                    </select>
+                  </div>
+                </div>
+                <br />
+              </div>
+            )}
           </div>
         </form>
-        {user && (user.Role==="DIRECT" || user.Role==="AUTHCO") && <div style={{border:"1px dashed red", paddingRight:"15px", paddingBottom:"14px"}}><h2 style={{ color: "red" , fontSize: "15pt" }}>
-          שים לב!!!
-        </h2>
-        <h2 style={{ fontSize: "10pt", fontWeight:350 }}>
-          בשינוי <span style={{fontWeight:900}}>"תפקיד"</span> למשתמש, הינך משנה את כלל הרשאות הצפייה והעריכה שלו. יש לנהוג במשנה זהירות!
-        </h2>
-        <h2 style={{ fontSize: "10pt", fontWeight:350 }}>
-          בשינוי <span style={{fontWeight:900}}>"מפקד הכשרה"</span> למשתמש, הינך מאפשר למפקד ההכשרה המוגדר לצפות בכלל משובי ההדרכה (בלבד) של אותו משתמש (היסטוריה מלאה).
-        </h2>
-        <h2 style={{ fontSize: "10pt", fontWeight:350 }}>
-          בשינוי <span style={{fontWeight:900}}>"מפקד גף"</span> או <span style={{fontWeight:900}}>"מפקד יחידה"</span>, הינך מאפשר למפקד הגף/יחידה המוגדר לצפות בכלל משובי ההדרכה והחוו"דים המקצועיים המוזנים על אותו משתמש.
-        </h2>
-        </div>
-        }<br />
+        {user && (user.Role === "DIRECT" || user.Role === "AUTHCO") && (
+          <div
+            style={{
+              border: "1px dashed red",
+              paddingRight: "15px",
+              paddingBottom: "14px",
+            }}
+          >
+            <h2 style={{ color: "red", fontSize: "15pt" }}>שים לב!!!</h2>
+            <h2 style={{ fontSize: "10pt", fontWeight: 350 }}>
+              בשינוי <span style={{ fontWeight: 900 }}>"תפקיד"</span> למשתמש,
+              הינך משנה את כלל הרשאות הצפייה והעריכה שלו. יש לנהוג במשנה זהירות!
+            </h2>
+            <h2 style={{ fontSize: "10pt", fontWeight: 350 }}>
+              בשינוי <span style={{ fontWeight: 900 }}>"מפקד הכשרה"</span>{" "}
+              למשתמש, הינך מאפשר למפקד ההכשרה המוגדר לצפות בכלל משובי ההדרכה
+              (בלבד) של אותו משתמש (היסטוריה מלאה).
+            </h2>
+            <h2 style={{ fontSize: "10pt", fontWeight: 350 }}>
+              בשינוי <span style={{ fontWeight: 900 }}>"מפקד גף"</span> או{" "}
+              <span style={{ fontWeight: 900 }}>"מפקד יחידה"</span>, הינך מאפשר
+              למפקד הגף/יחידה המוגדר לצפות בכלל משובי ההדרכה והחוו"דים המקצועיים
+              המוזנים על אותו משתמש.
+            </h2>
+          </div>
+        )}
+        <br />
         <div className="fudupdatebuttondiv">
           <button className="fudupdatebutton" onClick={updatefud}>
             עדכן פרטים

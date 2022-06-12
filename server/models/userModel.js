@@ -22,6 +22,8 @@ const userSchema = new mongoose.Schema(
     Maslool: String,
     SoogHatsava: String,
     Unit: String,
+    Isb: Boolean,
+    Isk: Boolean,
     passwordHash: { type: String, required: true },
     Role: { type: String, required: true },
     // || "SCREW" || "DIRECT" || "AUTHCO" || "KAHAD" || "PAKMATS" || "SCHOOL" || "S420"

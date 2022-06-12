@@ -787,6 +787,8 @@ router.put("/updateFullDetails", async (req, res) => {
 router.put("/updateFullDetails2/:ma", async (req, res) => {
   try {
     const {
+      Isb,
+      Isk,
       authx,
       commx,
       schlx,
@@ -876,6 +878,8 @@ router.put("/updateFullDetails2/:ma", async (req, res) => {
     ) {
       const userrr = await User.findOne({ MA: req.params.ma });
 
+      userrr.Isb = Isb;
+      userrr.Isk = Isk;
       userrr.FirstName = firstname;
       userrr.LastName = lastname;
       userrr.NickName = nickname;
@@ -906,13 +910,17 @@ router.put("/updateFullDetails2/:ma", async (req, res) => {
       }
 
       async function getid(nn) {
-        if (nn !== "ללא") {
-          const res = await User.find({ NickName: nn });
+        try {
+          if (nn !== "ללא") {
+            const res = await User.find({ NickName: nn });
 
-          let s = res[0]._id.toString();
+            let s = res[0]._id.toString();
 
-          return s;
-        } else return null;
+            return s;
+          } else return null;
+        } catch (e) {
+          return null;
+        }
       }
 
       const saveduserr = await userrr.save();
