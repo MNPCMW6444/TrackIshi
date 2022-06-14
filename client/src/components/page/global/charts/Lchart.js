@@ -52,7 +52,6 @@ export default function Lchart(props) {
         console.log(err);
       }
     }
-
     let criteria = props.data;
     let allDATA = props.allDATA.reverse();
     let allAVGSgapi = props.avgs.data.gapi.reverse();
@@ -86,18 +85,17 @@ export default function Lchart(props) {
     }
 
     let data = Array.from(allDATA.length);
-
     for (let i = 0; i < allDATA.length; i++) {
       data[i] = {
         tkufa: numtotext(allDATA[i].Tkufa),
         [criteria]: allDATA[i][criteria],
-        [criteria + "g"]: allAVGSgapi[i][criteria],
-        [criteria + "c"]: allAVGScursi[i][criteria],
+        [criteria + "g"]: allAVGSgapi[i] && allAVGSgapi[i][criteria],
+        [criteria + "c"]: allAVGScursi[i] && allAVGScursi[i][criteria],
       };
     }
 
     return (
-      <div className={"c2hartdiv" + (props.isShown ? "show" : "")}>
+      <div className={"chartdiv"}>
         <span className="chart">
           <LineChart width={730} height={250} data={data}>
             <CartesianGrid

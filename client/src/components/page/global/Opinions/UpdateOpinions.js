@@ -38,20 +38,18 @@ export default function UpdateOpinions(props) {
       {res.map((opinion) => (
         <>
           <div>
-            {
-              <EditOpinionButton
-                oid={opinion._id}
-                allDATA={opinion}
-                shel={props.shel}
-                setDidupdated={setDidupdated}
-                isGray={opinion.wasMyEvaMA !== user.MA ? "gray" : ""}
-                style={
-                  opinion.wasMyEvaMA !== user.MA
-                    ? { backgroundColor: "gray" }
-                    : {}
-                }
-              />
-            }
+            <EditOpinionButton
+              oid={opinion._id}
+              allDATA={opinion}
+              shel={props.shel}
+              setDidupdated={setDidupdated}
+              isGray={opinion.wasMyEvaMA !== user.MA ? "gray" : ""}
+              style={
+                opinion.wasMyEvaMA !== user.MA
+                  ? { backgroundColor: "gray" }
+                  : {}
+              }
+            />
           </div>
           <br />
         </>

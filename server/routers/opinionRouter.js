@@ -35,6 +35,33 @@ router.get("/getallmy", async (req, res) => {
   }
 });
 
+router.get("/getallmy2/:ma", async (req, res) => {
+  try {
+    const token = req.cookies.token;
+
+    if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
+
+    const validatedUser = jwt.verify(token, process.env.JWTSECRET);
+    const ro = (await User.findById(validatedUser.user)).Role;
+    if (ro === "DIRECT" || ro === "AUTHCO") {
+      const screww = await User.find({ MA: req.params.ma });
+
+      const opinions = await Opinion.find({ CrewM: screww });
+
+      for (let i = 0; i < opinions.length; i++)
+        opinions[i] = await addFudsToOpinion(opinions[i]);
+
+      res.json(opinions);
+    } else {
+      return res.status(401).json({
+        errorMessage: 'ניסית לקבל את כל החוו"דים של איש צוות אך אינך מפקד שלו',
+      });
+    }
+  } catch (err) {
+    res.status(500).send();
+  }
+});
+
 router.get("/getallunapp", async (req, res) => {
   try {
     const token = req.cookies.token;

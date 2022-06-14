@@ -79,7 +79,6 @@ function NEWMOFA(props) {
   const [newGrade, setNewGrade] = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([4, "nelson"]);
 
   function setm11a(value) {
-    debugger;
     let lines = 1;
     let X = value.substring(0, 2);
     if (value.substring(0, 2) != "1. ") value = "1. " + value;

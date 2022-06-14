@@ -865,54 +865,18 @@ textarea {
 }
 
 .chartdiv {
-  visibility: hidden;
-  display: inline-block;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   position: absolute;
-  top: -400px;
-  right: -450px;
+  left: -300px;
+  top: 50px;
   z-index: 104;
-  padding-right: 20px;
-  padding-left: 20px;
-  background-color: white;
-}
-
-.chartdivshow {
-  visibility: visible;
-  display: inline-block;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  position: absolute;
-  top: MouseX;
-  right: MouseY;
-  z-index: 104;
-  padding-right: 20px;
-  padding-left: 0px;
-  padding-top: 40px;
   background-color: rgba(255, 255, 255, 0.952);
   border-radius: 30px;
 }
 
-.c2hartdivshow {
-  visibility: visible;
-  display: inline-block;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+.expdiv {
   position: absolute;
   z-index: 104;
-  padding-right: 20px;
-  padding-left: 0px;
-  padding-top: 40px;
+
   background-color: rgba(255, 255, 255, 0.952);
   border-radius: 30px;
 }

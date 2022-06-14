@@ -96,77 +96,70 @@ export default function GradeRow(props) {
     <>
       <td onMouseOver={show4} onMouseLeave={nshow4} className={"otd" + o4}>
         4
-        {o4 === "selected" && props.isGray !== "gray" && (
+        {o4 === "selected" && props.isGray !== "gray" && shown4 && (
           <Lchart
             avgs={props.avgs}
             allDATA={props.allDATA}
-            isShown={shown4}
             data={props.criteria}
           />
         )}
       </td>
       <td onMouseOver={show5} onMouseLeave={nshow5} className={"otd" + o5}>
         5
-        {o5 === "selected" && props.isGray !== "gray" && (
+        {o5 === "selected" && props.isGray !== "gray" && shown5 && (
           <Lchart
             avgs={props.avgs}
             allDATA={props.allDATA}
-            isShown={shown5}
             data={props.criteria}
           />
         )}
       </td>
       <td onMouseOver={show6} onMouseLeave={nshow6} className={"otd" + o6}>
         6
-        {o6 === "selected" && props.isGray !== "gray" && (
+        {o6 === "selected" && props.isGray !== "gray" && shown6 && (
           <Lchart
             avgs={props.avgs}
             allDATA={props.allDATA}
-            isShown={shown6}
             data={props.criteria}
           />
         )}
       </td>
       <td onMouseOver={show7} onMouseLeave={nshow7} className={"otd" + o7}>
         7
-        {o7 === "selected" && props.isGray !== "gray" && (
+        {o7 === "selected" && props.isGray !== "gray" && shown7 && (
           <Lchart
             avgs={props.avgs}
             allDATA={props.allDATA}
-            isShown={shown7}
             data={props.criteria}
           />
         )}
       </td>
       <td onMouseOver={show8} onMouseLeave={nshow8} className={"otd" + o8}>
         8
-        {o8 === "selected" && props.isGray !== "gray" && (
+        {o8 === "selected" && props.isGray !== "gray" && shown8 && (
           <Lchart
             avgs={props.avgs}
             allDATA={props.allDATA}
-            isShown={shown8}
             data={props.criteria}
           />
         )}
       </td>
       <td onMouseOver={show9} onMouseLeave={nshow9} className={"otd" + o9}>
         9
-        {o9 === "selected" && props.isGray !== "gray" && (
+        {o9 === "selected" && props.isGray !== "gray" && shown9 && (
           <Lchart
             avgs={props.avgs}
             allDATA={props.allDATA}
-            isShown={shown9}
             data={props.criteria}
           />
         )}
       </td>
       <td onMouseOver={show10} onMouseLeave={nshow10} className={"otd" + o10}>
         10
-        {o10 === "selected" && props.isGray !== "gray" && (
+        {o10 === "selected" && props.isGray !== "gray" && shown10 && (
           <Lchart
             avgs={props.avgs}
             allDATA={props.allDATA}
-            isShown={shown10}
             data={props.criteria}
           />
         )}

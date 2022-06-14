@@ -54,8 +54,6 @@ export default function VIEWMOFA(props) {
   let test = props.data.isTest;
   let pass = props.data.isPass;
 
-  debugger;
-
   return (
     <div className="odiv">
       {" "}
