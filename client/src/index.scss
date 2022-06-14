@@ -648,7 +648,7 @@ textarea {
   color: white;
 }
 
-.fudContent {
+.fudContentfalse {
   text-align: center;
   font-family: my;
   font-size: large;
@@ -659,8 +659,36 @@ textarea {
   font-weight: bold;
   height: 25px;
   overflow: hidden;
+}
 
+.fudContenttrue {
+  text-align: center;
+  font-family: my;
+  font-size: large;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: my;
+  background-color: rgba(255, 255, 255, 0.795);
+  font-weight: bold;
+  height: 25px;
+  overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.fudContenttrue:hover {
+  position: absolute;
+  text-align: center;
+  font-family: my;
+  font-size: large;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: my;
+  background-color: rgba(17, 0, 255, 0.616);
+  font-weight: bold;
+  height: 25px;
+  overflow: visible;
+  width: 250px;
+  z-index: 500;
 }
 
 .fudupdatebuttondiv {

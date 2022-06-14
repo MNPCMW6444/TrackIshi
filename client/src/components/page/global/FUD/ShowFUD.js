@@ -38,7 +38,6 @@ function ShowFUD(props) {
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
-    
     const getFUD = async () => {
       let FUDRes;
       if (externalma)
@@ -142,7 +141,6 @@ function ShowFUD(props) {
   }, [sss]);
 
   async function changePass() {
-    
     //המרת דרג לאנגלית
     let dereg2;
     try {
@@ -185,7 +183,9 @@ function ShowFUD(props) {
           </h3>
         </div>
       )}
-      {edit && <UpdateFUD suc={setSuccessMessage} whendone={setEdit} finish={setsss} />}
+      {edit && (
+        <UpdateFUD suc={setSuccessMessage} whendone={setEdit} finish={setsss} />
+      )}
       {successMessage && (
         <SuccessMessage
           message={successMessage}
@@ -197,65 +197,139 @@ function ShowFUD(props) {
           <div className="FUDcolumnFirst">
             <div className="fudunit">
               <div className="fudTitle">מספר אישי: </div>
-              <div className="fudContent">{ma}</div>
+              <div
+                className={
+                  ma.length > 15 ? "fudContenttrue" : "fudContentfalse"
+                }
+              >
+                {ma}
+              </div>
             </div>
             <br />
             <div className="fudunit">
               <div className="fudTitle">קורס: </div>
-              <div className="fudContent">{courseno}</div>
+              <div
+                className={
+                  courseno.length > 15 ? "fudContenttrue" : "fudContentfalse"
+                }
+              >
+                {courseno}
+              </div>
             </div>
             <br />
             <div className="fudunit">
               <div className="fudTitle">תאריך לידה: </div>
-              <div className="fudContent">{birthdate}</div>
+              <div
+                className={
+                  birthdate.length > 15 ? "fudContenttrue" : "fudContentfalse"
+                }
+              >
+                {birthdate}
+              </div>
             </div>
           </div>
           <div className="FUDcolumn">
             <div className="fudunit">
               <div className="fudTitle">שם פרטי: </div>
-              <div className="fudContent">{firstname}</div>
+              <div
+                className={
+                  firstname.length > 15 ? "fudContenttrue" : "fudContentfalse"
+                }
+              >
+                {firstname}
+              </div>
             </div>
             <br />
             <div className="fudunit">
               <div className="fudTitle">שם משפחה: </div>
-              <div className="fudContent">{lastname}</div>
+              <div
+                className={
+                  lastname.length > 15 ? "fudContenttrue" : "fudContentfalse"
+                }
+              >
+                {lastname}
+              </div>
             </div>
             <br />
             <div className="fudunit">
               <div className="fudTitle">כינוי: </div>
-              <div className="fudContent">{nickname}</div>
+              <div
+                className={
+                  nickname.length > 15 ? "fudContenttrue" : "fudContentfalse"
+                }
+              >
+                {nickname}
+              </div>
             </div>
           </div>
           <div className="FUDcolumn">
             <div className="fudunit">
               <div className="fudTitle">מספר טלפון: </div>
-              <div className="fudContent">{mainphone}</div>
+              <div
+                className={
+                  mainphone.length > 15 ? "fudContenttrue" : "fudContentfalse"
+                }
+              >
+                {mainphone}
+              </div>
             </div>
             <br />
             <div className="fudunit">
               <div className="fudTitle">טל' למקרה חירום: </div>
-              <div className="fudContent">{emergencyphone}</div>
+              <div
+                className={
+                  emergencyphone.length > 15
+                    ? "fudContenttrue"
+                    : "fudContentfalse"
+                }
+              >
+                {emergencyphone}
+              </div>
             </div>
             <br />
             <div className="fudunit">
               <div className="fudTitle">דוא"ל אזרחי: </div>
-              <div className="fudContent">{email}</div>
+              <div
+                className={
+                  email.length > 15 ? "fudContenttrue" : "fudContentfalse"
+                }
+              >
+                {email}
+              </div>
             </div>
           </div>
           <div className="FUDcolumn">
             <div className="fudunit">
               <div className="fudTitle">עיר מגורים: </div>
-              <div className="fudContent">{addresscity}</div>
+              <div
+                className={
+                  addresscity.length > 15 ? "fudContenttrue" : "fudContentfalse"
+                }
+              >
+                {addresscity}
+              </div>
             </div>
             <br />
             <div className="fudunit">
               <div className="fudTitle">כתובת: </div>
-              <div className="fudContent">{addressline}</div>
+              <div
+                className={
+                  addressline.length > 15 ? "fudContenttrue" : "fudContentfalse"
+                }
+              >
+                {addressline}
+              </div>
             </div>
             <br />
             <div className="fudunit">
               <div className="fudTitle">דרגה: </div>
-              <div className="fudContent">{rank}</div>
+              <div
+                className={
+                  rank.length > 15 ? "fudContenttrue" : "fudContentfalse"
+                }
+              >
+                {rank}
+              </div>
             </div>
             <br />
             <br />
@@ -263,17 +337,35 @@ function ShowFUD(props) {
           <div className="FUDcolumn">
             <div className="fudunit">
               <div className="fudTitle">יחידה: </div>
-              <div className="fudContent">{unit}</div>
+              <div
+                className={
+                  unit.length > 15 ? "fudContenttrue" : "fudContentfalse"
+                }
+              >
+                {unit}
+              </div>
             </div>
             <br />
             <div className="fudunit">
               <div className="fudTitle">הצבה: </div>
-              <div className="fudContent">{soogHatsava}</div>
+              <div
+                className={
+                  soogHatsava.length > 15 ? "fudContenttrue" : "fudContentfalse"
+                }
+              >
+                {soogHatsava}
+              </div>
             </div>
             <br />
             <div className="fudunit">
               <div className="fudTitle">מסלול: </div>
-              <div className="fudContent">{maslool}</div>
+              <div
+                className={
+                  maslool.length > 15 ? "fudContenttrue" : "fudContentfalse"
+                }
+              >
+                {maslool}
+              </div>
             </div>
             <br />
             <br />
@@ -323,33 +415,20 @@ function ShowFUD(props) {
             />
           )}
           <br />
-          <label>עדכן דרג מקצועי (נדרש להזין סיסמה):    </label>
-
-        <select 
-        
-          onChange={(e) => setdereg(e.target.value)}
-        >
+          <label>עדכן דרג מקצועי (נדרש להזין סיסמה): </label>
+          <select onChange={(e) => setdereg(e.target.value)}>
             <option disabled selected value>
-            {" "}
-            -- בחר --{" "}
-          </option> <option >
-            {" "}
-            א'{" "}
-          </option>        
-          <option >
-            {" "}
-            ב'{" "}
-          </option>  
-          <option >
-            {" "}
-            ג'{" "}
-          </option>  
-          <option >
-            {" "}
-            ד'{" "}
-          </option>  
-</select>  <br /><br />
-          <label>הזן סיסמה:    </label>
+              {" "}
+              -- בחר --{" "}
+            </option>{" "}
+            <option> א' </option>
+            <option> ב' </option>
+            <option> ג' </option>
+            <option> ד' </option>
+          </select>{" "}
+          <br />
+          <br />
+          <label>הזן סיסמה: </label>
           {"   "}
           <input
             type="password"
