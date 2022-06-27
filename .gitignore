@@ -4,13 +4,13 @@
 #/server/.env
 
 #TOTHISWHENPUBLIC
-#/server/node_modules
+/server/node_modules
 
 ############################## CLIENT ##################################################################
 
 # dependencies
 #TOTHISWHENPUBLIC
-#/client/node_modules
+/client/node_modules
 #TOTHISWHENPUBLIC
 #/client/.pnp
 #TOTHISWHENPUBLIC

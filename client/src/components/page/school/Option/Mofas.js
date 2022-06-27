@@ -4,7 +4,6 @@ import Axios from "axios";
 import Modal from "react-modal";
 import HisMOFAS from "../../screw/Option/MOFAS";
 import { CSVLink } from "react-csv";
-import { MultiSelect } from "react-multi-select-component";
 import emdalist from "../../../../util/emdalist";
 
 const customStyles = {
@@ -70,11 +69,6 @@ export default function Mofas(props) {
 
   const [show, setShow] = useState(false);
 
-  const [slist, setslist] = useState(new Array());
-  const [slist2, setslist2] = useState(new Array());
-  const [slistunit, setslistunit] = useState(rararryu);
-  const [slistmaslool, setslistmaslool] = useState(rararrym);
-  const [slistcourse, setslistcourse] = useState(rararryc);
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -344,85 +338,7 @@ export default function Mofas(props) {
       setresexport(allrrexport);
 
       setResall(allrr);
-      let array = slist;
-      let all = new Array();
-      for (let i = 0; i < allpeopleres.data.length; i++) {
-        const o = await Axios.get(
-          `${domain}/mofa/getallhis/${allpeopleres.data[i].MA}`
-        );
-        let sortingres = o.data;
-
-        for (let i = 0; i < sortingres.length; i++) {
-          let exists = false;
-          for (let j = 0; j < slist.length; j++)
-            if (slist[j].value === sortingres[i].Emda) exists = true;
-          if (!exists) {
-            array.push({
-              label: sortingres[i].Emda,
-              value: sortingres[i].Emda,
-            });
-          }
-
-          setslist(array);
-          let newarray = new Array();
-          for (let i = 0; i < emdalist.length; i++) {
-            newarray.push({
-              label: emdalist[i],
-              value: emdalist[i],
-            });
-          }
-          setslist2(newarray);
-        }
-
-        let grouped = groupBy(sortingres, "Emda"); // => {orange:[...], banana:[...]}
-        var result = Object.keys(grouped).map((key) => [
-          Number(key),
-          grouped[key],
-        ]);
-        for (let i = 0; i < result.length; i++) {
-          {
-            let array = result[i][1];
-            array.sort(function (a, b) {
-              return a.No - b.No;
-            });
-            let summ1 = 0;
-            let sumc1 = 0;
-            let sumc2 = 0;
-            let sumc3 = 0;
-            let sumc4 = 0;
-            let sumc5 = 0;
-            let sumc6 = 0;
-            let sumc7 = 0;
-            let sumc8 = 0;
-            let sumc9 = 0;
-            for (let j = 0; j < array.length; j++) {
-              summ1 = summ1 + array[j].M1;
-              sumc1 = sumc1 + array[j].C1;
-              sumc2 = sumc2 + array[j].C2;
-              sumc3 = sumc3 + array[j].C3;
-              sumc4 = sumc4 + array[j].C4;
-              sumc5 = sumc5 + array[j].C5;
-              sumc6 = sumc6 + array[j].C6;
-              sumc7 = sumc7 + array[j].C7;
-              sumc8 = sumc8 + array[j].C8;
-              sumc9 = sumc9 + array[j].C9;
-              array[0].avgm1 = Math.round((summ1 / array.length) * 100) / 100;
-              array[0].avgc1 = Math.round((sumc1 / array.length) * 100) / 100;
-              array[0].avgc2 = Math.round((sumc2 / array.length) * 100) / 100;
-              array[0].avgc3 = Math.round((sumc3 / array.length) * 100) / 100;
-              array[0].avgc4 = Math.round((sumc4 / array.length) * 100) / 100;
-              array[0].avgc5 = Math.round((sumc5 / array.length) * 100) / 100;
-              array[0].avgc6 = Math.round((sumc6 / array.length) * 100) / 100;
-              array[0].avgc7 = Math.round((sumc7 / array.length) * 100) / 100;
-              array[0].avgc8 = Math.round((sumc8 / array.length) * 100) / 100;
-              array[0].avgc9 = Math.round((sumc9 / array.length) * 100) / 100;
-            }
-            result[i][1] = array;
-          }
-        }
-        all.push(result);
-      }
-      setResall(all);
+      
       let shelst = new Array(...allpeopleres.data);
       setshels(shelst);
       if (!ready) setReady(true);
@@ -491,71 +407,7 @@ export default function Mofas(props) {
           ייצא את כל מופעי ההדרכה של האנשים שלי ⬇️
         </CSVLink>{" "}
         <br />
-        <br />
-        <br />
-        <div style={{ textAlign: "center", fontWeight: "bold" }}>
-          סינון לפי סדרה:
-        </div>{" "}
-        <br />
-        <div>
-          <MultiSelect
-            options={slist2}
-            value={selected}
-            onChange={setSelected}
-            labelledBy="Select"
-          />
-        </div>
-        <br />
-        <div style={{}}>
-          <div style={{ display: "inline-block", width: "30%" }}>
-            <div style={{ textAlign: "center", fontWeight: "bold" }}>
-              סינון לפי קורס:
-            </div>{" "}
-            <br />
-            <div>
-              <MultiSelect
-                options={slistcourse}
-                value={selectedcourse}
-                onChange={setSelectedcourse}
-                labelledBy="Select"
-              />
-            </div>
-          </div>
-          <div style={{ display: "inline-block", width: "5%" }}></div>
-
-          <div style={{ display: "inline-block", width: "30%" }}>
-            <div style={{ textAlign: "center", fontWeight: "bold" }}>
-              סינון לפי מסלול:
-            </div>{" "}
-            <br />
-            <div>
-              <MultiSelect
-                options={slistmaslool}
-                value={selectedmaslool}
-                onChange={setSelectedmaslool}
-                labelledBy="Select"
-              />
-            </div>
-          </div>
-          <div style={{ display: "inline-block", width: "5%" }}></div>
-
-          <div style={{ display: "inline-block", width: "30%" }}>
-            <div style={{ textAlign: "center", fontWeight: "bold" }}>
-              סינון לפי יחידה:
-            </div>{" "}
-            <br />
-            <div>
-              <MultiSelect
-                options={slistunit}
-                value={selectedunit}
-                onChange={setSelectedunit}
-                labelledBy="Select"
-              />
-            </div>
-          </div>
-        </div>
-        <br />
-        <br />
+       
         <br />
         <Modal
           isOpen={modalIsOpen}
