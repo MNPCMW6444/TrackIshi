@@ -20,13 +20,25 @@ const customStyles = {
 };
 
 export default function Mofas(props) {
-  const [res, setres] = useState();
+  const [mofas, setmofas] = useState();
+  const [people, setpeople] = useState();
+  const [sdarot, setsdarot] = useState();
 
   useEffect(() => {
     async function getit() {
-      let r = (await Axios.get(`${domain}/mofa/getallmyn`)).data;
-      r.filter((mof) => mof.MyCommander === "q3");
-      setres(r);
+      let rp = (await Axios.get(`${domain}/user/getmypeopleM`)).data;
+      setpeople(rp);
+    }
+    getit();
+  }, []);
+
+  useEffect(() => {
+    async function getit() {
+      let rm = (await Axios.get(`${domain}/mofa/getallmyn`)).data;
+      let s = new Array();
+
+      for (let i = 0; i < rm.length; i++)
+        for (let j = 0; j < rm.length; j++) setmofas(rm);
     }
     getit();
   }, []);
@@ -34,23 +46,22 @@ export default function Mofas(props) {
   return (
     <div>
       <br />
-      <table className="xotable">
-        {res && res.length > 0 ? (
-          <tr>
-            {res.map((mofa) => (
-              <tr>
-                <td>{mofa._id}</td>
-              </tr>
-            ))}
-          </tr>
-        ) : (
-          <tr className="xotr">
-            <th className="xoth" style={{ width: "80%" }}>
-              טוען...
-            </th>
-          </tr>
-        )}
-      </table>
+      {people && people.length > 0 && mofas && mofas.length > 0 ? (
+        <table className="xotable">
+          {mofas.map((mofa) => (
+            <tr>
+              <td>{mofa._id}</td>
+            </tr>
+          ))}
+          {people.map((person) => (
+            <tr>
+              <td>{person.NickName}</td>
+            </tr>
+          ))}
+        </table>
+      ) : (
+        <h2>טוען...</h2>
+      )}
       <br />
     </div>
   );
