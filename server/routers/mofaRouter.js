@@ -361,7 +361,7 @@ router.get("/getallmyn", async (req, res) => {
 
     for (let i = 0; i < allmofas.length; i++) {
       manded = await User.findById(allmofas[i].CrewM);
-      if (mander.Role === "SCREW")
+      if (mander.Role === "DIRECT")
         if (
           manded &&
           manded.MyComm &&
@@ -386,6 +386,30 @@ router.get("/getallmyn", async (req, res) => {
     }
 
     res.json(allresmofas);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
+  }
+});
+
+router.get("/all", async (req, res) => {
+  try {
+    const token = req.cookies.token;
+
+    if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
+
+    const validatedUser = jwt.verify(token, process.env.JWTSECRET);
+
+    const mander = await User.findById(validatedUser.user);
+
+    const allmofas = await Mofa.find();
+
+    return mander.Role === "DIRECT" ||
+      mander.Role === "AUTHCO" ||
+      mander.Role === "SCHOOL" ||
+      mander.Role === "S420"
+      ? res.json(allmofas)
+      : res.status(400).json({ errorMessage: "אינך מחובר" });
   } catch (err) {
     console.error(err);
     res.status(500).send();

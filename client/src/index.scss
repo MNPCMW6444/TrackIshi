@@ -1091,3 +1091,31 @@ a {
   color: rgba(23, 1, 148, 0);
   font-weight: 900;
 }
+
+.xotable {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.xotd,
+.xoth {
+  border: 1px solid rgba(0, 0, 0, 0);
+  padding: 8px;
+}
+
+.xoth {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  color: white;
+  background-color: rgba(15, 10, 44, 0.692);
+  font-weight: "bolder";
+  border: 2px solid rgb(23, 0, 107);
+}
+
+.xotd {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.438);
+  font-weight: "bold";
+  position: relative;
+}
