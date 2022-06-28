@@ -361,7 +361,7 @@ router.get("/getallmyn", async (req, res) => {
 
     for (let i = 0; i < allmofas.length; i++) {
       manded = await User.findById(allmofas[i].CrewM);
-      if (mander.Role === "SCREW")
+      if (mander.Role === "DIRECT")
         if (
           manded &&
           manded.MyComm &&
