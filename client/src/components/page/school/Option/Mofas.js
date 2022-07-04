@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import HisMOFAS from "../../screw/Option/MOFAS";
 import { CSVLink } from "react-csv";
 import emdalist from "../../../../util/emdalist";
+import Filters from "./Filters";
 
 const customStyles = {
   content: {
@@ -32,7 +33,19 @@ export default function Mofas(props) {
 
       let mofas = (await Axios.get(`${domain}/mofa/getallmyn`)).data;
       setmofas(mofas);
+    }
+    getit();
+  }, []);
 
+  useEffect(() => {
+    if (
+      people &&
+      people.length &&
+      people.length > 0 &&
+      mofas &&
+      mofas.length &&
+      mofas.length > 0
+    ) {
       let sdrt = new Array();
       for (let i = 0; i < mofas.length; i++) {
         let notthere = true;
@@ -41,15 +54,14 @@ export default function Mofas(props) {
         if (notthere) sdrt.push(mofas[i].Emda);
       }
       setsdarot(sdrt);
-
       let sdtavgsperppl = new Array();
       for (let i = 0; i < sdrt.length; i++) {
         let avgofperson = new Array();
-        for (let k = 0; k < ppl.length; k++) {
+        for (let k = 0; k < people.length; k++) {
           let avg = 0;
           let count = 0;
           for (let j = 0; j < mofas.length; j++) {
-            if (mofas[j].Emda === sdrt[i] && mofas[j].sMA === ppl[k].MA) {
+            if (mofas[j].Emda === sdrt[i] && mofas[j].sMA === people[k].MA) {
               avg += mofas[j].M1;
               count++;
             }
@@ -61,19 +73,33 @@ export default function Mofas(props) {
       }
       setsdarotavgsperppl(sdtavgsperppl);
     }
-    getit();
-  }, []);
+  }, [mofas, people]);
 
   return (
     <div>
       <br />
+      <Filters
+        mofas={mofas}
+        people={people}
+        sdarot={sdarot}
+        sdarotavgsperppl={sdarotavgsperppl}
+        setmofas={setmofas}
+        setpeople={setpeople}
+        setsdarot={setsdarot}
+        setsdarotavgsperppl={setsdarotavgsperppl}
+      />
+      <br />
       {people &&
+      people.length &&
       people.length > 0 &&
       sdarotavgsperppl &&
+      sdarotavgsperppl.length &&
       sdarotavgsperppl.length > 0 &&
       mofas &&
+      mofas.length &&
       mofas.length > 0 &&
       sdarot &&
+      sdarot.length &&
       sdarot.length > 0 ? (
         <table className="xotable">
           <tr>
