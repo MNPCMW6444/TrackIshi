@@ -23,22 +23,43 @@ export default function Mofas(props) {
   const [mofas, setmofas] = useState();
   const [people, setpeople] = useState();
   const [sdarot, setsdarot] = useState();
+  const [sdarotavgsperppl, setsdarotavgsperppl] = useState();
 
   useEffect(() => {
     async function getit() {
-      let rp = (await Axios.get(`${domain}/user/getmypeopleM`)).data;
-      setpeople(rp);
-    }
-    getit();
-  }, []);
+      let ppl = (await Axios.get(`${domain}/user/getmypeopleM`)).data;
+      setpeople(ppl);
 
-  useEffect(() => {
-    async function getit() {
-      let rm = (await Axios.get(`${domain}/mofa/getallmyn`)).data;
-      let s = new Array();
+      let mofas = (await Axios.get(`${domain}/mofa/getallmyn`)).data;
+      setmofas(mofas);
 
-      for (let i = 0; i < rm.length; i++)
-        for (let j = 0; j < rm.length; j++) setmofas(rm);
+      let sdrt = new Array();
+      for (let i = 0; i < mofas.length; i++) {
+        let notthere = true;
+        for (let j = 0; j < sdrt.length; j++)
+          if (sdrt[j] == mofas[i].Emda) notthere = false;
+        if (notthere) sdrt.push(mofas[i].Emda);
+      }
+      setsdarot(sdrt);
+
+      let sdtavgsperppl = new Array();
+      for (let i = 0; i < sdrt.length; i++) {
+        let avgofperson = new Array();
+        for (let k = 0; k < ppl.length; k++) {
+          let avg = 0;
+          let count = 0;
+          for (let j = 0; j < mofas.length; j++) {
+            if (mofas[j].Emda === sdrt[i] && mofas[j].sMA === ppl[k].MA) {
+              avg += mofas[j].M1;
+              count++;
+            }
+          }
+          avg /= count;
+          avgofperson.push(avg);
+        }
+        sdtavgsperppl.push(avgofperson);
+      }
+      setsdarotavgsperppl(sdtavgsperppl);
     }
     getit();
   }, []);
@@ -46,16 +67,27 @@ export default function Mofas(props) {
   return (
     <div>
       <br />
-      {people && people.length > 0 && mofas && mofas.length > 0 ? (
+      {people &&
+      people.length > 0 &&
+      sdarotavgsperppl &&
+      sdarotavgsperppl.length > 0 &&
+      mofas &&
+      mofas.length > 0 &&
+      sdarot &&
+      sdarot.length > 0 ? (
         <table className="xotable">
-          {mofas.map((mofa) => (
+          <tr>
+            <th className="oth">איש צוות</th>
+            {sdarot &&
+              sdarot.length > 0 &&
+              sdarot.map((sidra) => <th className="oth">{sidra}</th>)}
+          </tr>
+          {people.map((person, i) => (
             <tr>
-              <td>{mofa._id}</td>
-            </tr>
-          ))}
-          {people.map((person) => (
-            <tr>
-              <td>{person.NickName}</td>
+              <td className="otd">{person.NickName}</td>
+              {sdarotavgsperppl[i].map((avg) => (
+                <td className="otd">{avg || "-"}</td>
+              ))}
             </tr>
           ))}
         </table>
