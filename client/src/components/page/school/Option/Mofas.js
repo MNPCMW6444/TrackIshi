@@ -77,31 +77,6 @@ export default function Mofas(props) {
 
   return (
     <div>
-      <br />
-      {people &&
-        people.length &&
-        people.length > 0 &&
-        sdarotavgsperppl &&
-        sdarotavgsperppl.length &&
-        sdarotavgsperppl.length > 0 &&
-        mofas &&
-        mofas.length &&
-        mofas.length > 0 &&
-        sdarot &&
-        sdarot.length &&
-        sdarot.length > 0 && (
-          <Filters
-            mofas={mofas}
-            people={people}
-            sdarot={sdarot}
-            sdarotavgsperppl={sdarotavgsperppl}
-            setmofas={setmofas}
-            setpeople={setpeople}
-            setsdarot={setsdarot}
-            setsdarotavgsperppl={setsdarotavgsperppl}
-          />
-        )}
-      <br />
       {people &&
       people.length &&
       people.length > 0 &&
@@ -114,22 +89,46 @@ export default function Mofas(props) {
       sdarot &&
       sdarot.length &&
       sdarot.length > 0 ? (
-        <table className="xotable">
-          <tr>
-            <th className="oth">איש צוות</th>
-            {sdarot &&
-              sdarot.length > 0 &&
-              sdarot.map((sidra) => <th className="oth">{sidra}</th>)}
-          </tr>
-          {people.map((person, i) => (
+        <>
+          <br />
+
+          <Filters
+            mofas={mofas}
+            people={people}
+            sdarot={sdarot}
+            sdarotavgsperppl={sdarotavgsperppl}
+            setmofas={setmofas}
+            setpeople={setpeople}
+            setsdarot={setsdarot}
+            setsdarotavgsperppl={setsdarotavgsperppl}
+          />
+
+          <br />
+          <table className="xotable">
             <tr>
-              <td className="otd">{person.NickName}</td>
-              {sdarotavgsperppl[i].map((avg) => (
-                <td className="otd">{avg || "-"}</td>
-              ))}
+              <th className="oth">איש צוות</th>
+              {sdarot &&
+                sdarot.length > 0 &&
+                sdarot.map((sidra, i) => (
+                  <th key={i + 1000} className="oth">
+                    {sidra}
+                  </th>
+                ))}
             </tr>
-          ))}
-        </table>
+            {people.map((person, i) => (
+              <tr>
+                <td key={i + 2000} className="otd">
+                  {person.NickName}
+                </td>
+                {sdarotavgsperppl[i].map((avg, j) => (
+                  <td key={j + 3000} className="otd">
+                    {avg || "-"}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </table>
+        </>
       ) : (
         <h2>טוען...</h2>
       )}
