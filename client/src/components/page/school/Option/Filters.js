@@ -54,88 +54,75 @@ export default function Filters(props) {
     }
 
     return (
-      people &&
-      people.length &&
-      people.length > 0 &&
-      mofas &&
-      mofas.length &&
-      mofas.length > 0 &&
-      sdarotavgsperppl &&
-      sdarotavgsperppl.length &&
-      sdarotavgsperppl.length > 0 &&
-      sdarot &&
-      sdarot.length &&
-      sdarot.length > 0 && (
+      <div>
+        {" "}
+        <br />
+        <br />
+        <br />
+        <div style={{ textAlign: "center", fontWeight: "bold" }}>
+          סינון לפי סדרה:
+        </div>{" "}
+        <br />
         <div>
-          {" "}
-          <br />
-          <br />
-          <br />
-          <div style={{ textAlign: "center", fontWeight: "bold" }}>
-            סינון לפי סדרה:
-          </div>{" "}
-          <br />
-          <div>
-            <MultiSelect
-              options={sdarotlist}
-              value={selectedsidra}
-              onChange={selectsidra}
-              labelledBy="Select"
-            />
-          </div>
-          <br />
-          <div style={{}}>
-            <div style={{ display: "inline-block", width: "30%" }}>
-              <div style={{ textAlign: "center", fontWeight: "bold" }}>
-                סינון לפי קורס:
-              </div>{" "}
-              <br />
-              <div>
-                <MultiSelect
-                  options={courselist}
-                  value={selectedscourse}
-                  onChange={selectcourse}
-                  labelledBy="Select"
-                />
-              </div>
-            </div>
-            <div style={{ display: "inline-block", width: "5%" }}></div>
-
-            <div style={{ display: "inline-block", width: "30%" }}>
-              <div style={{ textAlign: "center", fontWeight: "bold" }}>
-                סינון לפי מסלול:
-              </div>{" "}
-              <br />
-              <div>
-                <MultiSelect
-                  options={masloollist}
-                  value={selectedmaslool}
-                  onChange={selectmaslool}
-                  labelledBy="Select"
-                />
-              </div>
-            </div>
-            <div style={{ display: "inline-block", width: "5%" }}></div>
-
-            <div style={{ display: "inline-block", width: "30%" }}>
-              <div style={{ textAlign: "center", fontWeight: "bold" }}>
-                סינון לפי יחידה:
-              </div>{" "}
-              <br />
-              <div>
-                <MultiSelect
-                  options={unitlist}
-                  value={selectedunit}
-                  onChange={selectunit}
-                  labelledBy="Select"
-                />
-              </div>
-            </div>
-          </div>
-          <br />
-          <br />
+          <MultiSelect
+            options={sdarotlist}
+            value={selectedsidra}
+            onChange={selectsidra}
+            labelledBy="Select"
+          />
         </div>
-      )
+        <br />
+        <div style={{}}>
+          <div style={{ display: "inline-block", width: "30%" }}>
+            <div style={{ textAlign: "center", fontWeight: "bold" }}>
+              סינון לפי קורס:
+            </div>{" "}
+            <br />
+            <div>
+              <MultiSelect
+                options={courselist}
+                value={selectedscourse}
+                onChange={selectcourse}
+                labelledBy="Select"
+              />
+            </div>
+          </div>
+          <div style={{ display: "inline-block", width: "5%" }}></div>
+
+          <div style={{ display: "inline-block", width: "30%" }}>
+            <div style={{ textAlign: "center", fontWeight: "bold" }}>
+              סינון לפי מסלול:
+            </div>{" "}
+            <br />
+            <div>
+              <MultiSelect
+                options={masloollist}
+                value={selectedmaslool}
+                onChange={selectmaslool}
+                labelledBy="Select"
+              />
+            </div>
+          </div>
+          <div style={{ display: "inline-block", width: "5%" }}></div>
+
+          <div style={{ display: "inline-block", width: "30%" }}>
+            <div style={{ textAlign: "center", fontWeight: "bold" }}>
+              סינון לפי יחידה:
+            </div>{" "}
+            <br />
+            <div>
+              <MultiSelect
+                options={unitlist}
+                value={selectedunit}
+                onChange={selectunit}
+                labelledBy="Select"
+              />
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+      </div>
     );
   }
   return null;

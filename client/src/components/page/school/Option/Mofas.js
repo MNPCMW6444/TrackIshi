@@ -78,16 +78,29 @@ export default function Mofas(props) {
   return (
     <div>
       <br />
-      <Filters
-        mofas={mofas}
-        people={people}
-        sdarot={sdarot}
-        sdarotavgsperppl={sdarotavgsperppl}
-        setmofas={setmofas}
-        setpeople={setpeople}
-        setsdarot={setsdarot}
-        setsdarotavgsperppl={setsdarotavgsperppl}
-      />
+      {people &&
+        people.length &&
+        people.length > 0 &&
+        sdarotavgsperppl &&
+        sdarotavgsperppl.length &&
+        sdarotavgsperppl.length > 0 &&
+        mofas &&
+        mofas.length &&
+        mofas.length > 0 &&
+        sdarot &&
+        sdarot.length &&
+        sdarot.length > 0 && (
+          <Filters
+            mofas={mofas}
+            people={people}
+            sdarot={sdarot}
+            sdarotavgsperppl={sdarotavgsperppl}
+            setmofas={setmofas}
+            setpeople={setpeople}
+            setsdarot={setsdarot}
+            setsdarotavgsperppl={setsdarotavgsperppl}
+          />
+        )}
       <br />
       {people &&
       people.length &&
