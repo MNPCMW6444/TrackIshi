@@ -2,126 +2,190 @@ import React, { useState, useEffect } from "react";
 import { MultiSelect } from "react-multi-select-component";
 
 export default function Filters(props) {
-  const [selectedsdarot, selectsidra] = useState([]);
-  const [selectedscourse, selectcourse] = useState([]);
-  const [selectedmaslool, selectmaslool] = useState([]);
-  const [selectedunit, selectunit] = useState([]);
-
   const mofas = props.mofas;
   const people = props.people;
   const sdarot = props.sdarot;
   const sdarotavgsperppl = props.sdarotavgsperppl;
-  const setmofas = props.setmofas;
-  const setpeople = props.setpeople;
-  const setsdarot = props.setsdarot;
-  const setsdarotavgsperppl = props.setsdarotavgsperppl;
 
-  let sdarotlist = new Array();
+  const filteredmofas = props.filteredmofas;
+  const filteredpeople = props.filteredpeople;
+  const filteredsdarot = props.filteredsdarot;
+  const filteredsdarotavgsperppl = props.filteredsdarotavgsperppl;
+  const setfilteredmofas = props.setfilteredmofas;
+  const setfilteredpeople = props.setfilteredpeople;
+  const setfilteredsdarot = props.setfilteredsdarot;
+  const setfilteredsdarotavgsperppl = props.setfilteredsdarotavgsperppl;
 
-  for (let i = 0; i < sdarot.length; i++) {
-    sdarotlist.push({ label: sdarot[i], value: sdarot[i] });
-  }
-
-  let unitlist = new Array(
-    { value: "506", label: "506" },
-    { value: "509", label: "509" },
-    { value: "528", label: "528" }
+  const [selectedsdarot, selectsdarot] = useState(
+    sdarot
+      ? [
+          sdarot.map((sidra) => {
+            return { value: sidra, label: sidra };
+          }),
+        ]
+      : []
   );
-
-  let masloollist = new Array(
-    { value: "mesima", label: "משימה" },
-    { value: "taavura", label: "תעבורה" },
-    { value: "versatili", label: "ורסטילי" },
-    { value: "ha", label: "הכשרה" }
-  );
-
-  let courselist = new Array();
-  for (let i = 0; i < 1000; i++) {
-    courselist.push({ value: i, label: "" + i });
-  }
+  const [selectedscourse, selectcourse] = useState([]);
+  const [selectedmaslool, selectmaslool] = useState([]);
+  const [selectedunit, selectunit] = useState([]);
 
   useEffect(() => {
-    let cleanSdarot = new Array();
-    for (let i = 0; i < sdarot.length; i++) {
-      for (let j = 0; j < selectedsdarot.length; j++) {
-        if (sdarot[i] === selectedsdarot[j].value) cleanSdarot.push(sdarot[i]);
+    if (
+      people &&
+      people.length &&
+      people.length > 0 &&
+      sdarotavgsperppl &&
+      sdarotavgsperppl.length &&
+      sdarotavgsperppl.length > 0 &&
+      mofas &&
+      mofas.length &&
+      mofas.length > 0 &&
+      sdarot &&
+      sdarot.length &&
+      sdarot.length > 0
+    ) {
+      let cleansdarot = new Array();
+      let cleanmofas = new Array();
+      for (let i = 0; i < filteredsdarot.length; i++) {
+        for (let j = 0; j < selectedsdarot.length; j++) {
+          if (sdarot[i] === selectedsdarot[j].value)
+            cleansdarot.push(filteredsdarot[i]);
+        }
       }
+      for (let i = 0; i < filteredsdarot.length; i++) {
+        for (let j = 0; j < selectedsdarot.length; j++) {
+          if (mofas[i].Emda === selectedsdarot[j].value)
+            cleanmofas.push(mofas[i]);
+        }
+      }
+      setfilteredsdarot(cleansdarot);
+      setfilteredpeople(cleanmofas);
     }
-    setsdarot(cleanSdarot);
   }, [selectedsdarot]);
   useEffect(() => {}, [selectedscourse]);
   useEffect(() => {}, [selectedmaslool]);
   useEffect(() => {}, [selectedunit]);
 
-  return (
-    <div>
-      {" "}
-      <br />
-      <br />
-      <br />
-      <div style={{ textAlign: "center", fontWeight: "bold" }}>
-        סינון לפי סדרה:
-      </div>{" "}
-      <br />
+  if (
+    people &&
+    people.length &&
+    people.length > 0 &&
+    sdarotavgsperppl &&
+    sdarotavgsperppl.length &&
+    sdarotavgsperppl.length > 0 &&
+    mofas &&
+    mofas.length &&
+    mofas.length > 0 &&
+    sdarot &&
+    sdarot.length &&
+    sdarot.length > 0
+  ) {
+    let sdarotlist = new Array();
+
+    for (let i = 0; i < sdarot.length; i++) {
+      sdarotlist.push({
+        value: sdarot[i],
+        label: sdarot[i],
+      });
+    }
+
+    let unitlist = new Array(
+      { value: "506", label: "506" },
+      { value: "509", label: "509" },
+      { value: "528", label: "528" }
+    );
+
+    let masloollist = new Array(
+      { value: "mesima", label: "משימה" },
+      { value: "taavura", label: "תעבורה" },
+      { value: "versatili", label: "ורסטילי" },
+      { value: "ha", label: "הכשרה" }
+    );
+
+    let courselist = new Array();
+    for (let i = 0; i < people.length; i++) {
+      let newcourse = true;
+      for (let j = 0; j < courselist.length; j++) {
+        if (courselist[j].value == people[i].CourseNo) newcourse = false;
+      }
+      if (newcourse) {
+        courselist.push({
+          value: people[i].CourseNo,
+          label: "" + people[i].CourseNo,
+        });
+      }
+    }
+
+    return (
       <div>
-        <MultiSelect
-          options={sdarotlist}
-          value={selectedsdarot}
-          onChange={selectsidra}
-          labelledBy="Select"
-        />
-      </div>
-      <br />
-      <div style={{}}>
-        <div style={{ display: "inline-block", width: "30%" }}>
-          <div style={{ textAlign: "center", fontWeight: "bold" }}>
-            סינון לפי קורס:
-          </div>{" "}
-          <br />
-          <div>
-            <MultiSelect
-              options={courselist}
-              value={selectedscourse}
-              onChange={selectcourse}
-              labelledBy="Select"
-            />
-          </div>
+        {" "}
+        <br />
+        <br />
+        <br />
+        <div style={{ textAlign: "center", fontWeight: "bold" }}>
+          סינון לפי סדרה:
+        </div>{" "}
+        <br />
+        <div>
+          <MultiSelect
+            options={sdarotlist}
+            value={selectedsdarot}
+            onChange={selectsdarot}
+            labelledBy="Select"
+          />
         </div>
-        <div style={{ display: "inline-block", width: "5%" }}></div>
+        <br />
+        <div style={{}}>
+          <div style={{ display: "inline-block", width: "30%" }}>
+            <div style={{ textAlign: "center", fontWeight: "bold" }}>
+              סינון לפי קורס:
+            </div>{" "}
+            <br />
+            <div>
+              <MultiSelect
+                options={courselist}
+                value={selectedscourse}
+                onChange={selectcourse}
+                labelledBy="Select"
+              />
+            </div>
+          </div>
+          <div style={{ display: "inline-block", width: "5%" }}></div>
 
-        <div style={{ display: "inline-block", width: "30%" }}>
-          <div style={{ textAlign: "center", fontWeight: "bold" }}>
-            סינון לפי מסלול:
-          </div>{" "}
-          <br />
-          <div>
-            <MultiSelect
-              options={masloollist}
-              value={selectedmaslool}
-              onChange={selectmaslool}
-              labelledBy="Select"
-            />
+          <div style={{ display: "inline-block", width: "30%" }}>
+            <div style={{ textAlign: "center", fontWeight: "bold" }}>
+              סינון לפי מסלול:
+            </div>{" "}
+            <br />
+            <div>
+              <MultiSelect
+                options={masloollist}
+                value={selectedmaslool}
+                onChange={selectmaslool}
+                labelledBy="Select"
+              />
+            </div>
           </div>
-        </div>
-        <div style={{ display: "inline-block", width: "5%" }}></div>
+          <div style={{ display: "inline-block", width: "5%" }}></div>
 
-        <div style={{ display: "inline-block", width: "30%" }}>
-          <div style={{ textAlign: "center", fontWeight: "bold" }}>
-            סינון לפי יחידה:
-          </div>{" "}
-          <br />
-          <div>
-            <MultiSelect
-              options={unitlist}
-              value={selectedunit}
-              onChange={selectunit}
-              labelledBy="Select"
-            />
+          <div style={{ display: "inline-block", width: "30%" }}>
+            <div style={{ textAlign: "center", fontWeight: "bold" }}>
+              סינון לפי יחידה:
+            </div>{" "}
+            <br />
+            <div>
+              <MultiSelect
+                options={unitlist}
+                value={selectedunit}
+                onChange={selectunit}
+                labelledBy="Select"
+              />
+            </div>
           </div>
         </div>
+        <br />
+        <br />
       </div>
-      <br />
-      <br />
-    </div>
-  );
+    );
+  } else return null;
 }
