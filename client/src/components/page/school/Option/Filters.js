@@ -25,12 +25,21 @@ export default function Filters(props) {
         ]
       : []
   );
-  const [selectedscourse, selectcourse] = useState([]);
+  const [selectedscourse, selectcourse] = useState(
+    people
+      ? [
+          people.map((person) => {
+            return { value: person.CourseNo, label: person.CourseNo };
+          }),
+        ]
+      : []
+  );
   const [selectedmaslool, selectmaslool] = useState([]);
   const [selectedunit, selectunit] = useState([]);
 
   useEffect(() => {
     if (
+      props.allowed &&
       people &&
       people.length &&
       people.length > 0 &&
@@ -44,22 +53,16 @@ export default function Filters(props) {
       sdarot.length &&
       sdarot.length > 0
     ) {
+      debugger;
       let cleansdarot = new Array();
       let cleanmofas = new Array();
-      for (let i = 0; i < filteredsdarot.length; i++) {
+      for (let i = 0; i < sdarot.length; i++) {
         for (let j = 0; j < selectedsdarot.length; j++) {
           if (sdarot[i] === selectedsdarot[j].value)
-            cleansdarot.push(filteredsdarot[i]);
-        }
-      }
-      for (let i = 0; i < filteredsdarot.length; i++) {
-        for (let j = 0; j < selectedsdarot.length; j++) {
-          if (mofas[i].Emda === selectedsdarot[j].value)
-            cleanmofas.push(mofas[i]);
+            cleansdarot.push(sdarot[i]);
         }
       }
       setfilteredsdarot(cleansdarot);
-      setfilteredpeople(cleanmofas);
     }
   }, [selectedsdarot]);
   useEffect(() => {}, [selectedscourse]);

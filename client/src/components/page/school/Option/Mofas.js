@@ -23,6 +23,7 @@ const customStyles = {
 export default function Mofas(props) {
   const [l, setl] = useState(false);
   const [reload, setreload] = useState(false);
+  const [allowed, setallowed] = useState(false);
 
   const [mofas, setmofas] = useState();
   const [people, setpeople] = useState();
@@ -40,48 +41,32 @@ export default function Mofas(props) {
     async function getit() {
       setl(true);
       let ppl = (await Axios.get(`${domain}/user/getmypeopleM`)).data;
-      setfilteredpeople(ppl);
       setpeople(ppl);
-      let filteredmofas = (await Axios.get(`${domain}/mofa/getallmyn`)).data;
+      setfilteredpeople(ppl);
+      let mfs = (await Axios.get(`${domain}/mofa/getallmyn`)).data;
       setl(false);
-      setmofas(filteredmofas);
-      setfilteredmofas(filteredmofas);
-    }
-    getit();
-  }, [reload]);
-
-  useEffect(() => {
-    if (
-      filteredpeople &&
-      filteredpeople.length &&
-      filteredpeople.length > 0 &&
-      filteredsdarotavgsperppl &&
-      filteredsdarotavgsperppl.length &&
-      filteredsdarotavgsperppl.length > 0 &&
-     
-    ) {
+      setmofas(mfs);
+      setfilteredmofas(mfs);
       let sdrt = new Array();
-      for (let i = 0; i < filteredmofas.length; i++) {
+      for (let i = 0; i < mfs.length; i++) {
         let notthere = true;
         for (let j = 0; j < sdrt.length; j++)
-          if (sdrt[j] == filteredmofas[i].Emda) notthere = false;
-        if (notthere) sdrt.push(filteredmofas[i].Emda);
+          if (sdrt[j] == mfs[i].Emda) notthere = false;
+        if (notthere) sdrt.push(mfs[i].Emda);
       }
-
       setsdarot(sdrt);
       setfilteredsdarot(sdrt);
+      debugger;
+
       let sdtavgsperppl = new Array();
       for (let i = 0; i < sdrt.length; i++) {
         let avgofperson = new Array();
-        for (let k = 0; k < filteredpeople.length; k++) {
+        for (let k = 0; k < ppl.length; k++) {
           let avg = 0;
           let count = 0;
-          for (let j = 0; j < filteredmofas.length; j++) {
-            if (
-              filteredmofas[j].Emda === sdrt[i] &&
-              filteredmofas[j].sMA === filteredpeople[k].MA
-            ) {
-              avg += filteredmofas[j].M1;
+          for (let j = 0; j < mfs.length; j++) {
+            if (mfs[j].Emda === sdrt[i] && mfs[j].sMA === ppl[k].MA) {
+              avg += mfs[j].M1;
               count++;
             }
           }
@@ -93,7 +78,9 @@ export default function Mofas(props) {
       setfilteredsdarotavgsperppl(sdtavgsperppl);
       setsdarotavgsperppl(sdtavgsperppl);
     }
-  }, [filteredmofas, filteredpeople]);
+    getit();
+    setallowed(true);
+  }, [reload]);
 
   function openModal() {
     setIsOpen(true);
@@ -107,14 +94,47 @@ export default function Mofas(props) {
     <div>
       <div style={{ textAlign: "center" }}>
         <br />
-        <button
-          onClick={() => {
-            setreload(Math.random());
-          }}
-        >
-          רענן
-        </button>
+        {!l && (
+          <button
+            onClick={() => {
+              setallowed(false);
+              setreload(Math.random());
+            }}
+          >
+            רענן
+          </button>
+        )}
       </div>
+
+      {people &&
+        people.length &&
+        people.length > 0 &&
+        sdarotavgsperppl &&
+        sdarotavgsperppl.length &&
+        sdarotavgsperppl.length > 0 &&
+        mofas &&
+        mofas.length &&
+        mofas.length > 0 &&
+        sdarot &&
+        sdarot.length &&
+        sdarot.length > 0 &&
+        !l && (
+          <Filters
+            allowed={allowed}
+            mofas={mofas}
+            people={people}
+            sdarot={sdarot}
+            sdarotavgsperppl={sdarotavgsperppl}
+            filteredmofas={filteredmofas}
+            filteredpeople={filteredpeople}
+            filteredsdarot={filteredsdarot}
+            filteredsdarotavgsperppl={filteredsdarotavgsperppl}
+            setfilteredmofas={setfilteredmofas}
+            setfilteredpeople={setfilteredpeople}
+            setfilteredsdarot={setfilteredsdarot}
+            setfilteredsdarotavgsperppl={setfilteredsdarotavgsperppl}
+          />
+        )}
 
       {filteredpeople &&
       filteredpeople.length &&
@@ -131,29 +151,19 @@ export default function Mofas(props) {
       !l ? (
         <>
           <br />
-          <Filters
-            mofas={mofas}
-            people={people}
-            sdarot={sdarot}
-            sdarotavgsperppl={sdarotavgsperppl}
-            filteredmofas={filteredmofas}
-            filteredpeople={filteredpeople}
-            filteredsdarot={filteredsdarot}
-            filteredsdarotavgsperppl={filteredsdarotavgsperppl}
-            setfilteredmofas={setfilteredmofas}
-            setfilteredpeople={setfilteredpeople}
-            setfilteredsdarot={setfilteredsdarot}
-            setfilteredsdarotavgsperppl={setfilteredsdarotavgsperppl}
-          />
 
-          <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={closeModal}
-            style={customStyles}
-            contentLabel="Example Modal"
-          >
-            <HisMOFAS shel={shel} />
-          </Modal>
+          {allowed ? (
+            <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              style={customStyles}
+              contentLabel="Example Modal"
+            >
+              <HisMOFAS shel={shel} />
+            </Modal>
+          ) : (
+            <div>טוען סננים</div>
+          )}
           <br />
           <table className="xotable">
             <tbody>
@@ -197,7 +207,7 @@ export default function Mofas(props) {
               <div className="loader"></div>
             </div>
           ) : (
-            "אין לך אנשים, לאנשייך אין מופעי הדרכה, סיננת את כולם או שיש תקלה תקשורת"
+            "אין לך אנשים, לאנשיך אין מופעי הדרכה, סיננת את כולם או שיש תקלה תקשורת"
           )}
         </h2>
       )}
