@@ -16,26 +16,53 @@ export default function Filters(props) {
   const setfilteredsdarot = props.setfilteredsdarot;
   const setfilteredsdarotavgsperppl = props.setfilteredsdarotavgsperppl;
 
-  const [selectedsdarot, selectsdarot] = useState(
-    sdarot
-      ? [
-          sdarot.map((sidra) => {
-            return { value: sidra, label: sidra };
-          }),
-        ]
-      : []
-  );
-  const [selectedscourse, selectcourse] = useState(
-    people
-      ? [
-          people.map((person) => {
-            return { value: person.CourseNo, label: person.CourseNo };
-          }),
-        ]
-      : []
-  );
-  const [selectedmaslool, selectmaslool] = useState([]);
-  const [selectedunit, selectunit] = useState([]);
+  let sdarotlist2 = false;
+  let unitlist2 = false;
+  let masloollist2 = false;
+  let courselist2 = false;
+
+  if (mofas && people && sdarot && sdarotavgsperppl) {
+    sdarotlist2 = new Array();
+
+    for (let i = 0; i < sdarot.length; i++) {
+      sdarotlist2.push({
+        value: sdarot[i],
+        label: sdarot[i],
+      });
+    }
+
+    unitlist2 = new Array(
+      { value: "506", label: "506" },
+      { value: "509", label: "509" },
+      { value: "528", label: "528" }
+    );
+
+    masloollist2 = new Array(
+      { value: "mesima", label: "משימה" },
+      { value: "taavura", label: "תעבורה" },
+      { value: "versatili", label: "ורסטילי" },
+      { value: "ha", label: "הכשרה" }
+    );
+
+    courselist2 = new Array();
+    for (let i = 0; i < people.length; i++) {
+      let newcourse = true;
+      for (let j = 0; j < courselist2.length; j++) {
+        if (courselist2[j].value == people[i].CourseNo) newcourse = false;
+      }
+      if (newcourse) {
+        courselist2.push({
+          value: people[i].CourseNo,
+          label: "" + people[i].CourseNo,
+        });
+      }
+    }
+  }
+
+  const [selectedsdarot, selectsdarot] = useState(sdarotlist2);
+  const [selectedscourse, selectcourse] = useState([courselist2]);
+  const [selectedmaslool, selectmaslool] = useState([masloollist2]);
+  const [selectedunit, selectunit] = useState([unitlist2]);
 
   useEffect(() => {
     if (
@@ -53,7 +80,6 @@ export default function Filters(props) {
       sdarot.length &&
       sdarot.length > 0
     ) {
-      debugger;
       let cleansdarot = new Array();
       let cleanmofas = new Array();
       for (let i = 0; i < sdarot.length; i++) {
@@ -62,6 +88,17 @@ export default function Filters(props) {
             cleansdarot.push(sdarot[i]);
         }
       }
+
+      for (let i = 0; i < mofas.length; i++) {
+        for (let j = 0; j < selectedsdarot.length; j++) {
+          if (mofas[i].Emda === selectedsdarot[j].value)
+            cleanmofas.push(mofas[i]);
+        }
+      }
+
+      console.log(filteredsdarotavgsperppl);
+
+      setfilteredmofas(cleanmofas);
       setfilteredsdarot(cleansdarot);
     }
   }, [selectedsdarot]);

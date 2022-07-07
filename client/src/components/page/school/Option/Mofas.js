@@ -56,7 +56,6 @@ export default function Mofas(props) {
       }
       setsdarot(sdrt);
       setfilteredsdarot(sdrt);
-      debugger;
 
       let sdtavgsperppl = new Array();
       for (let i = 0; i < sdrt.length; i++) {
