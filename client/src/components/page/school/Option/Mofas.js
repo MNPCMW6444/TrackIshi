@@ -176,25 +176,30 @@ export default function Mofas(props) {
                     </th>
                   ))}
               </tr>
-              {filteredpeople.map((person, i) => (
-                <tr>
-                  <td
-                    key={i + 2000}
-                    className="otd"
-                    onClick={() => {
-                      openModal();
-                      setShel(person.MA);
-                    }}
-                  >
-                    {person.NickName}
-                  </td>
-                  {filteredsdarotavgsperppl[i].map((avg, j) => (
-                    <td key={j + 3000} className="otd">
-                      {avg || "-"}
+              {filteredpeople &&
+                typeof filteredpeople.map === "function" &&
+                filteredpeople.length > 0 &&
+                filteredpeople.map((person, i) => (
+                  <tr>
+                    <td
+                      key={i + 2000}
+                      className="otd"
+                      onClick={() => {
+                        openModal();
+                        setShel(person.MA);
+                      }}
+                    >
+                      {person.NickName}
                     </td>
-                  ))}
-                </tr>
-              ))}
+                    {filteredsdarotavgsperppl &&
+                      filteredsdarotavgsperppl.length > 0 &&
+                      filteredsdarotavgsperppl[i].map((avg, j) => (
+                        <td key={j + 3000} className="otd">
+                          {avg || "-"}
+                        </td>
+                      ))}
+                  </tr>
+                ))}
             </tbody>
           </table>
         </>

@@ -81,25 +81,40 @@ export default function Filters(props) {
       sdarot.length > 0
     ) {
       let cleansdarot = new Array();
-      let cleanmofas = new Array();
       for (let i = 0; i < sdarot.length; i++) {
         for (let j = 0; j < selectedsdarot.length; j++) {
           if (sdarot[i] === selectedsdarot[j].value)
             cleansdarot.push(sdarot[i]);
         }
       }
+      setfilteredsdarot(cleansdarot);
 
+      let cleanmofas = new Array();
       for (let i = 0; i < mofas.length; i++) {
         for (let j = 0; j < selectedsdarot.length; j++) {
           if (mofas[i].Emda === selectedsdarot[j].value)
             cleanmofas.push(mofas[i]);
         }
       }
-
-      console.log(filteredsdarotavgsperppl);
-
       setfilteredmofas(cleanmofas);
-      setfilteredsdarot(cleansdarot);
+
+      let cleandsdarotavgsperppl = new Array(sdarotavgsperppl);
+      let indexesToRemove = new Array();
+      let jj = 0;
+      for (let i = 0; i < sdarot.length; i++) {
+        if (!cleansdarot[jj] || sdarot[i] !== cleansdarot[jj])
+          indexesToRemove.push(i);
+        else jj++;
+      }
+      debugger;
+      for (let i = 0; i < cleandsdarotavgsperppl.length; i++)
+        for (let j = 0; j < cleandsdarotavgsperppl[i].length; j++)
+          for (let k = 0; k < indexesToRemove.length; k++)
+            if (j === indexesToRemove[k])
+              cleandsdarotavgsperppl[i].splice(j, 1);
+      setfilteredsdarotavgsperppl(cleandsdarotavgsperppl);
+      console.log(cleandsdarotavgsperppl);
+      console.log(indexesToRemove);
     }
   }, [selectedsdarot]);
   useEffect(() => {}, [selectedscourse]);
