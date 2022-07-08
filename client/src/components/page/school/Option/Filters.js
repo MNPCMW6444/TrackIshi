@@ -6,6 +6,7 @@ export default function Filters(props) {
   const people = props.people;
   const sdarot = props.sdarot;
   const sdarotavgsperppl = props.sdarotavgsperppl;
+  const indextoremove = props.indextoremove;
 
   const filteredmofas = props.filteredmofas;
   const filteredpeople = props.filteredpeople;
@@ -14,7 +15,7 @@ export default function Filters(props) {
   const setfilteredmofas = props.setfilteredmofas;
   const setfilteredpeople = props.setfilteredpeople;
   const setfilteredsdarot = props.setfilteredsdarot;
-  const setfilteredsdarotavgsperppl = props.setfilteredsdarotavgsperppl;
+  const setindextoremove = props.setindextoremove;
 
   let sdarotlist2 = false;
   let unitlist2 = false;
@@ -60,9 +61,9 @@ export default function Filters(props) {
   }
 
   const [selectedsdarot, selectsdarot] = useState(sdarotlist2);
-  const [selectedscourse, selectcourse] = useState([courselist2]);
-  const [selectedmaslool, selectmaslool] = useState([masloollist2]);
-  const [selectedunit, selectunit] = useState([unitlist2]);
+  const [selectedcourse, selectcourse] = useState(courselist2);
+  const [selectedmaslool, selectmaslool] = useState(masloollist2);
+  const [selectedunit, selectunit] = useState(unitlist2);
 
   useEffect(() => {
     if (
@@ -99,6 +100,7 @@ export default function Filters(props) {
       setfilteredmofas(cleanmofas);
 
       let cleandsdarotavgsperppl = new Array(sdarotavgsperppl);
+      cleandsdarotavgsperppl = cleandsdarotavgsperppl[0];
       let indexesToRemove = new Array();
       let jj = 0;
       for (let i = 0; i < sdarot.length; i++) {
@@ -106,20 +108,117 @@ export default function Filters(props) {
           indexesToRemove.push(i);
         else jj++;
       }
-      debugger;
+      setindextoremove(indexesToRemove);
+
+      /* 
       for (let i = 0; i < cleandsdarotavgsperppl.length; i++)
         for (let j = 0; j < cleandsdarotavgsperppl[i].length; j++)
           for (let k = 0; k < indexesToRemove.length; k++)
             if (j === indexesToRemove[k])
               cleandsdarotavgsperppl[i].splice(j, 1);
-      setfilteredsdarotavgsperppl(cleandsdarotavgsperppl);
-      console.log(cleandsdarotavgsperppl);
-      console.log(indexesToRemove);
+      setfilteredsdarotavgsperppl(cleandsdarotavgsperppl); */
+      /* 
+      let sdtavgsperppl = new Array();
+      for (let i = 0; i < cleansdarot.length; i++) {
+        let avgofperson = new Array();
+        for (let k = 0; k < filteredpeople.length; k++) {
+          let avg = 0;
+          let count = 0;
+          for (let j = 0; j < cleanmofas.length; j++) {
+            if (
+              cleanmofas[j].Emda === cleansdarot[i] &&
+              cleanmofas[j].sMA === filteredpeople[k].MA
+            ) {
+              avg += cleanmofas[j].M1;
+              count++;
+            }
+          }
+          avg /= count;
+          avgofperson.push(avg);
+        }
+        sdtavgsperppl.push(avgofperson);
+      }
+      setfilteredsdarotavgsperppl(sdtavgsperppl); */
     }
   }, [selectedsdarot]);
-  useEffect(() => {}, [selectedscourse]);
-  useEffect(() => {}, [selectedmaslool]);
-  useEffect(() => {}, [selectedunit]);
+  useEffect(() => {
+    if (
+      props.allowed &&
+      people &&
+      people.length &&
+      people.length > 0 &&
+      sdarotavgsperppl &&
+      sdarotavgsperppl.length &&
+      sdarotavgsperppl.length > 0 &&
+      mofas &&
+      mofas.length &&
+      mofas.length > 0 &&
+      sdarot &&
+      sdarot.length &&
+      sdarot.length > 0
+    ) {
+      let cleanpeople = new Array();
+      for (let i = 0; i < people.length; i++) {
+        for (let j = 0; j < selectedcourse.length; j++) {
+          if (people[i].CourseNo === selectedcourse[j].value)
+            cleanpeople.push(people[i]);
+        }
+      }
+      setfilteredpeople(cleanpeople);
+    }
+  }, [selectedcourse]);
+  useEffect(() => {
+    if (
+      props.allowed &&
+      people &&
+      people.length &&
+      people.length > 0 &&
+      sdarotavgsperppl &&
+      sdarotavgsperppl.length &&
+      sdarotavgsperppl.length > 0 &&
+      mofas &&
+      mofas.length &&
+      mofas.length > 0 &&
+      sdarot &&
+      sdarot.length &&
+      sdarot.length > 0
+    ) {
+      let cleanpeople = new Array();
+      for (let i = 0; i < people.length; i++) {
+        for (let j = 0; j < selectedmaslool.length; j++) {
+          if (people[i].Maslool === selectedmaslool[j].value)
+            cleanpeople.push(people[i]);
+        }
+      }
+      setfilteredpeople(cleanpeople);
+    }
+  }, [selectedmaslool]);
+  useEffect(() => {
+    if (
+      props.allowed &&
+      people &&
+      people.length &&
+      people.length > 0 &&
+      sdarotavgsperppl &&
+      sdarotavgsperppl.length &&
+      sdarotavgsperppl.length > 0 &&
+      mofas &&
+      mofas.length &&
+      mofas.length > 0 &&
+      sdarot &&
+      sdarot.length &&
+      sdarot.length > 0
+    ) {
+      let cleanpeople = new Array();
+      for (let i = 0; i < people.length; i++) {
+        for (let j = 0; j < selectedunit.length; j++) {
+          if (people[i].Unit === selectedunit[j].value)
+            cleanpeople.push(people[i]);
+        }
+      }
+      setfilteredpeople(cleanpeople);
+    }
+  }, [selectedunit]);
 
   if (
     people &&
@@ -199,7 +298,7 @@ export default function Filters(props) {
             <div>
               <MultiSelect
                 options={courselist}
-                value={selectedscourse}
+                value={selectedcourse}
                 onChange={selectcourse}
                 labelledBy="Select"
               />

@@ -33,6 +33,7 @@ export default function Mofas(props) {
   const [filteredpeople, setfilteredpeople] = useState();
   const [filteredsdarot, setfilteredsdarot] = useState();
   const [filteredsdarotavgsperppl, setfilteredsdarotavgsperppl] = useState();
+  const [indextoremove, setindextoremove] = useState();
 
   const [modalIsOpen, setIsOpen] = useState(false);
   const [shel, setShel] = useState(false);
@@ -89,6 +90,13 @@ export default function Mofas(props) {
     setIsOpen(false);
   }
 
+  function checkIfToRemove(index) {
+    for (let i = 0; indextoremove && i < indextoremove.length; i++) {
+      if (indextoremove[i] === index) return true;
+    }
+    return false;
+  }
+
   return (
     <div>
       <div style={{ textAlign: "center" }}>
@@ -128,10 +136,12 @@ export default function Mofas(props) {
             filteredpeople={filteredpeople}
             filteredsdarot={filteredsdarot}
             filteredsdarotavgsperppl={filteredsdarotavgsperppl}
+            indextoremove={indextoremove}
             setfilteredmofas={setfilteredmofas}
             setfilteredpeople={setfilteredpeople}
             setfilteredsdarot={setfilteredsdarot}
             setfilteredsdarotavgsperppl={setfilteredsdarotavgsperppl}
+            setindextoremove={setindextoremove}
           />
         )}
 
@@ -193,8 +203,14 @@ export default function Mofas(props) {
                     </td>
                     {filteredsdarotavgsperppl &&
                       filteredsdarotavgsperppl.length > 0 &&
+                      /* filteredsdarotavgsperppl[i] &&
+                      filteredsdarotavgsperppl[i].length > 0 && */
                       filteredsdarotavgsperppl[i].map((avg, j) => (
-                        <td key={j + 3000} className="otd">
+                        <td
+                          style={{ display: checkIfToRemove(j) && "none" }}
+                          key={j + 3000}
+                          className="otd"
+                        >
                           {avg || "-"}
                         </td>
                       ))}
