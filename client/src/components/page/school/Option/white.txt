@@ -1,0 +1,612 @@
+Mofas.js:
+import React, { useEffect, useState } from "react";
+import domain from "../../../../util/domain";
+import Axios from "axios";
+import Modal from "react-modal";
+import HisMOFAS from "../../screw/Option/MOFAS";
+import { CSVLink } from "react-csv";
+import emdalist from "../../../../util/emdalist";
+import Filters from "./Filters";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "25%",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    overflow: "auto",
+    maxHeight: "100vh",
+  },
+};
+
+export default function Mofas(props) {
+  const [l, setl] = useState(false);
+  const [reload, setreload] = useState(false);
+  const [allowed, setallowed] = useState(false);
+
+  const [mofas, setmofas] = useState();
+  const [people, setpeople] = useState();
+  const [sdarot, setsdarot] = useState();
+  const [sdarotavgsperppl, setsdarotavgsperppl] = useState();
+  const [filteredmofas, setfilteredmofas] = useState();
+  const [filteredpeople, setfilteredpeople] = useState();
+  const [filteredsdarot, setfilteredsdarot] = useState();
+  const [filteredsdarotavgsperppl, setfilteredsdarotavgsperppl] = useState();
+  const [indextoremove, setindextoremove] = useState();
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [shel, setShel] = useState(false);
+
+  useEffect(() => {
+    async function getit() {
+      setl(true);
+      let ppl = (await Axios.get(`${domain}/user/getmypeopleM`)).data;
+      setpeople(ppl);
+      setfilteredpeople(ppl);
+      let mfs = (await Axios.get(`${domain}/mofa/getallmyn`)).data;
+      setl(false);
+      setmofas(mfs);
+      setfilteredmofas(mfs);
+      let sdrt = new Array();
+      for (let i = 0; i < mfs.length; i++) {
+        let notthere = true;
+        for (let j = 0; j < sdrt.length; j++)
+          if (sdrt[j] == mfs[i].Emda) notthere = false;
+        if (notthere) sdrt.push(mfs[i].Emda);
+      }
+      setsdarot(sdrt);
+      setfilteredsdarot(sdrt);
+
+      let sdtavgsperppl = new Array();
+      for (let i = 0; i < sdrt.length; i++) {
+        let avgofperson = new Array();
+        for (let k = 0; k < ppl.length; k++) {
+          let avg = 0;
+          let count = 0;
+          for (let j = 0; j < mfs.length; j++) {
+            if (mfs[j].Emda === sdrt[i] && mfs[j].sMA === ppl[k].MA) {
+              avg += mfs[j].M1;
+              count++;
+            }
+          }
+          avg /= count;
+          avgofperson.push(avg);
+        }
+        sdtavgsperppl.push(avgofperson);
+      }
+      setfilteredsdarotavgsperppl(sdtavgsperppl);
+      setsdarotavgsperppl(sdtavgsperppl);
+    }
+    getit();
+    setallowed(true);
+  }, [reload]);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function checkIfToRemove(index) {
+    for (let i = 0; indextoremove && i < indextoremove.length; i++) {
+      if (indextoremove[i] === index) return true;
+    }
+    return false;
+  }
+
+  return (
+    <div>
+      <div style={{ textAlign: "center" }}>
+        <br />
+        {!l && (
+          <button
+            onClick={() => {
+              setallowed(false);
+              setreload(Math.random());
+            }}
+          >
+            רענן
+          </button>
+        )}
+      </div>
+
+      {people &&
+        people.length &&
+        people.length > 0 &&
+        sdarotavgsperppl &&
+        sdarotavgsperppl.length &&
+        sdarotavgsperppl.length > 0 &&
+        mofas &&
+        mofas.length &&
+        mofas.length > 0 &&
+        sdarot &&
+        sdarot.length &&
+        sdarot.length > 0 &&
+        !l && (
+          <Filters
+            allowed={allowed}
+            mofas={mofas}
+            people={people}
+            sdarot={sdarot}
+            sdarotavgsperppl={sdarotavgsperppl}
+            filteredmofas={filteredmofas}
+            filteredpeople={filteredpeople}
+            filteredsdarot={filteredsdarot}
+            filteredsdarotavgsperppl={filteredsdarotavgsperppl}
+            indextoremove={indextoremove}
+            setfilteredmofas={setfilteredmofas}
+            setfilteredpeople={setfilteredpeople}
+            setfilteredsdarot={setfilteredsdarot}
+            setfilteredsdarotavgsperppl={setfilteredsdarotavgsperppl}
+            setindextoremove={setindextoremove}
+          />
+        )}
+
+      {filteredpeople &&
+      filteredpeople.length &&
+      filteredpeople.length > 0 &&
+      filteredsdarotavgsperppl &&
+      filteredsdarotavgsperppl.length &&
+      filteredsdarotavgsperppl.length > 0 &&
+      filteredmofas &&
+      filteredmofas.length &&
+      filteredmofas.length > 0 &&
+      filteredsdarot &&
+      filteredsdarot.length &&
+      filteredsdarot.length > 0 &&
+      !l ? (
+        <>
+          <br />
+
+          {allowed ? (
+            <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              style={customStyles}
+              contentLabel="Example Modal"
+            >
+              <HisMOFAS shel={shel} />
+            </Modal>
+          ) : (
+            <div>טוען סננים</div>
+          )}
+          <br />
+          <table className="xotable">
+            <tbody>
+              <tr>
+                <th className="oth">איש צוות</th>
+                {filteredsdarot &&
+                  filteredsdarot.length > 0 &&
+                  filteredsdarot.map((sidra, i) => (
+                    <th key={i + 1000} className="oth">
+                      {sidra}
+                    </th>
+                  ))}
+              </tr>
+              {filteredpeople &&
+                typeof filteredpeople.map === "function" &&
+                filteredpeople.length > 0 &&
+                filteredpeople.map((person, i) => (
+                  <tr>
+                    <td
+                      key={i + 2000}
+                      className="otd"
+                      onClick={() => {
+                        openModal();
+                        setShel(person.MA);
+                      }}
+                    >
+                      {person.NickName}
+                    </td>
+                    {filteredsdarotavgsperppl &&
+                      filteredsdarotavgsperppl.length > 0 &&
+                      /* filteredsdarotavgsperppl[i] &&
+                      filteredsdarotavgsperppl[i].length > 0 && */
+                      filteredsdarotavgsperppl[i].map((avg, j) => (
+                        <td
+                          style={{ display: checkIfToRemove(j) && "none" }}
+                          key={j + 3000}
+                          className="otd"
+                        >
+                          {avg || "-"}
+                        </td>
+                      ))}
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </>
+      ) : (
+        <h2>
+          {l ? (
+            <div style={{ display: "inine-block" }}>
+              <span>בודק אילו מופעי ההדרכה מוזנים לאנשייך... </span>
+              <div className="loader"></div>
+            </div>
+          ) : (
+            "אין לך אנשים, לאנשיך אין מופעי הדרכה, סיננת את כולם או שיש תקלה תקשורת"
+          )}
+        </h2>
+      )}
+      <br />
+    </div>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Filters.js:
+import React, { useState, useEffect } from "react";
+import { MultiSelect } from "react-multi-select-component";
+
+export default function Filters(props) {
+  const mofas = props.mofas;
+  const people = props.people;
+  const sdarot = props.sdarot;
+  const sdarotavgsperppl = props.sdarotavgsperppl;
+  const indextoremove = props.indextoremove;
+
+  const filteredmofas = props.filteredmofas;
+  const filteredpeople = props.filteredpeople;
+  const filteredsdarot = props.filteredsdarot;
+  const filteredsdarotavgsperppl = props.filteredsdarotavgsperppl;
+  const setfilteredmofas = props.setfilteredmofas;
+  const setfilteredpeople = props.setfilteredpeople;
+  const setfilteredsdarot = props.setfilteredsdarot;
+  const setindextoremove = props.setindextoremove;
+
+  let sdarotlist2 = false;
+  let unitlist2 = false;
+  let masloollist2 = false;
+  let courselist2 = false;
+
+  if (mofas && people && sdarot && sdarotavgsperppl) {
+    sdarotlist2 = new Array();
+
+    for (let i = 0; i < sdarot.length; i++) {
+      sdarotlist2.push({
+        value: sdarot[i],
+        label: sdarot[i],
+      });
+    }
+
+    unitlist2 = new Array(
+      { value: "506", label: "506" },
+      { value: "509", label: "509" },
+      { value: "528", label: "528" }
+    );
+
+    masloollist2 = new Array(
+      { value: "mesima", label: "משימה" },
+      { value: "taavura", label: "תעבורה" },
+      { value: "versatili", label: "ורסטילי" },
+      { value: "ha", label: "הכשרה" }
+    );
+
+    courselist2 = new Array();
+    for (let i = 0; i < people.length; i++) {
+      let newcourse = true;
+      for (let j = 0; j < courselist2.length; j++) {
+        if (courselist2[j].value == people[i].CourseNo) newcourse = false;
+      }
+      if (newcourse) {
+        courselist2.push({
+          value: people[i].CourseNo,
+          label: "" + people[i].CourseNo,
+        });
+      }
+    }
+  }
+
+  const [selectedsdarot, selectsdarot] = useState(sdarotlist2);
+  const [selectedcourse, selectcourse] = useState(courselist2);
+  const [selectedmaslool, selectmaslool] = useState(masloollist2);
+  const [selectedunit, selectunit] = useState(unitlist2);
+
+  useEffect(() => {
+    if (
+      props.allowed &&
+      people &&
+      people.length &&
+      people.length > 0 &&
+      sdarotavgsperppl &&
+      sdarotavgsperppl.length &&
+      sdarotavgsperppl.length > 0 &&
+      mofas &&
+      mofas.length &&
+      mofas.length > 0 &&
+      sdarot &&
+      sdarot.length &&
+      sdarot.length > 0
+    ) {
+      let cleansdarot = new Array();
+      for (let i = 0; i < sdarot.length; i++) {
+        for (let j = 0; j < selectedsdarot.length; j++) {
+          if (sdarot[i] === selectedsdarot[j].value)
+            cleansdarot.push(sdarot[i]);
+        }
+      }
+      setfilteredsdarot(cleansdarot);
+
+      let cleanmofas = new Array();
+      for (let i = 0; i < mofas.length; i++) {
+        for (let j = 0; j < selectedsdarot.length; j++) {
+          if (mofas[i].Emda === selectedsdarot[j].value)
+            cleanmofas.push(mofas[i]);
+        }
+      }
+      setfilteredmofas(cleanmofas);
+
+      let cleandsdarotavgsperppl = new Array(sdarotavgsperppl);
+      cleandsdarotavgsperppl = cleandsdarotavgsperppl[0];
+      let indexesToRemove = new Array();
+      let jj = 0;
+      for (let i = 0; i < sdarot.length; i++) {
+        if (!cleansdarot[jj] || sdarot[i] !== cleansdarot[jj])
+          indexesToRemove.push(i);
+        else jj++;
+      }
+      setindextoremove(indexesToRemove);
+
+      /* 
+      for (let i = 0; i < cleandsdarotavgsperppl.length; i++)
+        for (let j = 0; j < cleandsdarotavgsperppl[i].length; j++)
+          for (let k = 0; k < indexesToRemove.length; k++)
+            if (j === indexesToRemove[k])
+              cleandsdarotavgsperppl[i].splice(j, 1);
+      setfilteredsdarotavgsperppl(cleandsdarotavgsperppl); */
+      /* 
+      let sdtavgsperppl = new Array();
+      for (let i = 0; i < cleansdarot.length; i++) {
+        let avgofperson = new Array();
+        for (let k = 0; k < filteredpeople.length; k++) {
+          let avg = 0;
+          let count = 0;
+          for (let j = 0; j < cleanmofas.length; j++) {
+            if (
+              cleanmofas[j].Emda === cleansdarot[i] &&
+              cleanmofas[j].sMA === filteredpeople[k].MA
+            ) {
+              avg += cleanmofas[j].M1;
+              count++;
+            }
+          }
+          avg /= count;
+          avgofperson.push(avg);
+        }
+        sdtavgsperppl.push(avgofperson);
+      }
+      setfilteredsdarotavgsperppl(sdtavgsperppl); */
+    }
+  }, [selectedsdarot]);
+  useEffect(() => {
+    if (
+      props.allowed &&
+      people &&
+      people.length &&
+      people.length > 0 &&
+      sdarotavgsperppl &&
+      sdarotavgsperppl.length &&
+      sdarotavgsperppl.length > 0 &&
+      mofas &&
+      mofas.length &&
+      mofas.length > 0 &&
+      sdarot &&
+      sdarot.length &&
+      sdarot.length > 0
+    ) {
+      let cleanpeople = new Array();
+      for (let i = 0; i < people.length; i++) {
+        for (let j = 0; j < selectedcourse.length; j++) {
+          if (people[i].CourseNo === selectedcourse[j].value)
+            cleanpeople.push(people[i]);
+        }
+      }
+      setfilteredpeople(cleanpeople);
+    }
+  }, [selectedcourse]);
+  useEffect(() => {
+    if (
+      props.allowed &&
+      people &&
+      people.length &&
+      people.length > 0 &&
+      sdarotavgsperppl &&
+      sdarotavgsperppl.length &&
+      sdarotavgsperppl.length > 0 &&
+      mofas &&
+      mofas.length &&
+      mofas.length > 0 &&
+      sdarot &&
+      sdarot.length &&
+      sdarot.length > 0
+    ) {
+      let cleanpeople = new Array();
+      for (let i = 0; i < people.length; i++) {
+        for (let j = 0; j < selectedmaslool.length; j++) {
+          if (people[i].Maslool === selectedmaslool[j].value)
+            cleanpeople.push(people[i]);
+        }
+      }
+      setfilteredpeople(cleanpeople);
+    }
+  }, [selectedmaslool]);
+  useEffect(() => {
+    if (
+      props.allowed &&
+      people &&
+      people.length &&
+      people.length > 0 &&
+      sdarotavgsperppl &&
+      sdarotavgsperppl.length &&
+      sdarotavgsperppl.length > 0 &&
+      mofas &&
+      mofas.length &&
+      mofas.length > 0 &&
+      sdarot &&
+      sdarot.length &&
+      sdarot.length > 0
+    ) {
+      let cleanpeople = new Array();
+      for (let i = 0; i < people.length; i++) {
+        for (let j = 0; j < selectedunit.length; j++) {
+          if (people[i].Unit === selectedunit[j].value)
+            cleanpeople.push(people[i]);
+        }
+      }
+      setfilteredpeople(cleanpeople);
+    }
+  }, [selectedunit]);
+
+  if (
+    people &&
+    people.length &&
+    people.length > 0 &&
+    sdarotavgsperppl &&
+    sdarotavgsperppl.length &&
+    sdarotavgsperppl.length > 0 &&
+    mofas &&
+    mofas.length &&
+    mofas.length > 0 &&
+    sdarot &&
+    sdarot.length &&
+    sdarot.length > 0
+  ) {
+    let sdarotlist = new Array();
+
+    for (let i = 0; i < sdarot.length; i++) {
+      sdarotlist.push({
+        value: sdarot[i],
+        label: sdarot[i],
+      });
+    }
+
+    let unitlist = new Array(
+      { value: "506", label: "506" },
+      { value: "509", label: "509" },
+      { value: "528", label: "528" }
+    );
+
+    let masloollist = new Array(
+      { value: "mesima", label: "משימה" },
+      { value: "taavura", label: "תעבורה" },
+      { value: "versatili", label: "ורסטילי" },
+      { value: "ha", label: "הכשרה" }
+    );
+
+    let courselist = new Array();
+    for (let i = 0; i < people.length; i++) {
+      let newcourse = true;
+      for (let j = 0; j < courselist.length; j++) {
+        if (courselist[j].value == people[i].CourseNo) newcourse = false;
+      }
+      if (newcourse) {
+        courselist.push({
+          value: people[i].CourseNo,
+          label: "" + people[i].CourseNo,
+        });
+      }
+    }
+
+    return (
+      <div>
+        {" "}
+        <br />
+        <br />
+        <br />
+        <div style={{ textAlign: "center", fontWeight: "bold" }}>
+          סינון לפי סדרה:
+        </div>{" "}
+        <br />
+        <div>
+          <MultiSelect
+            options={sdarotlist}
+            value={selectedsdarot}
+            onChange={selectsdarot}
+            labelledBy="Select"
+          />
+        </div>
+        <br />
+        <div style={{}}>
+          <div style={{ display: "inline-block", width: "30%" }}>
+            <div style={{ textAlign: "center", fontWeight: "bold" }}>
+              סינון לפי קורס:
+            </div>{" "}
+            <br />
+            <div>
+              <MultiSelect
+                options={courselist}
+                value={selectedcourse}
+                onChange={selectcourse}
+                labelledBy="Select"
+              />
+            </div>
+          </div>
+          <div style={{ display: "inline-block", width: "5%" }}></div>
+
+          <div style={{ display: "inline-block", width: "30%" }}>
+            <div style={{ textAlign: "center", fontWeight: "bold" }}>
+              סינון לפי מסלול:
+            </div>{" "}
+            <br />
+            <div>
+              <MultiSelect
+                options={masloollist}
+                value={selectedmaslool}
+                onChange={selectmaslool}
+                labelledBy="Select"
+              />
+            </div>
+          </div>
+          <div style={{ display: "inline-block", width: "5%" }}></div>
+
+          <div style={{ display: "inline-block", width: "30%" }}>
+            <div style={{ textAlign: "center", fontWeight: "bold" }}>
+              סינון לפי יחידה:
+            </div>{" "}
+            <br />
+            <div>
+              <MultiSelect
+                options={unitlist}
+                value={selectedunit}
+                onChange={selectunit}
+                labelledBy="Select"
+              />
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+      </div>
+    );
+  } else return null;
+}
