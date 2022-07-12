@@ -71,10 +71,15 @@ export default function Mofas(props) {
             }
           }
           avg /= count;
-          avgofperson.push(avg);
+          avgofperson.push(Math.round(avg * 100) / 100);
         }
         sdtavgsperppl.push(avgofperson);
       }
+
+      sdtavgsperppl = sdtavgsperppl[0].map((_, colIndex) =>
+        sdtavgsperppl.map((row) => row[colIndex])
+      );
+
       setfilteredsdarotavgsperppl(sdtavgsperppl);
       setsdarotavgsperppl(sdtavgsperppl);
     }
@@ -203,8 +208,8 @@ export default function Mofas(props) {
                     </td>
                     {filteredsdarotavgsperppl &&
                       filteredsdarotavgsperppl.length > 0 &&
-                      /* filteredsdarotavgsperppl[i] &&
-                      filteredsdarotavgsperppl[i].length > 0 && */
+                      filteredsdarotavgsperppl[i] &&
+                      filteredsdarotavgsperppl[i].length > 0 &&
                       filteredsdarotavgsperppl[i].map((avg, j) => (
                         <td
                           style={{ display: checkIfToRemove(j) && "none" }}

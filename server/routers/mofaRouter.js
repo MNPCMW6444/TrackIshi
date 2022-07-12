@@ -354,7 +354,7 @@ router.get("/getallmyn", async (req, res) => {
 
     const mander = await User.findById(validatedUser.user);
 
-    const allmofas = await Mofa.find();
+    const allmofas = await Mofa.find({ IsDeleted: false });
 
     let allresmofas = new Array();
     let manded;
