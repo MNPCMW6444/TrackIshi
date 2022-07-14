@@ -37,6 +37,7 @@ export default function Mofas(props) {
 
   const [modalIsOpen, setIsOpen] = useState(false);
   const [shel, setShel] = useState(false);
+  const [h, seth] = useState(false);
 
   useEffect(() => {
     async function getit() {
@@ -173,7 +174,7 @@ export default function Mofas(props) {
               style={customStyles}
               contentLabel="Example Modal"
             >
-              <HisMOFAS shel={shel} />
+              <HisMOFAS shel={shel} h={h} />
             </Modal>
           ) : (
             <div>טוען סננים</div>
@@ -202,6 +203,7 @@ export default function Mofas(props) {
                       onClick={() => {
                         openModal();
                         setShel(person.MA);
+                        seth(person);
                       }}
                     >
                       {person.NickName}

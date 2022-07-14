@@ -21,6 +21,7 @@ export default function Filters(props) {
   let unitlist2 = false;
   let masloollist2 = false;
   let courselist2 = false;
+  let nicknamelist2 = false;
 
   if (mofas && people && sdarot && sdarotavgsperppl) {
     sdarotlist2 = new Array();
@@ -58,12 +59,27 @@ export default function Filters(props) {
         });
       }
     }
+
+    nicknamelist2 = new Array();
+    for (let i = 0; i < people.length; i++) {
+      let newnickname = true;
+      for (let j = 0; j < nicknamelist2.length; j++) {
+        if (nicknamelist2[j].value == people[i].NickName) newnickname = false;
+      }
+      if (newnickname) {
+        nicknamelist2.push({
+          value: people[i].NickName,
+          label: "" + people[i].NickName,
+        });
+      }
+    }
   }
 
   const [selectedsdarot, selectsdarot] = useState(sdarotlist2);
   const [selectedcourse, selectcourse] = useState(courselist2);
   const [selectedmaslool, selectmaslool] = useState(masloollist2);
   const [selectedunit, selectunit] = useState(unitlist2);
+  const [selectednickname, selectnickname] = useState(nicknamelist2);
 
   useEffect(() => {
     if (
@@ -220,6 +236,33 @@ export default function Filters(props) {
     }
   }, [selectedunit]);
 
+  useEffect(() => {
+    if (
+      props.allowed &&
+      people &&
+      people.length &&
+      people.length > 0 &&
+      sdarotavgsperppl &&
+      sdarotavgsperppl.length &&
+      sdarotavgsperppl.length > 0 &&
+      mofas &&
+      mofas.length &&
+      mofas.length > 0 &&
+      sdarot &&
+      sdarot.length &&
+      sdarot.length > 0
+    ) {
+      let cleanpeople = new Array();
+      for (let i = 0; i < people.length; i++) {
+        for (let j = 0; j < selectednickname.length; j++) {
+          if (people[i].NickName === selectednickname[j].value)
+            cleanpeople.push(people[i]);
+        }
+      }
+      setfilteredpeople(cleanpeople);
+    }
+  }, [selectednickname]);
+
   if (
     people &&
     people.length &&
@@ -270,24 +313,56 @@ export default function Filters(props) {
       }
     }
 
+    let nicknamelist = new Array();
+    for (let i = 0; i < people.length; i++) {
+      let newnickname = true;
+      for (let j = 0; j < nicknamelist.length; j++) {
+        if (nicknamelist[j].value == people[i].NickName) newnickname = false;
+      }
+      if (newnickname) {
+        nicknamelist.push({
+          value: people[i].NickName,
+          label: "" + people[i].NickName,
+        });
+      }
+    }
+
     return (
       <div>
         {" "}
         <br />
         <br />
         <br />
-        <div style={{ textAlign: "center", fontWeight: "bold" }}>
-          סינון לפי סדרה:
-        </div>{" "}
-        <br />
-        <div>
-          <MultiSelect
-            options={sdarotlist}
-            value={selectedsdarot}
-            onChange={selectsdarot}
-            labelledBy="Select"
-          />
+        <div style={{ display: "inline-block", width: "60%" }}>
+          <div style={{ textAlign: "center", fontWeight: "bold" }}>
+            סינון לפי סדרה:
+          </div>{" "}
+          <br />
+          <div>
+            <MultiSelect
+              options={sdarotlist}
+              value={selectedsdarot}
+              onChange={selectsdarot}
+              labelledBy="Select"
+            />
+          </div>
         </div>
+        <div style={{ display: "inline-block", width: "5%" }}></div>
+        <div style={{ display: "inline-block", width: "35%" }}>
+          <div style={{ textAlign: "center", fontWeight: "bold" }}>
+            סינון לפי כינוי:
+          </div>{" "}
+          <br />
+          <div>
+            <MultiSelect
+              options={nicknamelist}
+              value={selectednickname}
+              onChange={selectnickname}
+              labelledBy="Select"
+            />
+          </div>
+        </div>
+        <br />
         <br />
         <div style={{}}>
           <div style={{ display: "inline-block", width: "30%" }}>

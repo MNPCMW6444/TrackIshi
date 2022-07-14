@@ -50,11 +50,19 @@ export default function S420() {
           </button>
           <button
             className={
+              navbar === "mymofas" ? "naveachbuttonselected" : "naveachbutton"
+            }
+            onClick={() => setNavbar("mymofas")}
+          >
+            מופעי הדרכה אישיים
+          </button>
+          <button
+            className={
               navbar === "mofas" ? "naveachbuttonselected" : "naveachbutton"
             }
             onClick={() => setNavbar("mofas")}
           >
-            מופעי הדרכה
+            מופעי הדרכה 420
           </button>
           <button className="navlogout" onClick={logOut}>
             התנתק

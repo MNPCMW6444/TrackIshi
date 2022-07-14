@@ -57,6 +57,29 @@ router.get("/getallhis/:ma", async (req, res) => {
     const mofas = await Mofa.find({ CrewM: userr, IsDeleted: false });
 
     for (let i = 0; i < mofas.length; i++) mofas[i].name = userr.NickName;
+    const userr2 = await User.findById(validatedUser.user);
+
+    for (let i = 0; i < mofas.length; i++) {
+      if (
+        !(
+          userr2.Role === "AUTHCO" ||
+          userr2.Role === "DIRECT" ||
+          userr2.Role === "SCHOOL"
+        ) &&
+        !(
+          mofas[i].Emda === "מלא''מ - הגנ''ש" ||
+          mofas[i].Emda === "מלא''מ - בת''ק" ||
+          mofas[i].Emda === "מלא''מ - עומק" ||
+          mofas[i].Emda === "שמ''כ - מתארים" ||
+          mofas[i].Emda === "שמ''כ - יירוט" ||
+          mofas[i].Emda === "שמ''כ - בת''ק"
+        ) &&
+        userr2.MA !== mofas.sMA
+      ) {
+        mofas.splice(i, 1);
+        i--;
+      }
+    }
 
     res.json(mofas);
   } catch (err) {
@@ -363,26 +386,31 @@ router.get("/getallmyn", async (req, res) => {
       manded = await User.findById(allmofas[i].CrewM);
       if (mander.Role === "DIRECT")
         if (
-          manded &&
-          manded.MyComm &&
-          manded.MyComm.toString() === mander._id.toString()
+          (manded &&
+            manded.MyComm &&
+            manded.MyComm.toString() === mander._id.toString()) ||
+          manded.MA === mander.MA
         )
           allresmofas.push(allmofas[i]);
       if (mander.Role === "SCHOOL")
         if (
-          manded &&
-          manded.MyTutor &&
-          manded.MyTutor.toString() === mander._id.toString()
+          (manded &&
+            manded.MyTutor &&
+            manded.MyTutor.toString() === mander._id.toString()) ||
+          manded.MA === mander.MA
         )
           allresmofas.push(allmofas[i]);
       if (mander.Role === "S420")
         if (
-          mander.Emda === "מלא''מ - הגנ''ש" ||
-          mander.Emda === "שמ''כ - מתארים" ||
-          mander.Emda === "שמ''כ - יירוט" ||
-          mander.Emda === "שמ''כ - בת''ק"
-        )
+          allmofas[i].Emda === "מלא''מ - הגנ''ש" ||
+          allmofas[i].Emda === "מלא''מ - בת''ק" ||
+          allmofas[i].Emda === "מלא''מ - עומק" ||
+          allmofas[i].Emda === "שמ''כ - מתארים" ||
+          allmofas[i].Emda === "שמ''כ - יירוט" ||
+          allmofas[i].Emda === "שמ''כ - בת''ק"
+        ) {
           allresmofas.push(allmofas[i]);
+        }
     }
 
     res.json(allresmofas);

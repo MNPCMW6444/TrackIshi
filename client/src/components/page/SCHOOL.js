@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 
 export default function SCHOOL() {
   const [navbar, setNavbar] = useState("gaf");
-  const {  getUser } = useContext(UserContext);
+  const { getUser } = useContext(UserContext);
   const history = useHistory();
 
   async function logOut() {
@@ -40,7 +40,9 @@ export default function SCHOOL() {
           </button>
           <button
             className={
-              navbar === "myopinions" ? "naveachbuttonselected" : "naveachbutton"
+              navbar === "myopinions"
+                ? "naveachbuttonselected"
+                : "naveachbutton"
             }
             onClick={() => setNavbar("myopinions")}
           >
@@ -48,11 +50,19 @@ export default function SCHOOL() {
           </button>
           <button
             className={
+              navbar === "mymofas" ? "naveachbuttonselected" : "naveachbutton"
+            }
+            onClick={() => setNavbar("mymofas")}
+          >
+            מופעי הדרכה אישיים
+          </button>
+          <button
+            className={
               navbar === "mofas" ? "naveachbuttonselected" : "naveachbutton"
             }
             onClick={() => setNavbar("mofas")}
           >
-            מופעי הדרכה
+            מופעי הדרכה חניכים
           </button>
           <button className="navlogout" onClick={logOut}>
             התנתק

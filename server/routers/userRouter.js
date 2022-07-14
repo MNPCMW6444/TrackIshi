@@ -459,11 +459,12 @@ router.get("/getmypeopleM", async (req, res) => {
             i--;
           }
         if (userr.Role === "S420")
-          if (true) {
+          if (false) {
             allusers.splice(i, 1);
             i--;
           }
       }
+      //allusers.push(userr);
       res.json(allusers);
     } else {
       return res.status(401).json({
