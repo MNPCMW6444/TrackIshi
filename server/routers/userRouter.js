@@ -464,7 +464,7 @@ router.get("/getmypeopleM", async (req, res) => {
             i--;
           }
       }
-      //allusers.push(userr);
+
       res.json(allusers);
     } else {
       return res.status(401).json({

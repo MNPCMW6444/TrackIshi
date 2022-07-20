@@ -24,6 +24,8 @@ export default function Mofas(props) {
   const [l, setl] = useState(false);
   const [reload, setreload] = useState(false);
   const [allowed, setallowed] = useState(false);
+  const [new2, setnew] = useState(false);
+  const [people2, setpeople2] = useState(false);
 
   const [mofas, setmofas] = useState();
   const [people, setpeople] = useState();
@@ -41,9 +43,11 @@ export default function Mofas(props) {
 
   useEffect(() => {
     async function getit() {
+      setnew(false);
       setl(true);
       let ppl = (await Axios.get(`${domain}/user/getmypeopleM`)).data;
       setpeople(ppl);
+      setpeople2(ppl);
       setfilteredpeople(ppl);
       let mfs = (await Axios.get(`${domain}/mofa/getallmyn`)).data;
       setl(false);
@@ -105,6 +109,18 @@ export default function Mofas(props) {
 
   return (
     <div>
+      {allowed ? (
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <HisMOFAS shel={shel} h={h} />
+        </Modal>
+      ) : (
+        <div>טוען סננים</div>
+      )}
       <div style={{ textAlign: "center" }}>
         <br />
         {!l && (
@@ -167,18 +183,6 @@ export default function Mofas(props) {
         <>
           <br />
 
-          {allowed ? (
-            <Modal
-              isOpen={modalIsOpen}
-              onRequestClose={closeModal}
-              style={customStyles}
-              contentLabel="Example Modal"
-            >
-              <HisMOFAS shel={shel} h={h} />
-            </Modal>
-          ) : (
-            <div>טוען סננים</div>
-          )}
           <br />
           <table className="xotable">
             <tbody>
@@ -227,16 +231,60 @@ export default function Mofas(props) {
           </table>
         </>
       ) : (
-        <h2>
+        <>
           {l ? (
             <div style={{ display: "inine-block" }}>
               <span>בודק אילו מופעי ההדרכה מוזנים לאנשייך... </span>
               <div className="loader"></div>
             </div>
           ) : (
-            "אין לך אנשים, לאנשיך אין מופעי הדרכה, סיננת את כולם או שיש תקלה תקשורת"
+            /* "אין לך אנשים, לאנשיך אין מופעי הדרכה, סיננת את כולם או שיש תקלה תקשורת" */
+            <>
+              {" "}
+              <div style={{ textAlign: "center" }}>
+                <br />
+                {!l && (
+                  <h2>
+                    {" "}
+                    <button
+                      onClick={() => {
+                        setnew(true);
+                      }}
+                    >
+                      פתח איש שאין לו מופעים
+                    </button>
+                  </h2>
+                )}
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <br />
+                {!l && new2 && (
+                  <div>
+                    <table className="otable">
+                      <tbody>
+                        {people2.map((p, i) => (
+                          <tr key={i * 15} className="otr">
+                            <td
+                              key={i * 114}
+                              className="otd"
+                              onClick={() => {
+                                openModal();
+                                setShel(p.MA);
+                                seth(p);
+                              }}
+                            >
+                              {p.NickName}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+            </>
           )}
-        </h2>
+        </>
       )}
       <br />
     </div>
