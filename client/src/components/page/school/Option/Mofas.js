@@ -7,6 +7,19 @@ import { CSVLink } from "react-csv";
 import emdalist from "../../../../util/emdalist";
 import Filters from "./Filters";
 
+let td = "...";
+let i = 0;
+let ii = [".", "..", "..."];
+
+const h = () => {
+  if (i < 4) i++;
+  else i = 0;
+  setTimeout(h, 300);
+  td = ii[i];
+};
+
+setTimeout(h, 300);
+
 const customStyles = {
   content: {
     top: "50%",
@@ -234,7 +247,7 @@ export default function Mofas(props) {
         <>
           {l ? (
             <div style={{ display: "inine-block" }}>
-              <span>בודק אילו מופעי ההדרכה מוזנים לאנשייך... </span>
+              <span>{"בודק אילו מופעי ההדרכה מוזנים לאנשייך" + td} </span>
               <div className="loader"></div>
             </div>
           ) : (
