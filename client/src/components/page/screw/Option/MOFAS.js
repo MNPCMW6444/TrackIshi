@@ -461,7 +461,7 @@ export default function MOFAS(props) {
                     paddingRight: "15px",
                     paddingBottom: "15px",
                     paddingLeft: "15px",
-                    top: props.h ? 400 + i * 69 : 640 + i * 69,
+                    top: props.h ? 300 + i * 69 : 400 + i * 69,
                     left: props.h ? "15%" : "25%",
                   }}
                 >

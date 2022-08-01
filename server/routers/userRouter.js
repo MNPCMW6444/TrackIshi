@@ -464,7 +464,7 @@ router.get("/getmypeopleM", async (req, res) => {
             i--;
           }
       }
-
+      allusers.unshift(userr);
       res.json(allusers);
     } else {
       return res.status(401).json({
@@ -605,6 +605,7 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/loggedIn", async (req, res) => {
+
   try {
     const token = req.cookies.token;
 
@@ -616,6 +617,7 @@ router.get("/loggedIn", async (req, res) => {
 
     res.json(userr);
   } catch (err) {
+    console.log(err);
     return res.status(400).json({ errorMessage: "אינך מחובר" });
   }
 });
@@ -908,6 +910,7 @@ router.put("/updateFullDetails2/:ma", async (req, res) => {
         if (rolex === "מנהל כח אדם") userrr.Role = "KAHAD";
         if (rolex === "מבצעים") userrr.Role = "PAKMATS";
         if (rolex === "מפקד הכשרה") userrr.Role = "SCHOOL";
+        if (rolex === "מפקד הכשרה 420") userrr.Role = "S420";
       }
 
       async function getid(nn) {

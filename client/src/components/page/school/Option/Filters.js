@@ -60,6 +60,7 @@ export default function Filters(props) {
       }
     }
 
+
     nicknamelist2 = new Array();
     for (let i = 0; i < people.length; i++) {
       let newnickname = true;
@@ -329,11 +330,10 @@ export default function Filters(props) {
 
     return (
       <div>
-        {" "}
         <br />
         <br />
         <br />
-        <div style={{ display: "inline-block", width: "60%" }}>
+        <div style={{ display: "inline-block", width: "65%" }}>
           <div style={{ textAlign: "center", fontWeight: "bold" }}>
             סינון לפי סדרה:
           </div>{" "}
@@ -347,21 +347,21 @@ export default function Filters(props) {
             />
           </div>
         </div>
-        <div style={{ display: "inline-block", width: "5%" }}></div>
-        <div style={{ display: "inline-block", width: "35%" }}>
-          <div style={{ textAlign: "center", fontWeight: "bold" }}>
-            סינון לפי כינוי:
-          </div>{" "}
-          <br />
-          <div>
-            <MultiSelect
-              options={nicknamelist}
-              value={selectednickname}
-              onChange={selectnickname}
-              labelledBy="Select"
-            />
+          <div style={{ display: "inline-block", width: "5%" }}></div>
+          <div style={{ display: "inline-block", width: "30%" }}>
+            <div style={{ textAlign: "center", fontWeight: "bold" }}>
+              סינון לפי כינוי:
+            </div>{" "}
+            <br />
+            <div>
+              <MultiSelect
+                options={nicknamelist}
+                value={selectednickname}
+                onChange={selectnickname}
+                labelledBy="Select"
+              />
+            </div>
           </div>
-        </div>
         <br />
         <br />
         <div style={{}}>

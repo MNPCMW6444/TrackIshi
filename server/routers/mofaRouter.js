@@ -58,28 +58,22 @@ router.get("/getallhis/:ma", async (req, res) => {
 
     for (let i = 0; i < mofas.length; i++) mofas[i].name = userr.NickName;
     const userr2 = await User.findById(validatedUser.user);
-
+    
     for (let i = 0; i < mofas.length; i++) {
-      if (
-        !(
-          userr2.Role === "AUTHCO" ||
-          userr2.Role === "DIRECT" ||
-          userr2.Role === "SCHOOL"
-        ) &&
-        !(
-          mofas[i].Emda === "מלא''מ - הגנ''ש" ||
-          mofas[i].Emda === "מלא''מ - בת''ק" ||
-          mofas[i].Emda === "מלא''מ - עומק" ||
-          mofas[i].Emda === "שמ''כ - מתארים" ||
-          mofas[i].Emda === "שמ''כ - יירוט" ||
-          mofas[i].Emda === "שמ''כ - בת''ק"
-        ) &&
-        userr2.MA !== mofas.sMA
-      ) {
+      if ((!(userr2.Role==="AUTHCO" || userr2.Role==="DIRECT" || userr2.Role==="SCHOOL")) &&
+      (!(
+        mofas[i].Emda === "מלא''מ - הגנ''ש" ||
+        mofas[i].Emda === "מלא''מ - בת''ק" ||
+        mofas[i].Emda === "מלא''מ - עומק" ||
+        mofas[i].Emda === "שמ''כ - מתארים" ||
+        mofas[i].Emda === "שמ''כ - יירוט" ||
+        mofas[i].Emda === "שמ''כ - בת''ק"
+        )
+      ) &&
+      userr2.MA !== mofas.sMA) {
         mofas.splice(i, 1);
-        i--;
+        i--; }
       }
-    }
 
     res.json(mofas);
   } catch (err) {
@@ -377,7 +371,7 @@ router.get("/getallmyn", async (req, res) => {
 
     const mander = await User.findById(validatedUser.user);
 
-    const allmofas = await Mofa.find({ IsDeleted: false });
+    const allmofas = await Mofa.find({IsDeleted:false});
 
     let allresmofas = new Array();
     let manded;
@@ -385,20 +379,18 @@ router.get("/getallmyn", async (req, res) => {
     for (let i = 0; i < allmofas.length; i++) {
       manded = await User.findById(allmofas[i].CrewM);
       if (mander.Role === "DIRECT")
-        if (
-          (manded &&
-            manded.MyComm &&
-            manded.MyComm.toString() === mander._id.toString()) ||
-          manded.MA === mander.MA
-        )
+        if ((
+          manded &&
+          manded.MyComm &&
+          manded.MyComm.toString() === mander._id.toString()
+        ) || manded.MA === mander.MA)
           allresmofas.push(allmofas[i]);
       if (mander.Role === "SCHOOL")
-        if (
-          (manded &&
-            manded.MyTutor &&
-            manded.MyTutor.toString() === mander._id.toString()) ||
-          manded.MA === mander.MA
-        )
+        if ((
+          manded &&
+          manded.MyTutor &&
+          manded.MyTutor.toString() === mander._id.toString()
+        ) || manded.MA === mander.MA)
           allresmofas.push(allmofas[i]);
       if (mander.Role === "S420")
         if (
@@ -408,36 +400,11 @@ router.get("/getallmyn", async (req, res) => {
           allmofas[i].Emda === "שמ''כ - מתארים" ||
           allmofas[i].Emda === "שמ''כ - יירוט" ||
           allmofas[i].Emda === "שמ''כ - בת''ק"
-        ) {
+        )
           allresmofas.push(allmofas[i]);
-        }
     }
 
     res.json(allresmofas);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send();
-  }
-});
-
-router.get("/all", async (req, res) => {
-  try {
-    const token = req.cookies.token;
-
-    if (!token) return res.status(400).json({ errorMessage: "אינך מחובר" });
-
-    const validatedUser = jwt.verify(token, process.env.JWTSECRET);
-
-    const mander = await User.findById(validatedUser.user);
-
-    const allmofas = await Mofa.find();
-
-    return mander.Role === "DIRECT" ||
-      mander.Role === "AUTHCO" ||
-      mander.Role === "SCHOOL" ||
-      mander.Role === "S420"
-      ? res.json(allmofas)
-      : res.status(400).json({ errorMessage: "אינך מחובר" });
   } catch (err) {
     console.error(err);
     res.status(500).send();

@@ -479,7 +479,6 @@ function UpdateFUD(props) {
                         {" "}
                         -- בחר --{" "}
                       </option>
-
                       <option>איש צוות</option>
                       <option>מפקד גף</option>
                       <option>מפקד יחידה</option>

@@ -36,7 +36,11 @@ export default function NACHSALKAHAD() {
 
 //תוספות לדרג
   const [fdereg, fsetDereg] = useState("א'");
-  
+
+//תוספת למקצוע ואוכלוסייה
+  const [profe, setprofe] = useState();
+  const [ue, setue] = useState(); 
+
   const [successMessage, setSuccessMessage] = useState(null);
   const [successMessage2, setSuccessMessage2] = useState(null);
   const [successMessage3, setSuccessMessage3] = useState(null);
@@ -554,7 +558,35 @@ Dereg:fdereg
 </select> 
                 </div>
               </div>
+
+              <br />
+                <div className="fudunit">
+                <div className="fudTitle">אוכלוסייה<sup className="must">*</sup>: </div>
+                  <div className="fudContent">
+                    <select
+                      className="fudinput"
+                      id="form-u"
+                      type="text"
+                      placeholder="אוכלוסייה"
+                      defaultValue={ue}
+                      value={ue}
+                      onChange={(e) => setue(e.target.value)}
+                    >
+                      <option disabled selected value>
+                        {" "}
+                        -- בחר --{" "}
+                      </option>
+
+                      <option>קצינים</option>
+                      <option>חוגרים</option>
+                    </select>
+                  </div>
+                </div>
+
             </div>
+
+
+
             <div className="FUDcolumn">
               <div className="fudunit">
                 <div className="fudTitle">יחידה<sup className="must">*</sup>: </div>
@@ -645,9 +677,29 @@ Dereg:fdereg
                 </div>
 
 
-           
+                <br />
+                <div className="fudunit">
+                  <div className="fudTitle">מקצוע<sup className="must">*</sup>: </div>
+                  <div className="fudContent">
+                    <select
+                      className="fudinput"
+                      id="form-prof"
+                      type="text"
+                      placeholder="מקצוע"
+                      defaultValue={profe}
+                      value={profe}
+                      onChange={(e) => setprofe(e.target.value)}
+                    >
+                      <option disabled selected value>
+                        {" "}
+                        -- בחר --{" "}
+                      </option>
 
-             
+                      <option>בקרה</option>
+                      <option>פיקוח</option>
+                    </select>
+                  </div>
+                </div>
 
 
             </div>
@@ -672,6 +724,8 @@ Dereg:fdereg
                setSuccessMessage(null);
                setSuccessMessage2(null);
                setSuccessMessage3(null);
+          setprofe("");
+          setue("");
   fsetFirstname("");
    fsetLastname("");
    fsetNickname("");
@@ -718,7 +772,8 @@ console.log(funit);
                   fsetSoogHatsava("סדיר");
                   fsetMaslool("הכשרה");
                   fsetRank("צוער");
-  
+          setprofe("");
+          setue("");
   fsetFirstname("");
   fsetLastname("");
   fsetNickname("");
@@ -758,6 +813,8 @@ console.log(funit);
                   fsetSoogHatsava("סדיר");
                   fsetMaslool("הכשרה");
                   fsetRank("צוער");
+            setprofe("");
+            setue("");
      fsetFirstname("");
       fsetLastname("");
       fsetNickname("");

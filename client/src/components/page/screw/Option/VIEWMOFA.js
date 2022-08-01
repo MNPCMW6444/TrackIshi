@@ -44,7 +44,7 @@ export default function VIEWMOFA(props) {
     console.log(err);
   }
 
-  let c = props.data.createdAt.toString();
+  let c = props.data.createdAt && props.data.createdAt.toString() || "";
   let cyear = c.substring(0, 4);
   let cmonth = c.substring(5, 7);
   let cday = c.substring(8, 10);

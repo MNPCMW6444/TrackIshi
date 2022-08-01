@@ -7,19 +7,6 @@ import { CSVLink } from "react-csv";
 import emdalist from "../../../../util/emdalist";
 import Filters from "./Filters";
 
-let td = "...";
-let i = 0;
-let ii = [".", "..", "..."];
-
-const h = () => {
-  if (i < 4) i++;
-  else i = 0;
-  setTimeout(h, 300);
-  td = ii[i];
-};
-
-setTimeout(h, 300);
-
 const customStyles = {
   content: {
     top: "50%",
@@ -34,6 +21,15 @@ const customStyles = {
 };
 
 export default function Mofas(props) {
+  const [threedots,iii] = useState();
+  let i=0;
+  let ii=[".","..","..."];
+  const hh=()=>{if (i<3) i++; else i=0;
+    setTimeout(hh,5000);
+    iii(ii[i]);
+    console.log(i);
+  }
+  /* setTimeout(hh,5000); */
   const [l, setl] = useState(false);
   const [reload, setreload] = useState(false);
   const [allowed, setallowed] = useState(false);
@@ -56,8 +52,8 @@ export default function Mofas(props) {
 
   useEffect(() => {
     async function getit() {
-      setnew(false);
       setl(true);
+      setnew(false)
       let ppl = (await Axios.get(`${domain}/user/getmypeopleM`)).data;
       setpeople(ppl);
       setpeople2(ppl);
@@ -89,15 +85,14 @@ export default function Mofas(props) {
             }
           }
           avg /= count;
-          avgofperson.push(Math.round(avg * 100) / 100);
+          avgofperson.push(Math.round(avg*100)/100);
         }
         sdtavgsperppl.push(avgofperson);
       }
 
-      sdtavgsperppl = sdtavgsperppl[0].map((_, colIndex) =>
+      sdtavgsperppl = (sdtavgsperppl && sdtavgsperppl[0] && sdtavgsperppl[0].map((_, colIndex) =>
         sdtavgsperppl.map((row) => row[colIndex])
-      );
-
+      ));
       setfilteredsdarotavgsperppl(sdtavgsperppl);
       setsdarotavgsperppl(sdtavgsperppl);
     }
@@ -122,18 +117,19 @@ export default function Mofas(props) {
 
   return (
     <div>
-      {allowed ? (
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <HisMOFAS shel={shel} h={h} />
-        </Modal>
-      ) : (
-        <div>טוען סננים</div>
-      )}
+        {allowed ? (
+            <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              style={customStyles}
+              contentLabel="Example Modal"
+            >
+              <HisMOFAS shel={shel} h={h}/>
+            </Modal>
+          ) : (
+            <div>טוען סננים</div>
+          )}
+          <br />
       <div style={{ textAlign: "center" }}>
         <br />
         {!l && (
@@ -147,6 +143,7 @@ export default function Mofas(props) {
           </button>
         )}
       </div>
+
 
       {people &&
         people.length &&
@@ -196,7 +193,6 @@ export default function Mofas(props) {
         <>
           <br />
 
-          <br />
           <table className="xotable">
             <tbody>
               <tr>
@@ -227,9 +223,9 @@ export default function Mofas(props) {
                     </td>
                     {filteredsdarotavgsperppl &&
                       filteredsdarotavgsperppl.length > 0 &&
-                      filteredsdarotavgsperppl[i] &&
-                      filteredsdarotavgsperppl[i].length > 0 &&
-                      filteredsdarotavgsperppl[i].map((avg, j) => (
+                      /* filteredsdarotavgsperppl[i] &&
+                      filteredsdarotavgsperppl[i].length > 0 && */
+                      filteredsdarotavgsperppl[i] && filteredsdarotavgsperppl[i].map((avg, j) => (
                         <td
                           style={{ display: checkIfToRemove(j) && "none" }}
                           key={j + 3000}
@@ -247,55 +243,36 @@ export default function Mofas(props) {
         <>
           {l ? (
             <div style={{ display: "inine-block" }}>
-              <span>{"בודק אילו מופעי ההדרכה מוזנים לאנשייך" + td} </span>
+              <span><h2>בודק אילו מופעי הדרכה מוזנים לאנשיך... {threedots}</h2></span>
               <div className="loader"></div>
             </div>
           ) : (
             /* "אין לך אנשים, לאנשיך אין מופעי הדרכה, סיננת את כולם או שיש תקלה תקשורת" */
             <>
-              {" "}
-              <div style={{ textAlign: "center" }}>
-                <br />
-                {!l && (
-                  <h2>
-                    {" "}
-                    <button
-                      onClick={() => {
-                        setnew(true);
-                      }}
-                    >
-                      פתח איש שאין לו מופעים
-                    </button>
-                  </h2>
-                )}
-              </div>
-              <div style={{ textAlign: "center" }}>
-                <br />
-                {!l && new2 && (
-                  <div>
-                    <table className="otable">
-                      <tbody>
-                        {people2.map((p, i) => (
-                          <tr key={i * 15} className="otr">
-                            <td
-                              key={i * 114}
-                              className="otd"
-                              onClick={() => {
-                                openModal();
-                                setShel(p.MA);
-                                seth(p);
-                              }}
-                            >
-                              {p.NickName}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
-              </div>
-            </>
+            <div style={{ textAlign: "center" }}>
+            <br />
+            {!l && (
+              <button
+                onClick={() => {
+                  setnew(true);
+                }}
+              >
+                אין לאנשיך מופעי הדרכה, לחץ כאן להזנת מופע הדרכה לאיש צוות
+              </button>
+            )}
+          </div>
+    
+          <div style={{ textAlign: "center" }}>
+            <br />
+            {!l && new2 && <div><table className="otable"><tbody>{
+              people2.map((p, i)=><tr className="otr" key={i*15}><td className="otd" key={i*114} onClick={() => {
+                openModal();
+                setShel(p.MA);
+                seth(p);
+              }} >{p.NickName}</td></tr>)
+            }</tbody></table>
+            </div>}
+          </div></>
           )}
         </>
       )}
