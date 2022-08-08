@@ -587,6 +587,15 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.post("/loginCheck", async (req, res) => {
+  try {
+    res.json({ live: "yes" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
+  }
+});
+
 router.get("/logout", (req, res) => {
   res
     .cookie("token", "", {
@@ -605,7 +614,6 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/loggedIn", async (req, res) => {
-
   try {
     const token = req.cookies.token;
 
