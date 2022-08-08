@@ -1,2 +1,53 @@
-/node_modules
+.DS_Store
+./.DS_Store
+
+############################## SERVER and docs folder ##################################################################
+
+#TOTHISWHENPUBLIC
+#/server/.env
+
+#TOTHISWHENPUBLIC
 /server/node_modules
+
+############################## CLIENT ##################################################################
+
+# dependencies
+#TOTHISWHENPUBLIC
+/node_modules
+#TOTHISWHENPUBLIC
+#/client/.pnp
+#TOTHISWHENPUBLIC
+#/client/.pnp.js
+
+# testing
+#TOTHISWHENPUBLIC
+#/client/coverage
+
+# production
+#TOTHISWHENPUBLIC
+#/client/build
+
+# misc
+#TOTHISWHENPUBLIC
+/server/.DS_Store
+#TOTHISWHENPUBLIC
+#/client/.env.local
+#TOTHISWHENPUBLIC
+#/client/.env.development.local
+#TOTHISWHENPUBLIC
+#/client/.env.test.local
+#TOTHISWHENPUBLIC
+#/client/.env.production.local
+
+#TOTHISWHENPUBLIC
+#/client/npm-debug.log*
+#TOTHISWHENPUBLIC
+#/client/yarn-debug.log*
+#TOTHISWHENPUBLIC
+#/client/yarn-error.log*
+
+#TOTHISWHENPUBLIC
+#/client/.eslientcache
+#TOTHISWHENPUBLIC
+#/client/debug.log
+.DS_Store
