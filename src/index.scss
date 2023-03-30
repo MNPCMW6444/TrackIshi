@@ -1,0 +1,1113 @@
+@font-face {
+  font-family: my;
+  src: url("./logos and fonts/VarelaRound-Regular.ttf") format("truetype");
+}
+
+/***************************************************************************/
+/************************            ALL            ************************/
+/***************************************************************************/
+
+body {
+  font-family: my;
+  padding-left: 10%;
+  padding-right: 10%;
+  zoom: 50%;
+  background-color: #e1f5f5;
+  background-image: url("./logos\ and\ fonts/logo993BlueBackg.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.stha {
+  border: 1px solid rgba(19, 20, 97, 0.247);
+  text-align: "center";
+  font-weight: "bold";
+  text-align: center;
+  padding-right: 10px;
+  padding-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 1px;
+}
+
+.stda {
+  border: 1px solid rgba(19, 20, 97, 0.247);
+  text-align: "center";
+  font-weight: "bold";
+  text-align: center;
+  padding-right: 10px;
+  padding-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 1px;
+  font-weight: 999;
+}
+
+@media (min-width: 720px) {
+  body {
+    zoom: 55%;
+  }
+}
+
+@media (min-width: 1100px) {
+  body {
+    zoom: 90%;
+  }
+}
+
+@media (min-width: 1300px) {
+  body {
+    zoom: 100%;
+  }
+}
+
+@media (min-width: 1500px) {
+  body {
+    zoom: 110%;
+  }
+}
+
+@media (min-width: 1600px) {
+  body {
+    zoom: 130%;
+  }
+}
+
+/***************************************************************************/
+/************************            GENERAL            ************************/
+/***************************************************************************/
+
+h1 {
+  font-size: 80px;
+}
+
+p {
+  font-size: 16pt;
+}
+
+button {
+  border: unset;
+  font: unset;
+  color: unset;
+  cursor: pointer;
+  background-color: rgba(23, 1, 148, 0.692);
+  border-radius: 10px;
+  color: white;
+}
+
+button:active {
+  background-color: blue;
+  border-radius: 10px;
+}
+
+.error-message {
+  margin-bottom: 50/2px;
+  padding: 0px;
+  border: 1px solid red;
+  border-radius: 5px;
+  background: rgb(230, 139, 139);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+
+.error-message-button {
+  padding: 6px 40px;
+  background: red;
+  color: black;
+  font-weight: bolder;
+  font-size: 18pt;
+}
+
+.error-message-p {
+  color: black;
+  font-weight: bolder;
+  font-size: 18pt;
+}
+
+.success-message {
+  margin-bottom: 50/2px;
+  padding: 0px;
+  border: 1px solid rgb(0, 153, 20);
+  border-radius: 5px;
+  background: rgb(84, 212, 72);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+
+.success-message-button {
+  padding: 6px 40px;
+  background: rgba(1, 165, 23, 0.932);
+  color: black;
+  font-weight: bolder;
+  font-size: 18pt;
+}
+
+.success-message-p {
+  color: black;
+  font-weight: bolder;
+  font-size: 18pt;
+}
+
+input {
+  font-family: my;
+}
+
+textarea {
+  font-family: my;
+}
+
+/***************************************************************************/
+/************************            SPLASH            ************************/
+/***************************************************************************/
+
+.splash {
+  margin: auto;
+  position: relative;
+  width: 593px;
+  height: 593px;
+}
+
+.splashbutton {
+  border: unset;
+  background: unset;
+  font: unset;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 470px;
+  right: 200px;
+  width: 190px;
+  height: 40px;
+  font-size: 27px;
+  font-weight: bolder;
+}
+
+.splashbutton:hover {
+  border-radius: 15px;
+}
+
+.splashbutton:active {
+  border-radius: 15px;
+  background-color: unset;
+}
+
+/***************************************************************************/
+/************************            Header            ************************/
+/***************************************************************************/
+
+.mainHeader {
+  text-align: center;
+}
+
+/***************************************************************************/
+/************************            LoggingBar            ************************/
+/***************************************************************************/
+
+.loggingbar {
+}
+
+.justALinkNotButton {
+  border: unset;
+  background: unset;
+  font: unset;
+  color: unset;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.justALinkLink {
+  color: blue;
+  text-decoration-line: underline;
+  text-decoration-style: double;
+}
+
+/***************************************************************************/
+/************************            RolesExplanation            ************************/
+/***************************************************************************/
+
+.Roles {
+  background-color: rgba(255, 255, 255, 0.425);
+  border-radius: 50/2px;
+  padding: 40px;
+}
+
+.RolesHeader {
+  font-size: 20pt;
+  font-weight: bolder;
+}
+
+.Roleheader {
+  font-size: 15pt;
+  color: rgba(4, 0, 255, 0.514);
+  font-weight: bold;
+}
+
+.Rolemeaning {
+  font-size: 10pt;
+  color: rgb(0, 26, 1);
+}
+
+.closeRoles {
+  font-size: 25pt;
+  width: 110px;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: rgba(177, 0, 0, 0.664);
+}
+
+/***************************************************************************/
+/************************            NavBar            ************************/
+/***************************************************************************/
+
+.navButtons {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgba(25, 0, 255, 0);
+  border-color: rgba(0, 0, 0, 0);
+  border-width: thin;
+  border-style: solid;
+  border-radius: 20px;
+}
+
+.naveachbutton {
+  display: inline;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15pt;
+  border-color: black;
+  border-width: thin;
+  border-style: solid;
+  margin-left: 5px;
+}
+
+.naveachbuttonselected {
+  display: inline;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15pt;
+  border-color: blue;
+  border-width: thin;
+  border-style: solid;
+  background-color: rgb(27, 2, 121);
+  margin-left: 5px;
+}
+
+.navlogout {
+  display: inline;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15pt;
+  border-color: black;
+  border-width: thin;
+  border-style: solid;
+  float: left;
+}
+
+/***************************************************************************/
+/************************            NachSAL Filters misc         ************************/
+/***************************************************************************/
+
+.filtersbigrow {
+  width: 100%;
+}
+
+.filterSpace {
+  display: block;
+  display: inline;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 25pt;
+  border-color: unset;
+  border-width: 0px;
+  border-style: solid;
+  background-color: unset;
+  cursor: default;
+  width: 20px;
+  height: 32px;
+}
+
+.filterbigSpace {
+  display: block;
+  display: inline;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 10pt;
+  border-color: unset;
+  border-width: 0px;
+  border-style: solid;
+  background-color: unset;
+  cursor: default;
+  width: 50/2px;
+  height: 32px;
+}
+
+.filterSmallSpace {
+  display: block;
+  display: inline;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 10pt;
+  border-color: unset;
+  border-width: 0px;
+  border-style: solid;
+  background-color: unset;
+  cursor: default;
+  width: 15px;
+  height: 32px;
+}
+
+.filterSpace:active,
+.filterbigSpace:active,
+.filterSmallSpace:active {
+  background-color: unset;
+  border-radius: unset;
+}
+
+.filterHeader {
+  display: block;
+  display: inline;
+  color: white;
+  text-align: center;
+  width: 200px;
+  text-decoration: none;
+  font-size: 14pt;
+  border-color: black;
+  border-width: thin;
+  border-style: solid;
+  background-color: black;
+  cursor: default;
+  height: 33px;
+}
+
+.filterHeader:active {
+  background-color: black;
+  border-radius: 5px;
+}
+
+.cleanFilters {
+  text-align: center;
+}
+
+.cleanFiltersBtn {
+  width: 250px;
+  height: 35px;
+  font-size: 15pt;
+  background-color: rgba(177, 0, 0, 0.664);
+}
+
+/***************************************************************************/
+/************************            NachSAL Filters - Buttons         ************************/
+/***************************************************************************/
+
+.buttonfilters {
+  position: relative;
+  right: 20px;
+}
+
+.filterBTNof3false {
+  display: block;
+  display: inline;
+  color: black;
+  text-align: center;
+  padding: 1px 16px;
+  text-decoration: none;
+  font-size: 15pt;
+  border-color: black;
+  border-width: thin;
+  border-style: solid;
+  width: 95px;
+  height: 33px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.filterBTNof3true {
+  display: block;
+  display: inline;
+  color: white;
+  text-align: center;
+  padding: 1px 16px;
+  text-decoration: none;
+  font-size: 15pt;
+  border-color: blue;
+  border-width: thin;
+  border-style: solid;
+  background-color: rgb(27, 2, 121);
+  width: 95px;
+  height: 33px;
+}
+
+.filterBTNof4false {
+  display: block;
+  display: inline;
+  color: black;
+  text-align: center;
+  padding: 1px 7px;
+  text-decoration: none;
+  font-size: 15pt;
+  border-color: black;
+  border-width: thin;
+  border-style: solid;
+  width: 70px;
+  height: 33px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.filterBTNof4true {
+  display: block;
+  display: inline;
+  color: white;
+  text-align: center;
+  padding: 1px 7px;
+  text-decoration: none;
+  font-size: 15pt;
+  border-color: blue;
+  border-width: thin;
+  border-style: solid;
+  background-color: rgb(27, 2, 121);
+  width: 70px;
+  height: 33px;
+}
+
+/***************************************************************************/
+/************************            NachSAL Filters - Inputs         ************************/
+/***************************************************************************/
+
+.inputfilters {
+  position: relative;
+  right: 110px;
+}
+
+.inputfilterINPUT {
+  font-size: 13pt;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+.inputfilterINPUT:placeholder {
+  color: black;
+  opacity: 0.7;
+}
+
+/***************************************************************************/
+/************************            Nachsal Table            ************************/
+/***************************************************************************/
+
+.theTable {
+  border-collapse: collapse;
+  border: 0px solid rgba(23, 25, 53, 0.445);
+  table-layout: fixed;
+  width: 100%;
+}
+
+[class^="theTableTH"] {
+  background-color: rgba(23, 1, 148, 0.692);
+  font-weight: "bolder";
+  border: 2px solid rgb(23, 0, 107);
+  color: white;
+}
+
+.theTableTR:nth-child(even) {
+  text-align: "center";
+  font-weight: "bold";
+  background-color: #e1f5f5;
+}
+
+.theTableTR:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.795);
+  text-align: "center";
+  font-weight: "bold";
+}
+
+[class^="theTableTD"] {
+  border: 1px solid rgba(19, 20, 97, 0.247);
+  text-align: "center";
+  font-weight: "bold";
+  text-align: center;
+  padding-right: 10px;
+  padding-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 1px;
+}
+
+.theTableTDtrue:hover {
+  overflow: visible;
+  width: auto;
+  position: absolute;
+  background-color: rgba(17, 0, 255, 0.616);
+  color: white;
+}
+
+.plus {
+  background-color: green;
+  color: white;
+  font-size: 13pt;
+  border-radius: 20px;
+}
+
+.plusr {
+  background-color: rgba(172, 155, 0, 0.767);
+  color: white;
+  font-size: 13pt;
+  border-radius: 20px;
+}
+
+.plusrpencil {
+  background-color: unset;
+  color: white;
+  font-size: 13pt;
+  border-radius: 20px;
+}
+
+.plusrpencil:active {
+  background-color: rgba(172, 155, 0, 0.767);
+  color: white;
+  font-size: 13pt;
+  border-radius: 20px;
+}
+
+/***************************************************************************/
+/************************            FUD            ************************/
+/***************************************************************************/
+
+.FUD {
+  display: flex;
+}
+
+.FUDcolumn {
+  width: 18%;
+  padding-right: 2%;
+}
+
+.FUDcolumn30 {
+  width: 25%;
+  padding-right: 5%;
+}
+
+.FUDcolumnFirst {
+  width: 18%;
+  padding-right: 0px;
+}
+
+.fudheader {
+  font-size: 28pt;
+}
+
+.fudheaderdiv {
+  text-align: center;
+}
+
+.fudunit {
+  border: 1px solid rgba(23, 25, 53, 0.445);
+}
+
+.fudTitle {
+  text-align: center;
+  font-family: my;
+  font-size: 15pt;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: my;
+  background-color: rgba(23, 1, 148, 0.692);
+  font-weight: "bolder";
+  border: 2px solid rgb(23, 0, 107);
+  color: white;
+}
+
+.fudTitles {
+  text-align: center;
+  font-family: my;
+  font-size: 15pt;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: my;
+  background-color: rgba(23, 1, 148, 0.692);
+  font-weight: "bolder";
+  border: 2px solid rgb(255, 0, 0);
+  color: white;
+}
+
+.fudContentfalse {
+  text-align: center;
+  font-family: my;
+  font-size: large;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: my;
+  background-color: rgba(255, 255, 255, 0.795);
+  font-weight: bold;
+  height: 25px;
+  overflow: hidden;
+}
+
+.fudContenttrue {
+  text-align: center;
+  font-family: my;
+  font-size: large;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: my;
+  background-color: rgba(255, 255, 255, 0.795);
+  font-weight: bold;
+  height: 25px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fudContenttrue:hover {
+  position: absolute;
+  text-align: center;
+  font-family: my;
+  font-size: large;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: my;
+  background-color: rgba(17, 0, 255, 0.616);
+  font-weight: bold;
+  height: 25px;
+  overflow: visible;
+  width: 250px;
+  z-index: 500;
+}
+
+.fudupdatebuttondiv {
+  text-align: center;
+}
+
+.fudupdatebutton {
+  font-size: 20pt;
+  padding-right: 50/2px;
+  padding-left: 50/2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.changepassbuttonOK {
+  font-size: 16pt;
+  padding-right: 50/2px;
+  padding-left: 50/2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(49, 99, 0);
+}
+
+.changepassbuttonCAN {
+  font-size: 8pt;
+  padding-right: 50/2px;
+  padding-left: 50/2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(134, 11, 11);
+}
+
+.changepass {
+  text-align: center;
+}
+
+.changepassm {
+  text-align: center;
+  border: 1px solid rgb(134, 11, 11);
+}
+
+.changepassbutton {
+  padding-right: 50/2px;
+  padding-left: 50/2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(226, 102, 102);
+  color: rgb(9, 0, 48);
+}
+
+.fudinput {
+  font-size: 13pt;
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  font-family: my;
+}
+
+.fudinput:placeholder {
+  color: black;
+  opacity: 0.7;
+  font-family: my;
+}
+
+/***************************************************************************/
+/************************            Opinions            ************************/
+/***************************************************************************/
+
+.choose {
+  text-align: center;
+}
+
+.chooselabel {
+  padding: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+  color: white;
+  background-color: rgba(65, 4, 131, 0.692);
+  font-weight: "bolder";
+  border: 3px solid rgb(65, 217, 255);
+  font-size: 15pt;
+}
+
+.chooseselect {
+  font-size: 15pt;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  font-family: my;
+  padding: 8px;
+  border: 3px solid rgb(65, 217, 255);
+}
+
+.OpinionOpen {
+  font-size: 25pt;
+}
+
+.OpinionOpen2 {
+  font-size: 15pt;
+  background-color: unset;
+}
+.tdbutton {
+  background-color: rgba(23, 1, 148, 0.692);
+  border: 1px solid gray;
+  padding: 11px;
+  text-align: center;
+}
+
+.OpinionOpengray {
+  font-size: 25pt;
+  background-color: gray;
+}
+
+.odiv {
+  background-color: rgba(23, 66, 207, 0.233);
+}
+
+.otable {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.otd,
+.oth {
+  border: 1px solid rgba(0, 0, 0, 0);
+  padding: 8px;
+}
+
+.oth {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  color: white;
+  background-color: rgba(23, 1, 148, 0.692);
+  font-weight: "bolder";
+  border: 2px solid rgb(23, 0, 107);
+}
+
+.otd {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.438);
+  font-weight: "bold";
+  position: relative;
+}
+
+.otdselected {
+  background-color: #71b0f8;
+  border: 2px solid rgba(0, 17, 255, 0.712);
+  text-align: center;
+  position: relative;
+}
+
+.oh3 {
+  background-color: #0066ffaf;
+  font-size: xx-large;
+  text-align: center;
+  border-radius: 100px;
+  margin: auto;
+  font-family: my;
+  width: 85%;
+}
+
+.oh4 {
+  background-color: #5353c983;
+  font-family: my;
+  font-size: large;
+  margin: auto;
+  width: 60%;
+}
+
+.oh5 {
+  background-color: #43435eb7;
+  font-family: my;
+  font-size: medium;
+  margin: auto;
+  width: 50%;
+  color: rgba(255, 255, 255, 0.836);
+}
+
+.oh4,
+.oh5,
+.op {
+  text-align: center;
+  border-radius: 25%;
+}
+
+.opinionH5 {
+  font-family: my;
+  text-align: center;
+}
+
+.lightero {
+  font-weight: 100;
+}
+
+.opd {
+  text-align: center;
+}
+
+.rowWithHistory:hover {
+  background-color: rgba(0, 0, 0, 0.11);
+}
+
+.chartdiv {
+  position: absolute;
+  left: -300px;
+  top: 50px;
+  z-index: 104;
+  background-color: rgba(255, 255, 255, 0.952);
+  border-radius: 30px;
+}
+
+.expdiv {
+  position: absolute;
+  z-index: 104;
+
+  background-color: rgba(255, 255, 255, 0.952);
+  border-radius: 30px;
+}
+
+.mofastable {
+  background-color: rgba(255, 255, 255, 0.541);
+}
+
+.mofavgs {
+  visibility: hidden;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  top: -400px;
+  right: -450px;
+  z-index: 104;
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: white;
+}
+
+a {
+  background-color: unset;
+  text-decoration: none;
+}
+
+.mofavgsshow {
+  visibility: visible;
+  display: inline-block;
+  cursor: unset;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+
+  z-index: 104;
+  padding-right: 20px;
+  padding-left: 0px;
+  padding-top: 40px;
+  background-color: rgba(255, 255, 255, 0.623);
+  border-radius: 30px;
+  border: 1px solid rgb(189, 189, 189);
+}
+
+.chart {
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  direction: ltr;
+}
+
+.OpinionClose {
+  text-align: center;
+}
+
+.OpinionCloseButton {
+  font-size: 15pt;
+  background-color: rgba(177, 0, 0, 0.664);
+}
+
+.OpinionSend {
+  text-align: center;
+}
+
+.OpinionSendButton {
+  font-size: 25pt;
+}
+
+.opinionInput {
+  font-size: 13pt;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  font-family: my;
+}
+
+.opinionInputPara {
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  padding: 20px 0;
+  background-color: rgba(255, 255, 255, 0.418);
+}
+
+.opinionInputPara2 {
+  width: 400px;
+  height: 100px;
+  text-align: center;
+  padding: 20px 0;
+  background-color: rgba(255, 255, 255, 0.418);
+}
+/***************************************************************************/
+/************************            Footer            ************************/
+/***************************************************************************/
+
+.footerdiv {
+  text-align: center;
+
+  opacity: 0.75;
+}
+.footerdivitself {
+  padding-left: 35%;
+  padding-right: 35%;
+}
+
+.footerlabel {
+  text-align: center;
+  font-weight: bolder;
+}
+
+.footerinput {
+  margin: auto;
+}
+
+.footerinputshort {
+  width: 300px;
+  height: 30px;
+  text-align: center;
+
+  background-color: rgba(255, 255, 255, 0.418);
+}
+
+.footerinputlong {
+  width: 300px;
+  height: 300px;
+  text-align: center;
+  padding: 20px 0;
+
+  background-color: rgba(255, 255, 255, 0.418);
+}
+
+.footerinputlong:placeholder {
+  font-size: 30pt;
+  text-align: center;
+}
+
+.footersend {
+  float: left;
+}
+
+.footersendbutton {
+  margin: auto;
+  width: 125px;
+  height: 50px;
+  font-size: 20pt;
+}
+
+.footercancel {
+  float: right;
+}
+
+.footercancelbutton {
+  margin: auto;
+  width: 125px;
+  height: 50px;
+  font-size: 20pt;
+  background-color: rgba(177, 0, 0, 0.664);
+  color: white;
+}
+
+.version {
+  text-align: center;
+  opacity: 0.7;
+}
+
+.author {
+  text-align: center;
+  opacity: 0.4;
+}
+
+.must {
+  color: red;
+  font-weight: 900;
+}
+
+.must2 {
+  color: rgba(23, 1, 148, 0);
+  font-weight: 900;
+}
+
+
+.loader{
+  display:inline-block;
+  border:"16px solid #f3f3f3";
+  border-radius: 50%;
+  border-top: "16px solid #3498bd";
+  width:12px;
+  height: 12px;
+  animation: spin 2s linear infinite;
+}
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+  }
+}
