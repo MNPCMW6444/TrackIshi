@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useTable, useFilters, useSortBy } from "react-table";
 import Modal from "react-modal";
 import UpdateFUD2 from "../../FUD/UpdateFUD2";
+import { DataGrid } from "@mui/x-data-grid";
 
 export default function TACHSALTBKAHAD(props) {
   const goten = props.data;
@@ -284,6 +285,13 @@ export default function TACHSALTBKAHAD(props) {
     ],
     []
   );
+  const cc = [
+    ...Object.keys(props.data[0]).map((key) => ({
+      field: key,
+      headerName: key,
+      width: 100,
+    })),
+  ];
 
   const {
     getTableProps,
@@ -799,259 +807,22 @@ export default function TACHSALTBKAHAD(props) {
 
   return (
     goten && (
-      <div className="filtersAndTable" key={props.data} key={props.data}>
+      <div className="filtersAndTable"  key={props.data}>
         <div className="allfilters">
-          <table>
-            <tbody>
-              <tr className="filtersbigrow">
-                <td>
-                  <div className="buttonfilters">
-                    <div className="filterHeaderROW">
-                      <button className="filterHeader">לפי יחידה:</button>
-                      <button className="filterbigSpace" tabIndex={-1}></button>
-                      <button
-                        className={"filterBTNof3" + mas1clickedUNIT}
-                        onClick={handleFilterChange6506}
-                      >
-                        506
-                      </button>
-                      <button className="filterSpace" tabIndex={-1}></button>
-                      <button
-                        className={"filterBTNof3" + mas2clickedUNIT}
-                        onClick={handleFilterChange6509}
-                      >
-                        509
-                      </button>
-                      <button className="filterSpace" tabIndex={-1}></button>
-                      <button
-                        className={"filterBTNof3" + mas3clickedUNIT}
-                        onClick={handleFilterChange6528}
-                      >
-                        528
-                      </button>
-                    </div>
-                    <div className="filterHeaderROW">
-                      <button className="filterHeader">לפי מסלול:</button>
-                      <button className="filterbigSpace" tabIndex={-1}></button>
-                      <button
-                        className={"filterBTNof3" + mas1clicked}
-                        onClick={handleFilterChange6mesima}
-                      >
-                        משימה
-                      </button>
-                      <button className="filterSpace" tabIndex={-1}></button>
-                      <button
-                        className={"filterBTNof3" + mas2clicked}
-                        onClick={handleFilterChange6taavura}
-                      >
-                        תעבורה
-                      </button>
-                      <button className="filterSpace" tabIndex={-1}></button>
-                      <button
-                        className={"filterBTNof3" + mas3clicked}
-                        onClick={handleFilterChange6versatili}
-                      >
-                        ורסטילי
-                      </button>
-                    </div>
-                    <div className="filterHeaderROW">
-                      <button className="filterHeader">לפי הצבה:</button>
-                      <button className="filterbigSpace" tabIndex={-1}></button>
-                      <button
-                        className={"filterBTNof3" + mas1clickedHATSAVA}
-                        onClick={handleFilterChange6Sadir}
-                      >
-                        סדיר
-                      </button>
-                      <button className="filterSpace" tabIndex={-1}></button>
-                      <button
-                        className={"filterBTNof3" + mas2clickedHATSAVA}
-                        onClick={handleFilterChange6Hatsach}
-                      >
-                        הצ"ח
-                      </button>
-                      <button className="filterSpace" tabIndex={-1}></button>
-                      <button
-                        className={"filterBTNof3" + mas3clickedHATSAVA}
-                        onClick={handleFilterChange6Miluim}
-                      >
-                        מילואים
-                      </button>
-                    </div>
-                    <div className="filterHeaderROW">
-                      <button className="filterHeader">לפי דרג מקצועי:</button>
-                      <button className="filterbigSpace" tabIndex={-1}></button>
-                      <button
-                        className={"filterBTNof4" + mas1clickedDEREG}
-                        onClick={handleFilterChange6A}
-                      >
-                        א'
-                      </button>
-                      <button
-                        className="filterSmallSpace"
-                        tabIndex={-1}
-                      ></button>
-                      <button
-                        className={"filterBTNof4" + mas2clickedDEREG}
-                        onClick={handleFilterChange6B}
-                      >
-                        ב'
-                      </button>
-                      <button
-                        className="filterSmallSpace"
-                        tabIndex={-1}
-                      ></button>
-                      <button
-                        className={"filterBTNof4" + mas3clickedDEREG}
-                        onClick={handleFilterChange6C}
-                      >
-                        ג'
-                      </button>
-                      <button
-                        className="filterSmallSpace"
-                        tabIndex={-1}
-                      ></button>
-                      <button
-                        className={"filterBTNof4" + mas4clickedDEREG}
-                        onClick={handleFilterChange6D}
-                      >
-                        ד'
-                      </button>
-                    </div>
-                    <div className="filterHeaderROW">
-                      <button className="filterHeader">לפי דרגה:</button>
-                      <button className="filterbigSpace" tabIndex={-1}></button>
-                      <button
-                        className={"filterBTNof4" + mas1clickedRank}
-                        onClick={handleFilterChange6Seren}
-                      >
-                        סרן
-                      </button>
-                      <button
-                        className="filterSmallSpace"
-                        tabIndex={-1}
-                      ></button>
-                      <button
-                        className={"filterBTNof4" + mas2clickedRank}
-                        onClick={handleFilterChange6Rasan}
-                      >
-                        רס"ן
-                      </button>
-                      <button
-                        className="filterSmallSpace"
-                        tabIndex={-1}
-                      ></button>
-                      <button
-                        className={"filterBTNof4" + mas3clickedRank}
-                        onClick={handleFilterChange6Saal}
-                      >
-                        סא"ל
-                      </button>
-                      <button
-                        className="filterSmallSpace"
-                        tabIndex={-1}
-                      ></button>
-                      <button
-                        className={"filterBTNof4" + mas4clickedRank}
-                        onClick={handleFilterChange6Other}
-                      >
-                        אחר
-                      </button>
-                    </div>
-                    <div className="filterHeaderROW">
-                      <button className="filterHeader">לפי אוכלוסייה:</button>
-                      <button className="filterbigSpace" tabIndex={-1}></button>
-                      <button
-                        className={"filterBTNof4" + bakara}
-                        onClick={handlebakara}
-                      >
-                        בקרה
-                      </button>
-                      <button
-                        className="filterSmallSpace"
-                        tabIndex={-1}
-                      ></button>
-                      <button
-                        className={"filterBTNof4" + pikuach}
-                        onClick={handlepikuach}
-                      >
-                        פיקוח
-                      </button>
-                      <button
-                        className="filterSmallSpace"
-                        tabIndex={-1}
-                      ></button>
-                      <button
-                        className={"filterBTNof4" + ktsinim}
-                        onClick={handlektsinim}
-                      >
-                        קצינים
-                      </button>
-                      <button
-                        className="filterSmallSpace"
-                        tabIndex={-1}
-                      ></button>
-                      <button
-                        className={"filterBTNof4" + ogrim}
-                        onClick={handleogrim}
-                      >
-                        חוגרים
-                      </button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className="inputfilters">
-                    <button className="filterHeader">לפי קורס:</button>
-                    <button className="filterbigSpace" tabIndex={-1}></button>
-                    <input
-                      className="inputfilterINPUT"
-                      value={filterInput5}
-                      onChange={handleFilterChange5}
-                      placeholder={"הקלד קורס"}
-                    />
-                    <br />
-                    <button className="filterHeader">לפי שם פרטי:</button>
-                    <button className="filterbigSpace" tabIndex={-1}></button>
-                    <input
-                      className="inputfilterINPUT"
-                      value={filterInput2}
-                      onChange={handleFilterChange2}
-                      placeholder={"הקלד שם פרטי"}
-                    />
-                    <br />
-                    <button className="filterHeader">לפי שם משפחה:</button>
-                    <button className="filterbigSpace" tabIndex={-1}></button>
-                    <input
-                      className="inputfilterINPUT"
-                      value={filterInput3}
-                      onChange={handleFilterChange3}
-                      placeholder={"הקלד שם משפחה"}
-                    />
-                    <br />
-                    <button className="filterHeader">לפי כינוי:</button>
-                    <button className="filterbigSpace" tabIndex={-1}></button>
-                    <input
-                      className="inputfilterINPUT"
-                      value={filterInput4}
-                      onChange={handleFilterChange4}
-                      placeholder={"הקלד כינוי"}
-                    />
-                    <br />
-                    <button className="filterHeader">לפי מספר אישי:</button>
-                    <button className="filterbigSpace" tabIndex={-1}></button>
-                    <input
-                      className="inputfilterINPUT"
-                      value={filterInput}
-                      onChange={handleFilterChange}
-                      placeholder={"הקלד מספר אישי"}
-                    />
-                    <br />
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <DataGrid
+            rows={props.data.map((row) => ({...row, id: row._id}))} 
+            columns={Object.keys(props.data[0])}
+            initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 5,
+            },
+          },
+        }}
+        pageSizeOptions={[5]}
+        checkboxSelection
+        disableRowSelectionOnClick
+          />
           <Modal
             isOpen={modalIsOpen}
             onAfterOpen={afterOpenModal}
@@ -1064,114 +835,10 @@ export default function TACHSALTBKAHAD(props) {
           <br />
           <br />
         </div>
-        {(mas1clickedUNIT ||
-          mas2clickedUNIT ||
-          mas3clickedUNIT ||
-          mas1clicked ||
-          mas2clicked ||
-          mas3clicked ||
-          mas1clickedHATSAVA ||
-          mas2clickedHATSAVA ||
-          mas3clickedHATSAVA ||
-          mas1clickedDEREG ||
-          mas2clickedDEREG ||
-          bakara ||
-          pikuach ||
-          ktsinim ||
-          ogrim ||
-          mas3clickedDEREG ||
-          mas4clickedDEREG ||
-          mas1clickedRank ||
-          mas2clickedRank ||
-          mas3clickedRank ||
-          mas4clickedRank ||
-          filterInput !== "" ||
-          filterInput2 !== "" ||
-          filterInput3 !== "" ||
-          filterInput4 !== "" ||
-          filterInput5 !== "") && (
-          <div className="cleanFilters">
-            <button className="cleanFiltersBtn" onClick={cleanAll}>
-              נקה את כל הסינונים
-            </button>
-            <br />
-            <br />
-            <br />
-          </div>
-        )}{" "}
+    
         <br />
         <br />
-        <div className="theTableDiv">
-          <table className="theTable" {...getTableProps()}>
-            <thead>
-              {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column) => (
-                    <th
-                      className={"theTableTH" + column.Header}
-                      {...column.getHeaderProps()}
-                    >
-                      {column.render("Header")}
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-            <colgroup>
-              <col span="1" style={{ width: "5%" }} />
-              <col span="1" style={{ width: "7%" }} />
-              <col span="1" style={{ width: "7%" }} />
-              <col span="1" style={{ width: "5%" }} />
-              <col span="1" style={{ width: "9%" }} />
-              <col span="1" style={{ width: "6%" }} />
-              <col span="1" style={{ width: "12%" }} />
-              <col span="1" style={{ width: "13%" }} />
-              <col span="1" style={{ width: "12%" }} />
-              <col span="1" style={{ width: "12%" }} />
-              <col span="1" style={{ width: "12%" }} />
-            </colgroup>
-            <tbody {...getTableBodyProps()}>
-              {rows.map((row) => {
-                prepareRow(row);
-                return (
-                  <tr className="theTableTR" {...row.getRowProps()}>
-                    {row.cells.map((cell) => {
-                      return (
-                        <td
-                          className={
-                            "theTableTD" +
-                            (cell.value && cell.value.length > 13)
-                          }
-                          {...cell.getCellProps()}
-                        >
-                          {cell.render("Cell")}
-                        </td>
-                      );
-                    })}
-                    <th>
-                      <button
-                        className="plusrpencil"
-                        onClick={() => {
-                          openFUD(row.original.MA);
-                        }}
-                      >
-                        ✏️
-                      </button>
-                      {/*   <button
-                      className="plusr"
-                      onClick={() => {
-                        openFUD(row.original.MA);
-                      }}
-                    >
-                      עריכה
-                    </button> */}
-                    </th>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+     
       </div>
     )
   );

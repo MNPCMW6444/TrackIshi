@@ -7,6 +7,7 @@
     "@emotion/styled": "^11.10.5",
     "@fontsource/varela-round": "^4.5.9",
     "@mui/material": "^5.10.11",
+    "@mui/x-data-grid": "^6.5.0",
     "axios": "^1.1.3",
     "react-csv": "^2.2.2",
     "react-modal": "^3.16.1",
@@ -19,8 +20,7 @@
     "sass": "^1.55.0"
   },
   "scripts": {
-    "prestart": "npm install && cd server && npm install",
-    "start": "PORT=5665 react-scripts start & cd server && npm run dev",
+    "start": "PORT=5665 react-scripts start",
     "kill": "sudo killall node",
     "build": "react-scripts build",
     "test": "react-scripts test",
